@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2F0903CE25B128309AE393FD /* Pods_WeSail_WeSailUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 51DC97EFCA7AA9D8AA65D6E4 /* Pods_WeSail_WeSailUITests.framework */; };
 		3C17C8722B14D60B00C74788 /* WeSailApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C17C8712B14D60B00C74788 /* WeSailApp.swift */; };
 		3C17C8742B14D60B00C74788 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C17C8732B14D60B00C74788 /* ContentView.swift */; };
 		3C17C8762B14D60D00C74788 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3C17C8752B14D60D00C74788 /* Assets.xcassets */; };
@@ -14,6 +15,11 @@
 		3C17C8832B14D60D00C74788 /* WeSailTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C17C8822B14D60D00C74788 /* WeSailTests.swift */; };
 		3C17C88D2B14D60E00C74788 /* WeSailUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C17C88C2B14D60E00C74788 /* WeSailUITests.swift */; };
 		3C17C88F2B14D60E00C74788 /* WeSailUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C17C88E2B14D60E00C74788 /* WeSailUITestsLaunchTests.swift */; };
+		3C17C89C2B14D72B00C74788 /* MessageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C17C89B2B14D72B00C74788 /* MessageView.swift */; };
+		3C17C89F2B14DAEE00C74788 /* ChatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C17C89E2B14DAEE00C74788 /* ChatView.swift */; };
+		3C17C8A22B14DB3F00C74788 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C17C8A12B14DB3F00C74788 /* Message.swift */; };
+		999A7D181D08ED88D3E5AB02 /* Pods_WeSail.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6145398296DDB348149FAA8C /* Pods_WeSail.framework */; };
+		F9FE9DC0B22D236BCFADFB1D /* Pods_WeSailTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 94A1300D5AA2E5B6B06B4A25 /* Pods_WeSailTests.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -34,6 +40,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2260121AEE9BF01A978BD7C3 /* Pods-WeSail-WeSailUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WeSail-WeSailUITests.debug.xcconfig"; path = "Target Support Files/Pods-WeSail-WeSailUITests/Pods-WeSail-WeSailUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		2387EA2BC58C34E4A74F3818 /* Pods-WeSailTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WeSailTests.debug.xcconfig"; path = "Target Support Files/Pods-WeSailTests/Pods-WeSailTests.debug.xcconfig"; sourceTree = "<group>"; };
+		2452754E36E330B54FB0BDD3 /* Pods-WeSail-WeSailUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WeSail-WeSailUITests.release.xcconfig"; path = "Target Support Files/Pods-WeSail-WeSailUITests/Pods-WeSail-WeSailUITests.release.xcconfig"; sourceTree = "<group>"; };
 		3C17C86E2B14D60B00C74788 /* WeSail.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WeSail.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3C17C8712B14D60B00C74788 /* WeSailApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeSailApp.swift; sourceTree = "<group>"; };
 		3C17C8732B14D60B00C74788 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -44,6 +53,15 @@
 		3C17C8882B14D60D00C74788 /* WeSailUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WeSailUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		3C17C88C2B14D60E00C74788 /* WeSailUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeSailUITests.swift; sourceTree = "<group>"; };
 		3C17C88E2B14D60E00C74788 /* WeSailUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeSailUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		3C17C89B2B14D72B00C74788 /* MessageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageView.swift; sourceTree = "<group>"; };
+		3C17C89E2B14DAEE00C74788 /* ChatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatView.swift; sourceTree = "<group>"; };
+		3C17C8A12B14DB3F00C74788 /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
+		51DC97EFCA7AA9D8AA65D6E4 /* Pods_WeSail_WeSailUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WeSail_WeSailUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		58730F8965586B81AFA36CED /* Pods-WeSail.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WeSail.debug.xcconfig"; path = "Target Support Files/Pods-WeSail/Pods-WeSail.debug.xcconfig"; sourceTree = "<group>"; };
+		6145398296DDB348149FAA8C /* Pods_WeSail.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WeSail.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		94A1300D5AA2E5B6B06B4A25 /* Pods_WeSailTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WeSailTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		DB13BD6B0AD9BFF1C8D81E13 /* Pods-WeSail.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WeSail.release.xcconfig"; path = "Target Support Files/Pods-WeSail/Pods-WeSail.release.xcconfig"; sourceTree = "<group>"; };
+		FF508270DC75A48ED220A84F /* Pods-WeSailTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WeSailTests.release.xcconfig"; path = "Target Support Files/Pods-WeSailTests/Pods-WeSailTests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -51,6 +69,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				999A7D181D08ED88D3E5AB02 /* Pods_WeSail.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -58,6 +77,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F9FE9DC0B22D236BCFADFB1D /* Pods_WeSailTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -65,12 +85,23 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2F0903CE25B128309AE393FD /* Pods_WeSail_WeSailUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		03F636F783E851ED53C19356 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				6145398296DDB348149FAA8C /* Pods_WeSail.framework */,
+				51DC97EFCA7AA9D8AA65D6E4 /* Pods_WeSail_WeSailUITests.framework */,
+				94A1300D5AA2E5B6B06B4A25 /* Pods_WeSailTests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		3C17C8652B14D60B00C74788 = {
 			isa = PBXGroup;
 			children = (
@@ -78,6 +109,8 @@
 				3C17C8812B14D60D00C74788 /* WeSailTests */,
 				3C17C88B2B14D60E00C74788 /* WeSailUITests */,
 				3C17C86F2B14D60B00C74788 /* Products */,
+				FD3B1A0506F27C9B0DD82A87 /* Pods */,
+				03F636F783E851ED53C19356 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -94,6 +127,8 @@
 		3C17C8702B14D60B00C74788 /* WeSail */ = {
 			isa = PBXGroup;
 			children = (
+				3C17C8A02B14DB0200C74788 /* Models */,
+				3C17C89D2B14DAD000C74788 /* Views */,
 				3C17C8712B14D60B00C74788 /* WeSailApp.swift */,
 				3C17C8732B14D60B00C74788 /* ContentView.swift */,
 				3C17C8752B14D60D00C74788 /* Assets.xcassets */,
@@ -127,6 +162,36 @@
 			path = WeSailUITests;
 			sourceTree = "<group>";
 		};
+		3C17C89D2B14DAD000C74788 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				3C17C89E2B14DAEE00C74788 /* ChatView.swift */,
+				3C17C89B2B14D72B00C74788 /* MessageView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		3C17C8A02B14DB0200C74788 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				3C17C8A12B14DB3F00C74788 /* Message.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		FD3B1A0506F27C9B0DD82A87 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				58730F8965586B81AFA36CED /* Pods-WeSail.debug.xcconfig */,
+				DB13BD6B0AD9BFF1C8D81E13 /* Pods-WeSail.release.xcconfig */,
+				2260121AEE9BF01A978BD7C3 /* Pods-WeSail-WeSailUITests.debug.xcconfig */,
+				2452754E36E330B54FB0BDD3 /* Pods-WeSail-WeSailUITests.release.xcconfig */,
+				2387EA2BC58C34E4A74F3818 /* Pods-WeSailTests.debug.xcconfig */,
+				FF508270DC75A48ED220A84F /* Pods-WeSailTests.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -134,6 +199,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 3C17C8922B14D60E00C74788 /* Build configuration list for PBXNativeTarget "WeSail" */;
 			buildPhases = (
+				C1EC95F7C150CA34497A86FD /* [CP] Check Pods Manifest.lock */,
 				3C17C86A2B14D60B00C74788 /* Sources */,
 				3C17C86B2B14D60B00C74788 /* Frameworks */,
 				3C17C86C2B14D60B00C74788 /* Resources */,
@@ -151,6 +217,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 3C17C8952B14D60E00C74788 /* Build configuration list for PBXNativeTarget "WeSailTests" */;
 			buildPhases = (
+				6DA1C14FFF013444FFBFD1D6 /* [CP] Check Pods Manifest.lock */,
 				3C17C87A2B14D60D00C74788 /* Sources */,
 				3C17C87B2B14D60D00C74788 /* Frameworks */,
 				3C17C87C2B14D60D00C74788 /* Resources */,
@@ -169,6 +236,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 3C17C8982B14D60E00C74788 /* Build configuration list for PBXNativeTarget "WeSailUITests" */;
 			buildPhases = (
+				AA1AB1E50FECD609B870B0B0 /* [CP] Check Pods Manifest.lock */,
 				3C17C8842B14D60D00C74788 /* Sources */,
 				3C17C8852B14D60D00C74788 /* Frameworks */,
 				3C17C8862B14D60D00C74788 /* Resources */,
@@ -252,11 +320,83 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		6DA1C14FFF013444FFBFD1D6 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-WeSailTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		AA1AB1E50FECD609B870B0B0 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-WeSail-WeSailUITests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		C1EC95F7C150CA34497A86FD /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-WeSail-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		3C17C86A2B14D60B00C74788 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3C17C89F2B14DAEE00C74788 /* ChatView.swift in Sources */,
+				3C17C89C2B14D72B00C74788 /* MessageView.swift in Sources */,
+				3C17C8A22B14DB3F00C74788 /* Message.swift in Sources */,
 				3C17C8742B14D60B00C74788 /* ContentView.swift in Sources */,
 				3C17C8722B14D60B00C74788 /* WeSailApp.swift in Sources */,
 			);
@@ -347,7 +487,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
@@ -404,7 +544,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
@@ -416,6 +556,7 @@
 		};
 		3C17C8932B14D60E00C74788 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 58730F8965586B81AFA36CED /* Pods-WeSail.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -427,8 +568,8 @@
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -436,6 +577,9 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = fr.qdtrl.WeSail;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -444,6 +588,7 @@
 		};
 		3C17C8942B14D60E00C74788 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = DB13BD6B0AD9BFF1C8D81E13 /* Pods-WeSail.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -455,8 +600,8 @@
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -464,6 +609,9 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = fr.qdtrl.WeSail;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -472,16 +620,20 @@
 		};
 		3C17C8962B14D60E00C74788 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2387EA2BC58C34E4A74F3818 /* Pods-WeSailTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = fr.qdtrl.WeSailTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -491,16 +643,20 @@
 		};
 		3C17C8972B14D60E00C74788 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = FF508270DC75A48ED220A84F /* Pods-WeSailTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = fr.qdtrl.WeSailTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -510,6 +666,7 @@
 		};
 		3C17C8992B14D60E00C74788 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2260121AEE9BF01A978BD7C3 /* Pods-WeSail-WeSailUITests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -518,6 +675,9 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = fr.qdtrl.WeSailUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -527,6 +687,7 @@
 		};
 		3C17C89A2B14D60E00C74788 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2452754E36E330B54FB0BDD3 /* Pods-WeSail-WeSailUITests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -535,6 +696,9 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = fr.qdtrl.WeSailUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
