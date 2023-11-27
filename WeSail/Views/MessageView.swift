@@ -23,14 +23,14 @@ struct MessageView: View {
                         .background(Color.blue)
                         .foregroundColor(.white)
                         .cornerRadius(10)
-                    Image(systemName: "person.fill")
+                    Image(systemName: message.userImage)
                         .resizable()
                         .frame(width: 32, height: 32)
                         .clipShape(Circle())
                 }
             } else {
                 HStack(alignment: .top) {
-                    Image(systemName: "person.fill")
+                    Image(systemName: message.userImage)
                         .resizable()
                         .frame(width: 32, height: 32)
                         .clipShape(Circle())
@@ -46,6 +46,6 @@ struct MessageView: View {
     }
 }
 
-#Preview {
-    MessageView(message: Message(userUid: "userUid", text: "Hello", date: Date(), isRead: false, userImage: "person.fill"))
-}
+//#Preview {
+//    MessageView(message: Message(userUid: "userUid", text: "Hello", date: Date(), isRead: false, userImage: "person.fill"))
+//}

@@ -8,17 +8,37 @@
 import SwiftUI
 
 struct ContentView: View {
-    var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
-        }
-        .padding()
-    }
-}
+    @State var isAuthenticated:Bool = false
 
-#Preview {
-    ContentView()
+    var body: some View {
+        if isAuthenticated {
+            TabView {
+                HomeView()
+                    .tabItem {
+                        Image(systemName: "popcorn")
+                        Text("Accueil")
+                    }
+                
+                BoatsView()
+                    .tabItem {
+                        Image(systemName: "sailboat")
+                        Text("Yacht")
+                    }
+                
+                ChatView()
+                    .tabItem {
+                        Image(systemName: "message")
+                        Text("Message")
+                    }
+                
+                ProfileView()
+                    .tabItem {
+                        Image(systemName: "person")
+                        Text("Profil")
+                    }
+            }
+        } else {
+            LoginView()
+        }
+    }
 }

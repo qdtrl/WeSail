@@ -1,0 +1,10 @@
+//
+//  Config.xcconfig
+//  WeSail
+//
+//  Created by Quentin Dubut-Touroul on 27/11/2023.
+//
+
+// Configuration settings file format documentation can be found at:
+// https://help.apple.com/xcode/#/dev745c5c974
+CLIENT_ID=687682866295-fogmj6jh683nrhkl11cnqj7d8t9mnef1.apps.googleusercontent.com
