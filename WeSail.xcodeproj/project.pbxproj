@@ -32,6 +32,11 @@
 		3C524A852B1B72CA000B1667 /* PicturesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C524A842B1B72CA000B1667 /* PicturesView.swift */; };
 		3C524A872B1B7CEA000B1667 /* Boats.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C524A862B1B7CEA000B1667 /* Boats.swift */; };
 		3C524A892B1B7D30000B1667 /* Boat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C524A882B1B7D30000B1667 /* Boat.swift */; };
+		3C524A8B2B1B8021000B1667 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C524A8A2B1B8021000B1667 /* Event.swift */; };
+		3C524A8D2B1B8207000B1667 /* BoatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C524A8C2B1B8207000B1667 /* BoatView.swift */; };
+		3C524A8F2B1B92D2000B1667 /* CrewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C524A8E2B1B92D2000B1667 /* CrewView.swift */; };
+		3C524A912B1B9A3E000B1667 /* Events.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C524A902B1B9A3E000B1667 /* Events.swift */; };
+		3C524A932B1B9FFB000B1667 /* EventView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C524A922B1B9FFB000B1667 /* EventView.swift */; };
 		3C94C4952B1559D20049FCE9 /* SplashScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C94C4942B1559D20049FCE9 /* SplashScreenView.swift */; };
 		3CEBE2842B1A307600EA59D5 /* ChatsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CEBE2832B1A307600EA59D5 /* ChatsView.swift */; };
 		3CEBE2862B1A330100EA59D5 /* Chats.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CEBE2852B1A330100EA59D5 /* Chats.swift */; };
@@ -90,6 +95,11 @@
 		3C524A842B1B72CA000B1667 /* PicturesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PicturesView.swift; sourceTree = "<group>"; };
 		3C524A862B1B7CEA000B1667 /* Boats.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Boats.swift; sourceTree = "<group>"; };
 		3C524A882B1B7D30000B1667 /* Boat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Boat.swift; sourceTree = "<group>"; };
+		3C524A8A2B1B8021000B1667 /* Event.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
+		3C524A8C2B1B8207000B1667 /* BoatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoatView.swift; sourceTree = "<group>"; };
+		3C524A8E2B1B92D2000B1667 /* CrewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CrewView.swift; sourceTree = "<group>"; };
+		3C524A902B1B9A3E000B1667 /* Events.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Events.swift; sourceTree = "<group>"; };
+		3C524A922B1B9FFB000B1667 /* EventView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventView.swift; sourceTree = "<group>"; };
 		3C94C4942B1559D20049FCE9 /* SplashScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashScreenView.swift; sourceTree = "<group>"; };
 		3CEBE2832B1A307600EA59D5 /* ChatsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatsView.swift; sourceTree = "<group>"; };
 		3CEBE2852B1A330100EA59D5 /* Chats.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Chats.swift; sourceTree = "<group>"; };
@@ -206,6 +216,9 @@
 				3CEBE2832B1A307600EA59D5 /* ChatsView.swift */,
 				3C524A822B1B72A5000B1667 /* EventsView.swift */,
 				3C524A842B1B72CA000B1667 /* PicturesView.swift */,
+				3C524A8C2B1B8207000B1667 /* BoatView.swift */,
+				3C524A8E2B1B92D2000B1667 /* CrewView.swift */,
+				3C524A922B1B9FFB000B1667 /* EventView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -219,6 +232,8 @@
 				3CEBE2852B1A330100EA59D5 /* Chats.swift */,
 				3C524A862B1B7CEA000B1667 /* Boats.swift */,
 				3C524A882B1B7D30000B1667 /* Boat.swift */,
+				3C524A8A2B1B8021000B1667 /* Event.swift */,
+				3C524A902B1B9A3E000B1667 /* Events.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -473,6 +488,7 @@
 				3C17C8B02B14EC2400C74788 /* AuthManager.swift in Sources */,
 				3CEBE2862B1A330100EA59D5 /* Chats.swift in Sources */,
 				3C17C89F2B14DAEE00C74788 /* ChatView.swift in Sources */,
+				3C524A912B1B9A3E000B1667 /* Events.swift in Sources */,
 				3C17C8A82B14E5FB00C74788 /* LoginView.swift in Sources */,
 				3C46FBBE2B152A78003B0884 /* ProfileView.swift in Sources */,
 				3CEBE2892B1A426600EA59D5 /* Date.swift in Sources */,
@@ -481,7 +497,11 @@
 				3C94C4952B1559D20049FCE9 /* SplashScreenView.swift in Sources */,
 				3C17C89C2B14D72B00C74788 /* MessageView.swift in Sources */,
 				3C524A872B1B7CEA000B1667 /* Boats.swift in Sources */,
+				3C524A8B2B1B8021000B1667 /* Event.swift in Sources */,
+				3C524A8F2B1B92D2000B1667 /* CrewView.swift in Sources */,
+				3C524A932B1B9FFB000B1667 /* EventView.swift in Sources */,
 				3C524A892B1B7D30000B1667 /* Boat.swift in Sources */,
+				3C524A8D2B1B8207000B1667 /* BoatView.swift in Sources */,
 				3C524A852B1B72CA000B1667 /* PicturesView.swift in Sources */,
 				3C17C8A22B14DB3F00C74788 /* Message.swift in Sources */,
 				3C17C8742B14D60B00C74788 /* ContentView.swift in Sources */,

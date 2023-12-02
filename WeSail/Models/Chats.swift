@@ -15,7 +15,6 @@ class ChatsModel: ObservableObject {
             let date1 = $0.messages.last!.date
             let date2 = $1.messages.last!.date
             return date1 > date2
-            
         }
         
         if query == "" {

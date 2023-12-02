@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct ProfileView: View {
+    let user: User
     @State var index:Int = 0
 
     var body: some View {
@@ -38,7 +39,7 @@ struct ProfileView: View {
                         Text("Abonné(e)s")
                     }
                 }
-                Text("Quentin Touroul")
+                Text("\(user.firstName) \(user.lastName)")
                     .bold()
                 Text("Petite description des familles super longue pour voir ce ")
                 
@@ -129,11 +130,11 @@ struct ProfileView: View {
             
             switch index {
             case 0:
-                Text("Événements")
+                EventsView()
             case 1:
                 PicturesView()
             case 2:
-                Text("Voiliers")
+                BoatsView()
             default:
                 Text("Événements")
             }
@@ -143,6 +144,6 @@ struct ProfileView: View {
 
 
 #Preview {
-    ProfileView()
+    ProfileView(user: User(id: UUID(), userId: "1", email: "quentindtouroul@gmail.com", firstName: "Quentin", lastName: "Touroul"))
 }
 

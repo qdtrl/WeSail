@@ -13,5 +13,5 @@ struct Boat: Decodable, Identifiable {
     let boatName: String
     let boatImage: String
     let crew: [User]
-    var messages: [Message]
+    var events: [Event]
 }

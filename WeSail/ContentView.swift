@@ -9,11 +9,12 @@ import SwiftUI
 
 struct ContentView: View {
     @State var isAuthenticated:Bool = true
+    @State var user: User
 
     var body: some View {
         if isAuthenticated {
             TabView {
-                HomeView()
+                EventsView()
                     .tabItem {
                         Image(systemName: "popcorn")
                         Text("Accueil")
@@ -31,7 +32,7 @@ struct ContentView: View {
                         Text("Message")
                     }
                 
-                ProfileView()
+                ProfileView(user: user)
                     .tabItem {
                         Image(systemName: "person")
                         Text("Profil")
@@ -45,5 +46,5 @@ struct ContentView: View {
 }
 
 #Preview {
-    ContentView(isAuthenticated: true)
+    ContentView(isAuthenticated: true, user: User(id: UUID(), userId: "1", email: "quentindtouroul@gmail.com", firstName: "Quentin", lastName: "Touroul"))
 }

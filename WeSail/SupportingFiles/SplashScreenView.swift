@@ -14,7 +14,7 @@ struct SplashScreenView: View {
 
     var body: some View {
         if isActive {
-            ContentView()
+            ContentView(user: User(id: UUID(), userId: "1", email: "quentindtouroul@gmail.com", firstName: "Quentin", lastName: "Touroul"))
         } else {
             VStack {
                 VStack {
