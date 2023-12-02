@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct ContentView: View {
-    @State var isAuthenticated:Bool = false
+    @State var isAuthenticated:Bool = true
 
     var body: some View {
         if isAuthenticated {
@@ -25,7 +25,7 @@ struct ContentView: View {
                         Text("Yacht")
                     }
                 
-                ChatView()
+                ChatsView()
                     .tabItem {
                         Image(systemName: "message")
                         Text("Message")
@@ -37,8 +37,13 @@ struct ContentView: View {
                         Text("Profil")
                     }
             }
+
         } else {
             LoginView()
         }
     }
+}
+
+#Preview {
+    ContentView(isAuthenticated: true)
 }

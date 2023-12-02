@@ -5,13 +5,13 @@ target 'WeSail' do
   # Comment the next line if you don't want to use dynamic frameworks
   use_frameworks!
 
-  pod 'Firebase', '>= 10.18.0'
-  pod 'FirebaseAuth', '>= 10.18.0'
-  pod 'FirebaseAnalytics', '>= 10.18.0'
-  pod 'FirebaseDatabase', '>= 10.18.0'
-  pod 'FirebaseFirestore', '>= 10.18.0'
-  pod 'FirebaseStorage', '>= 10.18.0'
-  pod 'GoogleSignIn', '>= 5.0.2'
+  # pod 'Firebase', '10.18.0'
+  # pod 'FirebaseAuth', '10.18.0'
+  # pod 'FirebaseAnalytics', '10.18.0'
+  # pod 'FirebaseDatabase', '10.18.0'
+  # pod 'FirebaseFirestore', '10.18.0'
+  # pod 'FirebaseStorage', '10.18.0'
+  # pod 'GoogleSignIn', '5.0.2'
 
   target 'WeSailTests' do
     inherit! :search_paths

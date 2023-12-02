@@ -12,7 +12,7 @@
 //
 //    func testMessageView_WhenFromCurrentUser_ShouldDisplayBlueBackground() throws {
 //        // Given
-//        let message = Message(userUid: "userUid", text: "Hello", date: Date(), isRead: false, userImage: "person.fill")
+//        let message = Message(userId: "userId", text: "Hello", date: Date(), isRead: false, userImage: "person.fill")
 //        let view = MessageView(message: message)
 //
 //        // When
@@ -24,7 +24,7 @@
 //
 //    func testMessageView_WhenFromOtherUser_ShouldDisplayGrayBackground() throws {
 //        // Given
-//        let message = Message(userUid: "otherUserUid", text: "Hi", date: Date(), isRead: false, userImage: "person.fill")
+//        let message = Message(userId: "otherUserUid", text: "Hi", date: Date(), isRead: false, userImage: "person.fill")
 //        let view = MessageView(message: message)
 //
 //        // When
@@ -36,7 +36,7 @@
 //
 //    func testMessageView_WhenFromCurrentUser_ShouldDisplayWhiteText() throws {
 //        // Given
-//        let message = Message(userUid: "userUid", text: "Hello", date: Date(), isRead: false, userImage: "person.fill")
+//        let message = Message(userId: "userId", text: "Hello", date: Date(), isRead: false, userImage: "person.fill")
 //        let view = MessageView(message: message)
 //
 //        // When
@@ -48,7 +48,7 @@
 //
 //    func testMessageView_WhenFromOtherUser_ShouldDisplayWhiteText() throws {
 //        // Given
-//        let message = Message(userUid: "otherUserUid", text: "Hi", date: Date(), isRead: false, userImage: "person.fill")
+//        let message = Message(userId: "otherUserUid", text: "Hi", date: Date(), isRead: false, userImage: "person.fill")
 //        let view = MessageView(message: message)
 //
 //        // When
@@ -60,7 +60,7 @@
 //
 //    func testMessageView_WhenFromCurrentUser_ShouldDisplayCircleImage() throws {
 //        // Given
-//        let message = Message(userUid: "userUid", text: "Hello", date: Date(), isRead: false, userImage: "person.fill")
+//        let message = Message(userId: "userId", text: "Hello", date: Date(), isRead: false, userImage: "person.fill")
 //        let view = MessageView(message: message)
 //
 //        // When
@@ -72,7 +72,7 @@
 //
 //    func testMessageView_WhenFromOtherUser_ShouldDisplayCircleImage() throws {
 //        // Given
-//        let message = Message(userUid: "otherUserUid", text: "Hi", date: Date(), isRead: false, userImage: "person.fill")
+//        let message = Message(userId: "otherUserUid", text: "Hi", date: Date(), isRead: false, userImage: "person.fill")
 //        let view = MessageView(message: message)
 //
 //        // When

@@ -9,9 +9,10 @@ import Foundation
 
 struct Message: Decodable, Identifiable {
     var id = UUID()
-    let userUid: String
+    let userId: String
+    let userName: String
     let text: String
     let date: Date
-    let isRead: Bool
+    var isRead: Bool
     let userImage: String
 }

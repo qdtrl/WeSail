@@ -29,6 +29,9 @@
 		3C46FBBE2B152A78003B0884 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C46FBBD2B152A78003B0884 /* ProfileView.swift */; };
 		3C46FBC02B152BAF003B0884 /* BoatsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C46FBBF2B152BAE003B0884 /* BoatsView.swift */; };
 		3C94C4952B1559D20049FCE9 /* SplashScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C94C4942B1559D20049FCE9 /* SplashScreenView.swift */; };
+		3CEBE2842B1A307600EA59D5 /* ChatsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CEBE2832B1A307600EA59D5 /* ChatsView.swift */; };
+		3CEBE2862B1A330100EA59D5 /* Chats.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CEBE2852B1A330100EA59D5 /* Chats.swift */; };
+		3CEBE2892B1A426600EA59D5 /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CEBE2882B1A426600EA59D5 /* Date.swift */; };
 		999A7D181D08ED88D3E5AB02 /* Pods_WeSail.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6145398296DDB348149FAA8C /* Pods_WeSail.framework */; };
 		F9FE9DC0B22D236BCFADFB1D /* Pods_WeSailTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 94A1300D5AA2E5B6B06B4A25 /* Pods_WeSailTests.framework */; };
 /* End PBXBuildFile section */
@@ -80,6 +83,9 @@
 		3C46FBBD2B152A78003B0884 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		3C46FBBF2B152BAE003B0884 /* BoatsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoatsView.swift; sourceTree = "<group>"; };
 		3C94C4942B1559D20049FCE9 /* SplashScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashScreenView.swift; sourceTree = "<group>"; };
+		3CEBE2832B1A307600EA59D5 /* ChatsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatsView.swift; sourceTree = "<group>"; };
+		3CEBE2852B1A330100EA59D5 /* Chats.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Chats.swift; sourceTree = "<group>"; };
+		3CEBE2882B1A426600EA59D5 /* Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
 		51DC97EFCA7AA9D8AA65D6E4 /* Pods_WeSail_WeSailUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WeSail_WeSailUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		58730F8965586B81AFA36CED /* Pods-WeSail.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WeSail.debug.xcconfig"; path = "Target Support Files/Pods-WeSail/Pods-WeSail.debug.xcconfig"; sourceTree = "<group>"; };
 		6145398296DDB348149FAA8C /* Pods_WeSail.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WeSail.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -151,23 +157,15 @@
 		3C17C8702B14D60B00C74788 /* WeSail */ = {
 			isa = PBXGroup;
 			children = (
+				3CEBE2872B1A425400EA59D5 /* Extensions */,
 				3C17C8AC2B14EBFB00C74788 /* Managers */,
 				3C17C8A92B14E70500C74788 /* SupportingFiles */,
 				3C17C8A02B14DB0200C74788 /* Models */,
 				3C17C89D2B14DAD000C74788 /* Views */,
 				3C17C8712B14D60B00C74788 /* WeSailApp.swift */,
 				3C17C8732B14D60B00C74788 /* ContentView.swift */,
-				3C17C8772B14D60D00C74788 /* Preview Content */,
 			);
 			path = WeSail;
-			sourceTree = "<group>";
-		};
-		3C17C8772B14D60D00C74788 /* Preview Content */ = {
-			isa = PBXGroup;
-			children = (
-				3C17C8782B14D60D00C74788 /* Preview Assets.xcassets */,
-			);
-			path = "Preview Content";
 			sourceTree = "<group>";
 		};
 		3C17C8812B14D60D00C74788 /* WeSailTests */ = {
@@ -197,6 +195,7 @@
 				3C46FBB92B152A06003B0884 /* HomeView.swift */,
 				3C46FBBD2B152A78003B0884 /* ProfileView.swift */,
 				3C46FBBF2B152BAE003B0884 /* BoatsView.swift */,
+				3CEBE2832B1A307600EA59D5 /* ChatsView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -207,6 +206,7 @@
 				3C17C8A12B14DB3F00C74788 /* Message.swift */,
 				3C17C8A52B14E3A900C74788 /* Chat.swift */,
 				3C17C8B12B14F15700C74788 /* User.swift */,
+				3CEBE2852B1A330100EA59D5 /* Chats.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -214,6 +214,7 @@
 		3C17C8A92B14E70500C74788 /* SupportingFiles */ = {
 			isa = PBXGroup;
 			children = (
+				3C17C8782B14D60D00C74788 /* Preview Assets.xcassets */,
 				3C94C4942B1559D20049FCE9 /* SplashScreenView.swift */,
 				3C17C8B52B14F5C300C74788 /* Info.plist */,
 				3C17C8B32B14F44800C74788 /* GoogleService-Info.plist */,
@@ -230,6 +231,14 @@
 				3C17C8AF2B14EC2400C74788 /* AuthManager.swift */,
 			);
 			path = Managers;
+			sourceTree = "<group>";
+		};
+		3CEBE2872B1A425400EA59D5 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				3CEBE2882B1A426600EA59D5 /* Date.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 		FD3B1A0506F27C9B0DD82A87 /* Pods */ = {
@@ -256,7 +265,6 @@
 				3C17C86A2B14D60B00C74788 /* Sources */,
 				3C17C86B2B14D60B00C74788 /* Frameworks */,
 				3C17C86C2B14D60B00C74788 /* Resources */,
-				163F975B29BA5FCF0C5C6F5D /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -294,7 +302,6 @@
 				3C17C8842B14D60D00C74788 /* Sources */,
 				3C17C8852B14D60D00C74788 /* Frameworks */,
 				3C17C8862B14D60D00C74788 /* Resources */,
-				EDEF8ABC3695FA237D8C169A /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -377,23 +384,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		163F975B29BA5FCF0C5C6F5D /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-WeSail/Pods-WeSail-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-WeSail/Pods-WeSail-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-WeSail/Pods-WeSail-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		6DA1C14FFF013444FFBFD1D6 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -460,23 +450,6 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		EDEF8ABC3695FA237D8C169A /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-WeSail-WeSailUITests/Pods-WeSail-WeSailUITests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-WeSail-WeSailUITests/Pods-WeSail-WeSailUITests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-WeSail-WeSailUITests/Pods-WeSail-WeSailUITests-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -486,9 +459,11 @@
 			files = (
 				3C17C8AE2B14EC1000C74788 /* DatabaseManager.swift in Sources */,
 				3C17C8B02B14EC2400C74788 /* AuthManager.swift in Sources */,
+				3CEBE2862B1A330100EA59D5 /* Chats.swift in Sources */,
 				3C17C89F2B14DAEE00C74788 /* ChatView.swift in Sources */,
 				3C17C8A82B14E5FB00C74788 /* LoginView.swift in Sources */,
 				3C46FBBE2B152A78003B0884 /* ProfileView.swift in Sources */,
+				3CEBE2892B1A426600EA59D5 /* Date.swift in Sources */,
 				3C17C8A62B14E3A900C74788 /* Chat.swift in Sources */,
 				3C46FBBA2B152A06003B0884 /* HomeView.swift in Sources */,
 				3C94C4952B1559D20049FCE9 /* SplashScreenView.swift in Sources */,
@@ -496,6 +471,7 @@
 				3C17C8A22B14DB3F00C74788 /* Message.swift in Sources */,
 				3C17C8742B14D60B00C74788 /* ContentView.swift in Sources */,
 				3C46FBC02B152BAF003B0884 /* BoatsView.swift in Sources */,
+				3CEBE2842B1A307600EA59D5 /* ChatsView.swift in Sources */,
 				3C17C8B22B14F15700C74788 /* User.swift in Sources */,
 				3C17C8722B14D60B00C74788 /* WeSailApp.swift in Sources */,
 			);
@@ -587,7 +563,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
@@ -644,7 +620,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
@@ -662,7 +638,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"WeSail/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "\"WeSail/SupportingFiles\"";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = WeSail/SupportingFiles/Info.plist;
@@ -670,7 +646,7 @@
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -695,7 +671,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"WeSail/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "\"WeSail/SupportingFiles\"";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = WeSail/SupportingFiles/Info.plist;
@@ -703,7 +679,7 @@
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -728,7 +704,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = fr.qdtrl.WeSailTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -750,7 +726,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = fr.qdtrl.WeSailTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";

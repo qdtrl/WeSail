@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct LoginView: View {
+//    @State var authManager = AuthManager.shared
     @State var userAlreadyExist: Bool = true
     @State var email: String = ""
     @State var password: String = ""
@@ -68,23 +69,23 @@ struct LoginView: View {
                     VStack {
                         Button(action: {
                             if userAlreadyExist {
-                                AuthManager.shared.signInWithEmail(email: email, password: password) { result in
-                                    switch result {
-                                    case .success(let success):
-                                        print(success)
-                                    case .failure(let error):
-                                        print(error.localizedDescription)
-                                    }
-                                }
+//                                authManager.signInWithEmail(email: email, password: password) { result in
+//                                    switch result {
+//                                    case .success(let success):
+//                                        print(success)
+//                                    case .failure(let error):
+//                                        print(error.localizedDescription)
+//                                    }
+//                                }
                             } else {
-                                AuthManager.shared.createUserWithEmail(email: email, password: password) { result in
-                                    switch result {
-                                    case .success(let success):
-                                        print(success)
-                                    case .failure(let error):
-                                        print(error.localizedDescription)
-                                    }
-                                }
+//                                authManager.createUserWithEmail(email: email, password: password) { result in
+//                                    switch result {
+//                                    case .success(let success):
+//                                        print(success)
+//                                    case .failure(let error):
+//                                        print(error.localizedDescription)
+//                                    }
+//                                }
                             }
                         }, label: {
                             Text(userAlreadyExist ? "Connection" : "Inscription")
@@ -101,14 +102,14 @@ struct LoginView: View {
                         .disabled(email.isEmpty || password.isEmpty || (!userAlreadyExist && (confirmPassword.isEmpty || password != confirmPassword)))
                         
                         Button(action: {
-                            AuthManager.shared.signInWithGoogle { result in
-                                switch result {
-                                case .success(let success):
-                                    print(success)
-                                case .failure(let error):
-                                    print(error.localizedDescription)
-                                }
-                            }
+//                            authManager.signInWithGoogle { result in
+//                                switch result {
+//                                case .success(let success):
+//                                    print(success)
+//                                case .failure(let error):
+//                                    print(error.localizedDescription)
+//                                }
+//                            }
                         }, label: {
                             Text("Google")
                                 .foregroundColor(.white)

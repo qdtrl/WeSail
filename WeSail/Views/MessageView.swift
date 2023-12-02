@@ -10,7 +10,7 @@ import SwiftUI
 struct MessageView: View {
     var message: Message
     var isFromCurrentUser: Bool {
-        return message.userUid == "userUid"
+        return message.userId == "1"
     }
 
     var body: some View {
@@ -20,9 +20,10 @@ struct MessageView: View {
                 HStack(alignment: .top) {
                     Text(message.text)
                         .padding(10)
-                        .background(Color.blue)
+                        .background(.blue)
+                        .opacity(0.9)
                         .foregroundColor(.white)
-                        .cornerRadius(10)
+                        .clipShape(RoundedRectangle(cornerRadius: 15, style: .continuous))
                     Image(systemName: message.userImage)
                         .resizable()
                         .frame(width: 32, height: 32)
@@ -34,18 +35,23 @@ struct MessageView: View {
                         .resizable()
                         .frame(width: 32, height: 32)
                         .clipShape(Circle())
-                    Text(message.text)
-                        .padding(10)
-                        .background(Color.gray)
-                        .foregroundColor(.white)
-                        .cornerRadius(10)
+                    VStack(alignment: .leading, spacing: 0) {
+                        Text(message.userName)
+                        Text(message.text)
+                            .padding(10)
+                            .background(.green)
+                            .opacity(0.9)
+                            .foregroundColor(.white)
+                            .clipShape(RoundedRectangle(cornerRadius: 15, style: .continuous))
+                    }
                 }
                 Spacer()
             }
         }
+        .id(message.id)
     }
 }
 
-//#Preview {
-//    MessageView(message: Message(userUid: "userUid", text: "Hello", date: Date(), isRead: false, userImage: "person.fill"))
-//}
+#Preview {
+    MessageView(message: Message(userId: "2", userName: "Robert Gandhi", text: "Hello", date: Date(), isRead: false, userImage: "person.fill"))
+}
