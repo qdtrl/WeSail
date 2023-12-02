@@ -8,68 +8,136 @@
 import SwiftUI
 
 struct ProfileView: View {
-    var body: some View {
-        VStack(alignment: .leading) {
-            HStack {
-                Image(systemName: "person.fill")
-                    .resizable()
-                    .frame(width: 70, height: 70)
-                    .clipShape(Circle())
-                Spacer()
-                VStack {
-                    Text("123")
-                        .bold()
-                    Text("Events")
-                }
-                Spacer()
-                VStack {
-                    Text("123 K")
-                        .bold()
-                    Text("Followers")
-                }
-                Spacer()
-                VStack {
-                    Text("123 K")
-                        .bold()
-                    Text("Abonné(e)s")
-                }
-            }
-            Text("Quentin Touroul")
-                .bold()
-            Text("Petite description des familles super longue pour voir ce ")
-            
-            HStack {
-                Spacer()
-                Button(action: {}) {
-                    Text("Suivre")
-                        
-                }
-                .frame(width: /*@START_MENU_TOKEN@*/100/*@END_MENU_TOKEN@*/)
-                .padding(.horizontal)
-                .padding(.vertical, 8)
-                .foregroundColor(.black)
-                .background(.thickMaterial)
-                .clipShape(RoundedRectangle(cornerRadius: 15, style: .continuous))
-                
-                Spacer()
-                
-                Button(action: {}) {
-                    Text("Écrire")
-                        
-                }
-                .frame(width: 100)
-                .padding(.horizontal)
-                .padding(.vertical, 8)
-                .foregroundColor(.black)
-                .background(.thickMaterial)
-                .clipShape(RoundedRectangle(cornerRadius: 15, style: .continuous))
+    @State var index:Int = 0
 
-                Spacer()
+    var body: some View {
+        ScrollView(showsIndicators: false) {
+            VStack(alignment: .leading, spacing: 20) {
+                HStack {
+                    Image(systemName: "person.fill")
+                        .resizable()
+                        .frame(width: 70, height: 70)
+                        .background(.gray.opacity(0.2))
+                        .clipShape(Circle())
+                    Spacer()
+                    VStack {
+                        Text("123")
+                            .bold()
+                        Text("Events")
+                    }
+                    Spacer()
+                    VStack {
+                        Text("123 K")
+                            .bold()
+                        Text("Followers")
+                    }
+                    Spacer()
+                    VStack {
+                        Text("123 K")
+                            .bold()
+                        Text("Abonné(e)s")
+                    }
+                }
+                Text("Quentin Touroul")
+                    .bold()
+                Text("Petite description des familles super longue pour voir ce ")
+                
+                HStack {
+                    Spacer()
+                    
+                    Button(action: {}) {
+                        Text("Suivre")
+                            
+                    }
+                    .frame(width: 120)
+                    .padding(.horizontal)
+                    .padding(.vertical, 8)
+                    .foregroundColor(.black)
+                    .background(.thickMaterial)
+                    .clipShape(RoundedRectangle(cornerRadius: 15, style: .continuous))
+                    
+                    Spacer()
+                    
+                    Button(action: {}) {
+                        Text("Écrire")
+                            
+                    }
+                    .frame(width: 120)
+                    .padding(.horizontal)
+                    .padding(.vertical, 8)
+                    .foregroundColor(.black)
+                    .background(.thickMaterial)
+                    .clipShape(RoundedRectangle(cornerRadius: 15, style: .continuous))
+
+                    Spacer()
+                }
+
+                HStack {
+                    
+                    VStack {
+                        Button(action: {
+                            self.index = 0
+                        }) {
+                            Image(systemName: "calendar")
+                                .resizable()
+                                .frame(width: 20, height: 20)
+                                .foregroundColor(index == 0 ? .black : .gray)
+                        }
+                        
+                        Rectangle()
+                            .frame(height: 2)
+                            .foregroundColor(index == 0 ? .black : .gray)
+                    }
+                    
+                   
+                    
+                    VStack {
+                        Button(action: {
+                            self.index = 1
+                        }) {
+                            Image(systemName: "camera")
+                                .resizable()
+                                .frame(width: 20, height: 20)
+                                .foregroundColor(index == 1 ? .black : .gray)
+                        }
+                        
+                        Rectangle()
+                            .frame(height: 2)
+                            .foregroundColor(index == 1 ? .black : .gray)
+                    }
+                    
+                    
+                    
+                    VStack {
+                        Button(action: {
+                            self.index = 2
+                        }) {
+                            Image(systemName: "sailboat")
+                                .resizable()
+                                .frame(width: 20, height: 20)
+                                .foregroundColor(index == 2 ? .black : .gray)
+                        }
+                        
+                        Rectangle()
+                            .frame(height: 2)
+                            .foregroundColor(index == 2 ? .black : .gray)
+                    }
+                }
             }
+            .padding(.horizontal)
+            .padding(.top)
             
-            
-            
-        }.padding()
+            switch index {
+            case 0:
+                Text("Événements")
+            case 1:
+                PicturesView()
+            case 2:
+                Text("Voiliers")
+            default:
+                Text("Événements")
+            }
+        }
     }
 }
 

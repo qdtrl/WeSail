@@ -1,5 +1,5 @@
 //
-//  Room.swift
+//  Chats.swift
 //  WeSail
 //
 //  Created by Quentin Dubut-Touroul on 01/12/2023.
