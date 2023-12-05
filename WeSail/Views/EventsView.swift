@@ -29,11 +29,27 @@ struct EventRow: View {
     
     var body: some View {
         HStack(spacing: 20) {
-            Image(systemName: event.images.first!)
-                .resizable()
-                .aspectRatio(contentMode: .fit)
-                .scaledToFit()
-                .frame(width: 60)
+            AsyncImage(url: URL(string: event.images.first!), transaction: .init(animation: .spring())) { phase in
+                                     switch phase {
+                                     case .empty:
+                                         Color.gray
+                                         .opacity(0.2)
+                                         .transition(.opacity.combined(with: .scale))
+                                     case .success(let image):
+                                       image
+                                        .resizable()
+                                        .aspectRatio(contentMode: .fit)
+                                        .scaledToFit()
+                                        .transition(.opacity.combined(with: .scale))
+                                     case .failure(_):
+                                         Color.red.opacity(0.2)
+                                     @unknown default:
+                                         Color.yellow.opacity(0.2)
+                                     }
+                                   }
+                                    .frame(width: 60)
+                                    .clipShape(RoundedRectangle(cornerRadius: 15, style: .continuous))
+
             
             VStack(alignment: .leading) {
                 Text(event.name)

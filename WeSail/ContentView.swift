@@ -46,5 +46,5 @@ struct ContentView: View {
 }
 
 #Preview {
-    ContentView(isAuthenticated: true, user: User(id: UUID(), userId: "1", email: "quentindtouroul@gmail.com", firstName: "Quentin", lastName: "Touroul"))
+    ContentView(isAuthenticated: true, user: UserModel().mockData[0])
 }

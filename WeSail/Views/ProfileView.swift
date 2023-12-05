@@ -144,6 +144,6 @@ struct ProfileView: View {
 
 
 #Preview {
-    ProfileView(user: User(id: UUID(), userId: "1", email: "quentindtouroul@gmail.com", firstName: "Quentin", lastName: "Touroul"))
+    ProfileView(user: UserModel().mockData[0])
 }
 

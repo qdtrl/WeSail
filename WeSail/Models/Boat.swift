@@ -10,8 +10,9 @@ import Foundation
 struct Boat: Decodable, Identifiable {
     var id = UUID()
     let boatId: String
-    let boatName: String
-    let boatImage: String
+    let name: String
+    let type: String
+    let image: String
     let crew: [User]
     var events: [Event]
 }

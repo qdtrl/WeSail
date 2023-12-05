@@ -14,7 +14,7 @@ struct SplashScreenView: View {
 
     var body: some View {
         if isActive {
-            ContentView(user: User(id: UUID(), userId: "1", email: "quentindtouroul@gmail.com", firstName: "Quentin", lastName: "Touroul"))
+            ContentView(user: UserModel().mockData[0])
         } else {
             VStack {
                 VStack {
@@ -26,7 +26,7 @@ struct SplashScreenView: View {
                     
                     Text("We Sail")
                         .font(Font.custom("Baskerville-Bold", size: 40))
-                        .foregroundColor(.blue.opacity(0.80))
+                        .foregroundColor(.blue)
                 }
                 .scaleEffect(size)
                 .opacity(opacity)

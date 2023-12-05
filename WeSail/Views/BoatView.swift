@@ -16,11 +16,27 @@ struct BoatView: View {
          ScrollView(showsIndicators: false) {
             VStack(alignment: .leading, spacing: 20) {
                 HStack {
-                    Image(systemName: "sailboat")
-                        .resizable()
-                        .frame(width: 140, height: 140)
-                        .background(.gray.opacity(0.2))
-                        .clipShape(RoundedRectangle(cornerRadius: 15, style: .continuous))
+                    AsyncImage(url: URL(string: boat.image), transaction: .init(animation: .spring())) { phase in
+                                             switch phase {
+                                             case .empty:
+                                                 Color.gray
+                                                 .opacity(0.2)
+                                                 .transition(.opacity.combined(with: .scale))
+                                             case .success(let image):
+                                               image
+                                                .resizable()
+                                                .aspectRatio(contentMode: .fill)
+                                                .scaledToFill()
+                                                .transition(.opacity.combined(with: .scale))
+                                             case .failure(_):
+                                                 Color.red.opacity(0.2)
+                                             @unknown default:
+                                                 Color.yellow.opacity(0.2)
+                                             }
+                                           }
+                                            .frame(width: 140, height: 140)
+                                            .clipShape(RoundedRectangle(cornerRadius: 15, style: .continuous))
+                   
                     Spacer()
                     VStack {
                         Text("40")
@@ -37,7 +53,7 @@ struct BoatView: View {
 
                 VStack(alignment: .leading) {
                     HStack {
-                        Text(boat.boatName)
+                        Text(boat.name)
                             .bold()
                         Spacer()
                         Text("Type : Class 10")       
@@ -167,13 +183,13 @@ struct BoatView: View {
             
             switch index {
             case 0:
-                Text("Événements")
+                EventsView()
             case 1:
                 PicturesView()
             case 2:
                 CrewView(crew: boat.crew)
             default:
-                Text("Événements")
+                EventsView()
             }
         }
     }

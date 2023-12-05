@@ -51,12 +51,27 @@ struct EventView: View {
                 ScrollView(.horizontal) {
                     LazyHGrid(rows: [GridItem(.flexible(minimum: 140, maximum: 150))]) {
                         ForEach(event.images, id: \.self) { image in
-                            Image(systemName: image)
-                                .resizable()
-                                .aspectRatio(contentMode: .fit)
-                                .scaledToFit()
-                                .background(.blue.opacity(0.2))
-                                .clipped()
+                            AsyncImage(url: URL(string: image), transaction: .init(animation: .spring())) { phase in
+                                                     switch phase {
+                                                     case .empty:
+                                                         Color.gray
+                                                         .opacity(0.2)
+                                                         .transition(.opacity.combined(with: .scale))
+                                                     case .success(let image):
+                                                       image
+                                                        .resizable()
+                                                        .aspectRatio(contentMode: .fit)
+                                                        .scaledToFit()
+                                                        .transition(.opacity.combined(with: .scale))
+                                                     case .failure(_):
+                                                         Color.red.opacity(0.2)
+                                                     @unknown default:
+                                                         Color.yellow.opacity(0.2)
+                                                     }
+                                                   }
+                                                    .frame(height: 140)
+                                                    .frame(minWidth: 80)
+                    
                         }
                     }
                 }
@@ -94,7 +109,6 @@ struct EventView: View {
                     .bold()
                     .padding(.top, 10)
 
-                    // Boat List
 
                 
 
@@ -119,21 +133,13 @@ struct EventView: View {
                     }
                 }
             }
+            .padding()
         }
     }
 }
 
 #Preview {
     EventView(
-        event: Event(
-            eventId: "1",
-            name: "Les Voiles de Saint-Tropez",
-            organizer: "Société Nautique de Saint-Tropez",
-            description: "Les Voiles de Saint-Tropez is a regatta held annually the last week of September on the Mediterranean around the gulf of Saint-Tropez, France. It is one of the largest regattas in the world with over 300 modern and classic sailing yachts racing over a week.",
-            type: "Classique",
-            images: ["sailboat", "sailboat1", "sailboat2"],
-            startDate: Date(),
-            endDate: Date()
-        )
+        event: EventsModel().mockData[0]
     )
 }

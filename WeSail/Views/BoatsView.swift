@@ -48,22 +48,32 @@ struct BoatRow:View {
 
     var body: some View {
         VStack(alignment: .center) {
-            Image(systemName: boat.boatImage)
-                .resizable()
-                .aspectRatio(contentMode: .fit)
-                .scaledToFit()
-                .background(.red)
-                .clipShape(RoundedRectangle(cornerRadius: 15, style: .continuous))
+            AsyncImage(url: URL(string: boat.image), transaction: .init(animation: .spring())) { phase in
+                                     switch phase {
+                                     case .empty:
+                                         Color.gray
+                                         .opacity(0.2)
+                                         .transition(.opacity.combined(with: .scale))
+                                     case .success(let image):
+                                       image
+                                        .resizable()
+                                        .aspectRatio(contentMode: .fit)
+                                        .scaledToFit()
+                                        .transition(.opacity.combined(with: .scale))
+                                     case .failure(_):
+                                         Color.red.opacity(0.2)
+                                     @unknown default:
+                                         Color.yellow.opacity(0.2)
+                                     }
+                                   }
+                                    .clipShape(RoundedRectangle(cornerRadius: 15, style: .continuous))
             VStack(alignment: .leading) {
-                HStack {
-                    Text(boat.boatName)
-                        .font(.headline)
-                        
-                    Spacer()
-                    
-                    Text("Class 10")
-                        .font(.subheadline)
-                }
+                Text(boat.name)
+                    .font(.headline)
+                
+                Text(boat.type)
+                    .font(.subheadline)
+
                 HStack {
                     Text("19756")
                         .font(.subheadline)
@@ -73,7 +83,7 @@ struct BoatRow:View {
                     Text("\(boat.crew.count) membres")
                         .font(.subheadline)
                 }
-            }.padding(.horizontal)
+            }
         }
         .frame(height: 200)
     }

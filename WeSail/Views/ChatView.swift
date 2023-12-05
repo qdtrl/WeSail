@@ -72,11 +72,11 @@ struct ChatView: View {
     var navBarLeadingBtn: some View {
         Button(action: {}) {
             HStack {
-                Image(systemName: chat.chatImage)
+                Image(systemName: chat.image)
                     .resizable()
                     .frame(width: 40, height: 40)
                     .clipShape(Circle())
-                Text(chat.chatName)
+                Text(chat.name)
                     .bold()
             }
             .foregroundColor(.black)
@@ -139,21 +139,21 @@ struct ChatView: View {
     ChatView(
         chat: Chat(
             chatId: "1", 
-            chatName: "Planche à voile",
-            chatImage: "figure.sailing",
+            name: "Planche à voile",
+            image: "figure.sailing",
             users: [
-                User(userId: "1", email: "robert.dupont@wesail.fr", firstName: "Robert", lastName: "Dupont"), 
-                User(userId: "2", email: "alicia.japon@wesail.fr", firstName: "Alicia", lastName: "Japon")
-            ], 
+                UserModel().mockData[0],
+                UserModel().mockData[1],
+            ],
             messages: [
-                Message(userId: "1", userName: "Robert Dupont", text: "HelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHello", date: Date(), isRead: false, userImage: "person.fill"), 
-                Message(userId: "2", userName: "Alicia Japon", text: "HelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHello", date: Date(), isRead: false, userImage: "person.fill"), 
-                Message(userId: "1", userName: "Robert Dupont", text: "How are you ?", date: Date(), isRead: false, userImage: "person.fill"), 
-                Message(userId: "2", userName: "Alicia Japon", text: "Fine and you ?", date: Date(), isRead: false, userImage: "person.fill"), 
-                Message(userId: "1", userName: "Robert Dupont", text: "I'm fine too", date: Date(), isRead: false, userImage: "person.fill"), 
-                Message(userId: "2", userName: "Alicia Japon", text: "Great !", date: Date(), isRead: false, userImage: "person.fill"), 
-                Message(userId: "1", userName: "Robert Dupont", text: "See you soon", date: Date(), isRead: false, userImage: "person.fill"), 
-                Message(userId: "2", userName: "Alicia Japon", text: "See youHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHello", date: Date(), isRead: false, userImage: "person.fill")
+                Message(user: UserModel().mockData[0], text: "HelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHello", date: Date(), isRead: false),
+                Message(user: UserModel().mockData[1], text: "HelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHello", date: Date(), isRead: false),
+                Message(user: UserModel().mockData[0], text: "How are you ?", date: Date(), isRead: false),
+                Message(user: UserModel().mockData[1],text: "Fine and you ?", date: Date(), isRead: false),
+                Message(user: UserModel().mockData[0], text: "I'm fine too", date: Date(), isRead: false),
+                Message(user: UserModel().mockData[1], text: "Great !", date: Date(), isRead: false),
+                Message(user: UserModel().mockData[0], text: "See you soon", date: Date(), isRead: false),
+                Message(user: UserModel().mockData[1], text: "See youHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHello", date: Date(), isRead: false)
             ]
         )
     )

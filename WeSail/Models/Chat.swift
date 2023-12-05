@@ -10,8 +10,8 @@ import Foundation
 struct Chat: Decodable, Identifiable {
     var id = UUID()
     let chatId: String
-    let chatName: String
-    let chatImage: String
+    let name: String
+    let image: String
     let users: [User]
     var messages: [Message]
 }

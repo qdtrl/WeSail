@@ -63,14 +63,14 @@ struct ChatRow: View {
     
     var body: some View {
         HStack(spacing: 20) {
-            Image(systemName: chat.chatImage)
+            Image(systemName: chat.image)
                 .resizable()
                 .frame(width: 50, height: 50)
                 .clipShape(Circle())
             ZStack {
                 VStack(alignment: .leading, spacing: 5) {
                     HStack {
-                        Text(chat.chatName)
+                        Text(chat.name)
                             .bold()
                         Spacer()
                         
