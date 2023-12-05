@@ -69,7 +69,7 @@ class ChatsModel: ObservableObject {
         Chat(
             chatId: "1", 
             name: "Planche à voile",
-            image: "figure.sailing",
+            image: "https://cntranchais.com/wp-content/uploads/2018/11/planche-%C3%A0-voile-4.jpg",
             users: [
                 UserModel().mockData[0],
                 UserModel().mockData[2],
@@ -99,7 +99,7 @@ class ChatsModel: ObservableObject {
         Chat(
             chatId: "2", 
             name: "Voilier",
-            image: "sailboat",
+            image: "https://static.actu.fr/uploads/2016/08/DSC_4578.JPG",
             users: [
                 UserModel().mockData[0],
                 UserModel().mockData[4],
@@ -122,7 +122,7 @@ class ChatsModel: ObservableObject {
         Chat(
             chatId: "3", 
             name: "Kitesurf",
-            image: "figure.surfing",
+            image: "https://www.grupoatman.es/upimagenes/Kitesurf-1.jpg",
             users: [
                 UserModel().mockData[0],
                 UserModel().mockData[1],

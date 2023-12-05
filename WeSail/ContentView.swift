@@ -17,25 +17,21 @@ struct ContentView: View {
                 EventsView()
                     .tabItem {
                         Image(systemName: "popcorn")
-                        Text("Accueil")
                     }
                 
                 BoatsView()
                     .tabItem {
                         Image(systemName: "sailboat")
-                        Text("Yacht")
                     }
                 
                 ChatsView()
                     .tabItem {
                         Image(systemName: "message")
-                        Text("Message")
                     }
                 
                 ProfileView(user: user)
                     .tabItem {
                         Image(systemName: "person")
-                        Text("Profil")
                     }
             }
 

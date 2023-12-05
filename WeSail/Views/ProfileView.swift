@@ -15,12 +15,29 @@ struct ProfileView: View {
         ScrollView(showsIndicators: false) {
             VStack(alignment: .leading, spacing: 20) {
                 HStack {
-                    Image(systemName: "person.fill")
-                        .resizable()
-                        .frame(width: 70, height: 70)
-                        .background(.gray.opacity(0.2))
-                        .clipShape(Circle())
+                    AsyncImage(url: URL(string: user.image), transaction: .init(animation: .spring())) { phase in
+                                             switch phase {
+                                             case .empty:
+                                                 Color.gray
+                                                 .opacity(0.2)
+                                                 .transition(.opacity.combined(with: .scale))
+                                             case .success(let image):
+                                               image
+                                                .resizable()
+                                                .aspectRatio(contentMode: .fill)
+                                                .scaledToFill()
+                                                .transition(.opacity.combined(with: .scale))
+                                             case .failure(_):
+                                                 Color.red.opacity(0.2)
+                                             @unknown default:
+                                                 Color.yellow.opacity(0.2)
+                                             }
+                                           }
+                                            .frame(width: 70, height: 70)
+                                            .clipShape(Circle())
+                   
                     Spacer()
+                    
                     VStack {
                         Text("123")
                             .bold()

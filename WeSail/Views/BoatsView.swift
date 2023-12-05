@@ -57,8 +57,8 @@ struct BoatRow:View {
                                      case .success(let image):
                                        image
                                         .resizable()
-                                        .aspectRatio(contentMode: .fit)
-                                        .scaledToFit()
+                                        .aspectRatio(contentMode: .fill)
+                                        .scaledToFill()
                                         .transition(.opacity.combined(with: .scale))
                                      case .failure(_):
                                          Color.red.opacity(0.2)
@@ -66,6 +66,7 @@ struct BoatRow:View {
                                          Color.yellow.opacity(0.2)
                                      }
                                    }
+                                    .frame(width: 160, height: 120)
                                     .clipShape(RoundedRectangle(cornerRadius: 15, style: .continuous))
             VStack(alignment: .leading) {
                 Text(boat.name)

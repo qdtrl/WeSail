@@ -63,10 +63,27 @@ struct ChatRow: View {
     
     var body: some View {
         HStack(spacing: 20) {
-            Image(systemName: chat.image)
-                .resizable()
-                .frame(width: 50, height: 50)
-                .clipShape(Circle())
+            AsyncImage(url: URL(string: chat.image), transaction: .init(animation: .spring())) { phase in
+                                     switch phase {
+                                     case .empty:
+                                         Color.gray
+                                         .opacity(0.2)
+                                         .transition(.opacity.combined(with: .scale))
+                                     case .success(let image):
+                                       image
+                                        .resizable()
+                                        .aspectRatio(contentMode: .fill)
+                                        .scaledToFill()
+                                        .transition(.opacity.combined(with: .scale))
+                                     case .failure(_):
+                                         Color.red.opacity(0.2)
+                                     @unknown default:
+                                         Color.yellow.opacity(0.2)
+                                     }
+                                   }
+                                    .frame(width: 50, height: 50)
+                                    .clipShape(Circle())
+                
             ZStack {
                 VStack(alignment: .leading, spacing: 5) {
                     HStack {

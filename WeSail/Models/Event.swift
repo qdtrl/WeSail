@@ -11,6 +11,7 @@ import Foundation
 struct Event: Decodable, Identifiable {
     var id = UUID()
     let eventId: String
+    let status: String
     let name: String
     let organizer: String
     let description: String
@@ -18,4 +19,5 @@ struct Event: Decodable, Identifiable {
     let images: [String]
     let startDate: Date
     let endDate: Date
+    let races: [Race]
 }
