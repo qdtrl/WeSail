@@ -130,27 +130,27 @@ struct ChatView: View {
 }
 
 
-#Preview {
-    ChatView(
-        chat: Chat(
-            chatId: "1", 
-            name: "Planche à voile",
-            image: "figure.sailing",
-            users: [
-                UserModel().mockData[0],
-                UserModel().mockData[1],
-            ],
-            messages: [
-                Message(user: UserModel().mockData[0], text: "HelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHello", date: Date(), isRead: false),
-                Message(user: UserModel().mockData[1], text: "HelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHello", date: Date(), isRead: false),
-                Message(user: UserModel().mockData[0], text: "How are you ?", date: Date(), isRead: false),
-                Message(user: UserModel().mockData[1],text: "Fine and you ?", date: Date(), isRead: false),
-                Message(user: UserModel().mockData[0], text: "I'm fine too", date: Date(), isRead: false),
-                Message(user: UserModel().mockData[1], text: "Great !", date: Date(), isRead: false),
-                Message(user: UserModel().mockData[0], text: "See you soon", date: Date(), isRead: false),
-                Message(user: UserModel().mockData[1], text: "See youHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHello", date: Date(), isRead: false)
-            ]
-        )
-    )
-        .environmentObject(ChatsModel())
-}
+//#Preview {
+//    ChatView(
+//        chat: Chat(
+//            chatId: "1", 
+//            name: "Planche à voile",
+//            image: "figure.sailing",
+//            users: [
+//                UserModel().mockData[0],
+//                UserModel().mockData[1],
+//            ],
+//            messages: [
+//                Message(user: UserModel().mockData[0], text: "HelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHello", date: Date(), isRead: false),
+//                Message(user: UserModel().mockData[1], text: "HelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHello", date: Date(), isRead: false),
+//                Message(user: UserModel().mockData[0], text: "How are you ?", date: Date(), isRead: false),
+//                Message(user: UserModel().mockData[1],text: "Fine and you ?", date: Date(), isRead: false),
+//                Message(user: UserModel().mockData[0], text: "I'm fine too", date: Date(), isRead: false),
+//                Message(user: UserModel().mockData[1], text: "Great !", date: Date(), isRead: false),
+//                Message(user: UserModel().mockData[0], text: "See you soon", date: Date(), isRead: false),
+//                Message(user: UserModel().mockData[1], text: "See youHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHello", date: Date(), isRead: false)
+//            ]
+//        )
+//    )
+//        .environmentObject(ChatsModel())
+//}

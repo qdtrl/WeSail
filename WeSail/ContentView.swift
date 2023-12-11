@@ -53,6 +53,6 @@ struct ContentView: View {
     }
 }
 
-#Preview {
-    ContentView(isAuthenticated: true, user: UserModel().mockData[0])
-}
+//#Preview {
+//    ContentView(isAuthenticated: true, user: UserModel().mockData[0])
+//}

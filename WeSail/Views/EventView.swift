@@ -112,8 +112,8 @@ struct EventView: View {
     }
 }
 
-#Preview {
-    EventView(
-        event: EventsModel().mockData[0]
-    )
-}
+//#Preview {
+//    EventView(
+//        event: EventsModel().mockData[0]
+//    )
+//}

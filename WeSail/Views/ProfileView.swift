@@ -162,7 +162,7 @@ struct ProfileView: View {
 }
 
 
-#Preview {
-    ProfileView(user: UserModel().mockData[0])
-}
+//#Preview {
+//    ProfileView(user: UserModel().mockData[0])
+//}
 

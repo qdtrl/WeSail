@@ -23,8 +23,8 @@ struct PicturesView: View {
     }
 }
 
-#Preview {
-    ScrollView {
-        PicturesView()
-    }
-}
+//#Preview {
+//    ScrollView {
+//        PicturesView()
+//    }
+//}

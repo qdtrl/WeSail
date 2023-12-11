@@ -89,6 +89,6 @@ struct BoatRow:View {
     }
 }
 
-#Preview {
-    BoatsView(boats: BoatsModel().mockData)
-}
+//#Preview {
+//    BoatsView(boats: BoatsModel().mockData)
+//}

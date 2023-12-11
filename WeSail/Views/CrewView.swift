@@ -50,6 +50,6 @@ struct CrewView: View {
     }
 }
 
-#Preview {
-    CrewView(crew: UserModel().mockData)
-}
+//#Preview {
+//    CrewView(crew: UserModel().mockData)
+//}

@@ -197,6 +197,6 @@ struct BoatView: View {
     }
 }
 
-#Preview {
-    BoatView(boat: BoatsModel().mockData[0])
-}
+//#Preview {
+//    BoatView(boat: BoatsModel().mockData[0])
+//}

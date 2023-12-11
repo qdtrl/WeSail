@@ -52,6 +52,6 @@ struct MessageView: View {
     }
 }
 
-#Preview {
-    MessageView(message: Message(user: UserModel().mockData[0], text: "Hello", date: Date(), isRead: false))
-}
+//#Preview {
+//    MessageView(message: Message(user: UserModel().mockData[0], text: "Hello", date: Date(), isRead: false))
+//}

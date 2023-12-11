@@ -233,6 +233,6 @@ struct ResultsRace: View {
     }
 }
 
-#Preview {
-    EventsView()
-}
+//#Preview {
+//    EventsView()
+//}
