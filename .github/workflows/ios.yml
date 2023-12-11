@@ -12,6 +12,10 @@ jobs:
     runs-on: macos-latest
 
     steps:
+      - name: Install CocoaPods
+        run: |
+          sudo gem install cocoapods
+          pod install
       - name: Checkout
         uses: actions/checkout@v3
       - name: Set Default Scheme
