@@ -15,6 +15,7 @@ jobs:
       - name: Install CocoaPods
         run: |
           sudo gem install cocoapods
+          pwd
           pod install
       - name: Checkout
         uses: actions/checkout@v3
