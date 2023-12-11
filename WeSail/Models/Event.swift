@@ -8,7 +8,11 @@
 import Foundation
 
 
-struct Event: Decodable, Identifiable {
+struct Event: Decodable, Identifiable, Hashable {
+    static func == (lhs: Event, rhs: Event) -> Bool {
+        lhs.id == rhs.id
+    }
+    
     var id = UUID()
     let eventId: String
     let status: String
@@ -20,4 +24,5 @@ struct Event: Decodable, Identifiable {
     let startDate: Date
     let endDate: Date
     let races: [Race]
+    let participants: [Boat]
 }

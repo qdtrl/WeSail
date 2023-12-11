@@ -14,27 +14,37 @@ struct ContentView: View {
     var body: some View {
         if isAuthenticated {
             TabView {
-                EventsView()
-                    .tabItem {
-                        Image(systemName: "popcorn")
-                    }
+                NavigationStack {
+                    EventsView()
+                }
+                .tabItem {
+                    Image(systemName: "popcorn")
+                        .accessibility(identifier: "eventsTab")
+                }
                 
-                BoatsView()
-                    .tabItem {
-                        Image(systemName: "sailboat")
-                    }
+                NavigationStack {
+                    BoatsView(boats: BoatsModel().mockData)
+                }
+                .tabItem {
+                    Image(systemName: "sailboat")
+                        .accessibility(identifier: "boatsTab")
+                }
                 
                 ChatsView()
                     .tabItem {
                         Image(systemName: "message")
+                            .accessibility(identifier: "chatsTab")
                     }
+                    
                 
-                ProfileView(user: user)
-                    .tabItem {
-                        Image(systemName: "person")
-                    }
+                NavigationStack {
+                    ProfileView(user: user)
+                }
+                .tabItem {
+                    Image(systemName: "person")
+                        .accessibility(identifier: "profileTab")
+                }
             }
-
         } else {
             LoginView()
         }

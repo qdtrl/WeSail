@@ -38,7 +38,6 @@ struct EventView: View {
                     Spacer()
                     
                     Text("20 inscrits")
-
                 }
                 .font(.caption)
                 .bold()
@@ -52,26 +51,25 @@ struct EventView: View {
                     LazyHGrid(rows: [GridItem(.flexible(minimum: 140, maximum: 150))]) {
                         ForEach(event.images, id: \.self) { image in
                             AsyncImage(url: URL(string: image), transaction: .init(animation: .spring())) { phase in
-                                                     switch phase {
-                                                     case .empty:
-                                                         Color.gray
-                                                         .opacity(0.2)
-                                                         .transition(.opacity.combined(with: .scale))
-                                                     case .success(let image):
-                                                       image
-                                                        .resizable()
-                                                        .aspectRatio(contentMode: .fit)
-                                                        .scaledToFit()
-                                                        .transition(.opacity.combined(with: .scale))
-                                                     case .failure(_):
-                                                         Color.red.opacity(0.2)
-                                                     @unknown default:
-                                                         Color.yellow.opacity(0.2)
-                                                     }
-                                                   }
-                                                    .frame(height: 140)
-                                                    .frame(minWidth: 80)
-                    
+                                switch phase {
+                                case .empty:
+                                    Color.gray
+                                    .opacity(0.2)
+                                    .transition(.opacity.combined(with: .scale))
+                                case .success(let image):
+                                    image
+                                        .resizable()
+                                        .aspectRatio(contentMode: .fit)
+                                        .scaledToFit()
+                                        .transition(.opacity.combined(with: .scale))
+                                case .failure(_):
+                                    Color.red.opacity(0.2)
+                                @unknown default:
+                                    Color.yellow.opacity(0.2)
+                                }
+                            }
+                            .frame(height: 140)
+                            .frame(minWidth: 80)
                         }
                     }
                 }
@@ -104,36 +102,14 @@ struct EventView: View {
                     Spacer()
                 }
 
-                Text("Participants  (\(BoatsModel().mockData.count))")
+                Text("Participants  (\(event.participants.count))")
                     .font(.title2)
                     .bold()
                     .padding(.top, 10)
-
-
-                
-
-                
-                
             }
             .padding()
 
-            LazyVGrid(columns: [GridItem(.adaptive(minimum: 170))], spacing: 20) {
-                ForEach(BoatsModel().mockData) { boat in
-                    ZStack {
-                        BoatRow(boat: boat)
-                        NavigationLink(destination: {
-                            BoatView(boat: boat)
-                                .environmentObject(BoatsModel())
-                            }) {
-                            EmptyView()
-                        }
-                        .buttonStyle(PlainButtonStyle())
-                        .frame(width: 0)
-                        .opacity(0)
-                    }
-                }
-            }
-            .padding()
+            BoatsView(boats: event.participants)
         }
     }
 }

@@ -22,11 +22,6 @@ struct ChatView: View {
                 ScrollView(showsIndicators: false)  {
                     ScrollViewReader { scrollReader in
                         getMessagesView(viewWidth: reader.size.width)
-                            .onChange(of: messageIdToScroll) {
-                                if let messageId = messageIdToScroll {
-                                    scrollTo(messageId: messageId, shouldAnimate: true, scrollReader: scrollReader)
-                                }
-                            }
                             .onAppear {
                                 if let messageId = chat.messages.last?.id {
                                     scrollTo(messageId: messageId, anchor: .bottom, shouldAnimate: false, scrollReader: scrollReader)

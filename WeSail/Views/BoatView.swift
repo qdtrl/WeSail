@@ -13,39 +13,39 @@ struct BoatView: View {
     @State var index = 0
 
     var body: some View {
-         ScrollView(showsIndicators: false) {
+        ScrollView(showsIndicators: false) {
             VStack(alignment: .leading, spacing: 20) {
                 HStack {
                     AsyncImage(url: URL(string: boat.image), transaction: .init(animation: .spring())) { phase in
-                                             switch phase {
-                                             case .empty:
-                                                 Color.gray
-                                                 .opacity(0.2)
-                                                 .transition(.opacity.combined(with: .scale))
-                                             case .success(let image):
-                                               image
-                                                .resizable()
-                                                .aspectRatio(contentMode: .fill)
-                                                .scaledToFill()
-                                                .transition(.opacity.combined(with: .scale))
-                                             case .failure(_):
-                                                 Color.red.opacity(0.2)
-                                             @unknown default:
-                                                 Color.yellow.opacity(0.2)
-                                             }
-                                           }
-                                            .frame(width: 140, height: 140)
-                                            .clipShape(RoundedRectangle(cornerRadius: 15, style: .continuous))
-                   
+                        switch phase {
+                        case .empty:
+                            Color.gray
+                                .opacity(0.2)
+                                .transition(.opacity.combined(with: .scale))
+                        case .success(let image):
+                            image
+                                .resizable()
+                                .aspectRatio(contentMode: .fill)
+                                .scaledToFill()
+                                .transition(.opacity.combined(with: .scale))
+                        case .failure(_):
+                            Color.red.opacity(0.2)
+                        @unknown default:
+                            Color.yellow.opacity(0.2)
+                        }
+                   }
+                    .frame(width: 140, height: 140)
+                    .clipShape(RoundedRectangle(cornerRadius: 15, style: .continuous))
+
                     Spacer()
                     VStack {
-                        Text("40")
+                        Text("\(boat.events.count)")
                             .bold()
                         Text("Events")
                     }
                     Spacer()
                     VStack {
-                        Text("12")
+                        Text("\(boat.crew.count)")
                             .bold()
                         Text("Membres")
                     }
@@ -56,10 +56,10 @@ struct BoatView: View {
                         Text(boat.name)
                             .bold()
                         Spacer()
-                        Text("Type : Class 10")       
+                        Text("Type : \(boat.type)")       
                     }
                     HStack {
-                        Text("123123")
+                        Text("\(boat.number)")
                             .font(.caption)
                         Spacer()
                         Text("Port : Granville")       
@@ -137,6 +137,7 @@ struct BoatView: View {
                                 .frame(width: 20, height: 20)
                                 .foregroundColor(index == 0 ? .black : .gray)
                         }
+                        .accessibility(identifier: "eventsButton")
                         
                         Rectangle()
                             .frame(height: 2)
@@ -154,6 +155,7 @@ struct BoatView: View {
                                 .frame(width: 20, height: 20)
                                 .foregroundColor(index == 1 ? .black : .gray)
                         }
+                        .accessibility(identifier: "picturesButton")
                         
                         Rectangle()
                             .frame(height: 2)
@@ -171,6 +173,7 @@ struct BoatView: View {
                                 .frame(width: 20, height: 20)
                                 .foregroundColor(index == 2 ? .black : .gray)
                         }
+                        .accessibility(identifier: "crewButton")
                         
                         Rectangle()
                             .frame(height: 2)
@@ -192,6 +195,7 @@ struct BoatView: View {
                 EventsView()
             }
         }
+        .accessibility(identifier: "boatView")
     }
 }
 

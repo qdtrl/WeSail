@@ -16,25 +16,25 @@ struct ProfileView: View {
             VStack(alignment: .leading, spacing: 20) {
                 HStack {
                     AsyncImage(url: URL(string: user.image), transaction: .init(animation: .spring())) { phase in
-                                             switch phase {
-                                             case .empty:
-                                                 Color.gray
-                                                 .opacity(0.2)
-                                                 .transition(.opacity.combined(with: .scale))
-                                             case .success(let image):
-                                               image
-                                                .resizable()
-                                                .aspectRatio(contentMode: .fill)
-                                                .scaledToFill()
-                                                .transition(.opacity.combined(with: .scale))
-                                             case .failure(_):
-                                                 Color.red.opacity(0.2)
-                                             @unknown default:
-                                                 Color.yellow.opacity(0.2)
-                                             }
-                                           }
-                                            .frame(width: 70, height: 70)
-                                            .clipShape(Circle())
+                        switch phase {
+                        case .empty:
+                            Color.gray
+                            .opacity(0.2)
+                            .transition(.opacity.combined(with: .scale))
+                        case .success(let image):
+                            image
+                                .resizable()
+                                .aspectRatio(contentMode: .fill)
+                                .scaledToFill()
+                                .transition(.opacity.combined(with: .scale))
+                        case .failure(_):
+                            Color.red.opacity(0.2)
+                        @unknown default:
+                            Color.yellow.opacity(0.2)
+                        }
+                    }
+                    .frame(width: 70, height: 70)
+                    .clipShape(Circle())
                    
                     Spacer()
                     
@@ -151,7 +151,7 @@ struct ProfileView: View {
             case 1:
                 PicturesView()
             case 2:
-                BoatsView()
+                BoatsView(boats: BoatsModel().mockData)
             default:
                 Text("Événements")
             }

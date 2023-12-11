@@ -20,8 +20,7 @@ extension Date {
             return "Hier"
         } else if daysBetween < 5 {
             let weekdayIndex = Calendar.current.component(.weekday, from: self) - 1
-            let weekdays = ["Lundi", "Mardi", "Mercredi", "Jeudi", "Vendredi", "Samedi", "Dimanche"]
-            return weekdays[weekdayIndex]
+            return ["Lundi", "Mardi", "Mercredi", "Jeudi", "Vendredi", "Samedi", "Dimanche"][weekdayIndex]
         } else {
             return formatter.string(from: self)
         }

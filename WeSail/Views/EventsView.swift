@@ -11,16 +11,18 @@ struct EventsView: View {
     @ObservedObject var eventsModel = EventsModel()
     
     var body: some View {
-        NavigationView {
-            List {
-                ForEach(eventsModel.mockData) { event in
-                    NavigationLink(destination: EventView(event: event)) {
-                        EventRow(event: event)
-                    }
+        ScrollView(showsIndicators: false) {
+            ForEach(eventsModel.mockData) { event in
+                NavigationLink(value: event) {
+                    EventRow(event: event)
                 }
             }
-            .listStyle(PlainListStyle())
+            .navigationDestination(for: Event.self) { event in
+                EventView(event: event)
+            }
         }
+        .padding(.horizontal)
+        .accessibility(identifier: "eventsList")
     }
 }
 
@@ -29,31 +31,31 @@ struct EventRow: View {
     
     var body: some View {
         VStack(alignment: .leading) {
-            HStack(spacing: 20) {
+            HStack {
                 AsyncImage(url: URL(string: event.images.first!), transaction: .init(animation: .spring())) { phase in
-                                         switch phase {
-                                         case .empty:
-                                             Color.gray
-                                             .opacity(0.2)
-                                             .transition(.opacity.combined(with: .scale))
-                                         case .success(let image):
-                                           image
-                                            .resizable()
-                                            .aspectRatio(contentMode: .fit)
-                                            .scaledToFit()
-                                            .transition(.opacity.combined(with: .scale))
-                                         case .failure(_):
-                                             Color.red.opacity(0.2)
-                                         @unknown default:
-                                             Color.yellow.opacity(0.2)
-                                         }
-                                       }
-                                        .frame(width: 60)
-                                        .clipShape(RoundedRectangle(cornerRadius: 15, style: .continuous))
-         
+                    switch phase {
+                    case .empty:
+                        Color.gray
+                            .opacity(0.2)
+                            .transition(.opacity.combined(with: .scale))
+                    case .success(let image):
+                        image
+                            .resizable()
+                            .aspectRatio(contentMode: .fit)
+                            .scaledToFit()
+                            .transition(.opacity.combined(with: .scale))
+                    case .failure(_):
+                        Color.red.opacity(0.2)
+                    @unknown default:
+                        Color.yellow.opacity(0.2)
+                    }
+                }
+                .frame(width: 60)
+                .clipShape(RoundedRectangle(cornerRadius: 15, style: .continuous))
+                
                 VStack(alignment: .leading) {
                     Text(event.name)
-                        .font(.title)
+                        .font(.title2)
                         .bold()
                     
                     Text(event.organizer)
@@ -75,6 +77,7 @@ struct EventRow: View {
                     .foregroundColor(.gray)
                 }
             }
+
             switch event.status {
             case "start":
             ProvisoryResultsRace(race: event.races[0])
@@ -83,7 +86,12 @@ struct EventRow: View {
             default:
                 EmptyView()
             }
+            
+            Divider()
+                .padding(.horizontal, 16)
+                .background(Color.gray)
         }
+        .foregroundColor(.black)
     }
 }
 struct ProvisoryResultsRace: View {
@@ -125,25 +133,26 @@ struct ResultsRace: View {
         HStack {
             VStack {
                 AsyncImage(url: URL(string: race.results[1].image), transaction: .init(animation: .spring())) { phase in
-                                         switch phase {
-                                         case .empty:
-                                             Color.gray
-                                             .opacity(0.2)
-                                             .transition(.opacity.combined(with: .scale))
-                                         case .success(let image):
-                                           image
-                                            .resizable()
-                                            .aspectRatio(contentMode: .fill)
-                                            .scaledToFill()
-                                            .transition(.opacity.combined(with: .scale))
-                                         case .failure(_):
-                                             Color.red.opacity(0.2)
-                                         @unknown default:
-                                             Color.yellow.opacity(0.2)
-                                         }
-                                       }
-                                        .frame(width: 60, height: 60)
-                                        .clipShape(RoundedRectangle(cornerRadius: 15, style: .continuous))
+                    switch phase {
+                    case .empty:
+                        Color.gray
+                        .opacity(0.2)
+                        .transition(.opacity.combined(with: .scale))
+                    case .success(let image):
+                    image
+                    .resizable()
+                    .aspectRatio(contentMode: .fill)
+                    .scaledToFill()
+                    .transition(.opacity.combined(with: .scale))
+                    case .failure(_):
+                        Color.red.opacity(0.2)
+                    @unknown default:
+                        Color.yellow.opacity(0.2)
+                    }
+                }
+                .frame(width: 60, height: 60)
+                .clipShape(RoundedRectangle(cornerRadius: 15, style: .continuous))
+                
                 Text(race.results[1].name)
                     .font(.subheadline)
                     .bold()
@@ -158,25 +167,26 @@ struct ResultsRace: View {
             
             VStack {
                 AsyncImage(url: URL(string: race.results[0].image), transaction: .init(animation: .spring())) { phase in
-                                         switch phase {
-                                         case .empty:
-                                             Color.gray
-                                             .opacity(0.2)
-                                             .transition(.opacity.combined(with: .scale))
-                                         case .success(let image):
-                                           image
-                                            .resizable()
-                                            .aspectRatio(contentMode: .fill)
-                                            .scaledToFill()
-                                            .transition(.opacity.combined(with: .scale))
-                                         case .failure(_):
-                                             Color.red.opacity(0.2)
-                                         @unknown default:
-                                             Color.yellow.opacity(0.2)
-                                         }
-                                       }
-                                        .frame(width: 60, height: 60)
-                                        .clipShape(RoundedRectangle(cornerRadius: 15, style: .continuous))
+                    switch phase {
+                    case .empty:
+                        Color.gray
+                        .opacity(0.2)
+                        .transition(.opacity.combined(with: .scale))
+                    case .success(let image):
+                    image
+                    .resizable()
+                    .aspectRatio(contentMode: .fill)
+                    .scaledToFill()
+                    .transition(.opacity.combined(with: .scale))
+                    case .failure(_):
+                        Color.red.opacity(0.2)
+                    @unknown default:
+                        Color.yellow.opacity(0.2)
+                    }
+                }
+                .frame(width: 60, height: 60)
+                .clipShape(RoundedRectangle(cornerRadius: 15, style: .continuous))
+                
                 Text(race.results[0].name)
                     .font(.subheadline)
                     .bold()
@@ -191,25 +201,26 @@ struct ResultsRace: View {
             
             VStack {
                 AsyncImage(url: URL(string: race.results[2].image), transaction: .init(animation: .spring())) { phase in
-                                         switch phase {
-                                         case .empty:
-                                             Color.gray
-                                             .opacity(0.2)
-                                             .transition(.opacity.combined(with: .scale))
-                                         case .success(let image):
-                                           image
-                                            .resizable()
-                                            .aspectRatio(contentMode: .fill)
-                                            .scaledToFill()
-                                            .transition(.opacity.combined(with: .scale))
-                                         case .failure(_):
-                                             Color.red.opacity(0.2)
-                                         @unknown default:
-                                             Color.yellow.opacity(0.2)
-                                         }
-                                       }
-                                        .frame(width: 60, height: 60)
-                                        .clipShape(RoundedRectangle(cornerRadius: 15, style: .continuous))
+                    switch phase {
+                    case .empty:
+                        Color.gray
+                        .opacity(0.2)
+                        .transition(.opacity.combined(with: .scale))
+                    case .success(let image):
+                    image
+                    .resizable()
+                    .aspectRatio(contentMode: .fill)
+                    .scaledToFill()
+                    .transition(.opacity.combined(with: .scale))
+                    case .failure(_):
+                        Color.red.opacity(0.2)
+                    @unknown default:
+                        Color.yellow.opacity(0.2)
+                    }
+                }
+                .frame(width: 60, height: 60)
+                .clipShape(RoundedRectangle(cornerRadius: 15, style: .continuous))
+                
                 Text(race.results[2].name)
                     .font(.subheadline)
                     .bold()
@@ -219,9 +230,7 @@ struct ResultsRace: View {
             }
             .frame(width: 100)
             .padding(.top, 20)
-            
         }
-        
     }
 }
 

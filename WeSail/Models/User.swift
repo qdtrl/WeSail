@@ -7,7 +7,11 @@
 
 import Foundation
 
-struct User: Decodable, Identifiable {
+struct User: Decodable, Identifiable, Hashable {
+    static func == (lhs: User, rhs: User) -> Bool {
+        lhs.id == rhs.id
+    }
+    
     var id = UUID()
     let userId: String
     let email: String

@@ -9,36 +9,36 @@ import SwiftUI
 
 struct BoatsView: View {
     @StateObject var boatsModel = BoatsModel()
+    @State var boats: [Boat]
+
+    let columns = Array(repeating: GridItem(.flexible(), spacing: 10, alignment: .center), count: 2)
 
     var body: some View {
-        switch boatsModel.mockData.count {
+        switch boats.count {
         case 0:
             Text("Ajoutez un bateau ou rejoignez un équipage")
                 .multilineTextAlignment(.center)
+                .accessibility(identifier: "noBoat")
         case 1:
-            BoatView(boat: boatsModel.mockData[0])
+            BoatView(boat: boats[0])
         default:
-            NavigationView {
-                List {
-                    LazyVGrid(columns: [GridItem(.adaptive(minimum: 170))], spacing: 20) {
-                        ForEach(boatsModel.mockData) { boat in
-                            ZStack {
-                                BoatRow(boat: boat)
-                                NavigationLink(destination: {
-                                    BoatView(boat: boat)
-                                        .environmentObject(boatsModel)
-                                    }) {
-                                    EmptyView()
-                                }
-                                .buttonStyle(PlainButtonStyle())
-                                .frame(width: 0)
-                                .opacity(0)
-                            }
+            ScrollView(showsIndicators: false) {
+                LazyVGrid(columns: columns, spacing: 10) {
+                    ForEach(boats) { boat in
+                        NavigationLink(value: boat) {
+                            BoatRow(boat: boat)
+                                .frame(maxWidth: .infinity, minHeight: 200)
+                                .accessibility(identifier: "boatCell")
                         }
                     }
                 }
-                .listStyle(PlainListStyle())
+                .padding(.horizontal, 10)
+                .accessibility(identifier: "boatsGrid")
+                .navigationDestination(for: Boat.self) { boat in
+                    BoatView(boat: boat)
+                }
             }
+            .foregroundColor(.black)
         }
     }
 }
@@ -49,25 +49,26 @@ struct BoatRow:View {
     var body: some View {
         VStack(alignment: .center) {
             AsyncImage(url: URL(string: boat.image), transaction: .init(animation: .spring())) { phase in
-                                     switch phase {
-                                     case .empty:
-                                         Color.gray
-                                         .opacity(0.2)
-                                         .transition(.opacity.combined(with: .scale))
-                                     case .success(let image):
-                                       image
-                                        .resizable()
-                                        .aspectRatio(contentMode: .fill)
-                                        .scaledToFill()
-                                        .transition(.opacity.combined(with: .scale))
-                                     case .failure(_):
-                                         Color.red.opacity(0.2)
-                                     @unknown default:
-                                         Color.yellow.opacity(0.2)
-                                     }
-                                   }
-                                    .frame(width: 160, height: 120)
-                                    .clipShape(RoundedRectangle(cornerRadius: 15, style: .continuous))
+                switch phase {
+                case .empty:
+                    Color.gray
+                    .opacity(0.2)
+                    .transition(.opacity.combined(with: .scale))
+                case .success(let image):
+                image
+                .resizable()
+                .aspectRatio(contentMode: .fill)
+                .frame(width: 140, height: 120)
+                .frame(maxWidth: .infinity)
+                .clipped()
+                case .failure(_):
+                    Color.red.opacity(0.2)
+                @unknown default:
+                    Color.yellow.opacity(0.2)
+                }
+            }       
+            .clipShape(RoundedRectangle(cornerRadius: 15, style: .continuous))
+                      
             VStack(alignment: .leading) {
                 Text(boat.name)
                     .font(.headline)
@@ -76,7 +77,7 @@ struct BoatRow:View {
                     .font(.subheadline)
 
                 HStack {
-                    Text("19756")
+                    Text("\(boat.number)")
                         .font(.subheadline)
                     
                     Spacer()
@@ -86,10 +87,9 @@ struct BoatRow:View {
                 }
             }
         }
-        .frame(height: 200)
     }
 }
 
 #Preview {
-    BoatsView()
+    BoatsView(boats: BoatsModel().mockData)
 }

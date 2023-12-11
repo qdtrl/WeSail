@@ -7,7 +7,10 @@
 
 import Foundation
 
-struct Race: Decodable, Identifiable {
+struct Race: Decodable, Identifiable, Hashable {
+    static func == (lhs: Race, rhs: Race) -> Bool {
+        lhs.id == rhs.id
+    }    
     var id = UUID()
     let date: Date
     let results: [Boat]

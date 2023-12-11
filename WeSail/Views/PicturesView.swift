@@ -19,6 +19,7 @@ struct PicturesView: View {
                     .clipped()
             }
         }
+        .accessibility(identifier: "picturesGrid")
     }
 }
 
