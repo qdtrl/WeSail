@@ -15,7 +15,7 @@ jobs:
       - name: Install CocoaPods
         run: |
           sudo gem install cocoapods
-          bundle exec pod check || bundle exec pod install
+          pod check || pod install
       - name: Checkout
         uses: actions/checkout@v3
       - name: Set Default Scheme
