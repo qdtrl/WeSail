@@ -18,12 +18,18 @@ jobs:
         run: |
           sudo gem install cocoapods
           pod install
+      - name: Install xcpretty
+        run: |
+          gem install xcpretty
       - name: Set Default Scheme
         run: |
           scheme_list=$(xcodebuild -list -json | tr -d "\n")
           default=$(echo $scheme_list | ruby -e "require 'json'; puts JSON.parse(STDIN.gets)['project']['targets'][0]")
           echo $default | cat >default
           echo Using default scheme: $default
+      - name: Build and Test
+        run: |
+          xcodebuild build-for-testing -scheme WeSail -workspace WeSail.xcworkspace -destination "platform=iOS Simulator,name=iPhone 12" | xcpretty
       - name: Build
         env:
           scheme: ${{ 'WeSail' }}
