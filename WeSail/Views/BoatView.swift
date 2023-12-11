@@ -21,19 +21,17 @@ struct BoatView: View {
                         case .empty:
                             Color.gray
                                 .opacity(0.2)
-                                .transition(.opacity.combined(with: .scale))
                         case .success(let image):
                             image
                                 .resizable()
                                 .aspectRatio(contentMode: .fill)
                                 .scaledToFill()
-                                .transition(.opacity.combined(with: .scale))
                         case .failure(_):
                             Color.red.opacity(0.2)
                         @unknown default:
                             Color.yellow.opacity(0.2)
                         }
-                   }
+                    }
                     .frame(width: 140, height: 140)
                     .clipShape(RoundedRectangle(cornerRadius: 15, style: .continuous))
 

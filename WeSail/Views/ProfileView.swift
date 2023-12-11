@@ -20,13 +20,11 @@ struct ProfileView: View {
                         case .empty:
                             Color.gray
                             .opacity(0.2)
-                            .transition(.opacity.combined(with: .scale))
                         case .success(let image):
                             image
                                 .resizable()
                                 .aspectRatio(contentMode: .fill)
                                 .scaledToFill()
-                                .transition(.opacity.combined(with: .scale))
                         case .failure(_):
                             Color.red.opacity(0.2)
                         @unknown default:
@@ -101,6 +99,7 @@ struct ProfileView: View {
                                 .frame(width: 20, height: 20)
                                 .foregroundColor(index == 0 ? .black : .gray)
                         }
+                        .accessibility(identifier: "eventsButton")
                         
                         Rectangle()
                             .frame(height: 2)
@@ -118,6 +117,7 @@ struct ProfileView: View {
                                 .frame(width: 20, height: 20)
                                 .foregroundColor(index == 1 ? .black : .gray)
                         }
+                        .accessibility(identifier: "picturesButton")
                         
                         Rectangle()
                             .frame(height: 2)
@@ -135,6 +135,7 @@ struct ProfileView: View {
                                 .frame(width: 20, height: 20)
                                 .foregroundColor(index == 2 ? .black : .gray)
                         }
+                        .accessibility(identifier: "boatsButton")
                         
                         Rectangle()
                             .frame(height: 2)
@@ -156,6 +157,7 @@ struct ProfileView: View {
                 Text("Événements")
             }
         }
+        .accessibility(identifier: "profileView")
     }
 }
 

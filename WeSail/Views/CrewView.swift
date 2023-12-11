@@ -19,13 +19,11 @@ struct CrewView: View {
                             case .empty:
                                 Color.gray
                                     .opacity(0.2)
-                                    .transition(.opacity.combined(with: .scale))
                             case .success(let image):
                                 image
                                     .resizable()
                                     .aspectRatio(contentMode: .fill)
                                     .scaledToFill()
-                                    .transition(.opacity.combined(with: .scale))
                             case .failure(_):
                                 Color.red.opacity(0.2)
                             @unknown default:

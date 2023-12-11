@@ -30,11 +30,13 @@ struct ContentView: View {
                         .accessibility(identifier: "boatsTab")
                 }
                 
-                ChatsView()
-                    .tabItem {
-                        Image(systemName: "message")
-                            .accessibility(identifier: "chatsTab")
-                    }
+                NavigationStack {
+                    ChatsView()
+                }
+                .tabItem {
+                    Image(systemName: "message")
+                        .accessibility(identifier: "chatsTab")
+                }
                     
                 
                 NavigationStack {

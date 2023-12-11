@@ -31,12 +31,4 @@ final class DateExtensionTests: XCTestCase {
         
         XCTAssertEqual(daysBetween, 1)
     }
-
-    func testDaysBetweenReturn0() {
-        let today = Date()
-        let tomorrow = Calendar.current.date(byAdding: .day, value: 1, to: today)!
-        let daysBetween = today.daysBetween(date: tomorrow)
-        
-        XCTAssertEqual(daysBetween, 1)
-    }
 }

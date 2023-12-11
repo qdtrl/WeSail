@@ -12,49 +12,45 @@ struct ChatsView: View {
     @State private var query = ""
 
     var body: some View {
-        NavigationView {
-            List {
-                ForEach(chatsModel.mockData) { chat in
-                    ZStack {
-                        ChatRow(chat: chat)
-                        
-                        NavigationLink(destination: {
-                            ChatView(chat: chat)
-                                .environmentObject(chatsModel)
-                        }) {
-                            EmptyView()
-                        }
-                        .buttonStyle(PlainButtonStyle())
-                        .frame(width: 0)
-                        .opacity(0)
-                    }
-                    .swipeActions(edge: .leading, allowsFullSwipe: true) {
-                        Button(action: {
-                            chatsModel.markAsRead(!chat.messages.last!.isRead, chat: chat)
-                        }) {
-                            if chat.messages.last!.isRead {
-                                Label("Non lu", systemImage: "cicle.fill")
-                            } else {
-                                Label("Lu", systemImage: "text.bubble")
-                            }
-                        }
-                        .tint(.blue)
-                    }
+        List {
+            ForEach(chatsModel.mockData) { chat in
+                ZStack {
+                    ChatRow(chat: chat)
                     
-                    
+                    NavigationLink(destination: {
+                        ChatView(chat: chat)
+                            .environmentObject(chatsModel)
+                    }) {
+                        EmptyView()
+                    }
+                    .buttonStyle(PlainButtonStyle())
+                    .frame(width: 0)
+                    .opacity(0)
+                }
+                .swipeActions(edge: .leading, allowsFullSwipe: true) {
+                    Button(action: {
+                        chatsModel.markAsRead(!chat.messages.last!.isRead, chat: chat)
+                    }) {
+                        if chat.messages.last!.isRead {
+                            Label("Non lu", systemImage: "cicle.fill")
+                        } else {
+                            Label("Lu", systemImage: "text.bubble")
+                        }
+                    }
+                    .tint(.blue)
+                    .accessibility(identifier: "readLastMessage")
                 }
             }
-            .listStyle(PlainListStyle())
-            .searchable(text: $query)
-            .navigationBarTitle("Conversations")
-            .navigationBarItems(trailing: Button(action: {
-                print("Add room")
-            }, label: {
-                Image(systemName: "square.and.pencil")
-            }))
-            
         }
-        
+        .listStyle(PlainListStyle())
+        .searchable(text: $query)
+        .navigationBarTitle("Conversations")
+        .navigationBarItems(trailing: Button(action: {
+            print("Add room")
+        }, label: {
+            Image(systemName: "square.and.pencil")
+        }))
+        .accessibility(identifier: "chatsList")
     }
 }
 
@@ -68,13 +64,11 @@ struct ChatRow: View {
                 case .empty:
                     Color.gray
                         .opacity(0.2)
-                        .transition(.opacity.combined(with: .scale))
                 case .success(let image):
                     image
                         .resizable()
                         .aspectRatio(contentMode: .fill)
                         .scaledToFill()
-                        .transition(.opacity.combined(with: .scale))
                 case .failure(_):
                     Color.red.opacity(0.2)
                 @unknown default:
@@ -110,6 +104,7 @@ struct ChatRow: View {
             }
         }
         .frame(height: 70)
+        .accessibility(identifier: "chatCell")
     }
 }
 

@@ -10,7 +10,7 @@ import Foundation
 class ChatsModel: ObservableObject {
     @Published var chats = [Chat]()
 
-    func getSearchdRooms(query: String) -> [Chat] {
+    func getSearchedRooms(query: String) -> [Chat] {
         let lastMessageRooms = chats.sorted {
             let date1 = $0.messages.last!.date
             let date2 = $1.messages.last!.date

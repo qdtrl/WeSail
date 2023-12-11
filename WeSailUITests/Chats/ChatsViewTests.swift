@@ -1,5 +1,5 @@
 //
-//  EventsViewTests.swift
+//  ChatsViewTests.swift
 //  WeSailUITests
 //
 //  Created by Quentin Dubut-Touroul on 11/12/2023.
@@ -7,7 +7,7 @@
 
 import XCTest
 
-final class EventsViewTests: XCTestCase {
+final class ChatsViewTests: XCTestCase {
     private var app: XCUIApplication!
 
     override func setUp() {
@@ -36,15 +36,20 @@ final class EventsViewTests: XCTestCase {
         super.tearDown()
     }
 
-    func testEventsView() {
-        XCTAssertTrue(app.buttons["eventsTab"].waitForExistence(timeout: 2), "Navbar Events view should be displayed")
+    func testBoatsView() {
+        XCTAssertTrue(app.buttons["chatsTab"].waitForExistence(timeout: 2), "Navbar BoatItem view should be displayed")
+
+        app.buttons["chatsTab"].tap()
         
-        let eventsCell = app.scrollViews["eventsList"]
-        XCTAssertTrue(eventsCell.exists, "Events view should be displayed")
+        let chatsList = app.collectionViews["chatsList"]
+        XCTAssertTrue(chatsList.exists, "Chats view should be displayed")
 
-        let eventCell = eventsCell.buttons.containing(NSPredicate(format: "identifier CONTAINS 'eventCell'"))
-        XCTAssertEqual(eventCell.count, 5)
-
-        eventCell.element(boundBy: 0).tap()
+        XCTAssertEqual(app.cells.count, 3)
+        
+        app.cells.firstMatch.swipeRight()
+        
+        app.buttons["readLastMessage"].tap()
+        
+        app.cells.element(boundBy: 0).tap()
     }
 }

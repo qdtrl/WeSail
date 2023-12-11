@@ -52,15 +52,14 @@ struct BoatRow:View {
                 switch phase {
                 case .empty:
                     Color.gray
-                    .opacity(0.2)
-                    .transition(.opacity.combined(with: .scale))
+                    .opacity(0.2)              
                 case .success(let image):
-                image
-                .resizable()
-                .aspectRatio(contentMode: .fill)
-                .frame(width: 140, height: 120)
-                .frame(maxWidth: .infinity)
-                .clipped()
+                    image
+                        .resizable()
+                        .aspectRatio(contentMode: .fill)
+                        .frame(width: 140, height: 120)
+                        .frame(maxWidth: .infinity)
+                        .clipped()
                 case .failure(_):
                     Color.red.opacity(0.2)
                 @unknown default:

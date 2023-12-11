@@ -15,6 +15,7 @@ struct EventsView: View {
             ForEach(eventsModel.mockData) { event in
                 NavigationLink(value: event) {
                     EventRow(event: event)
+                        .accessibility(identifier: "eventCell")
                 }
             }
             .navigationDestination(for: Event.self) { event in
@@ -37,13 +38,11 @@ struct EventRow: View {
                     case .empty:
                         Color.gray
                             .opacity(0.2)
-                            .transition(.opacity.combined(with: .scale))
                     case .success(let image):
                         image
                             .resizable()
                             .aspectRatio(contentMode: .fit)
                             .scaledToFit()
-                            .transition(.opacity.combined(with: .scale))
                     case .failure(_):
                         Color.red.opacity(0.2)
                     @unknown default:
@@ -137,13 +136,13 @@ struct ResultsRace: View {
                     case .empty:
                         Color.gray
                         .opacity(0.2)
-                        .transition(.opacity.combined(with: .scale))
+                        
                     case .success(let image):
                     image
                     .resizable()
                     .aspectRatio(contentMode: .fill)
                     .scaledToFill()
-                    .transition(.opacity.combined(with: .scale))
+                    
                     case .failure(_):
                         Color.red.opacity(0.2)
                     @unknown default:
@@ -171,13 +170,13 @@ struct ResultsRace: View {
                     case .empty:
                         Color.gray
                         .opacity(0.2)
-                        .transition(.opacity.combined(with: .scale))
+                        
                     case .success(let image):
                     image
                     .resizable()
                     .aspectRatio(contentMode: .fill)
                     .scaledToFill()
-                    .transition(.opacity.combined(with: .scale))
+                    
                     case .failure(_):
                         Color.red.opacity(0.2)
                     @unknown default:
@@ -205,13 +204,13 @@ struct ResultsRace: View {
                     case .empty:
                         Color.gray
                         .opacity(0.2)
-                        .transition(.opacity.combined(with: .scale))
+                        
                     case .success(let image):
                     image
                     .resizable()
                     .aspectRatio(contentMode: .fill)
                     .scaledToFill()
-                    .transition(.opacity.combined(with: .scale))
+                    
                     case .failure(_):
                         Color.red.opacity(0.2)
                     @unknown default:
