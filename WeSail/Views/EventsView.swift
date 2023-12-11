@@ -157,7 +157,7 @@ struct ResultsRace: View {
                     .bold()
                 
                 Image(systemName: "trophy.fill")
-                    .foregroundColor(Color(.silver))
+                    .foregroundColor(Color("Silver"))
             }
             .padding(.top, 10)
             .frame(width: 100)
@@ -191,7 +191,7 @@ struct ResultsRace: View {
                     .bold()
                 
                 Image(systemName: "trophy.fill")
-                    .foregroundColor(Color(.gold))
+                    .foregroundColor(Color("Gold"))
             }
             .padding(.bottom, 10)
             .frame(width: 100)
@@ -225,7 +225,7 @@ struct ResultsRace: View {
                     .bold()
                 
                 Image(systemName: "trophy.fill")
-                    .foregroundColor(Color(.bronze))
+                    .foregroundColor(Color("Bronze"))
             }
             .frame(width: 100)
             .padding(.top, 20)
