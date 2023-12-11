@@ -17,7 +17,10 @@ jobs:
           sudo gem install cocoapods
           pwd
           ls -la
+          cd ..
+          ls -la
           pod install
+          cd WeSail
       - name: Checkout
         uses: actions/checkout@v3
       - name: Set Default Scheme
