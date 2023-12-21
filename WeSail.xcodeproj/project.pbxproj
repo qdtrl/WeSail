@@ -32,6 +32,10 @@
 		3C524A8F2B1B92D2000B1667 /* CrewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C524A8E2B1B92D2000B1667 /* CrewView.swift */; };
 		3C524A912B1B9A3E000B1667 /* Events.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C524A902B1B9A3E000B1667 /* Events.swift */; };
 		3C524A932B1B9FFB000B1667 /* EventView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C524A922B1B9FFB000B1667 /* EventView.swift */; };
+		3C701FF12B336C610066721B /* InputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C701FF02B336C610066721B /* InputView.swift */; };
+		3C701FF32B336FD80066721B /* RegisterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C701FF22B336FD80066721B /* RegisterView.swift */; };
+		3C701FF52B3373790066721B /* ProfileParametersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C701FF42B3373790066721B /* ProfileParametersView.swift */; };
+		3C701FF72B33745B0066721B /* SettingsRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C701FF62B33745B0066721B /* SettingsRowView.swift */; };
 		3C94C4952B1559D20049FCE9 /* SplashScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C94C4942B1559D20049FCE9 /* SplashScreenView.swift */; };
 		3CBA30492B27800400AA19FE /* BoatsViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CBA30482B27800400AA19FE /* BoatsViewTests.swift */; };
 		3CBA304C2B27862700AA19FE /* EventsViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CBA304B2B27862700AA19FE /* EventsViewTests.swift */; };
@@ -98,6 +102,10 @@
 		3C524A8E2B1B92D2000B1667 /* CrewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CrewView.swift; sourceTree = "<group>"; };
 		3C524A902B1B9A3E000B1667 /* Events.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Events.swift; sourceTree = "<group>"; };
 		3C524A922B1B9FFB000B1667 /* EventView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventView.swift; sourceTree = "<group>"; };
+		3C701FF02B336C610066721B /* InputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputView.swift; sourceTree = "<group>"; };
+		3C701FF22B336FD80066721B /* RegisterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterView.swift; sourceTree = "<group>"; };
+		3C701FF42B3373790066721B /* ProfileParametersView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileParametersView.swift; sourceTree = "<group>"; };
+		3C701FF62B33745B0066721B /* SettingsRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsRowView.swift; sourceTree = "<group>"; };
 		3C94C4942B1559D20049FCE9 /* SplashScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashScreenView.swift; sourceTree = "<group>"; };
 		3CBA30482B27800400AA19FE /* BoatsViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoatsViewTests.swift; sourceTree = "<group>"; };
 		3CBA304B2B27862700AA19FE /* EventsViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsViewTests.swift; sourceTree = "<group>"; };
@@ -181,6 +189,7 @@
 		3C17C8702B14D60B00C74788 /* WeSail */ = {
 			isa = PBXGroup;
 			children = (
+				3C701FEF2B336C330066721B /* Components */,
 				3CEBE2872B1A425400EA59D5 /* Extensions */,
 				3C17C8AC2B14EBFB00C74788 /* Managers */,
 				3C17C8A92B14E70500C74788 /* SupportingFiles */,
@@ -215,6 +224,7 @@
 		3C17C89D2B14DAD000C74788 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				3C94C4942B1559D20049FCE9 /* SplashScreenView.swift */,
 				3C17C89E2B14DAEE00C74788 /* ChatView.swift */,
 				3C17C89B2B14D72B00C74788 /* MessageView.swift */,
 				3C17C8A72B14E5FB00C74788 /* LoginView.swift */,
@@ -226,6 +236,8 @@
 				3C524A8C2B1B8207000B1667 /* BoatView.swift */,
 				3C524A8E2B1B92D2000B1667 /* CrewView.swift */,
 				3C524A922B1B9FFB000B1667 /* EventView.swift */,
+				3C701FF22B336FD80066721B /* RegisterView.swift */,
+				3C701FF42B3373790066721B /* ProfileParametersView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -251,7 +263,6 @@
 			isa = PBXGroup;
 			children = (
 				3C17C8782B14D60D00C74788 /* Preview Assets.xcassets */,
-				3C94C4942B1559D20049FCE9 /* SplashScreenView.swift */,
 				3C17C8B52B14F5C300C74788 /* Info.plist */,
 				3C17C8B32B14F44800C74788 /* GoogleService-Info.plist */,
 				3C17C8752B14D60D00C74788 /* Assets.xcassets */,
@@ -267,6 +278,15 @@
 				3C17C8AF2B14EC2400C74788 /* AuthManager.swift */,
 			);
 			path = Managers;
+			sourceTree = "<group>";
+		};
+		3C701FEF2B336C330066721B /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				3C701FF02B336C610066721B /* InputView.swift */,
+				3C701FF62B33745B0066721B /* SettingsRowView.swift */,
+			);
+			path = Components;
 			sourceTree = "<group>";
 		};
 		3CBA30432B27640F00AA19FE /* Boats */ = {
@@ -527,23 +547,27 @@
 			buildActionMask = 2147483647;
 			files = (
 				3CFA98072B1F547C005FBBCA /* Races.swift in Sources */,
+				3C701FF12B336C610066721B /* InputView.swift in Sources */,
 				3C17C8AE2B14EC1000C74788 /* DatabaseManager.swift in Sources */,
 				3C17C8B02B14EC2400C74788 /* AuthManager.swift in Sources */,
 				3CEBE2862B1A330100EA59D5 /* Chats.swift in Sources */,
 				3C17C89F2B14DAEE00C74788 /* ChatView.swift in Sources */,
 				3C524A912B1B9A3E000B1667 /* Events.swift in Sources */,
 				3C17C8A82B14E5FB00C74788 /* LoginView.swift in Sources */,
+				3C701FF32B336FD80066721B /* RegisterView.swift in Sources */,
 				3C46FBBE2B152A78003B0884 /* ProfileView.swift in Sources */,
 				3CEBE2892B1A426600EA59D5 /* Date.swift in Sources */,
 				3C17C8A62B14E3A900C74788 /* Chat.swift in Sources */,
 				3C94C4952B1559D20049FCE9 /* SplashScreenView.swift in Sources */,
 				3C17C89C2B14D72B00C74788 /* MessageView.swift in Sources */,
+				3C701FF52B3373790066721B /* ProfileParametersView.swift in Sources */,
 				3C524A872B1B7CEA000B1667 /* Boats.swift in Sources */,
 				3C524A8B2B1B8021000B1667 /* Event.swift in Sources */,
 				3C524A8F2B1B92D2000B1667 /* CrewView.swift in Sources */,
 				3C524A932B1B9FFB000B1667 /* EventView.swift in Sources */,
 				3C524A892B1B7D30000B1667 /* Boat.swift in Sources */,
 				3C524A8D2B1B8207000B1667 /* BoatView.swift in Sources */,
+				3C701FF72B33745B0066721B /* SettingsRowView.swift in Sources */,
 				3C524A852B1B72CA000B1667 /* PicturesView.swift in Sources */,
 				3C17C8A22B14DB3F00C74788 /* Message.swift in Sources */,
 				3C17C8742B14D60B00C74788 /* ContentView.swift in Sources */,
@@ -728,6 +752,7 @@
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UIRequiresFullScreen = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -764,6 +789,7 @@
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UIRequiresFullScreen = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (

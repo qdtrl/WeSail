@@ -9,13 +9,12 @@ import SwiftUI
 
 struct LoginView: View {
 //    @State var authManager = AuthManager.shared
-    @State var userAlreadyExist: Bool = true
     @State var email: String = ""
     @State var password: String = ""
-    @State var confirmPassword: String = ""
+    @Binding var isAuthenticated: Bool
+    
     var body: some View {
         NavigationStack {
-            ZStack {
                 VStack {
                     HStack {
                         VStack(alignment: .leading) {
@@ -43,32 +42,22 @@ struct LoginView: View {
                     Spacer()
                     
                     VStack {
-                        TextField("Email", text: $email)
-                            .frame(width: 300)
-                            .padding()
-                            .background(.gray.opacity(0.4))
-                            .clipShape(RoundedRectangle(cornerRadius: 15, style: .continuous))
+                        InputView(text: $email,
+                                  title: "Address Email",
+                                  placeHolder: "nomprenom@wesail.fr")
+                        .autocapitalization(.none)
                         
-                        TextField("Mot de passe", text: $password)
-                            .frame(width: 300)
-                            .padding()
-                            .background(.gray.opacity(0.4))
-                            .clipShape(RoundedRectangle(cornerRadius: 15, style: .continuous))
+                        InputView(text: $password, 
+                                  title: "Mot de passe",
+                                  placeHolder: "Entrez votre mot de passe",
+                                  isSecureField: true)
                         
-                        if !userAlreadyExist {
-                            TextField("Confirmation mot de passe", text: $confirmPassword)
-                                .frame(width: 300)
-                                .padding()
-                                .background(.gray.opacity(0.4))
-                                .clipShape(RoundedRectangle(cornerRadius: 15, style: .continuous))
-                        }
                     }
                     
                     Spacer()
                     
-                    VStack {
-                        Button(action: {
-                            if userAlreadyExist {
+                    Button(action: {
+                        isAuthenticated = true
 //                                authManager.signInWithEmail(email: email, password: password) { result in
 //                                    switch result {
 //                                    case .success(let success):
@@ -77,31 +66,22 @@ struct LoginView: View {
 //                                        print(error.localizedDescription)
 //                                    }
 //                                }
-                            } else {
-//                                authManager.createUserWithEmail(email: email, password: password) { result in
-//                                    switch result {
-//                                    case .success(let success):
-//                                        print(success)
-//                                    case .failure(let error):
-//                                        print(error.localizedDescription)
-//                                    }
-//                                }
-                            }
                         }, label: {
-                            Text(userAlreadyExist ? "Connection" : "Inscription")
-                                .foregroundColor(userAlreadyExist ? .white : .blue )
+                            Text("Connection")
+                                .foregroundColor(.white)
                                 .padding()
                                 .frame(width: 200, height: 50)
-                                .background(userAlreadyExist ? .blue : .white)
+                                .background(Color((email.isEmpty || password.isEmpty) ? .systemGray : .blue))
                                 .clipShape(RoundedRectangle(cornerRadius: 15, style: .continuous))
                                 .overlay(
                                         RoundedRectangle(cornerRadius: 15, style: .continuous)
-                                            .stroke(.blue, lineWidth: userAlreadyExist ? 0 : 2)
+                                            .stroke(.blue, lineWidth: 0)
                                     )
                         })
-                        .disabled(email.isEmpty || password.isEmpty || (!userAlreadyExist && (confirmPassword.isEmpty || password != confirmPassword)))
+                        .disabled(email.isEmpty || password.isEmpty)
                         
-                        Button(action: {
+
+                    Button(action: {
 //                            authManager.signInWithGoogle { result in
 //                                switch result {
 //                                case .success(let success):
@@ -110,29 +90,34 @@ struct LoginView: View {
 //                                    print(error.localizedDescription)
 //                                }
 //                            }
-                        }, label: {
-                            Text("Google")
-                                .foregroundColor(.white)
-                                .padding()
-                                .frame(width: 200, height: 50)
-                                .background(Color.red)
-                                .clipShape(RoundedRectangle(cornerRadius: 15, style: .continuous))
-                        })
+                    }, label: {
+                        Text("Google")
+                            .foregroundColor(.white)
+                            .padding()
+                            .frame(width: 200, height: 50)
+                            .background(Color.red)
+                            .clipShape(RoundedRectangle(cornerRadius: 15, style: .continuous))
+                    })
+                    
+                    Spacer()
+                    
+                    NavigationLink {
+                        RegisterView()
+                    } label: {
+                        Text("Pas encore de compte ?")
+                            .foregroundColor(.gray)
+                            .padding()
+                            .underline()
+                    }.navigationBarHidden(true)
                         
-                        HStack {
-                            Button(action: {
-                                userAlreadyExist.toggle()
-                            }, label: {
-                                Text(userAlreadyExist ? "Pas encore de compte ?" : "Déjà un compte ?")
-                                    .foregroundColor(.gray)
-                                    .padding()
-                                    .underline()
-                            })
-                        }.frame(maxWidth: .infinity, alignment: .trailing)
-                    }
-                }
-            }
-            .padding()
+                }.padding()
+            
         }
+        
     }
 }
+
+#Preview {
+    LoginView(isAuthenticated: .constant(false))
+}
+

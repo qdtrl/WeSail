@@ -42,7 +42,8 @@ struct CrewView: View {
                         }
                     }
                 }
-            }.accessibility(identifier: "crewList")
+            }
+            .accessibility(identifier: "crewList")
         }
         .frame(maxWidth: .infinity, alignment: .leading)
         .padding()

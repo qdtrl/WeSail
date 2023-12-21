@@ -24,17 +24,30 @@ struct MessageView: View {
                         .opacity(0.9)
                         .foregroundColor(.white)
                         .clipShape(RoundedRectangle(cornerRadius: 15, style: .continuous))
-                    Image(systemName: message.user.image)
-                        .resizable()
-                        .frame(width: 32, height: 32)
-                        .clipShape(Circle())
+                
                 }
+                .padding(.trailing, 5)
             } else {
                 HStack(alignment: .top) {
-                    Image(systemName: message.user.image)
-                        .resizable()
-                        .frame(width: 32, height: 32)
-                        .clipShape(Circle())
+                    AsyncImage(url: URL(string: message.user.image), transaction: .init(animation: .spring())) { phase in
+                        switch phase {
+                        case .empty:
+                            Color.gray
+                            .opacity(0.2)
+                        case .success(let image):
+                            image
+                                .resizable()
+                                .aspectRatio(contentMode: .fill)
+                                .scaledToFill()
+                        case .failure(_):
+                            Color.red.opacity(0.2)
+                        @unknown default:
+                            Color.yellow.opacity(0.2)
+                        }
+                    }
+                    .frame(width: 40, height: 40)
+                    .clipShape(Circle())
+                    
                     VStack(alignment: .leading, spacing: 0) {
                         Text("\(message.user.firstName) \(message.user.lastName)")
                         Text(message.text)
@@ -45,6 +58,7 @@ struct MessageView: View {
                             .clipShape(RoundedRectangle(cornerRadius: 15, style: .continuous))
                     }
                 }
+                .padding(.leading, 5)
                 Spacer()
             }
         }
@@ -52,6 +66,6 @@ struct MessageView: View {
     }
 }
 
-//#Preview {
-//    MessageView(message: Message(user: UserModel().mockData[0], text: "Hello", date: Date(), isRead: false))
-//}
+#Preview {
+    MessageView(message: Message(user: UserModel().mockData[0], text: "Hello", date: Date(), isRead: false))
+}

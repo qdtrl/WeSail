@@ -36,7 +36,31 @@ class EventsModel: ObservableObject {
             participants: BoatsModel().mockData
         ),
         Event(
-            eventId: "3", status: "start", name: "Tour des ports du Finistère", organizer: "Yacht Club de Granville", description: "Le Tour des ports de la Manche est une course à la voile en équipage, organisée par le Yacht Club de Granville, qui se déroule chaque année au mois de juillet. La course est ouverte aux voiliers habitables de 6 à 16 mètres, répartis en 5 classes.", type: "Régate", images: ["https://tourdesports50.fr/wp-content/uploads/2019/04/affiche-edition-2019-tour-des-ports-de-la-manche.jpg", "https://tourdesports50.fr/wp-content/uploads/2017/03/Tour-ports-50-2016-Cherbourg-Saint-Vaast-111-1024x682.jpg", "https://tourdesports50.fr/wp-content/uploads/2022/09/DSC3505-2048x1024.jpg"], startDate: Date(), endDate: Date(), races: [
+            eventId: "5", status: "start", name: "Tour des ports du Finistère", organizer: "Yacht Club de Granville", description: "Le Tour des ports de la Manche est une course à la voile en équipage, organisée par le Yacht Club de Granville, qui se déroule chaque année au mois de juillet. La course est ouverte aux voiliers habitables de 6 à 16 mètres, répartis en 5 classes.", type: "Régate", images: ["https://tourdesports50.fr/wp-content/uploads/2019/04/affiche-edition-2019-tour-des-ports-de-la-manche.jpg", "https://tourdesports50.fr/wp-content/uploads/2017/03/Tour-ports-50-2016-Cherbourg-Saint-Vaast-111-1024x682.jpg", "https://tourdesports50.fr/wp-content/uploads/2022/09/DSC3505-2048x1024.jpg"], startDate: Date(), endDate: Date(), races: [
+                RacesModel().mockData[0],
+                RacesModel().mockData[0],
+                RacesModel().mockData[0]
+            ],
+            participants: BoatsModel().mockData
+        ),
+        Event(
+            eventId: "6", status: "start", name: "Tour des ports du Finistère", organizer: "Yacht Club de Granville", description: "Le Tour des ports de la Manche est une course à la voile en équipage, organisée par le Yacht Club de Granville, qui se déroule chaque année au mois de juillet. La course est ouverte aux voiliers habitables de 6 à 16 mètres, répartis en 5 classes.", type: "Régate", images: ["https://tourdesports50.fr/wp-content/uploads/2019/04/affiche-edition-2019-tour-des-ports-de-la-manche.jpg", "https://tourdesports50.fr/wp-content/uploads/2017/03/Tour-ports-50-2016-Cherbourg-Saint-Vaast-111-1024x682.jpg", "https://tourdesports50.fr/wp-content/uploads/2022/09/DSC3505-2048x1024.jpg"], startDate: Date(), endDate: Date(), races: [
+                RacesModel().mockData[0],
+                RacesModel().mockData[0],
+                RacesModel().mockData[0]
+            ],
+            participants: BoatsModel().mockData
+        ),
+        Event(
+            eventId: "7", status: "start", name: "Tour des ports du Finistère", organizer: "Yacht Club de Granville", description: "Le Tour des ports de la Manche est une course à la voile en équipage, organisée par le Yacht Club de Granville, qui se déroule chaque année au mois de juillet. La course est ouverte aux voiliers habitables de 6 à 16 mètres, répartis en 5 classes.", type: "Régate", images: ["https://tourdesports50.fr/wp-content/uploads/2019/04/affiche-edition-2019-tour-des-ports-de-la-manche.jpg", "https://tourdesports50.fr/wp-content/uploads/2017/03/Tour-ports-50-2016-Cherbourg-Saint-Vaast-111-1024x682.jpg", "https://tourdesports50.fr/wp-content/uploads/2022/09/DSC3505-2048x1024.jpg"], startDate: Date(), endDate: Date(), races: [
+                RacesModel().mockData[0],
+                RacesModel().mockData[0],
+                RacesModel().mockData[0]
+            ],
+            participants: BoatsModel().mockData
+        ),
+        Event(
+            eventId: "8", status: "start", name: "Tour des ports du Finistère", organizer: "Yacht Club de Granville", description: "Le Tour des ports de la Manche est une course à la voile en équipage, organisée par le Yacht Club de Granville, qui se déroule chaque année au mois de juillet. La course est ouverte aux voiliers habitables de 6 à 16 mètres, répartis en 5 classes.", type: "Régate", images: ["https://tourdesports50.fr/wp-content/uploads/2019/04/affiche-edition-2019-tour-des-ports-de-la-manche.jpg", "https://tourdesports50.fr/wp-content/uploads/2017/03/Tour-ports-50-2016-Cherbourg-Saint-Vaast-111-1024x682.jpg", "https://tourdesports50.fr/wp-content/uploads/2022/09/DSC3505-2048x1024.jpg"], startDate: Date(), endDate: Date(), races: [
                 RacesModel().mockData[0],
                 RacesModel().mockData[0],
                 RacesModel().mockData[0]

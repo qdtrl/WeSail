@@ -27,7 +27,10 @@ struct SplashScreenView: View {
                     Text("We Sail")
                         .font(Font.custom("Baskerville-Bold", size: 40))
                         .foregroundColor(.blue)
+                    
+                    Spacer()
                 }
+                .padding(.top)
                 .scaleEffect(size)
                 .opacity(opacity)
                 .onAppear {

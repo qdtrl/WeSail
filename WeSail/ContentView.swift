@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct ContentView: View {
-    @State var isAuthenticated:Bool = true
+    @State var isAuthenticated:Bool = false
     @State var user: User
 
     var body: some View {
@@ -48,11 +48,11 @@ struct ContentView: View {
                 }
             }
         } else {
-            LoginView()
+            LoginView(isAuthenticated: $isAuthenticated)
         }
     }
 }
 
-//#Preview {
-//    ContentView(isAuthenticated: true, user: UserModel().mockData[0])
-//}
+#Preview {
+    ContentView(isAuthenticated: true, user: UserModel().mockData[0])
+}
