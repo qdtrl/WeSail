@@ -23,6 +23,7 @@ struct SplashScreenView: View {
                         .scaledToFit()
                         .aspectRatio(contentMode: .fit)
                         .frame(maxWidth: 200)
+                        .padding(.top, 100)
                     
                     Text("We Sail")
                         .font(Font.custom("Baskerville-Bold", size: 40))
