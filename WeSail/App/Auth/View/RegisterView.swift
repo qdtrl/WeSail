@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct RegisterView: View {
+    @EnvironmentObject var authViewModel: AuthViewModel
     @State var email: String = ""
     @State var firstName: String = ""
     @State var lastName: String = ""
@@ -38,7 +39,8 @@ struct RegisterView: View {
                             .frame(maxWidth: 150)
                         
                         
-                    }.frame(maxWidth: .infinity, alignment: .leading)
+                    }
+                    .frame(maxWidth: .infinity, alignment: .leading)
                     
                     
                     Spacer()
@@ -63,22 +65,16 @@ struct RegisterView: View {
                         InputView(text: $passwordConfirmation,
                                   title: "Confirmatin mot de passe",
                                   placeHolder: "Entrez votre mot de passe",
-                                  isSecureField: true)
-                        
+                                  isSecureField: true)               
                     }
                 
                     Spacer()
                     
-                    Button(action: {
-//                                authManager.createUserWithEmail(email: email, password: password) { result in
-//                                    switch result {
-//                                    case .success(let success):
-//                                        print(success)
-//                                    case .failure(let error):
-//                                        print(error.localizedDescription)
-//                                    }
-//                                }
-                    }, label: {
+                    Button {
+                        Task {
+                            try await authViewModel.createUser(withEmail: email, password: password, firstName: firstName, lastName: lastName)
+                        }
+                    } label: {
                         Text("Inscription")
                             .foregroundColor(.blue )
                             .padding()
@@ -89,7 +85,7 @@ struct RegisterView: View {
                                     RoundedRectangle(cornerRadius: 15, style: .continuous)
                                         .stroke(.blue, lineWidth:  2)
                                 )
-                    })
+                    }
                     .disabled(email.isEmpty || password.isEmpty   || passwordConfirmation.isEmpty || password != passwordConfirmation)
                     
                 
