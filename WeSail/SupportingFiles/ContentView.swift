@@ -9,7 +9,6 @@ import SwiftUI
 
 struct ContentView: View {
     @EnvironmentObject var authViewModel: AuthViewModel
-    @State var user: User
 
     var body: some View {
         Group {
@@ -41,7 +40,7 @@ struct ContentView: View {
                         
                     
                     NavigationStack {
-                        ProfileView(user: user)
+                        ProfileView()
                     }
                     .tabItem {
                         Image(systemName: "person")
@@ -56,5 +55,5 @@ struct ContentView: View {
 }
 
 #Preview {
-    ContentView(user: UserModel().mockData[0])
+    ContentView()
 }

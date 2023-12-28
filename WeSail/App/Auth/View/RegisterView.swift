@@ -62,10 +62,26 @@ struct RegisterView: View {
                                   placeHolder: "Entrez votre mot de passe",
                                   isSecureField: true)
                         
-                        InputView(text: $passwordConfirmation,
-                                  title: "Confirmatin mot de passe",
-                                  placeHolder: "Entrez votre mot de passe",
-                                  isSecureField: true)               
+                        ZStack(alignment: .trailing) {
+                            InputView(text: $passwordConfirmation,
+                                      title: "Confirmatin mot de passe",
+                                      placeHolder: "Entrez votre mot de passe",
+                                      isSecureField: true)
+                            
+                            if !password.isEmpty && !passwordConfirmation.isEmpty {
+                                if password == passwordConfirmation {
+                                    Image(systemName: "checkmark.circle.fill")
+                                        .imageScale(.large)
+                                        .fontWeight(.bold)
+                                        .foregroundColor(Color(.systemGreen))
+                                } else {
+                                    Image(systemName: "xmark.circle.fill")
+                                        .imageScale(.large)
+                                        .fontWeight(.bold)
+                                        .foregroundColor(Color(.systemRed))
+                                }
+                            }
+                        }
                     }
                 
                     Spacer()
@@ -81,12 +97,11 @@ struct RegisterView: View {
                             .frame(width: 200, height: 50)
                             .background(.white)
                             .clipShape(RoundedRectangle(cornerRadius: 15, style: .continuous))
-                            .overlay(
-                                    RoundedRectangle(cornerRadius: 15, style: .continuous)
-                                        .stroke(.blue, lineWidth:  2)
-                                )
+                            .overlay(RoundedRectangle(cornerRadius: 15, style: .continuous)
+                                        .stroke(.blue, lineWidth:  2))
                     }
-                    .disabled(email.isEmpty || password.isEmpty   || passwordConfirmation.isEmpty || password != passwordConfirmation)
+                    .disabled(!formIsValid)
+                    .opacity(formIsValid ? 1.0 : 0.5)
                     
                 
                 Spacer()
@@ -101,6 +116,19 @@ struct RegisterView: View {
                 })
             }.padding()
         }.navigationBarHidden(true)
+    }
+}
+
+extension RegisterView: AuthentificationFormProtocol {
+    var formIsValid: Bool {
+        return !email.isEmpty
+        && email.contains("@") 
+        && !password.isEmpty
+        && password.count > 5
+        && password == passwordConfirmation
+        && !firstName.isEmpty
+        && !lastName.isEmpty
+        
     }
 }
 

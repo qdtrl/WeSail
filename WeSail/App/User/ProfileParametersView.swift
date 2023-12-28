@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct ProfileParametersView: View {
+    @EnvironmentObject var authViewModel: AuthViewModel
+    
     var body: some View {
         List {
             Section {
@@ -22,7 +24,7 @@ struct ProfileParametersView: View {
             
             
             Button {
-                print("sign out")
+                authViewModel.signOut()
             } label: {
                 SettingsRowView(imageName: "arrow.left.circle.fill", title: "Déconnection", tintColor: .red)
             }

@@ -6,9 +6,21 @@
 //
 
 import Foundation
+import FirebaseFirestore
+import FirebaseFirestoreSwift
 
-class ChatsModel: ObservableObject {
+class ChatsViewModel: ObservableObject {
     @Published var chats = [Chat]()
+    let db = Firestore.firestore()
+    
+    func getMessages() {
+        db.collection("messages").addSnapshotListener { querySnapshot, error in
+            guard let documents = querySnapshot?.documents else {
+                print("\(error)")
+                return
+            }
+        }
+    }
 
     func getSearchedRooms(query: String) -> [Chat] {
         let lastMessageRooms = chats.sorted {

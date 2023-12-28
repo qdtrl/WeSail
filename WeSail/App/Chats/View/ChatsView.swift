@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct ChatsView: View {
-    @StateObject var chatsModel = ChatsModel()
+    @EnvironmentObject var chatsModel = ChatsViewModel()
     @State private var query = ""
 
     var body: some View {

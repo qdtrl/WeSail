@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct ChatView: View {
-    @EnvironmentObject var chatsModel: ChatsModel
+    @EnvironmentObject var chatsModel: ChatsViewModel
     
     var chat: Chat
     

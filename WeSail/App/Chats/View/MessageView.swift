@@ -10,7 +10,7 @@ import SwiftUI
 struct MessageView: View {
     var message: Message
     var isFromCurrentUser: Bool {
-        return message.user.userId == "1"
+        return message.user.id == "1"
     }
 
     var body: some View {

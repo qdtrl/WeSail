@@ -12,7 +12,7 @@ struct CrewView: View {
     var body: some View {
         VStack(alignment: .leading) {
             ForEach(crew) { user in
-                NavigationLink(destination: ProfileView(user: user)) {
+                NavigationLink(destination: ProfileView()) {
                     HStack {
                         AsyncImage(url: URL(string: user.image), transaction: .init(animation: .spring())) { phase in
                             switch phase {

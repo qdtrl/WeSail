@@ -63,14 +63,15 @@ struct LoginView: View {
                         .foregroundColor(.white)
                         .padding()
                         .frame(width: 200, height: 50)
-                        .background(Color((email.isEmpty || password.isEmpty) ? .systemGray : .blue))
+                        .background(Color(.systemBlue))
                         .clipShape(RoundedRectangle(cornerRadius: 15, style: .continuous))
                         .overlay(
                                 RoundedRectangle(cornerRadius: 15, style: .continuous)
                                     .stroke(.blue, lineWidth: 0)
                             )
                 }
-                .disabled(email.isEmpty || password.isEmpty)
+                .disabled(!formIsValid)
+                .opacity(formIsValid ? 1.0 : 0.5)
                 
                 Spacer()
                 
@@ -84,6 +85,12 @@ struct LoginView: View {
                 }.navigationBarHidden(true)    
             }.padding()
         }
+    }
+}
+
+extension LoginView: AuthentificationFormProtocol {
+    var formIsValid: Bool {
+        return !email.isEmpty && email.contains("@") && !password.isEmpty && password.count > 5
     }
 }
 

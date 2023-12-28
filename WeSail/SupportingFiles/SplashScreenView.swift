@@ -14,7 +14,7 @@ struct SplashScreenView: View {
 
     var body: some View {
         if isActive {
-            ContentView(user: UserModel().mockData[0])
+            ContentView()
         } else {
             VStack {
                 VStack {
