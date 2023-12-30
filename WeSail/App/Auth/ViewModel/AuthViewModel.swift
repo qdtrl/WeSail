@@ -36,13 +36,30 @@ class AuthViewModel: ObservableObject {
         }
     }
     
+    private let encoder: Firestore.Encoder = {
+        let encoder = Firestore.Encoder()
+        encoder.keyEncodingStrategy = .convertToSnakeCase
+        return encoder
+    }()
+    
+    private let decoder: Firestore.Decoder = {
+        let decoder = Firestore.Decoder()
+        decoder.keyDecodingStrategy = .convertFromSnakeCase
+        return decoder
+    }()
+    
     func createUser(withEmail email: String, password: String, firstName: String, lastName: String) async throws {
         do {
             let result = try await Auth.auth().createUser(withEmail: email, password: password)
             self.userSession = result.user
-            let user = User(id: result.user.uid, email: email, firstName: firstName, lastName: lastName, image: "")
-            let encodedUser = try Firestore.Encoder().encode(user)
-            try await Firestore.firestore().collection("users").document(user.id).setData(encodedUser)
+            let user = User(
+                id: result.user.uid,
+                email: email,
+                firstName: firstName,
+                lastName: lastName,
+                image: "")
+
+            try Firestore.firestore().collection("users").document(user.id).setData(from: user, merge: false)
             await fetchUser()
         } catch {
             print("\(error.localizedDescription)")
@@ -59,15 +76,37 @@ class AuthViewModel: ObservableObject {
         }
     }
     
-    func deleteUser() {
-        
+    func resetPassword(withEmail email:String) async throws {
+        do {
+            try await Auth.auth().sendPasswordReset(withEmail: email)
+        } catch {
+            print("\(error.localizedDescription)")
+        }
+    }
+    
+    func updatePassword(password: String) async throws {
+        do {
+            try await self.userSession?.updatePassword(to: password)
+        } catch {
+            print("\(error.localizedDescription)")
+        }
+    }
+    
+    func deleteUser() async throws {
+        do {
+            try await self.userSession?.delete()
+            self.userSession = nil
+            self.currentUser = nil
+        } catch {
+            print("\(error.localizedDescription)")
+        }
     }
     
     func fetchUser() async {
         guard let uid = Auth.auth().currentUser?.uid else { return }
         
-        guard let snapshot = try? await Firestore.firestore().collection("users").document(uid).getDocument() else { return }
+        guard let snapshot = try? await Firestore.firestore().collection("users").document(uid).getDocument(as: User.self) else { return }
         
-        self.currentUser = try? snapshot.data(as: User.self)
+        self.currentUser = snapshot
     }
 }

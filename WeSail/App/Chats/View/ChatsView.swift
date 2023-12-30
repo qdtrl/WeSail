@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct ChatsView: View {
-    @EnvironmentObject var chatsModel = ChatsViewModel()
+    @StateObject var chatsModel = ChatsViewModel()
     @State private var query = ""
 
     var body: some View {
@@ -62,7 +62,9 @@ struct ChatRow: View {
             AsyncImage(url: URL(string: chat.image), transaction: .init(animation: .spring())) { phase in
                 switch phase {
                 case .empty:
-                    Color.gray
+                    ProgressView()
+                        .progressViewStyle(CircularProgressViewStyle())
+                        .foregroundColor(.gray)
                         .opacity(0.2)
                 case .success(let image):
                     image

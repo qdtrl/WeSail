@@ -12,7 +12,7 @@ struct ContentView: View {
 
     var body: some View {
         Group {
-            if authViewModel.userSession != nil {
+            if authViewModel.userSession != nil && authViewModel.currentUser != nil {
                 TabView {
                     NavigationStack {
                         EventsView()
@@ -23,7 +23,7 @@ struct ContentView: View {
                     }
                     
                     NavigationStack {
-                        BoatsView(boats: BoatsModel().mockData)
+                        BoatsView(boats: BoatsViewModel().mockData)
                     }
                     .tabItem {
                         Image(systemName: "sailboat")

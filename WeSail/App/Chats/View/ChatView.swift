@@ -137,18 +137,18 @@ struct ChatView: View {
 //            name: "Planche à voile",
 //            image: "figure.sailing",
 //            users: [
-//                UserModel().mockData[0],
-//                UserModel().mockData[1],
+//                UserViewModel().mockData[0],
+//                UserViewModel().mockData[1],
 //            ],
 //            messages: [
-//                Message(user: UserModel().mockData[0], text: "HelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHello", date: Date(), isRead: false),
-//                Message(user: UserModel().mockData[1], text: "HelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHello", date: Date(), isRead: false),
-//                Message(user: UserModel().mockData[0], text: "How are you ?", date: Date(), isRead: false),
-//                Message(user: UserModel().mockData[1],text: "Fine and you ?", date: Date(), isRead: false),
-//                Message(user: UserModel().mockData[0], text: "I'm fine too", date: Date(), isRead: false),
-//                Message(user: UserModel().mockData[1], text: "Great !", date: Date(), isRead: false),
-//                Message(user: UserModel().mockData[0], text: "See you soon", date: Date(), isRead: false),
-//                Message(user: UserModel().mockData[1], text: "See youHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHello", date: Date(), isRead: false)
+//                Message(user: UserViewModel().mockData[0], text: "HelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHello", date: Date(), isRead: false),
+//                Message(user: UserViewModel().mockData[1], text: "HelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHello", date: Date(), isRead: false),
+//                Message(user: UserViewModel().mockData[0], text: "How are you ?", date: Date(), isRead: false),
+//                Message(user: UserViewModel().mockData[1],text: "Fine and you ?", date: Date(), isRead: false),
+//                Message(user: UserViewModel().mockData[0], text: "I'm fine too", date: Date(), isRead: false),
+//                Message(user: UserViewModel().mockData[1], text: "Great !", date: Date(), isRead: false),
+//                Message(user: UserViewModel().mockData[0], text: "See you soon", date: Date(), isRead: false),
+//                Message(user: UserViewModel().mockData[1], text: "See youHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHello", date: Date(), isRead: false)
 //            ]
 //        )
 //    )

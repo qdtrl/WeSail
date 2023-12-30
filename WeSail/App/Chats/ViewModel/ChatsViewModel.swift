@@ -6,21 +6,18 @@
 //
 
 import Foundation
-import FirebaseFirestore
-import FirebaseFirestoreSwift
 
 class ChatsViewModel: ObservableObject {
     @Published var chats = [Chat]()
-    let db = Firestore.firestore()
     
-    func getMessages() {
-        db.collection("messages").addSnapshotListener { querySnapshot, error in
-            guard let documents = querySnapshot?.documents else {
-                print("\(error)")
-                return
-            }
-        }
-    }
+//    func getMessages() {
+//        db.collection("messages").addSnapshotListener { querySnapshot, error in
+//            guard let documents = querySnapshot?.documents else {
+//                print("\(error)")
+//                return
+//            }
+//        }
+//    }
 
     func getSearchedRooms(query: String) -> [Chat] {
         let lastMessageRooms = chats.sorted {
@@ -68,7 +65,7 @@ class ChatsViewModel: ObservableObject {
     
     func postMessage(_ text: String, in chat: Chat) -> Message? {
         if let index = chats.firstIndex(where: { $0.id == chat.id}) {
-            let message = Message(user: UserModel().mockData[0], text: text, date: Date(), isRead: false)
+            let message = Message(user: UserViewModel().mockData[0], text: text, date: Date(), isRead: false)
             chats[index].messages.append(message)
             return message
         } else {
@@ -83,29 +80,29 @@ class ChatsViewModel: ObservableObject {
             name: "Planche à voile",
             image: "https://cntranchais.com/wp-content/uploads/2018/11/planche-%C3%A0-voile-4.jpg",
             users: [
-                UserModel().mockData[0],
-                UserModel().mockData[2],
-                UserModel().mockData[3],
+                UserViewModel().mockData[0],
+                UserViewModel().mockData[2],
+                UserViewModel().mockData[3],
             ], 
             messages: [
-                Message(user: UserModel().mockData[0], text: "Hello", date: Date(), isRead: false),
-                Message(user: UserModel().mockData[3], text: "Hi", date: Date(), isRead: false),
-                Message(user: UserModel().mockData[2], text: "How are you ?", date: Date(), isRead: false), 
-                Message(user: UserModel().mockData[3], text: "Fine and you ?", date: Date(), isRead: false), 
-                Message(user: UserModel().mockData[2], text: "I'm fine too", date: Date(), isRead: false), 
-                Message(user: UserModel().mockData[3], text: "Great !", date: Date(), isRead: false), 
-                Message(user: UserModel().mockData[2], text: "See you soon", date: Date(), isRead: false), 
-                Message(user: UserModel().mockData[3], text: "See you", date: Date(), isRead: false),
-                Message(user: UserModel().mockData[2], text: "Hello", date: Date(), isRead: false),
-                Message(user: UserModel().mockData[3], text: "Hi", date: Date(), isRead: false),
-                Message(user: UserModel().mockData[2], text: "How are you ?", date: Date(), isRead: false),
-                Message(user: UserModel().mockData[3], text: "Fine and you ?", date: Date(), isRead: false),
-                Message(user: UserModel().mockData[2], text: "I'm fine too", date: Date(), isRead: false),
-                Message(user: UserModel().mockData[3], text: "Great !", date: Date(), isRead: false),
-                Message(user: UserModel().mockData[2], text: "See you soon", date: Date(), isRead: false),
-                Message(user: UserModel().mockData[3], text: "See you", date: Date(), isRead: false),
-                Message(user: UserModel().mockData[2], text: "Hello", date: Date(), isRead: false),
-                Message(user: UserModel().mockData[3], text: "Hi", date: Date(), isRead: false),
+                Message(user: UserViewModel().mockData[0], text: "Hello", date: Date(), isRead: false),
+                Message(user: UserViewModel().mockData[3], text: "Hi", date: Date(), isRead: false),
+                Message(user: UserViewModel().mockData[2], text: "How are you ?", date: Date(), isRead: false), 
+                Message(user: UserViewModel().mockData[3], text: "Fine and you ?", date: Date(), isRead: false), 
+                Message(user: UserViewModel().mockData[2], text: "I'm fine too", date: Date(), isRead: false), 
+                Message(user: UserViewModel().mockData[3], text: "Great !", date: Date(), isRead: false), 
+                Message(user: UserViewModel().mockData[2], text: "See you soon", date: Date(), isRead: false), 
+                Message(user: UserViewModel().mockData[3], text: "See you", date: Date(), isRead: false),
+                Message(user: UserViewModel().mockData[2], text: "Hello", date: Date(), isRead: false),
+                Message(user: UserViewModel().mockData[3], text: "Hi", date: Date(), isRead: false),
+                Message(user: UserViewModel().mockData[2], text: "How are you ?", date: Date(), isRead: false),
+                Message(user: UserViewModel().mockData[3], text: "Fine and you ?", date: Date(), isRead: false),
+                Message(user: UserViewModel().mockData[2], text: "I'm fine too", date: Date(), isRead: false),
+                Message(user: UserViewModel().mockData[3], text: "Great !", date: Date(), isRead: false),
+                Message(user: UserViewModel().mockData[2], text: "See you soon", date: Date(), isRead: false),
+                Message(user: UserViewModel().mockData[3], text: "See you", date: Date(), isRead: false),
+                Message(user: UserViewModel().mockData[2], text: "Hello", date: Date(), isRead: false),
+                Message(user: UserViewModel().mockData[3], text: "Hi", date: Date(), isRead: false),
             ]
         ),
         Chat(
@@ -113,21 +110,21 @@ class ChatsViewModel: ObservableObject {
             name: "Voilier",
             image: "https://static.actu.fr/uploads/2016/08/DSC_4578.JPG",
             users: [
-                UserModel().mockData[0],
-                UserModel().mockData[4],
-                UserModel().mockData[5],
+                UserViewModel().mockData[0],
+                UserViewModel().mockData[4],
+                UserViewModel().mockData[5],
             ],
             messages: [
-                Message(user: UserModel().mockData[0], text: "Hello", date: Date(), isRead: false), 
-                Message(user: UserModel().mockData[4], text: "Hi", date: Date(), isRead: false), 
-                Message(user: UserModel().mockData[5], text: "How are you ?", date: Date(), isRead: false), 
-                Message(user: UserModel().mockData[4], text: "Fine and you ?", date: Date(), isRead: false), 
-                Message(user: UserModel().mockData[4], text: "I'm fine too", date: Date(), isRead: false), 
-                Message(user: UserModel().mockData[5], text: "Great !", date: Date(), isRead: false), 
-                Message(user: UserModel().mockData[5], text: "See you soon", date: Date(), isRead: false),
-                Message(user: UserModel().mockData[4], text: "See you", date: Date(), isRead: false),
-                Message(user: UserModel().mockData[4], text: "Hello", date: Date(), isRead: false),
-                Message(user: UserModel().mockData[4], text: "Hi", date: Date(), isRead: false),
+                Message(user: UserViewModel().mockData[0], text: "Hello", date: Date(), isRead: false), 
+                Message(user: UserViewModel().mockData[4], text: "Hi", date: Date(), isRead: false), 
+                Message(user: UserViewModel().mockData[5], text: "How are you ?", date: Date(), isRead: false), 
+                Message(user: UserViewModel().mockData[4], text: "Fine and you ?", date: Date(), isRead: false), 
+                Message(user: UserViewModel().mockData[4], text: "I'm fine too", date: Date(), isRead: false), 
+                Message(user: UserViewModel().mockData[5], text: "Great !", date: Date(), isRead: false), 
+                Message(user: UserViewModel().mockData[5], text: "See you soon", date: Date(), isRead: false),
+                Message(user: UserViewModel().mockData[4], text: "See you", date: Date(), isRead: false),
+                Message(user: UserViewModel().mockData[4], text: "Hello", date: Date(), isRead: false),
+                Message(user: UserViewModel().mockData[4], text: "Hi", date: Date(), isRead: false),
             ]
         ),
 
@@ -136,27 +133,27 @@ class ChatsViewModel: ObservableObject {
             name: "Kitesurf",
             image: "https://www.grupoatman.es/upimagenes/Kitesurf-1.jpg",
             users: [
-                UserModel().mockData[0],
-                UserModel().mockData[1],
-                UserModel().mockData[2],
-                UserModel().mockData[4],
+                UserViewModel().mockData[0],
+                UserViewModel().mockData[1],
+                UserViewModel().mockData[2],
+                UserViewModel().mockData[4],
                 
             ],
             messages: [
-                Message(user: UserModel().mockData[0], text: "Hello", date: Date(), isRead: false), 
-                Message(user: UserModel().mockData[1], text: "Hi", date: Date(), isRead: false), 
-                Message(user: UserModel().mockData[2], text: "How are you ?", date: Date(), isRead: false), 
-                Message(user: UserModel().mockData[4], text: "Fine and you ?", date: Date(), isRead: false), 
-                Message(user: UserModel().mockData[0], text: "I'm fine too", date: Date(), isRead: false), 
-                Message(user: UserModel().mockData[0], text: "Great !", date: Date(), isRead: false), 
-                Message(user: UserModel().mockData[1], text: "See you soon", date: Date(), isRead: false),
-                Message(user: UserModel().mockData[2], text: "See you", date: Date(), isRead: false),
-                Message(user: UserModel().mockData[0], text: "Hello", date: Date(), isRead: false),
-                Message(user: UserModel().mockData[1], text: "Hi", date: Date(), isRead: false),
-                Message(user: UserModel().mockData[2], text: "How are you ?", date: Date(), isRead: false),
-                Message(user: UserModel().mockData[4], text: "Fine and you ?", date: Date(), isRead: false),
-                Message(user: UserModel().mockData[0], text: "I'm fine too", date: Date(), isRead: false),
-                Message(user: UserModel().mockData[0], text: "Great !", date: Date(), isRead: false),
+                Message(user: UserViewModel().mockData[0], text: "Hello", date: Date(), isRead: false), 
+                Message(user: UserViewModel().mockData[1], text: "Hi", date: Date(), isRead: false), 
+                Message(user: UserViewModel().mockData[2], text: "How are you ?", date: Date(), isRead: false), 
+                Message(user: UserViewModel().mockData[4], text: "Fine and you ?", date: Date(), isRead: false), 
+                Message(user: UserViewModel().mockData[0], text: "I'm fine too", date: Date(), isRead: false), 
+                Message(user: UserViewModel().mockData[0], text: "Great !", date: Date(), isRead: false), 
+                Message(user: UserViewModel().mockData[1], text: "See you soon", date: Date(), isRead: false),
+                Message(user: UserViewModel().mockData[2], text: "See you", date: Date(), isRead: false),
+                Message(user: UserViewModel().mockData[0], text: "Hello", date: Date(), isRead: false),
+                Message(user: UserViewModel().mockData[1], text: "Hi", date: Date(), isRead: false),
+                Message(user: UserViewModel().mockData[2], text: "How are you ?", date: Date(), isRead: false),
+                Message(user: UserViewModel().mockData[4], text: "Fine and you ?", date: Date(), isRead: false),
+                Message(user: UserViewModel().mockData[0], text: "I'm fine too", date: Date(), isRead: false),
+                Message(user: UserViewModel().mockData[0], text: "Great !", date: Date(), isRead: false),
             ]
         ),
     ]

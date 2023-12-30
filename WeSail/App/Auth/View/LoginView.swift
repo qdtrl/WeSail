@@ -49,7 +49,20 @@ struct LoginView: View {
                     InputView(text: $password,
                               title: "Mot de passe",
                               placeHolder: "Entrez votre mot de passe",
-                              isSecureField: true)                  
+                              isSecureField: true)   
+                    
+                    HStack {
+                        Spacer ()
+                        
+                        Button {
+                            Task {
+                                try await authViewModel.resetPassword(withEmail: email)
+                            }
+                        } label: {
+                            Text("Mot de passe oublié ?")
+                        }
+                    }
+                    
                 }
                 
                 Spacer()

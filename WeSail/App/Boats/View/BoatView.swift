@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct BoatView: View {
-    @StateObject var boatsModel = BoatsModel()
+    @StateObject var boatsModel = BoatsViewModel()
     @State var boat: Boat
     @State var index = 0
 
@@ -19,7 +19,9 @@ struct BoatView: View {
                     AsyncImage(url: URL(string: boat.image), transaction: .init(animation: .spring())) { phase in
                         switch phase {
                         case .empty:
-                            Color.gray
+                            ProgressView()
+                                .progressViewStyle(CircularProgressViewStyle())
+                                .foregroundColor(.gray)
                                 .opacity(0.2)
                         case .success(let image):
                             image
@@ -37,13 +39,13 @@ struct BoatView: View {
 
                     Spacer()
                     VStack {
-                        Text("\(boat.events.count)")
+                        Text("\(boat.events!.count)")
                             .bold()
                         Text("Events")
                     }
                     Spacer()
                     VStack {
-                        Text("\(boat.crew.count)")
+                        Text("\(boat.crew!.count)")
                             .bold()
                         Text("Membres")
                     }
@@ -188,7 +190,7 @@ struct BoatView: View {
             case 1:
                 PicturesView()
             case 2:
-                CrewView(crew: boat.crew)
+                CrewView(crew: boat.crew!)
             default:
                 EventsView()
             }
@@ -198,5 +200,5 @@ struct BoatView: View {
 }
 
 //#Preview {
-//    BoatView(boat: BoatsModel().mockData[0])
+//    BoatView(boat: BoatsViewModel().mockData[0])
 //}

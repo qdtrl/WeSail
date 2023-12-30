@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct BoatsView: View {
-    @StateObject var boatsModel = BoatsModel()
+    @StateObject var boatsModel = BoatsViewModel()
     @State var boats: [Boat]
 
     let columns = Array(repeating: GridItem(.flexible(), spacing: 10, alignment: .center), count: 2)
@@ -51,8 +51,10 @@ struct BoatRow:View {
             AsyncImage(url: URL(string: boat.image), transaction: .init(animation: .spring())) { phase in
                 switch phase {
                 case .empty:
-                    Color.gray
-                    .opacity(0.2)              
+                    ProgressView()
+                        .progressViewStyle(CircularProgressViewStyle())
+                        .foregroundColor(.gray)
+                        .opacity(0.2)         
                 case .success(let image):
                     image
                         .resizable()
@@ -81,7 +83,7 @@ struct BoatRow:View {
                     
                     Spacer()
                     
-                    Text("\(boat.crew.count) membres")
+                    Text("\(boat.crew!.count) membres")
                         .font(.subheadline)
                 }
             }
@@ -90,5 +92,5 @@ struct BoatRow:View {
 }
 
 //#Preview {
-//    BoatsView(boats: BoatsModel().mockData)
+//    BoatsView(boats: BoatsViewModel().mockData)
 //}

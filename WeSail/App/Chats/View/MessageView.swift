@@ -29,11 +29,13 @@ struct MessageView: View {
                 .padding(.trailing, 5)
             } else {
                 HStack(alignment: .top) {
-                    AsyncImage(url: URL(string: message.user.image), transaction: .init(animation: .spring())) { phase in
+                    AsyncImage(url: URL(string: message.user.image!), transaction: .init(animation: .spring())) { phase in
                         switch phase {
                         case .empty:
-                            Color.gray
-                            .opacity(0.2)
+                            ProgressView()
+                                .progressViewStyle(CircularProgressViewStyle())
+                                .foregroundColor(.gray)
+                                .opacity(0.2)
                         case .success(let image):
                             image
                                 .resizable()
@@ -67,5 +69,5 @@ struct MessageView: View {
 }
 
 #Preview {
-    MessageView(message: Message(user: UserModel().mockData[0], text: "Hello", date: Date(), isRead: false))
+    MessageView(message: Message(user: UserViewModel().mockData[0], text: "Hello", date: Date(), isRead: false))
 }

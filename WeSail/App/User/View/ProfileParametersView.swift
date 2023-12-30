@@ -22,7 +22,6 @@ struct ProfileParametersView: View {
             
             Spacer()
             
-            
             Button {
                 authViewModel.signOut()
             } label: {

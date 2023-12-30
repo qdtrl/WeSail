@@ -14,10 +14,12 @@ struct CrewView: View {
             ForEach(crew) { user in
                 NavigationLink(destination: ProfileView()) {
                     HStack {
-                        AsyncImage(url: URL(string: user.image), transaction: .init(animation: .spring())) { phase in
+                        AsyncImage(url: URL(string: user.image!), transaction: .init(animation: .spring())) { phase in
                             switch phase {
                             case .empty:
-                                Color.gray
+                                ProgressView()
+                                    .progressViewStyle(CircularProgressViewStyle())
+                                    .foregroundColor(.gray)
                                     .opacity(0.2)
                             case .success(let image):
                                 image
@@ -52,5 +54,5 @@ struct CrewView: View {
 }
 
 //#Preview {
-//    CrewView(crew: UserModel().mockData)
+//    CrewView(crew: UserViewModel().mockData)
 //}

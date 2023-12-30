@@ -16,10 +16,12 @@ struct ProfileView: View {
             ScrollView(showsIndicators: false) {
                 VStack(alignment: .leading, spacing: 20) {
                     HStack {
-                        AsyncImage(url: URL(string: user.image), transaction: .init(animation: .spring())) { phase in
+                        AsyncImage(url: URL(string: user.image!), transaction: .init(animation: .spring())) { phase in
                             switch phase {
                             case .empty:
-                                Color.gray
+                                ProgressView()
+                                    .progressViewStyle(CircularProgressViewStyle())
+                                    .foregroundColor(.gray)
                                     .opacity(0.2)
                             case .success(let image):
                                 image
@@ -153,7 +155,7 @@ struct ProfileView: View {
                 case 1:
                     PicturesView()
                 case 2:
-                    BoatsView(boats: BoatsModel().mockData)
+                    BoatsView(boats: BoatsViewModel().mockData)
                 default:
                     Text("Événements")
                 }
@@ -165,6 +167,6 @@ struct ProfileView: View {
 
 
 //#Preview {
-//    ProfileView(user: UserModel().mockData[0])
+//    ProfileView(user: UserViewModel().mockData[0])
 //}
 

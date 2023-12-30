@@ -49,12 +49,14 @@ struct EventView: View {
                 
                 ScrollView(.horizontal) {
                     LazyHGrid(rows: [GridItem(.flexible(minimum: 140, maximum: 150))]) {
-                        ForEach(event.images, id: \.self) { image in
+                        ForEach(event.images!, id: \.self) { image in
                             AsyncImage(url: URL(string: image), transaction: .init(animation: .spring())) { phase in
                                 switch phase {
                                 case .empty:
-                                    Color.gray
-                                    .opacity(0.2)
+                                    ProgressView()
+                                        .progressViewStyle(CircularProgressViewStyle())
+                                        .foregroundColor(.gray)
+                                        .opacity(0.2)
                                 case .success(let image):
                                     image
                                         .resizable()
@@ -100,14 +102,14 @@ struct EventView: View {
                     Spacer()
                 }
 
-                Text("Participants  (\(event.participants.count))")
+                Text("Participants  (\(event.participants!.count))")
                     .font(.title2)
                     .bold()
                     .padding(.top, 10)
             }
             .padding()
 
-            BoatsView(boats: event.participants)
+            BoatsView(boats: event.participants!)
         }
     }
 }

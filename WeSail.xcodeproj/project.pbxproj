@@ -23,12 +23,12 @@
 		3C46FBC02B152BAF003B0884 /* BoatsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C46FBBF2B152BAE003B0884 /* BoatsView.swift */; };
 		3C524A832B1B72A5000B1667 /* EventsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C524A822B1B72A5000B1667 /* EventsView.swift */; };
 		3C524A852B1B72CA000B1667 /* PicturesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C524A842B1B72CA000B1667 /* PicturesView.swift */; };
-		3C524A872B1B7CEA000B1667 /* Boats.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C524A862B1B7CEA000B1667 /* Boats.swift */; };
+		3C524A872B1B7CEA000B1667 /* BoatsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C524A862B1B7CEA000B1667 /* BoatsViewModel.swift */; };
 		3C524A892B1B7D30000B1667 /* Boat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C524A882B1B7D30000B1667 /* Boat.swift */; };
 		3C524A8B2B1B8021000B1667 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C524A8A2B1B8021000B1667 /* Event.swift */; };
 		3C524A8D2B1B8207000B1667 /* BoatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C524A8C2B1B8207000B1667 /* BoatView.swift */; };
 		3C524A8F2B1B92D2000B1667 /* CrewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C524A8E2B1B92D2000B1667 /* CrewView.swift */; };
-		3C524A912B1B9A3E000B1667 /* Events.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C524A902B1B9A3E000B1667 /* Events.swift */; };
+		3C524A912B1B9A3E000B1667 /* EventsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C524A902B1B9A3E000B1667 /* EventsViewModel.swift */; };
 		3C524A932B1B9FFB000B1667 /* EventView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C524A922B1B9FFB000B1667 /* EventView.swift */; };
 		3C701FF12B336C610066721B /* InputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C701FF02B336C610066721B /* InputView.swift */; };
 		3C701FF32B336FD80066721B /* RegisterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C701FF22B336FD80066721B /* RegisterView.swift */; };
@@ -46,11 +46,17 @@
 		3CBA30512B27B0D100AA19FE /* ProfileViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CBA30502B27B0D100AA19FE /* ProfileViewTests.swift */; };
 		3CBA30542B27B46600AA19FE /* ChatsViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CBA30532B27B46600AA19FE /* ChatsViewTests.swift */; };
 		3CBA30562B27C07500AA19FE /* ChatsModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CBA30552B27C07500AA19FE /* ChatsModelTests.swift */; };
+		3CC549AB2B3ECB6800C48919 /* FirebaseAnalyticsSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 3CC549AA2B3ECB6800C48919 /* FirebaseAnalyticsSwift */; };
+		3CC549AD2B3ECE7300C48919 /* UserViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CC549AC2B3ECE7300C48919 /* UserViewModel.swift */; };
+		3CC549B32B3ED88A00C48919 /* BoatManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CC549B22B3ED88A00C48919 /* BoatManager.swift */; };
+		3CC549B52B4028E100C48919 /* EventManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CC549B42B4028E100C48919 /* EventManager.swift */; };
+		3CC549B72B4029A200C48919 /* UserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CC549B62B4029A200C48919 /* UserManager.swift */; };
+		3CC549BF2B4032EA00C48919 /* Query.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CC549BE2B4032EA00C48919 /* Query.swift */; };
 		3CEBE2842B1A307600EA59D5 /* ChatsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CEBE2832B1A307600EA59D5 /* ChatsView.swift */; };
 		3CEBE2862B1A330100EA59D5 /* ChatsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CEBE2852B1A330100EA59D5 /* ChatsViewModel.swift */; };
 		3CEBE2892B1A426600EA59D5 /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CEBE2882B1A426600EA59D5 /* Date.swift */; };
 		3CFA98052B1F0F72005FBBCA /* Race.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CFA98042B1F0F72005FBBCA /* Race.swift */; };
-		3CFA98072B1F547C005FBBCA /* Races.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CFA98062B1F547C005FBBCA /* Races.swift */; };
+		3CFA98072B1F547C005FBBCA /* RacesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CFA98062B1F547C005FBBCA /* RacesViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -92,12 +98,12 @@
 		3C46FBBF2B152BAE003B0884 /* BoatsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoatsView.swift; sourceTree = "<group>"; };
 		3C524A822B1B72A5000B1667 /* EventsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsView.swift; sourceTree = "<group>"; };
 		3C524A842B1B72CA000B1667 /* PicturesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PicturesView.swift; sourceTree = "<group>"; };
-		3C524A862B1B7CEA000B1667 /* Boats.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Boats.swift; sourceTree = "<group>"; };
+		3C524A862B1B7CEA000B1667 /* BoatsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoatsViewModel.swift; sourceTree = "<group>"; };
 		3C524A882B1B7D30000B1667 /* Boat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Boat.swift; sourceTree = "<group>"; };
 		3C524A8A2B1B8021000B1667 /* Event.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
 		3C524A8C2B1B8207000B1667 /* BoatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoatView.swift; sourceTree = "<group>"; };
 		3C524A8E2B1B92D2000B1667 /* CrewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CrewView.swift; sourceTree = "<group>"; };
-		3C524A902B1B9A3E000B1667 /* Events.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Events.swift; sourceTree = "<group>"; };
+		3C524A902B1B9A3E000B1667 /* EventsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsViewModel.swift; sourceTree = "<group>"; };
 		3C524A922B1B9FFB000B1667 /* EventView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventView.swift; sourceTree = "<group>"; };
 		3C701FF02B336C610066721B /* InputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputView.swift; sourceTree = "<group>"; };
 		3C701FF22B336FD80066721B /* RegisterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterView.swift; sourceTree = "<group>"; };
@@ -110,11 +116,16 @@
 		3CBA30502B27B0D100AA19FE /* ProfileViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewTests.swift; sourceTree = "<group>"; };
 		3CBA30532B27B46600AA19FE /* ChatsViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatsViewTests.swift; sourceTree = "<group>"; };
 		3CBA30552B27C07500AA19FE /* ChatsModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatsModelTests.swift; sourceTree = "<group>"; };
+		3CC549AC2B3ECE7300C48919 /* UserViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserViewModel.swift; sourceTree = "<group>"; };
+		3CC549B22B3ED88A00C48919 /* BoatManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoatManager.swift; sourceTree = "<group>"; };
+		3CC549B42B4028E100C48919 /* EventManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventManager.swift; sourceTree = "<group>"; };
+		3CC549B62B4029A200C48919 /* UserManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserManager.swift; sourceTree = "<group>"; };
+		3CC549BE2B4032EA00C48919 /* Query.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Query.swift; sourceTree = "<group>"; };
 		3CEBE2832B1A307600EA59D5 /* ChatsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatsView.swift; sourceTree = "<group>"; };
 		3CEBE2852B1A330100EA59D5 /* ChatsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatsViewModel.swift; sourceTree = "<group>"; };
 		3CEBE2882B1A426600EA59D5 /* Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
 		3CFA98042B1F0F72005FBBCA /* Race.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Race.swift; sourceTree = "<group>"; };
-		3CFA98062B1F547C005FBBCA /* Races.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Races.swift; sourceTree = "<group>"; };
+		3CFA98062B1F547C005FBBCA /* RacesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RacesViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -122,6 +133,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3CC549AB2B3ECB6800C48919 /* FirebaseAnalyticsSwift in Frameworks */,
 				3CA275DD2B3585D400C532FD /* FirebaseAnalytics in Frameworks */,
 				3CA275DF2B3585D400C532FD /* FirebaseAuth in Frameworks */,
 				3CA275E12B3585D400C532FD /* FirebaseFirestore in Frameworks */,
@@ -154,6 +166,7 @@
 				3C17C8812B14D60D00C74788 /* WeSailTests */,
 				3C17C88B2B14D60E00C74788 /* WeSailUITests */,
 				3C17C86F2B14D60B00C74788 /* Products */,
+				3CC549A92B3ECB6800C48919 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -170,6 +183,7 @@
 		3C17C8702B14D60B00C74788 /* WeSail */ = {
 			isa = PBXGroup;
 			children = (
+				3CC549B12B3ED86B00C48919 /* Managers */,
 				3CA275E62B3590BF00C532FD /* App */,
 				3C701FEF2B336C330066721B /* Components */,
 				3CEBE2872B1A425400EA59D5 /* Extensions */,
@@ -258,9 +272,9 @@
 		3CA275E92B36F2C800C532FD /* User */ = {
 			isa = PBXGroup;
 			children = (
-				3C46FBBD2B152A78003B0884 /* ProfileView.swift */,
-				3C701FF42B3373790066721B /* ProfileParametersView.swift */,
-				3C17C8B12B14F15700C74788 /* User.swift */,
+				3CC549B02B3ECE9300C48919 /* ViewModel */,
+				3CC549AF2B3ECE8A00C48919 /* View */,
+				3CC549AE2B3ECE7800C48919 /* Model */,
 			);
 			path = User;
 			sourceTree = "<group>";
@@ -268,12 +282,9 @@
 		3CA275EA2B36F31B00C532FD /* Feed */ = {
 			isa = PBXGroup;
 			children = (
-				3CFA98042B1F0F72005FBBCA /* Race.swift */,
-				3CFA98062B1F547C005FBBCA /* Races.swift */,
-				3C524A902B1B9A3E000B1667 /* Events.swift */,
-				3C524A922B1B9FFB000B1667 /* EventView.swift */,
-				3C524A822B1B72A5000B1667 /* EventsView.swift */,
-				3C524A8A2B1B8021000B1667 /* Event.swift */,
+				3CC549BD2B40303C00C48919 /* View */,
+				3CC549BC2B40301E00C48919 /* ViewModel */,
+				3CC549BB2B402F3200C48919 /* Model */,
 			);
 			path = Feed;
 			sourceTree = "<group>";
@@ -281,10 +292,9 @@
 		3CA275EB2B36F34000C532FD /* Boats */ = {
 			isa = PBXGroup;
 			children = (
-				3C524A882B1B7D30000B1667 /* Boat.swift */,
-				3C524A862B1B7CEA000B1667 /* Boats.swift */,
-				3C524A8C2B1B8207000B1667 /* BoatView.swift */,
-				3C46FBBF2B152BAE003B0884 /* BoatsView.swift */,
+				3CC549BA2B402BA200C48919 /* View */,
+				3CC549B92B402B6D00C48919 /* ViewModel */,
+				3CC549B82B402B6600C48919 /* Model */,
 			);
 			path = Boats;
 			sourceTree = "<group>";
@@ -365,10 +375,105 @@
 			path = ViewModel;
 			sourceTree = "<group>";
 		};
+		3CC549A92B3ECB6800C48919 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		3CC549AE2B3ECE7800C48919 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				3C17C8B12B14F15700C74788 /* User.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		3CC549AF2B3ECE8A00C48919 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				3C701FF42B3373790066721B /* ProfileParametersView.swift */,
+				3C46FBBD2B152A78003B0884 /* ProfileView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		3CC549B02B3ECE9300C48919 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				3CC549AC2B3ECE7300C48919 /* UserViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		3CC549B12B3ED86B00C48919 /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				3CC549B22B3ED88A00C48919 /* BoatManager.swift */,
+				3CC549B42B4028E100C48919 /* EventManager.swift */,
+				3CC549B62B4029A200C48919 /* UserManager.swift */,
+			);
+			path = Managers;
+			sourceTree = "<group>";
+		};
+		3CC549B82B402B6600C48919 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				3C524A882B1B7D30000B1667 /* Boat.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		3CC549B92B402B6D00C48919 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				3C524A862B1B7CEA000B1667 /* BoatsViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		3CC549BA2B402BA200C48919 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				3C46FBBF2B152BAE003B0884 /* BoatsView.swift */,
+				3C524A8C2B1B8207000B1667 /* BoatView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		3CC549BB2B402F3200C48919 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				3C524A8A2B1B8021000B1667 /* Event.swift */,
+				3CFA98042B1F0F72005FBBCA /* Race.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		3CC549BC2B40301E00C48919 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				3C524A902B1B9A3E000B1667 /* EventsViewModel.swift */,
+				3CFA98062B1F547C005FBBCA /* RacesViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		3CC549BD2B40303C00C48919 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				3C524A922B1B9FFB000B1667 /* EventView.swift */,
+				3C524A822B1B72A5000B1667 /* EventsView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		3CEBE2872B1A425400EA59D5 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
 				3CEBE2882B1A426600EA59D5 /* Date.swift */,
+				3CC549BE2B4032EA00C48919 /* Query.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -395,6 +500,7 @@
 				3CA275E02B3585D400C532FD /* FirebaseFirestore */,
 				3CA275E22B3585D400C532FD /* FirebaseFirestoreSwift */,
 				3CA275E42B3585D400C532FD /* FirebaseStorage */,
+				3CC549AA2B3ECB6800C48919 /* FirebaseAnalyticsSwift */,
 			);
 			productName = WeSail;
 			productReference = 3C17C86E2B14D60B00C74788 /* WeSail.app */;
@@ -564,12 +670,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3CFA98072B1F547C005FBBCA /* Races.swift in Sources */,
+				3CFA98072B1F547C005FBBCA /* RacesViewModel.swift in Sources */,
 				3C701FF12B336C610066721B /* InputView.swift in Sources */,
 				3C17C8B02B14EC2400C74788 /* AuthViewModel.swift in Sources */,
 				3CEBE2862B1A330100EA59D5 /* ChatsViewModel.swift in Sources */,
 				3C17C89F2B14DAEE00C74788 /* ChatView.swift in Sources */,
-				3C524A912B1B9A3E000B1667 /* Events.swift in Sources */,
+				3C524A912B1B9A3E000B1667 /* EventsViewModel.swift in Sources */,
+				3CC549B32B3ED88A00C48919 /* BoatManager.swift in Sources */,
 				3C17C8A82B14E5FB00C74788 /* LoginView.swift in Sources */,
 				3C701FF32B336FD80066721B /* RegisterView.swift in Sources */,
 				3C46FBBE2B152A78003B0884 /* ProfileView.swift in Sources */,
@@ -578,7 +685,9 @@
 				3C94C4952B1559D20049FCE9 /* SplashScreenView.swift in Sources */,
 				3C17C89C2B14D72B00C74788 /* MessageView.swift in Sources */,
 				3C701FF52B3373790066721B /* ProfileParametersView.swift in Sources */,
-				3C524A872B1B7CEA000B1667 /* Boats.swift in Sources */,
+				3CC549BF2B4032EA00C48919 /* Query.swift in Sources */,
+				3C524A872B1B7CEA000B1667 /* BoatsViewModel.swift in Sources */,
+				3CC549B72B4029A200C48919 /* UserManager.swift in Sources */,
 				3C524A8B2B1B8021000B1667 /* Event.swift in Sources */,
 				3C524A8F2B1B92D2000B1667 /* CrewView.swift in Sources */,
 				3C524A932B1B9FFB000B1667 /* EventView.swift in Sources */,
@@ -587,9 +696,11 @@
 				3C701FF72B33745B0066721B /* SettingsRowView.swift in Sources */,
 				3C524A852B1B72CA000B1667 /* PicturesView.swift in Sources */,
 				3C17C8A22B14DB3F00C74788 /* Message.swift in Sources */,
+				3CC549B52B4028E100C48919 /* EventManager.swift in Sources */,
 				3C17C8742B14D60B00C74788 /* ContentView.swift in Sources */,
 				3C46FBC02B152BAF003B0884 /* BoatsView.swift in Sources */,
 				3CFA98052B1F0F72005FBBCA /* Race.swift in Sources */,
+				3CC549AD2B3ECE7300C48919 /* UserViewModel.swift in Sources */,
 				3CEBE2842B1A307600EA59D5 /* ChatsView.swift in Sources */,
 				3C17C8B22B14F15700C74788 /* User.swift in Sources */,
 				3C17C8722B14D60B00C74788 /* WeSailApp.swift in Sources */,
@@ -984,6 +1095,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 3CA275DB2B3585D400C532FD /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseStorage;
+		};
+		3CC549AA2B3ECB6800C48919 /* FirebaseAnalyticsSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 3CA275DB2B3585D400C532FD /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAnalyticsSwift;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

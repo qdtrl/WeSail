@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct EventsView: View {
-    @ObservedObject var eventsModel = EventsModel()
+    @ObservedObject var eventsModel = EventsViewModel()
     
     var body: some View {
         ScrollView(showsIndicators: false) {
@@ -33,10 +33,12 @@ struct EventRow: View {
     var body: some View {
         VStack(alignment: .leading) {
             HStack {
-                AsyncImage(url: URL(string: event.images.first!), transaction: .init(animation: .spring())) { phase in
+                AsyncImage(url: URL(string: event.images!.first!), transaction: .init(animation: .spring())) { phase in
                     switch phase {
                     case .empty:
-                        Color.gray
+                        ProgressView()
+                            .progressViewStyle(CircularProgressViewStyle())
+                            .foregroundColor(.gray)
                             .opacity(0.2)
                     case .success(let image):
                         image
@@ -79,9 +81,9 @@ struct EventRow: View {
 
             switch event.status {
             case "start":
-            ProvisoryResultsRace(race: event.races[0])
+                ProvisoryResultsRace(race: event.races![0])
             case "end":
-                ResultsRace(race: event.races[0])
+                ResultsRace(race: event.races![0])
             default:
                 EmptyView()
             }
@@ -111,7 +113,7 @@ struct ProvisoryResultsRace: View {
             VStack {
                 ForEach(0 ..< 3) { index in
                     HStack {
-                        Text("\(race.results[index].name)")
+                        Text("\(race.results![index].name)")
                         
                         Spacer()
                         
@@ -131,12 +133,13 @@ struct ResultsRace: View {
     var body: some View {
         HStack {
             VStack {
-                AsyncImage(url: URL(string: race.results[1].image), transaction: .init(animation: .spring())) { phase in
+                AsyncImage(url: URL(string: race.results![1].image), transaction: .init(animation: .spring())) { phase in
                     switch phase {
                     case .empty:
-                        Color.gray
-                        .opacity(0.2)
-                        
+                       ProgressView()
+                            .progressViewStyle(CircularProgressViewStyle())
+                            .foregroundColor(.gray)
+                            .opacity(0.2)
                     case .success(let image):
                     image
                     .resizable()
@@ -152,7 +155,7 @@ struct ResultsRace: View {
                 .frame(width: 60, height: 60)
                 .clipShape(RoundedRectangle(cornerRadius: 15, style: .continuous))
                 
-                Text(race.results[1].name)
+                Text(race.results![1].name)
                     .font(.subheadline)
                     .bold()
                 
@@ -165,11 +168,13 @@ struct ResultsRace: View {
             Spacer()
             
             VStack {
-                AsyncImage(url: URL(string: race.results[0].image), transaction: .init(animation: .spring())) { phase in
+                AsyncImage(url: URL(string: race.results![0].image), transaction: .init(animation: .spring())) { phase in
                     switch phase {
                     case .empty:
-                        Color.gray
-                        .opacity(0.2)
+                        ProgressView()
+                            .progressViewStyle(CircularProgressViewStyle())
+                            .foregroundColor(.gray)
+                            .opacity(0.2)
                         
                     case .success(let image):
                     image
@@ -186,7 +191,7 @@ struct ResultsRace: View {
                 .frame(width: 60, height: 60)
                 .clipShape(RoundedRectangle(cornerRadius: 15, style: .continuous))
                 
-                Text(race.results[0].name)
+                Text(race.results![0].name)
                     .font(.subheadline)
                     .bold()
                 
@@ -199,18 +204,18 @@ struct ResultsRace: View {
             Spacer()
             
             VStack {
-                AsyncImage(url: URL(string: race.results[2].image), transaction: .init(animation: .spring())) { phase in
+                AsyncImage(url: URL(string: (race.results?[2].image)!), transaction: .init(animation: .spring())) { phase in
                     switch phase {
                     case .empty:
-                        Color.gray
-                        .opacity(0.2)
-                        
+                       ProgressView()
+                            .progressViewStyle(CircularProgressViewStyle())
+                            .foregroundColor(.gray)
+                            .opacity(0.2)
                     case .success(let image):
-                    image
-                    .resizable()
-                    .aspectRatio(contentMode: .fill)
-                    .scaledToFill()
-                    
+                        image
+                            .resizable()
+                            .aspectRatio(contentMode: .fill)
+                            .scaledToFill()
                     case .failure(_):
                         Color.red.opacity(0.2)
                     @unknown default:
@@ -220,7 +225,7 @@ struct ResultsRace: View {
                 .frame(width: 60, height: 60)
                 .clipShape(RoundedRectangle(cornerRadius: 15, style: .continuous))
                 
-                Text(race.results[2].name)
+                Text(race.results![2].name)
                     .font(.subheadline)
                     .bold()
                 

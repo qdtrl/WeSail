@@ -1,29 +1,13 @@
 //
-//  User.swift
+//  UserViewModel.swift
 //  WeSail
 //
-//  Created by Quentin Dubut-Touroul on 27/11/2023.
+//  Created by Quentin Dubut-Touroul on 29/12/2023.
 //
 
 import Foundation
 
-struct User: Codable, Identifiable, Hashable {
-    static func == (lhs: User, rhs: User) -> Bool {
-        lhs.id == rhs.id
-    }
-    
-    let id: String
-    let email: String
-    let firstName: String
-    let lastName: String
-    let image: String
-    
-    var initials: String {
-        return "\(firstName.first?.uppercased() ?? "")\(lastName.first?.uppercased() ?? "")"
-    }
-}
-
-class UserModel: ObservableObject {
+class UserViewModel: ObservableObject {
     @Published var users = [User]()
     
     @Published var mockData = [
@@ -35,4 +19,3 @@ class UserModel: ObservableObject {
         User(id: "7", email: "jason.dubon@wesail.fr", firstName: "Jason", lastName: "Dubon", image: "https://get.wallhere.com/photo/1600x1200-px-fish-fishes-nature-ocean-sea-sealife-underwater-1649265.jpg")
     ]
 }
-
