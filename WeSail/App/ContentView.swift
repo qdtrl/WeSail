@@ -1,20 +1,20 @@
 //
-//  SplashScreenView.swift
+//  ContentView.swift
 //  WeSail
 //
-//  Created by Quentin Dubut-Touroul on 28/11/2023.
+//  Created by Quentin Dubut-Touroul on 27/11/2023.
 //
 
 import SwiftUI
 
-struct SplashScreenView: View {
+struct ContentView: View {
     @State private var isActive = false
     @State private var size = 0.8
     @State private var opacity = 0.5
-
+    
     var body: some View {
         if isActive {
-            ContentView()
+            RouterView()
         } else {
             VStack {
                 VStack {
@@ -50,4 +50,8 @@ struct SplashScreenView: View {
             }
         }
     }
+}
+
+#Preview {
+    ContentView()
 }

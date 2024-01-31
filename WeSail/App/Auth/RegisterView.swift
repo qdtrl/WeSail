@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct RegisterView: View {
-    @EnvironmentObject var authViewModel: AuthViewModel
+    @EnvironmentObject var authService: AuthService
     @State var email: String = ""
     @State var firstName: String = ""
     @State var lastName: String = ""
@@ -88,7 +88,7 @@ struct RegisterView: View {
                     
                     Button {
                         Task {
-                            try await authViewModel.createUser(withEmail: email, password: password, firstName: firstName, lastName: lastName)
+                            try await authService.createUser(withEmail: email, password: password, firstName: firstName, lastName: lastName)
                         }
                     } label: {
                         Text("Inscription")

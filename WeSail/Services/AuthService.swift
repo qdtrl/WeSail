@@ -14,11 +14,12 @@ protocol AuthentificationFormProtocol {
 }
 
 @MainActor
-class AuthViewModel: ObservableObject {
+class AuthService: ObservableObject {
     @Published var userSession: FirebaseAuth.User?
     @Published var currentUser: User?
     
     init() {
+        print("test")
         self.userSession = Auth.auth().currentUser
         
         Task {
@@ -35,18 +36,6 @@ class AuthViewModel: ObservableObject {
             print("\(error.localizedDescription)")
         }
     }
-    
-    private let encoder: Firestore.Encoder = {
-        let encoder = Firestore.Encoder()
-        encoder.keyEncodingStrategy = .convertToSnakeCase
-        return encoder
-    }()
-    
-    private let decoder: Firestore.Decoder = {
-        let decoder = Firestore.Decoder()
-        decoder.keyDecodingStrategy = .convertFromSnakeCase
-        return decoder
-    }()
     
     func createUser(withEmail email: String, password: String, firstName: String, lastName: String) async throws {
         do {
@@ -108,5 +97,9 @@ class AuthViewModel: ObservableObject {
         guard let snapshot = try? await Firestore.firestore().collection("users").document(uid).getDocument(as: User.self) else { return }
         
         self.currentUser = snapshot
+        
+        print("Fetch User")
+        print(self.currentUser)
+        print(self.userSession)
     }
 }

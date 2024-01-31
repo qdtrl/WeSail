@@ -22,12 +22,18 @@ class AppDelegate: NSObject, UIApplicationDelegate {
 struct WeSailApp: App {
     @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
     
-    @StateObject var authViewModel = AuthViewModel()
+    @StateObject var authService = AuthService()
+    @StateObject var eventsVM = EventsViewModel()
+    @StateObject var boatsVM = BoatsViewModel()
+    @StateObject var chatsVM = ChatsViewModel()
 
     var body: some Scene {
         WindowGroup {
-            SplashScreenView()
-                .environmentObject(authViewModel)
+            ContentView()
+                .environmentObject(authService)
+                .environmentObject(eventsVM)
+                .environmentObject(boatsVM)
+                .environmentObject(chatsVM)
         }
     }
 }

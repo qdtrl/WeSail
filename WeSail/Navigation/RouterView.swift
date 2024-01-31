@@ -1,18 +1,19 @@
 //
-//  ContentView.swift
+//  RouterView.swift
 //  WeSail
 //
-//  Created by Quentin Dubut-Touroul on 27/11/2023.
+//  Created by Quentin Dubut-Touroul on 15/01/2024.
 //
 
 import SwiftUI
 
-struct ContentView: View {
-    @EnvironmentObject var authViewModel: AuthViewModel
+struct RouterView: View {
+    @Environment(\.presentationMode) var presentationMode
+    @EnvironmentObject var authService: AuthService
 
     var body: some View {
         Group {
-            if authViewModel.userSession != nil && authViewModel.currentUser != nil {
+            if authService.userSession != nil && authService.currentUser != nil {
                 TabView {
                     NavigationStack {
                         EventsView()
@@ -55,5 +56,5 @@ struct ContentView: View {
 }
 
 #Preview {
-    ContentView()
+    RouterView()
 }

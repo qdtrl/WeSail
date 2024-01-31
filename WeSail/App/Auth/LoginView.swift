@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct LoginView: View {
-    @EnvironmentObject var authViewModel: AuthViewModel
+    @EnvironmentObject var authService: AuthService
     @State var email: String = ""
     @State var password: String = ""
     
@@ -56,7 +56,7 @@ struct LoginView: View {
                         
                         Button {
                             Task {
-                                try await authViewModel.resetPassword(withEmail: email)
+                                try await authService.resetPassword(withEmail: email)
                             }
                         } label: {
                             Text("Mot de passe oublié ?")
@@ -69,7 +69,7 @@ struct LoginView: View {
                 
                 Button {
                     Task {
-                        try await authViewModel.signIn(withEmail: email, password: password)
+                        try await authService.signIn(withEmail: email, password: password)
                     }
                 } label: {
                     Text("Connection")

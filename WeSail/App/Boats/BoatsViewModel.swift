@@ -8,7 +8,16 @@
 import Foundation
 
 class BoatsViewModel: ObservableObject {
-    @Published var boats = [Boat]()            
+    var repository:BoatRepositoryProtocol
+    @Published var boats: [Boat] = []
+
+    init() {
+        self.repository = BoatRepository()
+    }
+    
+    func get() async {
+        self.boats = await self.repository.get()
+    }
     
     @Published var mockData = [
         Boat(

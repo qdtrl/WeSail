@@ -8,11 +8,11 @@
 import SwiftUI
 
 struct ProfileView: View {
-    @EnvironmentObject var authViewModel: AuthViewModel
+    @EnvironmentObject var authService: AuthService
     @State var index:Int = 0
 
     var body: some View {
-        if let user = authViewModel.currentUser {
+        if let user = authService.currentUser {
             ScrollView(showsIndicators: false) {
                 VStack(alignment: .leading, spacing: 20) {
                     HStack {
