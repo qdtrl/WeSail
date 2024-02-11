@@ -25,7 +25,7 @@ struct WeSailApp: App {
     @StateObject var authService = AuthService()
     @StateObject var eventsVM = EventsViewModel()
     @StateObject var boatsVM = BoatsViewModel()
-    @StateObject var chatsVM = ChatsViewModel()
+    @StateObject var conversationsVM = ConversationsViewModel()
 
     var body: some Scene {
         WindowGroup {
@@ -33,7 +33,7 @@ struct WeSailApp: App {
                 .environmentObject(authService)
                 .environmentObject(eventsVM)
                 .environmentObject(boatsVM)
-                .environmentObject(chatsVM)
+                .environmentObject(conversationsVM)
         }
     }
 }

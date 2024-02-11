@@ -8,37 +8,61 @@
 import SwiftUI
 
 struct BoatsView: View {
-    @StateObject var boatsModel = BoatsViewModel()
-    @State var boats: [Boat]
+    @EnvironmentObject var boatsVM: BoatsViewModel
 
     let columns = Array(repeating: GridItem(.flexible(), spacing: 10, alignment: .center), count: 2)
 
     var body: some View {
-        switch boats.count {
-        case 0:
-            Text("Ajoutez un bateau ou rejoignez un équipage")
-                .multilineTextAlignment(.center)
-                .accessibility(identifier: "noBoat")
-        case 1:
-            BoatView(boat: boats[0])
-        default:
-            ScrollView(showsIndicators: false) {
-                LazyVGrid(columns: columns, spacing: 10) {
-                    ForEach(boats) { boat in
-                        NavigationLink(value: boat) {
-                            BoatRow(boat: boat)
-                                .frame(maxWidth: .infinity, minHeight: 200)
-                                .accessibility(identifier: "boatCell")
+        NavigationView {
+            VStack {
+                if boatsVM.isLoading {
+                    ProgressView()
+                        .progressViewStyle(CircularProgressViewStyle())
+                        .foregroundColor(.black)
+                        .opacity(0.2)
+                        .accessibility(identifier: "loading")
+                } else {
+                    switch boatsVM.boats.count {
+                    case 0:
+                        Text("Ajoutez un bateau ou rejoignez un équipage")
+                            .multilineTextAlignment(.center)
+                            .accessibility(identifier: "noBoat")
+                    case 1:
+                        BoatView(boat: boatsVM.boats[0])
+                    default:
+                        ScrollView(showsIndicators: false) {
+                            LazyVGrid(columns: columns, spacing: 10) {
+                                ForEach(boatsVM.boats) { boat in
+                                    NavigationLink(value: boat) {
+                                        BoatRow(boat: boat)
+                                            .frame(maxWidth: .infinity, minHeight: 200)
+                                            .accessibility(identifier: "boatCell")
+                                    }
+                                }
+                            }
+                            .padding(.horizontal, 10)
+                            .accessibility(identifier: "boatsGrid")
+                            .navigationDestination(for: Boat.self) { boat in
+                                BoatView(boat: boat)
+                            }
                         }
+                        .foregroundColor(.black)
+                        
                     }
                 }
-                .padding(.horizontal, 10)
-                .accessibility(identifier: "boatsGrid")
-                .navigationDestination(for: Boat.self) { boat in
-                    BoatView(boat: boat)
+            }
+            .navigationTitle("Mes Bateaux")
+            .navigationBarTitleDisplayMode(.inline)
+            .toolbar {
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    NavigationLink(destination: AddBoatView()) {
+                        Image(systemName: "plus")
+                    }
                 }
             }
-            .foregroundColor(.black)
+            .onAppear() {
+                boatsVM.index()
+            }
         }
     }
 }
@@ -83,7 +107,7 @@ struct BoatRow:View {
                     
                     Spacer()
                     
-                    Text("\(boat.crew!.count) membres")
+                    Text("\(boat.crew?.count ?? 0) membres")
                         .font(.subheadline)
                 }
             }

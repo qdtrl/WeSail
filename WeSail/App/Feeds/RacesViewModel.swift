@@ -14,10 +14,7 @@ class RacesViewModel: ObservableObject {
         Race(
             id: "1",
             date: Date(), results: [
-            BoatsViewModel().mockData[0],
-            BoatsViewModel().mockData[4],
-            BoatsViewModel().mockData[3],
-            BoatsViewModel().mockData[1]
+            
         ])
     ]
 }

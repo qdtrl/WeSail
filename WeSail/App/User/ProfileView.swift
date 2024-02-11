@@ -155,7 +155,7 @@ struct ProfileView: View {
                 case 1:
                     PicturesView()
                 case 2:
-                    BoatsView(boats: BoatsViewModel().mockData)
+                    BoatsView()
                 default:
                     Text("Événements")
                 }

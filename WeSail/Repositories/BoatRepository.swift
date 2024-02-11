@@ -11,7 +11,7 @@ import FirebaseFirestoreSwift
 import FirebaseStorage
 
 protocol BoatRepositoryProtocol {
-    func get() async throws -> [Boat]
+    func index() async throws -> [Boat]
     func create(boat: Boat) async throws
     func update(boat: Boat) async throws
     func delete(id: String) async throws
@@ -25,7 +25,7 @@ final class BoatRepository:BoatRepositoryProtocol {
         collection.document(id)
     }
     
-    func get() async throws -> [Boat] {
+    func index() async throws -> [Boat] {
         let snapshot = try await collection.getDocuments()
         var boats: [Boat] = []
         for document in snapshot.documents {

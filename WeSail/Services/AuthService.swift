@@ -19,7 +19,6 @@ class AuthService: ObservableObject {
     @Published var currentUser: User?
     
     init() {
-        print("test")
         self.userSession = Auth.auth().currentUser
         
         Task {

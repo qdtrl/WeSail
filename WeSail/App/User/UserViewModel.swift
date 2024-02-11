@@ -8,7 +8,12 @@
 import Foundation
 
 class UserViewModel: ObservableObject {
-    @Published var users = [User]()
+    var repository:UserRepositoryProtocol
+    @Published var users: [User] = []
+    
+    init() {
+        self.repository = UserRepository()
+    }
     
     @Published var mockData = [
         User(id: "1", email: "quentindtouroul@gmail.com", firstName: "Quentin", lastName: "Touroul", image: "https://avatars.githubusercontent.com/u/53430120?s=400&v=4"),

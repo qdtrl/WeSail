@@ -7,10 +7,11 @@
 
 import SwiftUI
 
-struct ChatView: View {
-    @EnvironmentObject var chatsModel: ChatsViewModel
-    
-    var chat: Chat
+struct ConversationView: View {
+    @EnvironmentObject var conversationsVM: ConversationsViewModel
+    @EnvironmentObject var authService: AuthService
+
+    var conversation: Conversation
     
     @State private var text = ""
     @FocusState private var isFocused
@@ -23,8 +24,8 @@ struct ChatView: View {
                     ScrollViewReader { scrollReader in
                         getMessagesView(viewWidth: reader.size.width)
                             .onAppear {
-                                if let messageId = chat.messages.last?.id {
-                                    scrollTo(messageId: messageId, anchor: .bottom, shouldAnimate: false, scrollReader: scrollReader)
+                                if let messageId = conversation.messages?.last?.id {
+//                                    scrollTo(messageId: messageId, anchor: .bottom, shouldAnimate: false, scrollReader: scrollReader)
                                 }
                             }
                     }
@@ -59,7 +60,7 @@ struct ChatView: View {
             .navigationBarTitleDisplayMode(.inline)
             .navigationBarItems(leading: navBarLeadingBtn, trailing: navBarTrailingBtn)
             .onAppear {
-                chatsModel.markAsRead(true, chat: chat)
+                conversationsVM.markAsRead(conversation: conversation)
             }
         }
     }
@@ -67,11 +68,11 @@ struct ChatView: View {
     var navBarLeadingBtn: some View {
         Button(action: {}) {
             HStack {
-                Image(systemName: chat.image)
+                Image(systemName: conversation.image)
                     .resizable()
                     .frame(width: 40, height: 40)
                     .clipShape(Circle())
-                Text(chat.name)
+                Text(conversation.name)
                     .bold()
             }
             .foregroundColor(.black)
@@ -93,17 +94,14 @@ struct ChatView: View {
     }
     
     func postMessage() {
-        if let message = chatsModel.postMessage(text, in: chat) {
-            text = ""
-            messageIdToScroll = message.id
-        }
+        conversationsVM.postMessage(text: text, user: authService.currentUser!,  in: conversation)
     }
     
     let columns = [GridItem(.flexible(minimum: 10))]
 
     func getMessagesView(viewWidth: CGFloat) -> some View {
         LazyVGrid(columns: columns, spacing: 5, pinnedViews: [.sectionHeaders]) {
-            let sectionMessages = chatsModel.getSectionMessages(for: chat)
+            let sectionMessages = conversationsVM.getSectionMessages(for: conversation)
             ForEach(sectionMessages.indices, id: \.self) { sectionIndex in
                 let messages = sectionMessages[sectionIndex]
                 Section(header: 
@@ -131,26 +129,5 @@ struct ChatView: View {
 
 
 //#Preview {
-//    ChatView(
-//        chat: Chat(
-//            chatId: "1", 
-//            name: "Planche à voile",
-//            image: "figure.sailing",
-//            users: [
-//                UserViewModel().mockData[0],
-//                UserViewModel().mockData[1],
-//            ],
-//            messages: [
-//                Message(user: UserViewModel().mockData[0], text: "HelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHello", date: Date(), isRead: false),
-//                Message(user: UserViewModel().mockData[1], text: "HelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHello", date: Date(), isRead: false),
-//                Message(user: UserViewModel().mockData[0], text: "How are you ?", date: Date(), isRead: false),
-//                Message(user: UserViewModel().mockData[1],text: "Fine and you ?", date: Date(), isRead: false),
-//                Message(user: UserViewModel().mockData[0], text: "I'm fine too", date: Date(), isRead: false),
-//                Message(user: UserViewModel().mockData[1], text: "Great !", date: Date(), isRead: false),
-//                Message(user: UserViewModel().mockData[0], text: "See you soon", date: Date(), isRead: false),
-//                Message(user: UserViewModel().mockData[1], text: "See youHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHello", date: Date(), isRead: false)
-//            ]
-//        )
-//    )
-//        .environmentObject(ChatsModel())
+
 //}

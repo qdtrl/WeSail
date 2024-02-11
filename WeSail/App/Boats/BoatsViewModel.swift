@@ -10,13 +10,34 @@ import Foundation
 class BoatsViewModel: ObservableObject {
     var repository:BoatRepositoryProtocol
     @Published var boats: [Boat] = []
+    @Published var isLoading:Bool = false
 
     init() {
         self.repository = BoatRepository()
     }
     
-    func get() async {
-        self.boats = await self.repository.get()
+    func index() {
+        self.isLoading = true
+        
+
+        Task { @MainActor in
+            self.boats = try await self.repository.index()
+        }
+        
+        
+        self.isLoading = false
+    }
+
+    func create(_ boat: Boat) async {
+        do {
+            self.isLoading = true
+            try await self.repository.create(boat: boat)
+            self.boats.append(boat)
+            self.isLoading = false
+        } catch {
+            // Handle the error here
+            print("Error: \(error)")
+        }
     }
     
     @Published var mockData = [

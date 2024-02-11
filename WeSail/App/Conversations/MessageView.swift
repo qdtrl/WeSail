@@ -69,5 +69,5 @@ struct MessageView: View {
 }
 
 #Preview {
-    MessageView(message: Message(user: UserViewModel().mockData[0], text: "Hello", date: Date(), isRead: false))
+    MessageView(message: Message(id: "1", user: UserViewModel().mockData[0], text: "Hello", date: Date(), isRead: false))
 }

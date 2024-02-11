@@ -16,7 +16,7 @@ struct RouterView: View {
             if authService.userSession != nil && authService.currentUser != nil {
                 TabView {
                     NavigationStack {
-                        EventsView()
+//                        EventsView()
                     }
                     .tabItem {
                         Image(systemName: "popcorn")
@@ -24,7 +24,7 @@ struct RouterView: View {
                     }
                     
                     NavigationStack {
-                        BoatsView(boats: BoatsViewModel().mockData)
+                        BoatsView()
                     }
                     .tabItem {
                         Image(systemName: "sailboat")
@@ -32,7 +32,7 @@ struct RouterView: View {
                     }
                     
                     NavigationStack {
-                        ChatsView()
+//                        ChatsView()
                     }
                     .tabItem {
                         Image(systemName: "message")
@@ -41,7 +41,7 @@ struct RouterView: View {
                         
                     
                     NavigationStack {
-                        ProfileView()
+//                        ProfileView()
                     }
                     .tabItem {
                         Image(systemName: "person")

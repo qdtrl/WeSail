@@ -7,8 +7,8 @@
 
 import Foundation
 
-struct Message: Decodable, Identifiable {
-    var id = UUID()
+struct Message: Codable, Identifiable, Hashable {
+    var id: String
     let user: User
     let text: String
     let date: Date

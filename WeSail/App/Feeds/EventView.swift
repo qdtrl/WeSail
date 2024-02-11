@@ -109,7 +109,7 @@ struct EventView: View {
             }
             .padding()
 
-            BoatsView(boats: event.participants!)
+            BoatsView()
         }
     }
 }

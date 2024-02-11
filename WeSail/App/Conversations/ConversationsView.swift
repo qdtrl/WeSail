@@ -7,19 +7,18 @@
 
 import SwiftUI
 
-struct ChatsView: View {
-    @StateObject var chatsModel = ChatsViewModel()
+struct ConversationsView: View {
+    @EnvironmentObject var conversationsVM: ConversationsViewModel
     @State private var query = ""
 
     var body: some View {
         List {
-            ForEach(chatsModel.mockData) { chat in
+            ForEach(conversationsVM.conversations) { conversation in
                 ZStack {
-                    ChatRow(chat: chat)
+                    ConversationRow(conversation: conversation)
                     
                     NavigationLink(destination: {
-                        ChatView(chat: chat)
-                            .environmentObject(chatsModel)
+                        ConversationView(conversation: conversation)
                     }) {
                         EmptyView()
                     }
@@ -29,9 +28,9 @@ struct ChatsView: View {
                 }
                 .swipeActions(edge: .leading, allowsFullSwipe: true) {
                     Button(action: {
-                        chatsModel.markAsRead(!chat.messages.last!.isRead, chat: chat)
+//                        Message is read
                     }) {
-                        if chat.messages.last!.isRead {
+                        if ((conversation.messages?.last!.isRead) != nil) {
                             Label("Non lu", systemImage: "cicle.fill")
                         } else {
                             Label("Lu", systemImage: "text.bubble")
@@ -54,12 +53,12 @@ struct ChatsView: View {
     }
 }
 
-struct ChatRow: View {
-    let chat: Chat
+struct ConversationRow: View {
+    let conversation: Conversation
     
     var body: some View {
         HStack(spacing: 20) {
-            AsyncImage(url: URL(string: chat.image), transaction: .init(animation: .spring())) { phase in
+            AsyncImage(url: URL(string: conversation.image), transaction: .init(animation: .spring())) { phase in
                 switch phase {
                 case .empty:
                     ProgressView()
@@ -83,15 +82,15 @@ struct ChatRow: View {
             ZStack {
                 VStack(alignment: .leading, spacing: 5) {
                     HStack {
-                        Text(chat.name)
+                        Text(conversation.name)
                             .bold()
                         Spacer()
                         
-                        Text("\(chat.messages.last!.date.descriptiveString())")
+                        Text("\((conversation.messages?.last!.date.descriptiveString())!)")
                     }
                     
                     HStack {
-                        Text(chat.messages.last!.text)
+                        Text((conversation.messages?.last!.text)!)
                             .foregroundColor(.gray)
                             .lineLimit(2)
                             .frame(height: 50, alignment: .top)
@@ -100,7 +99,7 @@ struct ChatRow: View {
                     }
                 }
                 Circle()
-                    .foregroundColor(chat.messages.last!.isRead ? .clear : .blue)
+                    .foregroundColor(((conversation.messages?.last!.isRead) != nil) ? .clear : .blue)
                     .frame(width: 14, height: 14)
                     .frame(maxWidth: .infinity, alignment: .trailing)
             }

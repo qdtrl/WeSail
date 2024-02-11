@@ -8,7 +8,8 @@
 import SwiftUI
 
 struct BoatView: View {
-    @StateObject var boatsModel = BoatsViewModel()
+    @EnvironmentObject var boatsVM: BoatsViewModel
+
     @State var boat: Boat
     @State var index = 0
 
