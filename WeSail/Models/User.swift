@@ -13,7 +13,7 @@ struct User: Codable, Identifiable, Hashable {
     let email: String
     let firstName: String
     let lastName: String
-    let image: String?
+    let image: String
     let boats: [Boat]?
     
     init(
@@ -21,7 +21,7 @@ struct User: Codable, Identifiable, Hashable {
      email: String,
      firstName: String,
      lastName: String,
-     image: String? = nil,
+     image: String,
      boats: [Boat]? = nil
     ) {
         self.id = id
@@ -47,7 +47,7 @@ struct User: Codable, Identifiable, Hashable {
         self.email = try container.decode(String.self, forKey: .email)
         self.firstName = try container.decode(String.self, forKey: .firstName)
         self.lastName = try container.decode(String.self, forKey: .lastName)
-        self.image = try container.decodeIfPresent(String.self, forKey: .image)
+        self.image = try container.decode(String.self, forKey: .image)
         self.boats = try container.decodeIfPresent([Boat].self, forKey: .boats)
     }
     
@@ -57,7 +57,7 @@ struct User: Codable, Identifiable, Hashable {
         try container.encode(self.email, forKey: .email)
         try container.encode(self.firstName, forKey: .firstName)
         try container.encode(self.lastName, forKey: .lastName)
-        try container.encodeIfPresent(self.image, forKey: .image)
+        try container.encode(self.image, forKey: .image)
     }
     
     

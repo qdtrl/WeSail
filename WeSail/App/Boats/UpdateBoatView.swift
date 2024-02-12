@@ -10,11 +10,8 @@ import SwiftUI
 struct UpdateBoatView: View {
     @EnvironmentObject var boatsVM: BoatsViewModel
     @State var boat: Boat
-    
-    
-    
+
     var body: some View {
         Text("UpdateBoatView")
     }
 }
-

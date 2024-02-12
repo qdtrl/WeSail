@@ -15,6 +15,7 @@ struct AddBoatView: View {
     @State var name = ""
     @State var type = ""
     @State var number = ""
+    @State var club = ""
     @State var image = ""
 
     var body: some View {
@@ -37,6 +38,12 @@ struct AddBoatView: View {
                     title: "Numéro",
                     placeHolder: "Numéro de voile"
                 )
+                
+                InputView(
+                    text: $club,
+                    title: "Yacht Club",
+                    placeHolder: "Club du bateau"
+                )
 
                 InputView(
                     text: $image,
@@ -50,7 +57,9 @@ struct AddBoatView: View {
                         name: name,
                         type: type,
                         number: Int(number) ?? 0,
+                        club: club,
                         image: "https://www.manche.fr/wp-content/uploads/2023/03/manche-sport-evidence-nautique-cd50-ddaguier-04.jpg",
+                        owners: [authService.currentUser!],
                         crew: [authService.currentUser!]
                     )
                     

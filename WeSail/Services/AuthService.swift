@@ -96,9 +96,5 @@ class AuthService: ObservableObject {
         guard let snapshot = try? await Firestore.firestore().collection("users").document(uid).getDocument(as: User.self) else { return }
         
         self.currentUser = snapshot
-        
-        print("Fetch User")
-        print(self.currentUser)
-        print(self.userSession)
     }
 }

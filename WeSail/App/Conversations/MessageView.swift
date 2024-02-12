@@ -29,26 +29,8 @@ struct MessageView: View {
                 .padding(.trailing, 5)
             } else {
                 HStack(alignment: .top) {
-                    AsyncImage(url: URL(string: message.user.image!), transaction: .init(animation: .spring())) { phase in
-                        switch phase {
-                        case .empty:
-                            ProgressView()
-                                .progressViewStyle(CircularProgressViewStyle())
-                                .foregroundColor(.gray)
-                                .opacity(0.2)
-                        case .success(let image):
-                            image
-                                .resizable()
-                                .aspectRatio(contentMode: .fill)
-                                .scaledToFill()
-                        case .failure(_):
-                            Color.red.opacity(0.2)
-                        @unknown default:
-                            Color.yellow.opacity(0.2)
-                        }
-                    }
-                    .frame(width: 40, height: 40)
-                    .clipShape(Circle())
+                    UserImageView(image: message.user.image, width: 40)
+
                     
                     VStack(alignment: .leading, spacing: 0) {
                         Text("\(message.user.firstName) \(message.user.lastName)")

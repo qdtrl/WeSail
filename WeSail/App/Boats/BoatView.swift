@@ -64,7 +64,7 @@ struct BoatView: View {
                         Text("\(boat.number)")
                             .font(.caption)
                         Spacer()
-                        Text("Port : Granville")       
+                        Text("\(boat.club)")
                     }
                 }
 
@@ -73,7 +73,7 @@ struct BoatView: View {
                         Spacer()
                         
                         Button(action: {}) {
-                            Text("Inscription")
+                            Text("Calendrier")
                         }
                         .frame(width: 120)
                         .padding(.horizontal)
@@ -222,23 +222,33 @@ struct BoatView: View {
 struct MenuBoatView: View {
     @EnvironmentObject var boatsVM: BoatsViewModel
     @EnvironmentObject var authService: AuthService
-    @Environment(\.dismiss) var dismiss
 
     @State var boat: Boat
 
     var body: some View {
-        VStack {
-            NavigationLink(destination: UpdateBoatView(boat: boat)) {
-                Text("Modifier")
+        List {
+            Section("Événements") {
+                
             }
-
-            Button(action: {
-                Task {
-                    await boatsVM.delete(boat)
-                    dismiss()
+        
+            Section("Équipage") {
+                SettingsRowView(imageName: "pencil", title: "Modifier", tintColor: Color(.systemGray))
+            }
+            
+            Section("Bateaux") {
+                NavigationLink(destination: UpdateBoatView(boat: boat)) {
+                    SettingsRowView(imageName: "pencil", title: "Modifier", tintColor: Color(.systemGray))
                 }
-            }) {
-                Text("Supprimer")
+            }
+                
+            Spacer()
+            
+            Button {
+                Task {
+                    boatsVM.delete(boat)
+                }
+            } label: {
+                SettingsRowView(imageName: "trash.fill", title: "Supprimer", tintColor: .red)
             }
         }
         .navigationTitle(boat.name)

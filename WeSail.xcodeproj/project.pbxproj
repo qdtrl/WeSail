@@ -50,6 +50,7 @@
 		3CBF91B52B554643001650ED /* RouterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CBF91B42B554643001650ED /* RouterView.swift */; };
 		3CC041BF2B7911C400ABDE55 /* UpdateBoatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CC041BE2B7911C400ABDE55 /* UpdateBoatView.swift */; };
 		3CC041C12B79126200ABDE55 /* EventsListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CC041C02B79126200ABDE55 /* EventsListView.swift */; };
+		3CC041C32B7A740100ABDE55 /* UserImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CC041C22B7A740100ABDE55 /* UserImageView.swift */; };
 		3CC549AB2B3ECB6800C48919 /* FirebaseAnalyticsSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 3CC549AA2B3ECB6800C48919 /* FirebaseAnalyticsSwift */; };
 		3CC549AD2B3ECE7300C48919 /* UserViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CC549AC2B3ECE7300C48919 /* UserViewModel.swift */; };
 		3CC549B32B3ED88A00C48919 /* BoatRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CC549B22B3ED88A00C48919 /* BoatRepository.swift */; };
@@ -124,6 +125,7 @@
 		3CBF91B42B554643001650ED /* RouterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouterView.swift; sourceTree = "<group>"; };
 		3CC041BE2B7911C400ABDE55 /* UpdateBoatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateBoatView.swift; sourceTree = "<group>"; };
 		3CC041C02B79126200ABDE55 /* EventsListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsListView.swift; sourceTree = "<group>"; };
+		3CC041C22B7A740100ABDE55 /* UserImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserImageView.swift; sourceTree = "<group>"; };
 		3CC549AC2B3ECE7300C48919 /* UserViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserViewModel.swift; sourceTree = "<group>"; };
 		3CC549B22B3ED88A00C48919 /* BoatRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoatRepository.swift; sourceTree = "<group>"; };
 		3CC549B42B4028E100C48919 /* EventRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventRepository.swift; sourceTree = "<group>"; };
@@ -242,6 +244,7 @@
 				3C524A8E2B1B92D2000B1667 /* CrewView.swift */,
 				3C701FF02B336C610066721B /* InputView.swift */,
 				3C701FF62B33745B0066721B /* SettingsRowView.swift */,
+				3CC041C22B7A740100ABDE55 /* UserImageView.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -613,6 +616,7 @@
 				3CC549BF2B4032EA00C48919 /* Query.swift in Sources */,
 				3C524A872B1B7CEA000B1667 /* BoatsViewModel.swift in Sources */,
 				3CC549B72B4029A200C48919 /* UserRepository.swift in Sources */,
+				3CC041C32B7A740100ABDE55 /* UserImageView.swift in Sources */,
 				3C524A8B2B1B8021000B1667 /* Event.swift in Sources */,
 				3C524A8F2B1B92D2000B1667 /* CrewView.swift in Sources */,
 				3C524A932B1B9FFB000B1667 /* EventView.swift in Sources */,

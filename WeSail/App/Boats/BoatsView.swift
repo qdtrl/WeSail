@@ -101,26 +101,33 @@ struct BoatRow:View {
             .clipShape(RoundedRectangle(cornerRadius: 15, style: .continuous))
                       
             VStack(alignment: .leading) {
-                Text(boat.name)
-                    .font(.headline)
-                
-                Text(boat.type)
-                    .font(.subheadline)
-
                 HStack {
-                    Text("\(boat.number)")
-                        .font(.subheadline)
+                    Text(boat.name)
+                        .font(.headline)
                     
                     Spacer()
                     
-                    Text("\(boat.crew?.count ?? 0) membres")
+                    Text("\(boat.number)")
                         .font(.subheadline)
                 }
+                
+                HStack {
+                    Text(boat.club)
+                        .font(.subheadline)
+                    
+                    Spacer()
+
+                    Text(boat.type)
+                        .font(.subheadline)
+                }
+
+                Text("\(boat.crew?.count ?? 0) membres")
+                        .font(.subheadline)
             }
         }
     }
 }
 
 //#Preview {
-//    BoatsView(boats: BoatsViewModel().mockData)
+//    BoatsView()
 //}
