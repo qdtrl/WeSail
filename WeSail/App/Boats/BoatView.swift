@@ -9,6 +9,7 @@ import SwiftUI
 
 struct BoatView: View {
     @EnvironmentObject var boatsVM: BoatsViewModel
+    @EnvironmentObject var authService: AuthService
 
     @State var boat: Boat
     @State var index = 0
@@ -40,13 +41,13 @@ struct BoatView: View {
 
                     Spacer()
                     VStack {
-                        Text("\(boat.events!.count)")
+                        Text("\(boat.events?.count ?? 0)")
                             .bold()
                         Text("Events")
                     }
                     Spacer()
                     VStack {
-                        Text("\(boat.crew!.count)")
+                        Text("\(boat.crew?.count ?? 0)")
                             .bold()
                         Text("Membres")
                     }
@@ -67,7 +68,7 @@ struct BoatView: View {
                     }
                 }
 
-                if false {
+                if boat.crew!.contains(authService.currentUser!) {
                     HStack {
                         Spacer()
                         
@@ -128,7 +129,6 @@ struct BoatView: View {
                 
 
                 HStack {
-                    
                     VStack {
                         Button(action: {
                             self.index = 0
@@ -187,16 +187,61 @@ struct BoatView: View {
             
             switch index {
             case 0:
-                EventsView()
+                if let events = boat.events {
+                    EventsView(events: events)
+                } else {
+                    Text("Pas d'évènements")
+                }
             case 1:
-                PicturesView()
+                if let images = boat.images {
+                    PicturesView(pictures: images)
+                } else {
+                    Text("Pas d'images")
+                }
             case 2:
-                CrewView(crew: boat.crew!)
+                if let crew = boat.crew {
+                    CrewView(crew: crew)
+                } else {
+                    Text("Pas de membres")
+                }
             default:
-                EventsView()
+                Text("Pas d'évènements")
             }
         }
         .accessibility(identifier: "boatView")
+        .toolbar {
+            ToolbarItem(placement: .navigationBarTrailing) {
+                NavigationLink(destination: MenuBoatView(boat: boat)) {
+                    Image(systemName: "ellipsis")
+                }
+            }
+        }
+    }
+}
+
+struct MenuBoatView: View {
+    @EnvironmentObject var boatsVM: BoatsViewModel
+    @EnvironmentObject var authService: AuthService
+    @Environment(\.dismiss) var dismiss
+
+    @State var boat: Boat
+
+    var body: some View {
+        VStack {
+            NavigationLink(destination: UpdateBoatView(boat: boat)) {
+                Text("Modifier")
+            }
+
+            Button(action: {
+                Task {
+                    await boatsVM.delete(boat)
+                    dismiss()
+                }
+            }) {
+                Text("Supprimer")
+            }
+        }
+        .navigationTitle(boat.name)
     }
 }
 

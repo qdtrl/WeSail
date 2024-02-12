@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct PicturesView: View {
+    @State var pictures: [String]
+    
     var body: some View {
         LazyVGrid(columns: [GridItem(.adaptive(minimum: 100, maximum: 200), spacing: 3)], spacing: 3) {
             ForEach(0 ..< 100) { _ in

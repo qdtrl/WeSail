@@ -14,7 +14,8 @@ struct Boat: Codable, Identifiable, Hashable {
     let number: Int
     let image: String
     let crew: [User]?
-    var events: [Event]?
+    let events: [Event]?
+    let images: [String]?
 
     init(
      id: String,
@@ -23,7 +24,8 @@ struct Boat: Codable, Identifiable, Hashable {
      number: Int,
      image: String,
      crew: [User]? = nil,
-     events: [Event]? = nil
+     events: [Event]? = nil,
+     images: [String]? = nil
     ) {
         self.id = id
         self.name = name
@@ -32,6 +34,7 @@ struct Boat: Codable, Identifiable, Hashable {
         self.image = image
         self.crew = crew
         self.events = events
+        self.images = images
     }
     
     enum CodingKeys: CodingKey {
@@ -42,6 +45,7 @@ struct Boat: Codable, Identifiable, Hashable {
         case image
         case crew
         case events
+        case images
     }
     
     init(from decoder: Decoder) throws {
@@ -53,6 +57,7 @@ struct Boat: Codable, Identifiable, Hashable {
         self.image = try container.decode(String.self, forKey: .image)
         self.crew = try container.decodeIfPresent([User].self, forKey: .crew)
         self.events = try container.decodeIfPresent([Event].self, forKey: .events)
+        self.images = try container.decodeIfPresent([String].self, forKey: .images)
     }
         
     func encode(to encoder: Encoder) throws {
@@ -64,6 +69,7 @@ struct Boat: Codable, Identifiable, Hashable {
         try container.encode(self.image, forKey: .image)
         try container.encodeIfPresent(self.crew, forKey: .crew)
         try container.encodeIfPresent(self.events, forKey: .events)
+        try container.encodeIfPresent(self.images, forKey: .images)
     }
     
 }

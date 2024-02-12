@@ -10,7 +10,8 @@ import SwiftUI
 struct AddBoatView: View {
     @Environment(\.presentationMode) var presentationMode
     @EnvironmentObject var boatsVM: BoatsViewModel
-        
+    @EnvironmentObject var authService: AuthService
+
     @State var name = ""
     @State var type = ""
     @State var number = ""
@@ -49,7 +50,8 @@ struct AddBoatView: View {
                         name: name,
                         type: type,
                         number: Int(number) ?? 0,
-                        image: "https://www.manche.fr/wp-content/uploads/2023/03/manche-sport-evidence-nautique-cd50-ddaguier-04.jpg"
+                        image: "https://www.manche.fr/wp-content/uploads/2023/03/manche-sport-evidence-nautique-cd50-ddaguier-04.jpg",
+                        crew: [authService.currentUser!]
                     )
                     
                     Task {

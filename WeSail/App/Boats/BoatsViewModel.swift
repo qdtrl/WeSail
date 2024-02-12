@@ -40,6 +40,17 @@ class BoatsViewModel: ObservableObject {
         }
     }
     
+    func delete(_ boat: Boat) async {
+        do {
+            self.isLoading = true
+            try await self.repository.delete(id: boat.id)
+            self.isLoading = false
+        } catch {
+            // Handle the error here
+            print("Error: \(error)")
+        }
+    }
+    
     @Published var mockData = [
         Boat(
             id: "1", name: "Les Rapetous", type: "Class 10", number: 32134, image: "https://media.bateaux.com/src/applications/showroom/images/images-produit/9f1b891f23143ede30ee690bfead2b42.png", crew: [

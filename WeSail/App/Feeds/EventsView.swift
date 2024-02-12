@@ -8,11 +8,12 @@
 import SwiftUI
 
 struct EventsView: View {
-    @ObservedObject var eventsModel = EventsViewModel()
-    
+    @EnvironmentObject var eventsVM: EventsViewModel
+    @State var events: [Event]
+
     var body: some View {
         ScrollView(showsIndicators: false) {
-            ForEach(eventsModel.mockData) { event in
+            ForEach(eventsVM.mockData) { event in
                 NavigationLink(value: event) {
                     EventRow(event: event)
                         .accessibility(identifier: "eventCell")
@@ -133,31 +134,31 @@ struct ResultsRace: View {
     var body: some View {
         HStack {
             VStack {
-//                AsyncImage(url: URL(string: race.results![1].image), transaction: .init(animation: .spring())) { phase in
-//                    switch phase {
-//                    case .empty:
-//                       ProgressView()
-//                            .progressViewStyle(CircularProgressViewStyle())
-//                            .foregroundColor(.gray)
-//                            .opacity(0.2)
-//                    case .success(let image):
-//                    image
-//                    .resizable()
-//                    .aspectRatio(contentMode: .fill)
-//                    .scaledToFill()
-//                    
-//                    case .failure(_):
-//                        Color.red.opacity(0.2)
-//                    @unknown default:
-//                        Color.yellow.opacity(0.2)
-//                    }
-//                }
-//                .frame(width: 60, height: 60)
-//                .clipShape(RoundedRectangle(cornerRadius: 15, style: .continuous))
-//                
-//                Text(race.results![1].name)
-//                    .font(.subheadline)
-//                    .bold()
+                AsyncImage(url: URL(string: race.results![1].image), transaction: .init(animation: .spring())) { phase in
+                    switch phase {
+                    case .empty:
+                       ProgressView()
+                            .progressViewStyle(CircularProgressViewStyle())
+                            .foregroundColor(.gray)
+                            .opacity(0.2)
+                    case .success(let image):
+                    image
+                    .resizable()
+                    .aspectRatio(contentMode: .fill)
+                    .scaledToFill()
+                    
+                    case .failure(_):
+                        Color.red.opacity(0.2)
+                    @unknown default:
+                        Color.yellow.opacity(0.2)
+                    }
+                }
+                .frame(width: 60, height: 60)
+                .clipShape(RoundedRectangle(cornerRadius: 15, style: .continuous))
+                
+                Text(race.results![1].name)
+                    .font(.subheadline)
+                    .bold()
                 
                 Image(systemName: "trophy.fill")
                     .foregroundColor(Color("Silver"))

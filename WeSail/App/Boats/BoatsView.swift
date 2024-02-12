@@ -10,7 +10,7 @@ import SwiftUI
 struct BoatsView: View {
     @EnvironmentObject var boatsVM: BoatsViewModel
 
-    let columns = Array(repeating: GridItem(.flexible(), spacing: 10, alignment: .center), count: 2)
+    let columns = Array(repeating: GridItem(.flexible(), spacing: 10, alignment: .center), count: 1)
 
     var body: some View {
         NavigationView {
@@ -27,15 +27,13 @@ struct BoatsView: View {
                         Text("Ajoutez un bateau ou rejoignez un équipage")
                             .multilineTextAlignment(.center)
                             .accessibility(identifier: "noBoat")
-                    case 1:
-                        BoatView(boat: boatsVM.boats[0])
                     default:
                         ScrollView(showsIndicators: false) {
                             LazyVGrid(columns: columns, spacing: 10) {
                                 ForEach(boatsVM.boats) { boat in
                                     NavigationLink(value: boat) {
                                         BoatRow(boat: boat)
-                                            .frame(maxWidth: .infinity, minHeight: 200)
+                                            .frame(maxWidth: .infinity, minHeight: 300)
                                             .accessibility(identifier: "boatCell")
                                     }
                                 }
@@ -50,6 +48,8 @@ struct BoatsView: View {
                         
                     }
                 }
+                
+                Spacer()
             }
             .navigationTitle("Mes Bateaux")
             .navigationBarTitleDisplayMode(.inline)
@@ -72,19 +72,25 @@ struct BoatRow:View {
 
     var body: some View {
         VStack(alignment: .center) {
-            AsyncImage(url: URL(string: boat.image), transaction: .init(animation: .spring())) { phase in
+            AsyncImage(url: URL(string: boat.image)) { phase in
                 switch phase {
                 case .empty:
-                    ProgressView()
-                        .progressViewStyle(CircularProgressViewStyle())
-                        .foregroundColor(.gray)
-                        .opacity(0.2)         
+                    VStack {
+                        Spacer()
+                        ProgressView()
+                            .progressViewStyle(CircularProgressViewStyle())
+                            .foregroundColor(.gray)
+                            .opacity(0.2)   
+                            .accessibility(identifier: "loadingImage")   
+                        Spacer()
+                    }
+                    .frame(maxWidth: .infinity)
+                    .background(Color.gray.opacity(0.2))
                 case .success(let image):
                     image
                         .resizable()
                         .aspectRatio(contentMode: .fill)
-                        .frame(width: 140, height: 120)
-                        .frame(maxWidth: .infinity)
+                        .scaledToFill()
                         .clipped()
                 case .failure(_):
                     Color.red.opacity(0.2)

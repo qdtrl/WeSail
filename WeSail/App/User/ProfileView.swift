@@ -149,16 +149,16 @@ struct ProfileView: View {
                 .padding(.horizontal)
                 .padding(.top)
                 
-                switch index {
-                case 0:
-                    EventsView()
-                case 1:
-                    PicturesView()
-                case 2:
-                    BoatsView()
-                default:
-                    Text("Événements")
-                }
+//                switch index {
+//                case 0:
+//                    EventsView()
+//                case 1:
+//                    PicturesView()
+//                case 2:
+//                    BoatsView()
+//                default:
+//                    Text("Événements")
+//                }
             }
             .accessibility(identifier: "profileView")
         }
