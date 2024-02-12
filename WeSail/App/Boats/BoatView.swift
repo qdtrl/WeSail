@@ -191,67 +191,37 @@ struct BoatView: View {
                     EventsView(events: events)
                 } else {
                     Text("Pas d'évènements")
+                        .padding(.vertical, 20)
                 }
             case 1:
                 if let images = boat.images {
                     PicturesView(pictures: images)
                 } else {
                     Text("Pas d'images")
+                        .padding(.vertical, 20)
                 }
             case 2:
                 if let crew = boat.crew {
                     CrewView(crew: crew)
                 } else {
                     Text("Pas de membres")
+                        .padding(.vertical, 20)
                 }
             default:
                 Text("Pas d'évènements")
+                    .padding(.vertical, 20)
             }
         }
         .accessibility(identifier: "boatView")
         .toolbar {
-            ToolbarItem(placement: .navigationBarTrailing) {
-                NavigationLink(destination: MenuBoatView(boat: boat)) {
-                    Image(systemName: "ellipsis")
+            if boat.owners.contains(authService.currentUser!) {
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    NavigationLink(destination: MenuBoatView(boat: boat)) {
+                        Image(systemName: "ellipsis")
+                    }
                 }
             }
         }
-    }
-}
-
-struct MenuBoatView: View {
-    @EnvironmentObject var boatsVM: BoatsViewModel
-    @EnvironmentObject var authService: AuthService
-
-    @State var boat: Boat
-
-    var body: some View {
-        List {
-            Section("Événements") {
-                
-            }
-        
-            Section("Équipage") {
-                SettingsRowView(imageName: "pencil", title: "Modifier", tintColor: Color(.systemGray))
-            }
-            
-            Section("Bateaux") {
-                NavigationLink(destination: UpdateBoatView(boat: boat)) {
-                    SettingsRowView(imageName: "pencil", title: "Modifier", tintColor: Color(.systemGray))
-                }
-            }
-                
-            Spacer()
-            
-            Button {
-                Task {
-                    boatsVM.delete(boat)
-                }
-            } label: {
-                SettingsRowView(imageName: "trash.fill", title: "Supprimer", tintColor: .red)
-            }
-        }
-        .navigationTitle(boat.name)
     }
 }
 

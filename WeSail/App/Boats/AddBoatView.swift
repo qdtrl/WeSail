@@ -64,7 +64,7 @@ struct AddBoatView: View {
                     )
                     
                     Task {
-                        await boatsVM.create(boat)
+                        boatsVM.create(boat)
                     }
 
                     self.presentationMode.wrappedValue.dismiss()
