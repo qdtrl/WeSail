@@ -9,7 +9,6 @@ import SwiftUI
 
 struct EventsListView: View {
     @EnvironmentObject var eventsVM: EventsViewModel
-    @State var boat: Boat
     
     var body: some View {
         Text("Event List")

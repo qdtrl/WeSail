@@ -12,7 +12,7 @@ struct CrewView: View {
     var body: some View {
         VStack(alignment: .leading) {
             ForEach(crew) { user in
-                NavigationLink(destination: ProfileView()) {
+                NavigationLink(destination: ProfileView(userId: user.id)) {
                     HStack {
                         UserImageView(image: user.image, width: 50)
                                                                      

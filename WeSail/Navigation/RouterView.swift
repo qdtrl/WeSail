@@ -13,7 +13,7 @@ struct RouterView: View {
 
     var body: some View {
         Group {
-            if $authService.userSession != nil && authService.currentUser != nil {
+            if $authService.userSession != nil, authService.currentUser != nil, let user = authService.currentUser {
                 TabView {
                     NavigationStack {
 //                        EventsView()
@@ -41,7 +41,7 @@ struct RouterView: View {
                         
                     
                     NavigationStack {
-                        ProfileView()
+                        ProfileView(userId: user.id)
                     }
                     .tabItem {
                         Image(systemName: "person")

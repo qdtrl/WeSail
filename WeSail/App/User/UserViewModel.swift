@@ -10,9 +10,55 @@ import Foundation
 class UserViewModel: ObservableObject {
     var repository:UserRepositoryProtocol
     @Published var users: [User] = []
-    
+    @Published var events: [Event] = []
+    @Published var boats: [Boat] = []
+    @Published var images: [String] = []
+    @Published var user: User? = nil
+
+    @Published var isLoading:Bool = false
+
     init() {
         self.repository = UserRepository()
+    }
+    
+    func events(user: User) {
+        Task { @MainActor in
+            self.isLoading = true
+
+            self.events = try await self.repository.events(userId: user.id)
+            
+            self.isLoading = false
+        }
+    }
+
+    func boats(user: User) {
+        Task { @MainActor in
+            self.isLoading = true
+
+            self.boats = try await self.repository.boats(userId: user.id)
+            
+            self.isLoading = false
+        }
+    }
+
+    func images(user: User) {
+        Task { @MainActor in
+            self.isLoading = true
+
+            self.images = try await self.repository.images(userId: user.id)
+            
+            self.isLoading = false
+        }
+    }
+
+    func show(userId: String) {
+        Task { @MainActor in
+            self.isLoading = true
+
+            self.user = try await self.repository.show(id: userId)
+            
+            self.isLoading = false
+        }
     }
     
     @Published var mockData = [
