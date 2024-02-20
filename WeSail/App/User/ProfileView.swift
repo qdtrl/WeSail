@@ -10,6 +10,7 @@ import SwiftUI
 struct ProfileView: View {
     @EnvironmentObject var authService: AuthService
     @EnvironmentObject var usersVM: UserViewModel
+
     @State var userId: String
 
     @State var index:Int = 0
@@ -25,7 +26,7 @@ struct ProfileView: View {
                             Spacer()
                             
                             VStack {
-                                Text("123")
+                                Text("\(user.events.count)")
                                     .bold()
                                 Text("Events")
                             }
@@ -46,35 +47,56 @@ struct ProfileView: View {
                             .bold()
                         Text("Petite description des familles super longue pour voir ce ")
                         
-                        HStack {
-                            Spacer()
-                            
-                            Button(action: {}) {
-                                Text("Suivre")
+                        
+                        if (user == authService.currentUser!) {
+                            HStack {
+                                Spacer()
                                 
-                            }
-                            .frame(width: 120)
-                            .padding(.horizontal)
-                            .padding(.vertical, 8)
-                            .foregroundColor(.black)
-                            .background(.thickMaterial)
-                            .clipShape(RoundedRectangle(cornerRadius: 15, style: .continuous))
-                            
-                            Spacer()
-                            
-                            Button(action: {}) {
-                                Text("Écrire")
+                                Button(action: {}) {
+                                    Text("Mon calendrier")
+                                    
+                                }
+                                .frame(width: 120)
+                                .padding(.horizontal)
+                                .padding(.vertical, 8)
+                                .foregroundColor(.black)
+                                .background(.thickMaterial)
+                                .clipShape(RoundedRectangle(cornerRadius: 15, style: .continuous))
                                 
+                                Spacer()
                             }
-                            .frame(width: 120)
-                            .padding(.horizontal)
-                            .padding(.vertical, 8)
-                            .foregroundColor(.black)
-                            .background(.thickMaterial)
-                            .clipShape(RoundedRectangle(cornerRadius: 15, style: .continuous))
-                            
-                            Spacer()
+                        } else {
+                            HStack {
+                                Spacer()
+                                
+                                Button(action: {}) {
+                                    Text("Suivre")
+                                    
+                                }
+                                .frame(width: 120)
+                                .padding(.horizontal)
+                                .padding(.vertical, 8)
+                                .foregroundColor(.black)
+                                .background(.thickMaterial)
+                                .clipShape(RoundedRectangle(cornerRadius: 15, style: .continuous))
+                                
+                                Spacer()
+                                
+                                Button(action: {}) {
+                                    Text("Écrire")
+                                    
+                                }
+                                .frame(width: 120)
+                                .padding(.horizontal)
+                                .padding(.vertical, 8)
+                                .foregroundColor(.black)
+                                .background(.thickMaterial)
+                                .clipShape(RoundedRectangle(cornerRadius: 15, style: .continuous))
+                                
+                                Spacer()
+                            }
                         }
+                        
                         
                         HStack {
                             
@@ -134,16 +156,16 @@ struct ProfileView: View {
                     .padding(.horizontal)
                     .padding(.top)
                     
-                    //                switch index {
-                    //                case 0:
-                    //                    EventsListView()
-                    //                case 1:
-                    //                    PicturesView()
-                    //                case 2:
-                    //                    BoatsView()
-                    //                default:
-                    //                    Text("Événements")
-                    //                }
+                    switch index {
+                    case 0:
+                        EventsListView(events: usersVM.events)
+                    case 1:
+                        PicturesView(pictures: usersVM.images)
+                    case 2:
+                        BoatsListView(boats: usersVM.boats)
+                    default:
+                        Text("Événements")
+                    }
                 }
                 .accessibility(identifier: "profileView")
                 .toolbar {
@@ -161,6 +183,9 @@ struct ProfileView: View {
         }
         .onAppear {
             usersVM.show(userId: userId)
+            usersVM.events(userId: userId)
+            usersVM.images(userId: userId)
+            usersVM.boats(userId: userId)
         }
     }
 }

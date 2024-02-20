@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct AddBoatView: View {
+struct CreateBoatView: View {
     @Environment(\.presentationMode) var presentationMode
     @EnvironmentObject var boatsVM: BoatsViewModel
     @EnvironmentObject var authService: AuthService
@@ -20,7 +20,7 @@ struct AddBoatView: View {
 
     var body: some View {
         NavigationView {
-            VStack {
+            VStack(spacing: 20) {
                 InputView(
                     text: $name,
                     title: "Nom",
@@ -50,6 +50,8 @@ struct AddBoatView: View {
                     title: "Image",
                     placeHolder: "URL de l'image"
                 )
+                
+                Spacer()
                     
                 Button(action: {
                     let boat = Boat(
@@ -77,9 +79,9 @@ struct AddBoatView: View {
                         .background(Color.blue)
                         .cornerRadius(10)
                 }
+                .padding(.vertical, 20)
                 
             }
-            .padding(.top, 20)
             .padding(.horizontal, 20)
             
         }
@@ -95,8 +97,4 @@ struct AddBoatView: View {
         )
         
     }
-}
-
-#Preview {
-    AddBoatView()
 }

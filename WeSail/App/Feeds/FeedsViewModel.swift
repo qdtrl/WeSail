@@ -7,8 +7,8 @@
 
 import Foundation
 
-class EventsViewModel: ObservableObject {
-    @Published var events = [Event]()
+class FeedsViewModel: ObservableObject {
+    @Published var events = [Event]
     
     @Published var mockData = [
         Event(

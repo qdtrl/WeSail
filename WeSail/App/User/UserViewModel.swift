@@ -21,31 +21,31 @@ class UserViewModel: ObservableObject {
         self.repository = UserRepository()
     }
     
-    func events(user: User) {
+    func events(userId: String) {
         Task { @MainActor in
             self.isLoading = true
 
-            self.events = try await self.repository.events(userId: user.id)
+            self.events = try await self.repository.events(userId: userId)
             
             self.isLoading = false
         }
     }
 
-    func boats(user: User) {
+    func boats(userId: String) {
         Task { @MainActor in
             self.isLoading = true
 
-            self.boats = try await self.repository.boats(userId: user.id)
+            self.boats = try await self.repository.boats(userId: userId)
             
             self.isLoading = false
         }
     }
 
-    func images(user: User) {
+    func images(userId: String) {
         Task { @MainActor in
             self.isLoading = true
 
-            self.images = try await self.repository.images(userId: user.id)
+            self.images = try await self.repository.images(userId: userId)
             
             self.isLoading = false
         }

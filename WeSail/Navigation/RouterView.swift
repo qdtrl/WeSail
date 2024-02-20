@@ -8,7 +8,6 @@
 import SwiftUI
 
 struct RouterView: View {
-    @Environment(\.presentationMode) var presentationMode
     @EnvironmentObject var authService: AuthService
 
     var body: some View {
@@ -16,7 +15,7 @@ struct RouterView: View {
             if $authService.userSession != nil, authService.currentUser != nil, let user = authService.currentUser {
                 TabView {
                     NavigationStack {
-//                        EventsView()
+                        FeedsView()
                     }
                     .tabItem {
                         Image(systemName: "popcorn")

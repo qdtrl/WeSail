@@ -13,7 +13,6 @@ struct BoatsView: View {
     let columns = Array(repeating: GridItem(.flexible(), spacing: 10, alignment: .center), count: 1)
 
     var body: some View {
-        NavigationView {
             VStack {
                 if boatsVM.isLoading {
                     ProgressView()
@@ -43,6 +42,15 @@ struct BoatsView: View {
                             .navigationDestination(for: Boat.self) { boat in
                                 BoatView(boat: boat)
                             }
+                            .navigationTitle("Mes Bateaux")
+                            .navigationBarTitleDisplayMode(.inline)
+                            .toolbar {
+                                ToolbarItem(placement: .navigationBarTrailing) {
+                                    NavigationLink(destination: CreateBoatView()) {
+                                        Image(systemName: "plus")
+                                    }
+                                }
+                            }
                         }
                         .foregroundColor(.black)
                         
@@ -51,19 +59,10 @@ struct BoatsView: View {
                 
                 Spacer()
             }
-            .navigationTitle("Mes Bateaux")
-            .navigationBarTitleDisplayMode(.inline)
-            .toolbar {
-                ToolbarItem(placement: .navigationBarTrailing) {
-                    NavigationLink(destination: AddBoatView()) {
-                        Image(systemName: "plus")
-                    }
-                }
-            }
             .onAppear() {
                 boatsVM.index()
             }
-        }
+        
     }
 }
 

@@ -1,32 +1,11 @@
 //
-//  EventsView.swift
+//  EventRowView.swift
 //  WeSail
 //
-//  Created by Quentin Dubut-Touroul on 02/12/2023.
+//  Created by Quentin Dubut-Touroul on 16/02/2024.
 //
 
 import SwiftUI
-
-struct EventsView: View {
-    @EnvironmentObject var eventsVM: EventsViewModel
-    @State var events: [Event]
-
-    var body: some View {
-        ScrollView(showsIndicators: false) {
-            ForEach(eventsVM.mockData) { event in
-                NavigationLink(value: event) {
-                    EventRow(event: event)
-                        .accessibility(identifier: "eventCell")
-                }
-            }
-            .navigationDestination(for: Event.self) { event in
-                EventView(event: event)
-            }
-        }
-        .padding(.horizontal)
-        .accessibility(identifier: "eventsList")
-    }
-}
 
 struct EventRow: View {
     let event: Event
@@ -238,7 +217,3 @@ struct ResultsRace: View {
         }
     }
 }
-
-//#Preview {
-//    EventsView()
-//}
