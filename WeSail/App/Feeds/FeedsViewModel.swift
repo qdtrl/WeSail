@@ -8,7 +8,24 @@
 import Foundation
 
 class FeedsViewModel: ObservableObject {
-    @Published var events = [Event]
+    var eventRepository: EventRepositoryProtocol
+    @Published var events: [Event] = []
+    @Published var isLoading:Bool = false
+    
+    init() {
+        self.eventRepository = EventRepository()
+    }
+    
+    func index() {
+        Task { @MainActor in
+            self.isLoading = true
+
+            self.events = try await self.eventRepository.index()
+            
+            self.isLoading = false
+        }
+    }
+
     
     @Published var mockData = [
         Event(

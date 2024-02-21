@@ -12,9 +12,10 @@ import FirebaseStorage
 
 protocol ConversationRepositoryProtocol {
     func index() async throws -> [Conversation]
+    func show(id: String) async throws -> Conversation
     func create(conversation: Conversation) async throws
     func update(conversation: Conversation) async throws
-    func delete(id: String) async throws
+    func delete(conversation: Conversation) async throws
 }
 
 final class ConversationRepository:ConversationRepositoryProtocol {
@@ -34,6 +35,13 @@ final class ConversationRepository:ConversationRepositoryProtocol {
         }
         return conversations
     }
+    
+    func show(id: String) async throws -> Conversation {
+        let document = document(id: id)
+        let snapshot = try await document.getDocument()
+        let conversation = try snapshot.data(as: Conversation.self)
+        return conversation
+    }
 
    func create(conversation: Conversation) async throws {
         let _ = try collection.addDocument(from: conversation)
@@ -44,8 +52,8 @@ final class ConversationRepository:ConversationRepositoryProtocol {
         try document.setData(from: conversation)
     }
     
-    func delete(id: String) async throws {
-        let document = document(id: id)
+    func delete(conversation: Conversation) async throws {
+        let document = document(id: conversation.id)
         try await document.delete()
     }
     

@@ -12,7 +12,7 @@ struct FeedsView: View {
 
     var body: some View {
         ScrollView(showsIndicators: false) {
-            ForEach(feedsVM.mockData) { event in
+            ForEach(feedsVM.events) { event in
                 NavigationLink(value: event) {
                     EventRow(event: event)
                         .accessibility(identifier: "eventCell")
@@ -24,10 +24,9 @@ struct FeedsView: View {
         }
         .padding(.horizontal)
         .accessibility(identifier: "eventsList")
+        .onAppear() {
+            feedsVM.index()
+        }
     }
 }
 
-
-//#Preview {
-//    EventsView()
-//}

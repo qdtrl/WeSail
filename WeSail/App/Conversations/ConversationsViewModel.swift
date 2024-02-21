@@ -11,21 +11,74 @@ class ConversationsViewModel: ObservableObject {
     var repository:ConversationRepositoryProtocol
 
     @Published var conversations: [Conversation] = []
-    
+    @Published var conversation: Conversation? = nil
+    @Published var isLoading:Bool = false
+    @Published var isLoadingMessage:Bool = false
+
     init() {
         self.repository = ConversationRepository()
     }
     
-    func getMessages() {
-        
+    func index() {
+        Task { @MainActor in
+            self.isLoading = true
+
+            self.conversations = try await self.repository.index()
+            
+            self.isLoading = false
+        }
     }
     
-    func postMessage(text: String, user: User, in: Conversation) -> Message {
-        return Message(id: "1", user: user, text: text, date: Date(), isRead: false)
+    func create(_ conversation: Conversation) {
+        Task { @MainActor in
+            self.isLoading = true
+           
+            try await self.repository.create(conversation: conversation)
+            
+            self.conversations.append(conversation)
+
+            self.isLoading = false
+        }
     }
     
-    func markAsRead(conversation: Conversation) -> Conversation {
-        return conversation
+    func show(conversationId: String) {
+        Task { @MainActor in
+            self.isLoading = true
+
+            self.conversation = try await self.repository.show(id: conversationId)
+            
+            self.isLoading = false
+        }
+    }
+    
+    func post(message: Message) {
+        Task { @MainActor in
+            self.isLoadingMessage = true
+            
+            guard var conversation = self.conversation else {return}
+            
+            guard let messages = conversation.messages else {return}
+            
+            conversation.messages = messages + [message]
+            
+            try await self.repository.update(conversation: conversation)
+            
+            self.conversation = conversation
+            
+            self.isLoadingMessage = false
+        }
+    }
+    
+    func markLastMessageAsRead(user: User,conversation: Conversation) {
+        Task { @MainActor in
+            guard var lastMessage = conversation.messages?.last else { return }
+            
+            if lastMessage.user.id == user.id { return }
+            
+            lastMessage.isRead = true
+            
+            try await self.repository.update(conversation: conversation)
+        }
     }
 
 //    func getSearchedRooms(query: String) -> [Conversation] {

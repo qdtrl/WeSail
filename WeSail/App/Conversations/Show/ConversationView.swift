@@ -41,16 +41,28 @@ struct ConversationView: View {
                 
                 Button(action: {
                     if !text.isEmpty {
-                        postMessage()
+                        var message = Message(
+                            id: UUID().uuidString,
+                            user: authService.currentUser!,
+                            text: text,
+                            date: Date(),
+                            isRead: false)
+                        conversationsVM.post(message: message)
                     }
                 }) {
-                    Image(systemName: "paperplane.fill")
-                        .foregroundColor(.white)
-                        .frame(width: 37, height: 37)
-                        .background(text.isEmpty ? Color.gray : Color.blue)
-                        .clipShape(RoundedRectangle(cornerRadius: 15, style: .continuous))
-                    
-                    
+                    if conversationsVM.isLoadingMessage {
+                        ProgressView()
+                            .progressViewStyle(CircularProgressViewStyle(tint: .white))
+                            .frame(width: 37, height: 37)
+                            .background(Color.blue)
+                            .clipShape(RoundedRectangle(cornerRadius: 15, style: .continuous))
+                    } else {
+                        Image(systemName: "paperplane.fill")
+                            .foregroundColor(.white)
+                            .frame(width: 37, height: 37)
+                            .background(text.isEmpty ? Color.gray : Color.blue)
+                            .clipShape(RoundedRectangle(cornerRadius: 15, style: .continuous))
+                    }
                 }
                 .disabled(text.isEmpty)
                      
@@ -60,7 +72,8 @@ struct ConversationView: View {
             .navigationBarTitleDisplayMode(.inline)
             .navigationBarItems(leading: navBarLeadingBtn, trailing: navBarTrailingBtn)
             .onAppear {
-                conversationsVM.markAsRead(conversation: conversation)
+                conversationsVM.show(conversationId: conversation.id)
+                conversationsVM.markLastMessageAsRead(user: authService.currentUser!, conversation: conversation)
             }
         }
     }
@@ -91,10 +104,6 @@ struct ConversationView: View {
                 scrollReader.scrollTo(messageId, anchor: anchor)
             }
         }
-    }
-    
-    func postMessage() {
-        conversationsVM.postMessage(text: text, user: authService.currentUser!,  in: conversation)
     }
     
     let columns = [GridItem(.flexible(minimum: 10))]

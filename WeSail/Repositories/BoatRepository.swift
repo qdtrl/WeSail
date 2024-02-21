@@ -14,7 +14,7 @@ protocol BoatRepositoryProtocol {
     func index() async throws -> [Boat]
     func create(boat: Boat) async throws
     func update(boat: Boat) async throws
-    func delete(id: String) async throws
+    func delete(boat: Boat) async throws
 }
 
 final class BoatRepository:BoatRepositoryProtocol {
@@ -36,7 +36,8 @@ final class BoatRepository:BoatRepositoryProtocol {
     }
 
    func create(boat: Boat) async throws {
-        let _ = try collection.addDocument(from: boat)
+        let res = try collection.addDocument(from: boat)
+       print(res)
     }
     
     func update(boat: Boat) async throws {
@@ -44,8 +45,8 @@ final class BoatRepository:BoatRepositoryProtocol {
         try document.setData(from: boat)
     }
     
-    func delete(id: String) async throws {
-        let document = document(id: id)
+    func delete(boat: Boat) async throws {
+        let document = document(id: boat.id)
         try await document.delete()
     }
     

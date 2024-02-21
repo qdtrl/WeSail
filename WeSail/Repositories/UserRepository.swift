@@ -14,7 +14,7 @@ protocol UserRepositoryProtocol {
     func index() async throws -> [User]
     func show(id: String) async throws -> User
     func update(user: User) async throws
-    func delete(id: String) async throws
+    func delete(user: User) async throws
     func events(userId: String) async throws -> [Event]
     func boats(userId: String) async throws -> [Boat]
     func images(userId: String) async throws -> [String]
@@ -50,8 +50,8 @@ final class UserRepository: UserRepositoryProtocol{
         try document.setData(from: user)
     }
     
-    func delete(id: String) async throws {
-        let document = document(id: id)
+    func delete(user: User) async throws {
+        let document = document(id: user.id)
         try await document.delete()
     }
     

@@ -15,14 +15,18 @@ struct User: Codable, Identifiable, Hashable {
     let lastName: String
     let image: String
     let boats: [Boat]?
+    let followers: [User]?
+    let subscribers: [User]?
     
     init(
-     id: String,
-     email: String,
-     firstName: String,
-     lastName: String,
-     image: String,
-     boats: [Boat]? = nil
+        id: String,
+        email: String,
+        firstName: String,
+        lastName: String,
+        image: String,
+        boats: [Boat]? = nil,
+        followers: [User]? = nil,
+        subscribers: [User]? = nil
     ) {
         self.id = id
         self.email = email
@@ -30,6 +34,8 @@ struct User: Codable, Identifiable, Hashable {
         self.lastName = lastName
         self.image = image
         self.boats = boats
+        self.followers = followers
+        self.subscribers = subscribers
     }
     
     enum CodingKeys: String, CodingKey {
@@ -39,6 +45,8 @@ struct User: Codable, Identifiable, Hashable {
         case lastName = "last_name"
         case image
         case boats
+        case followers
+        case subscribers
     }
     
     init(from decoder: Decoder) throws {
@@ -49,6 +57,8 @@ struct User: Codable, Identifiable, Hashable {
         self.lastName = try container.decode(String.self, forKey: .lastName)
         self.image = try container.decode(String.self, forKey: .image)
         self.boats = try container.decodeIfPresent([Boat].self, forKey: .boats)
+        self.followers = try container.decodeIfPresent([User].self, forKey: .followers)
+        self.subscribers = try container.decodeIfPresent([User].self, forKey: .subscribers)
     }
     
     func encode(to encoder: Encoder) throws {
@@ -58,6 +68,9 @@ struct User: Codable, Identifiable, Hashable {
         try container.encode(self.firstName, forKey: .firstName)
         try container.encode(self.lastName, forKey: .lastName)
         try container.encode(self.image, forKey: .image)
+        try container.encodeIfPresent(self.boats, forKey: .boats)
+        try container.encodeIfPresent(self.followers, forKey: .followers)
+        try container.encodeIfPresent(self.subscribers, forKey: .subscribers)
     }
     
     

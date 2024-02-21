@@ -26,7 +26,7 @@ struct ProfileView: View {
                             Spacer()
                             
                             VStack {
-                                Text("\(user.events.count)")
+                                Text("\(usersVM.events.count)")
                                     .bold()
                                 Text("Events")
                             }

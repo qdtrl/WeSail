@@ -27,7 +27,6 @@ class BoatsViewModel: ObservableObject {
     }
 
     func create(_ boat: Boat) {
-        
         Task { @MainActor in
             self.isLoading = true
            
@@ -44,7 +43,7 @@ class BoatsViewModel: ObservableObject {
         Task { @MainActor in
             self.isLoading = true
 
-            try await self.repository.delete(id: boat.id)
+            try await self.repository.delete(boat: boat)
             
             self.isLoading = false
         }

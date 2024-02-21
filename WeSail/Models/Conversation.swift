@@ -11,10 +11,10 @@ struct Conversation: Codable, Identifiable, Hashable {
     let id: String
     let name: String
     let image: String
-    let users: [User]?
+    let users: [User]
     var messages: [Message]?
 
-    init(id: String, name: String, image: String, users: [User]? = nil, messages: [Message]? = nil) {
+    init(id: String, name: String, image: String, users: [User], messages: [Message]? = nil) {
         self.id = id
         self.name = name
         self.image = image
@@ -31,7 +31,7 @@ struct Conversation: Codable, Identifiable, Hashable {
         id = try container.decode(String.self, forKey: .id)
         name = try container.decode(String.self, forKey: .name)
         image = try container.decode(String.self, forKey: .image)
-        users = try container.decodeIfPresent([User].self, forKey: .users)
+        users = try container.decode([User].self, forKey: .users)
         messages = try container.decodeIfPresent([Message].self, forKey: .messages)
     }
 
