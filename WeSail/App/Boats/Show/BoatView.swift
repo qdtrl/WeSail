@@ -36,14 +36,14 @@ struct BoatView: View {
                             Color.yellow.opacity(0.2)
                         }
                     }
-                    .frame(width: 140, height: 140)
+                    .frame(width: 140, height: 100)
                     .clipShape(RoundedRectangle(cornerRadius: 15, style: .continuous))
 
                     Spacer()
                     VStack {
                         Text("\(boat.events?.count ?? 0)")
                             .bold()
-                        Text("Events")
+                        Text("Evènements")
                     }
                     Spacer()
                     VStack {
@@ -64,7 +64,7 @@ struct BoatView: View {
                         Text("\(boat.number)")
                             .font(.caption)
                         Spacer()
-                        Text("\(boat.club)")
+                        Text("Club: \(boat.club)")
                     }
                 }
 
@@ -72,8 +72,8 @@ struct BoatView: View {
                     HStack {
                         Spacer()
                         
-                        Button(action: {}) {
-                            Text("Calendrier")
+                        NavigationLink(destination: AddBoatImageView()) {
+                            Text("+ Image")
                         }
                         .frame(width: 120)
                         .padding(.horizontal)
@@ -84,8 +84,8 @@ struct BoatView: View {
                         
                         Spacer()
                         
-                        Button(action: {}) {
-                            Text("Conversation")
+                        NavigationLink(destination: AddBoatEvent()) {
+                            Text("+ Evènement")
                         }
                         .frame(width: 120)
                         .padding(.horizontal)
@@ -187,13 +187,20 @@ struct BoatView: View {
             
             switch index {
             case 0:
+                if let events = boat.events {
+                    EventsView()
+                } else {
+                    Text("Pas d'évènements")
+                        .padding(.vertical, 20)
+                }
+            case 1:
                 if let images = boat.images {
                     PicturesView(pictures: images)
                 } else {
                     Text("Pas d'images")
                         .padding(.vertical, 20)
                 }
-            case 1:
+            case 2:
                 if boat.crew.count > 0 {
 //                    CrewView(crewIds: crew)
                 } else {

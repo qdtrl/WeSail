@@ -1,5 +1,5 @@
 //
-//  SearchBoatView.swift
+//  AddBoatImageView.swift
 //  WeSail
 //
 //  Created by Quentin Touroul on 17/04/2024.
@@ -7,12 +7,12 @@
 
 import SwiftUI
 
-struct SearchBoatView: View {
+struct AddBoatImageView: View {
     var body: some View {
-        Text("Recherche bateaux")
+        Text("Nouvelle Image")
     }
 }
 
 #Preview {
-    SearchBoatView()
+    AddBoatImageView()
 }
