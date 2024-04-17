@@ -15,49 +15,60 @@ struct BoatsView: View {
     var body: some View {
             VStack {
                 if boatsVM.isLoading {
+                    Spacer()
                     ProgressView()
                         .progressViewStyle(CircularProgressViewStyle())
                         .foregroundColor(.black)
-                        .opacity(0.2)
+                        .opacity(0.6)
                         .accessibility(identifier: "loading")
+                    Spacer()
                 } else {
-                    switch boatsVM.boats.count {
-                    case 0:
-                        Text("Ajoutez un bateau ou rejoignez un équipage")
-                            .multilineTextAlignment(.center)
-                            .accessibility(identifier: "noBoat")
-                    default:
-                        ScrollView(showsIndicators: false) {
-                            LazyVGrid(columns: columns, spacing: 10) {
-                                ForEach(boatsVM.boats) { boat in
-                                    NavigationLink(value: boat) {
-                                        BoatRow(boat: boat)
-                                            .frame(maxWidth: .infinity, minHeight: 300)
-                                            .accessibility(identifier: "boatCell")
-                                    }
-                                }
-                            }
-                            .padding(.horizontal, 10)
-                            .accessibility(identifier: "boatsGrid")
-                            .navigationDestination(for: Boat.self) { boat in
-                                BoatView(boat: boat)
-                            }
-                            .navigationTitle("Mes Bateaux")
-                            .navigationBarTitleDisplayMode(.inline)
-                            .toolbar {
-                                ToolbarItem(placement: .navigationBarTrailing) {
-                                    NavigationLink(destination: CreateBoatView()) {
-                                        Image(systemName: "plus")
-                                    }
+                    ScrollView(showsIndicators: false) {
+                        LazyVGrid(columns: columns, spacing: 10) {
+                            ForEach(boatsVM.boats) { boat in
+                                NavigationLink(value: boat) {
+                                    BoatRow(boat: boat)
+                                        .frame(maxWidth: .infinity, minHeight: 300)
+                                        .accessibility(identifier: "boatCell")
                                 }
                             }
                         }
-                        .foregroundColor(.black)
-                        
+                        .padding(.horizontal, 10)
+                        .accessibility(identifier: "boatsGrid")
+                        .navigationDestination(for: Boat.self) { boat in
+                            BoatView(boat: boat)
+                        }
+                        .navigationTitle("Mes Bateaux")
+                        .navigationBarTitleDisplayMode(.inline)
+                        .toolbar {
+                            ToolbarItem(placement: .navigationBarTrailing) {
+                                NavigationLink(destination: CreateBoatView()) {
+                                    Image(systemName: "plus")
+                                }
+                            }
+                        }
                     }
+                    .foregroundColor(.black)
+                        
+                    
+                    Spacer()
+
+                    HStack {
+                        Spacer()
+
+                        NavigationLink(destination: SearchBoatView()) {
+                            Text("Rechercher un bateau")
+                                .font(.headline)
+                                .padding()
+                                .background(Color.blue)
+                                .foregroundColor(.white)
+                                .cornerRadius(10)
+                                .accessibility(identifier: "searchBoatButton")
+                        }
+                    }
+                    .padding(.horizontal, 20)
+                    .padding(.bottom, 40)
                 }
-                
-                Spacer()
             }
             .onAppear() {
                 boatsVM.index()
@@ -120,7 +131,7 @@ struct BoatRow:View {
                         .font(.subheadline)
                 }
 
-                Text("\(boat.crew?.count ?? 0) membres")
+                Text("\(boat.crew.count) membres")
                         .font(.subheadline)
             }
         }

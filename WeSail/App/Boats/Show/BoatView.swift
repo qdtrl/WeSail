@@ -47,7 +47,7 @@ struct BoatView: View {
                     }
                     Spacer()
                     VStack {
-                        Text("\(boat.crew?.count ?? 0)")
+                        Text("\(boat.crew.count)")
                             .bold()
                         Text("Membres")
                     }
@@ -68,7 +68,7 @@ struct BoatView: View {
                     }
                 }
 
-                if boat.crew!.contains(authService.currentUser!) {
+                if boat.crew.contains(authService.currentUser!.id) {
                     HStack {
                         Spacer()
                         
@@ -194,8 +194,8 @@ struct BoatView: View {
                         .padding(.vertical, 20)
                 }
             case 1:
-                if let crew = boat.crew {
-                    CrewView(crew: crew)
+                if boat.crew.count > 0 {
+//                    CrewView(crewIds: crew)
                 } else {
                     Text("Pas de membres")
                         .padding(.vertical, 20)
@@ -207,7 +207,7 @@ struct BoatView: View {
         }
         .accessibility(identifier: "boatView")
         .toolbar {
-            if boat.owners.contains(authService.currentUser!) {
+            if boat.owners.contains(authService.currentUser!.id) {
                 ToolbarItem(placement: .navigationBarTrailing) {
                     NavigationLink(destination: MenuBoatView(boat: boat)) {
                         Image(systemName: "ellipsis")

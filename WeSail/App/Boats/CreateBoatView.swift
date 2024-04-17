@@ -58,11 +58,11 @@ struct CreateBoatView: View {
                         id: UUID().uuidString,
                         name: name,
                         type: type,
-                        number: Int(number) ?? 0,
+                        number: number,
                         club: club,
                         image: "https://www.manche.fr/wp-content/uploads/2023/03/manche-sport-evidence-nautique-cd50-ddaguier-04.jpg",
-                        owners: [authService.currentUser!],
-                        crew: [authService.currentUser!]
+                        owners: [authService.currentUser!.id],
+                        crew: [authService.currentUser!.id]
                     )
                     
                     Task {

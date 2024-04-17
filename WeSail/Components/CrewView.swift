@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct CrewView: View {
+    let crewIds: [String]
     let crew: [User]
     var body: some View {
         VStack(alignment: .leading) {

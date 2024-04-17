@@ -23,6 +23,7 @@
 		3C2957C22B7D43BE00BBDD4F /* BoatsListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C2957C12B7D43BE00BBDD4F /* BoatsListView.swift */; };
 		3C2957CA2B851E6B00BBDD4F /* CreateConversationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C2957C92B851E6B00BBDD4F /* CreateConversationView.swift */; };
 		3C2957CE2B851ECE00BBDD4F /* ConversationRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C2957CD2B851ECE00BBDD4F /* ConversationRowView.swift */; };
+		3C38C3C62BD0263A006C82F4 /* SearchBoatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C38C3C52BD0263A006C82F4 /* SearchBoatView.swift */; };
 		3C46FBBE2B152A78003B0884 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C46FBBD2B152A78003B0884 /* ProfileView.swift */; };
 		3C46FBC02B152BAF003B0884 /* BoatsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C46FBBF2B152BAE003B0884 /* BoatsView.swift */; };
 		3C524A852B1B72CA000B1667 /* PicturesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C524A842B1B72CA000B1667 /* PicturesView.swift */; };
@@ -103,6 +104,7 @@
 		3C2957C12B7D43BE00BBDD4F /* BoatsListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoatsListView.swift; sourceTree = "<group>"; };
 		3C2957C92B851E6B00BBDD4F /* CreateConversationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateConversationView.swift; sourceTree = "<group>"; };
 		3C2957CD2B851ECE00BBDD4F /* ConversationRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationRowView.swift; sourceTree = "<group>"; };
+		3C38C3C52BD0263A006C82F4 /* SearchBoatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBoatView.swift; sourceTree = "<group>"; };
 		3C46FBBD2B152A78003B0884 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		3C46FBBF2B152BAE003B0884 /* BoatsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoatsView.swift; sourceTree = "<group>"; };
 		3C524A842B1B72CA000B1667 /* PicturesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PicturesView.swift; sourceTree = "<group>"; };
@@ -345,6 +347,7 @@
 				3C2957C42B7D49EA00BBDD4F /* Show */,
 				3CA01FF02B61938E00A1B908 /* CreateBoatView.swift */,
 				3C2957C12B7D43BE00BBDD4F /* BoatsListView.swift */,
+				3C38C3C52BD0263A006C82F4 /* SearchBoatView.swift */,
 			);
 			path = Boats;
 			sourceTree = "<group>";
@@ -447,6 +450,7 @@
 				3C17C86A2B14D60B00C74788 /* Sources */,
 				3C17C86B2B14D60B00C74788 /* Frameworks */,
 				3C17C86C2B14D60B00C74788 /* Resources */,
+				3C38C3C42BD0250F006C82F4 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -578,6 +582,23 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		3C38C3C42BD0250F006C82F4 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\nexport IDEPreferLogStreaming=YES\n";
+		};
 		6DA1C14FFF013444FFBFD1D6 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -653,6 +674,7 @@
 				3C524A8B2B1B8021000B1667 /* Event.swift in Sources */,
 				3C524A8F2B1B92D2000B1667 /* CrewView.swift in Sources */,
 				3C524A892B1B7D30000B1667 /* Boat.swift in Sources */,
+				3C38C3C62BD0263A006C82F4 /* SearchBoatView.swift in Sources */,
 				3CA01FF12B61938E00A1B908 /* CreateBoatView.swift in Sources */,
 				3C524A8D2B1B8207000B1667 /* BoatView.swift in Sources */,
 				3C2957CE2B851ECE00BBDD4F /* ConversationRowView.swift in Sources */,
@@ -857,6 +879,7 @@
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -893,6 +916,7 @@
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

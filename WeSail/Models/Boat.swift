@@ -11,11 +11,11 @@ struct Boat: Codable, Identifiable, Hashable {
     let id: String
     let name: String
     let type: String
-    let number: Int
+    let number: String
     let club: String
     let image: String
-    let owners: [User]
-    let crew: [User]?
+    let owners: [String]
+    let crew: [String]
     let events: [Event]?
     let images: [String]?
 
@@ -23,11 +23,11 @@ struct Boat: Codable, Identifiable, Hashable {
      id: String,
      name: String,
      type: String,
-     number: Int,
+     number: String,
      club: String,
      image: String,
-     owners: [User],
-     crew: [User]? = nil,
+     owners: [String],
+     crew: [String],
      events: [Event]? = nil,
      images: [String]? = nil
     ) {
@@ -62,10 +62,10 @@ struct Boat: Codable, Identifiable, Hashable {
         self.name = try container.decode(String.self, forKey: .name)
         self.type = try container.decode(String.self, forKey: .type)
         self.club = try container.decode(String.self, forKey: .club)
-        self.number = try container.decode(Int.self, forKey: .number)
+        self.number = try container.decode(String.self, forKey: .number)
         self.image = try container.decode(String.self, forKey: .image)
-        self.owners = try container.decode([User].self, forKey: .owners)
-        self.crew = try container.decodeIfPresent([User].self, forKey: .crew)
+        self.owners = try container.decode([String].self, forKey: .owners)
+        self.crew = try container.decode([String].self, forKey: .crew)
         self.events = try container.decodeIfPresent([Event].self, forKey: .events)
         self.images = try container.decodeIfPresent([String].self, forKey: .images)
     }
@@ -79,7 +79,7 @@ struct Boat: Codable, Identifiable, Hashable {
         try container.encode(self.number, forKey: .number)
         try container.encode(self.image, forKey: .image)
         try container.encode(self.owners, forKey: .owners)
-        try container.encodeIfPresent(self.crew, forKey: .crew)
+        try container.encode(self.crew, forKey: .crew)
         try container.encodeIfPresent(self.events, forKey: .events)
         try container.encodeIfPresent(self.images, forKey: .images)
     }
