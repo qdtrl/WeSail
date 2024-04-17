@@ -187,20 +187,13 @@ struct BoatView: View {
             
             switch index {
             case 0:
-                if let events = boat.events {
-                    EventsListView(events: events)
-                } else {
-                    Text("Pas d'évènements")
-                        .padding(.vertical, 20)
-                }
-            case 1:
                 if let images = boat.images {
                     PicturesView(pictures: images)
                 } else {
                     Text("Pas d'images")
                         .padding(.vertical, 20)
                 }
-            case 2:
+            case 1:
                 if let crew = boat.crew {
                     CrewView(crew: crew)
                 } else {

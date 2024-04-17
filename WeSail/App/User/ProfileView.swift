@@ -155,17 +155,8 @@ struct ProfileView: View {
                     }
                     .padding(.horizontal)
                     .padding(.top)
+                    BoatsListView(boats: usersVM.boats)
                     
-                    switch index {
-                    case 0:
-                        EventsListView(events: usersVM.events)
-                    case 1:
-                        PicturesView(pictures: usersVM.images)
-                    case 2:
-                        BoatsListView(boats: usersVM.boats)
-                    default:
-                        Text("Événements")
-                    }
                 }
                 .accessibility(identifier: "profileView")
                 .toolbar {

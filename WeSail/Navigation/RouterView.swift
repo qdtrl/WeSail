@@ -15,14 +15,6 @@ struct RouterView: View {
             if $authService.userSession != nil, authService.currentUser != nil, let user = authService.currentUser {
                 TabView {
                     NavigationStack {
-                        FeedsView()
-                    }
-                    .tabItem {
-                        Image(systemName: "popcorn")
-                            .accessibility(identifier: "eventsTab")
-                    }
-                    
-                    NavigationStack {
                         BoatsView()
                     }
                     .tabItem {
