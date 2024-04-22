@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import UIKit
 
 class BoatsViewModel: ObservableObject {
     var repository:BoatRepositoryProtocol
@@ -35,7 +36,14 @@ class BoatsViewModel: ObservableObject {
             self.boats.append(boat)
 
             self.isLoading = false
+        }
+    }
 
+    func uploadImageToBoat(_ boat: Boat, _ image: UIImage) {
+        Task { @MainActor in
+
+            try await self.repository.uploadImage(boat: boat, image: image)
+            
         }
     }
     
@@ -59,7 +67,8 @@ class BoatsViewModel: ObservableObject {
                 UserViewModel().mockData[4].id,
                 UserViewModel().mockData[5].id
             ],
-            events: []
+            events: [],
+            images: []   
         ),
             Boat(id: "2", name: "Les Rapetous", type: "Muscadet", number: "30034", club: "Yacht Club Granville", image: "https://media01.adonnante.com/media/2016/06/monotype-national-muscadet-2016-pierrick-contin-1281-1168x750.jpg", owners: [UserViewModel().mockData[0].id], crew: [
                 UserViewModel().mockData[0].id,
@@ -67,7 +76,8 @@ class BoatsViewModel: ObservableObject {
                 UserViewModel().mockData[2].id,
                 UserViewModel().mockData[3].id,
             ],
-            events: []
+            events: [],
+            images: []
         ),
             Boat(id: "3", name: "L'EPAD", type: "Tracteur", number: "32114", club: "Yacht Club Granville", image: "https://www.boat-specs.com/img/boat/199/jeanneau-sun-fast-3200-ext-2.jpg", owners: [UserViewModel().mockData[0].id], crew: [
                 UserViewModel().mockData[0].id,
@@ -77,14 +87,16 @@ class BoatsViewModel: ObservableObject {
                 UserViewModel().mockData[4].id,
                 UserViewModel().mockData[5].id
             ],
-            events: []
+            events: [],
+            images: []
         ),
             Boat(id: "4", name: "Manche Evidence", type: "Class 40", number: "33323", club: "Yacht Club Granville", image: "https://www.manche.fr/wp-content/uploads/2023/03/manche-sport-evidence-nautique-cd50-ddaguier-04.jpg", owners: [UserViewModel().mockData[0].id], crew: [
                 UserViewModel().mockData[0].id,
                 UserViewModel().mockData[1].id,
                 UserViewModel().mockData[2].id,
             ],
-            events: []
+            events: [],
+            images: []
         ),
             Boat(id: "5", name: "Calisto", type: "SunFast 3200", number: "32222", club: "Yacht Club Granville", image: "https://www.yachts.co/wp-content/gallery/jeanneau-sun-fast-3200-r2/Jeanneau-Sun-Fast-3200-R2-Exterior-Network-Yachts14.JPG", owners: [UserViewModel().mockData[0].id], crew: [
                 UserViewModel().mockData[0].id,
@@ -94,7 +106,8 @@ class BoatsViewModel: ObservableObject {
                 UserViewModel().mockData[4].id,
                 UserViewModel().mockData[5].id
             ], 
-            events: []
+            events: [],
+            images: []
         ),
     ]
     

@@ -8,16 +8,16 @@
 import Foundation
 
 struct Boat: Codable, Identifiable, Hashable {
-    let id: String
-    let name: String
-    let type: String
-    let number: String
-    let club: String
-    let image: String
-    let owners: [String]
-    let crew: [String]
-    let events: [Event]?
-    let images: [String]?
+    var id: String
+    var name: String
+    var type: String
+    var number: String
+    var club: String
+    var image: String
+    var owners: [String]
+    var crew: [String]
+    var events: [String]
+    var images: [String]
 
     init(
      id: String,
@@ -28,8 +28,8 @@ struct Boat: Codable, Identifiable, Hashable {
      image: String,
      owners: [String],
      crew: [String],
-     events: [Event]? = nil,
-     images: [String]? = nil
+     events: [String],
+     images: [String]
     ) {
         self.id = id
         self.name = name
@@ -66,8 +66,8 @@ struct Boat: Codable, Identifiable, Hashable {
         self.image = try container.decode(String.self, forKey: .image)
         self.owners = try container.decode([String].self, forKey: .owners)
         self.crew = try container.decode([String].self, forKey: .crew)
-        self.events = try container.decodeIfPresent([Event].self, forKey: .events)
-        self.images = try container.decodeIfPresent([String].self, forKey: .images)
+        self.events = try container.decode([String].self, forKey: .events)
+        self.images = try container.decode([String].self, forKey: .images)
     }
         
     func encode(to encoder: Encoder) throws {
@@ -80,8 +80,8 @@ struct Boat: Codable, Identifiable, Hashable {
         try container.encode(self.image, forKey: .image)
         try container.encode(self.owners, forKey: .owners)
         try container.encode(self.crew, forKey: .crew)
-        try container.encodeIfPresent(self.events, forKey: .events)
-        try container.encodeIfPresent(self.images, forKey: .images)
+        try container.encode(self.events, forKey: .events)
+        try container.encode(self.images, forKey: .images)
     }
     
 }

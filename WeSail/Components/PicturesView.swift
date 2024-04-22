@@ -12,13 +12,34 @@ struct PicturesView: View {
     
     var body: some View {
         LazyVGrid(columns: [GridItem(.adaptive(minimum: 100, maximum: 200), spacing: 3)], spacing: 3) {
-            ForEach(0 ..< 100) { _ in
-                Image(systemName: "sailboat")
-                    .resizable()
-                    .aspectRatio(contentMode: .fit)
-                    .scaledToFit()
-                    .background(.blue.opacity(0.2))
-                    .clipped()
+            ForEach(pictures, id: \.self) { picture in
+                AsyncImage(url: URL(string: picture)) { phase in
+                    switch phase {
+                    case .empty:
+                        VStack {
+                            Spacer()
+                            ProgressView()
+                                .progressViewStyle(CircularProgressViewStyle())
+                                .foregroundColor(.gray)
+                                .opacity(0.2)
+                                .accessibility(identifier: "loadingImage")
+                            Spacer()
+                        }
+                        .frame(maxWidth: .infinity)
+                        .background(Color.gray.opacity(0.2))
+                    case .success(let image):
+                        image
+                            .resizable()
+                            .aspectRatio(contentMode: .fit)
+                            .scaledToFit()
+                            .clipped()
+                    case .failure(_):
+                        Color.red.opacity(0.2)
+                    @unknown default:
+                        Color.yellow.opacity(0.2)
+                    }
+                }
+                .frame(maxWidth: .infinity)
             }
         }
         .accessibility(identifier: "picturesGrid")

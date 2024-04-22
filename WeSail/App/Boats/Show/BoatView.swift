@@ -41,7 +41,7 @@ struct BoatView: View {
 
                     Spacer()
                     VStack {
-                        Text("\(boat.events?.count ?? 0)")
+                        Text("\(boat.events.count)")
                             .bold()
                         Text("Evènements")
                     }
@@ -72,7 +72,7 @@ struct BoatView: View {
                     HStack {
                         Spacer()
                         
-                        NavigationLink(destination: AddBoatImageView()) {
+                        NavigationLink(destination: AddBoatImageView(boat: boat)) {
                             Text("+ Image")
                         }
                         .frame(width: 120)
@@ -187,15 +187,16 @@ struct BoatView: View {
             
             switch index {
             case 0:
-                if let events = boat.events {
+                if boat.events.count > 0 {
                     EventsView()
                 } else {
                     Text("Pas d'évènements")
                         .padding(.vertical, 20)
                 }
             case 1:
-                if let images = boat.images {
-                    PicturesView(pictures: images)
+                if boat.images.count > 0 {
+                    PicturesView(pictures: boat.images)
+                    .background(Color.gray.opacity(0.2))
                 } else {
                     Text("Pas d'images")
                         .padding(.vertical, 20)

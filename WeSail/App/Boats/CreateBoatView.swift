@@ -62,7 +62,9 @@ struct CreateBoatView: View {
                         club: club,
                         image: "https://www.manche.fr/wp-content/uploads/2023/03/manche-sport-evidence-nautique-cd50-ddaguier-04.jpg",
                         owners: [authService.currentUser!.id],
-                        crew: [authService.currentUser!.id]
+                        crew: [authService.currentUser!.id],
+                        events: [],
+                        images: []
                     )
                     
                     Task {

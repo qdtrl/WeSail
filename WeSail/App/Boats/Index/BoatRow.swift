@@ -25,6 +25,7 @@ struct BoatRow:View {
                         Spacer()
                     }
                     .frame(maxWidth: .infinity)
+                    .frame(height: 260)
                     .background(Color.gray.opacity(0.2))
                 case .success(let image):
                     image
