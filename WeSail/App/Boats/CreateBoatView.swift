@@ -11,7 +11,9 @@ struct CreateBoatView: View {
     @Environment(\.presentationMode) var presentationMode
     @EnvironmentObject var boatsVM: BoatsViewModel
     @EnvironmentObject var authService: AuthService
-
+    @State private var inputImage: UIImage?
+    @State private var showingImagePicker = false
+    
     @State var name = ""
     @State var type = ""
     @State var number = ""
@@ -20,40 +22,73 @@ struct CreateBoatView: View {
 
     var body: some View {
         NavigationView {
-            VStack(spacing: 20) {
-                InputView(
-                    text: $name,
-                    title: "Nom",
-                    placeHolder: "Nom du bateau"
-                )
+            VStack {
+                Form {
+                    Section {
+                        InputView(
+                            text: $name,
+                            title: "Nom",
+                            placeHolder: "Nom du bateau"
+                        )
+                        
+                        InputView(
+                            text: $type,
+                            title: "Type",
+                            placeHolder: "Type de bateau"
+                        )
+                        
+                        InputView(
+                            text: $number,
+                            title: "Numéro",
+                            placeHolder: "Numéro de voile"
+                        )
+                        
+                        InputView(
+                            text: $club,
+                            title: "Yacht Club",
+                            placeHolder: "Club du bateau"
+                        )
+                    }
                     
-                InputView(
-                    text: $type,
-                    title: "Type",
-                    placeHolder: "Type de bateau"
-                )                    
-                
-                InputView(
-                    text: $number,
-                    title: "Numéro",
-                    placeHolder: "Numéro de voile"
-                )
-                
-                InputView(
-                    text: $club,
-                    title: "Yacht Club",
-                    placeHolder: "Club du bateau"
-                )
-
-                InputView(
-                    text: $image,
-                    title: "Image",
-                    placeHolder: "URL de l'image"
-                )
+                    Section {
+                        HStack {
+                            if let inputImage = inputImage {
+                                Image(uiImage: inputImage)
+                                    .resizable()
+                                    .aspectRatio(contentMode: .fill)
+                                    .scaledToFill()
+                                    .frame(width: 200, height: 160)
+                                    .clipped()
+                                
+                            } else {
+                                VStack {
+                                    Image(systemName: "photo")
+                                        .frame(width: 50, height: 50)
+                                        .foregroundColor(.gray)
+                                    Text("Aucune image sélectionnée")
+                                        .font(.caption)
+                                        .foregroundColor(.gray)
+                                }
+                                .frame(width: 200, height: 160)
+                            }
+                            
+                            Spacer()
+                            
+                            Button("Choisir une image") {
+                                self.showingImagePicker = true
+                            }
+                        }
+                        
+                    }
+                    
+                   
+                }
                 
                 Spacer()
-                    
+                
                 Button(action: {
+                    guard let image = inputImage else { return }
+                    
                     let boat = Boat(
                         id: UUID().uuidString,
                         name: name,
@@ -68,10 +103,11 @@ struct CreateBoatView: View {
                     )
                     
                     Task {
-                        boatsVM.create(boat)
+                        boatsVM.create(boat, image)
+                        
+                        self.presentationMode.wrappedValue.dismiss()
                     }
-
-                    self.presentationMode.wrappedValue.dismiss()
+                    
                 }) {
                     Text("Ajouter")
                         .foregroundColor(.white)
@@ -80,12 +116,11 @@ struct CreateBoatView: View {
                         .frame(width: UIScreen.main.bounds.width - 30)
                         .background(Color.blue)
                         .cornerRadius(10)
-                }
-                .padding(.vertical, 20)
-                
+                }.padding(.vertical)
             }
-            .padding(.horizontal, 20)
-            
+            .sheet(isPresented: $showingImagePicker) {
+                ImagePicker(image: self.$inputImage)
+            }
         }
         .navigationBarTitle("Ajouter un bateau", displayMode: .inline)
         .navigationBarBackButtonHidden(true)

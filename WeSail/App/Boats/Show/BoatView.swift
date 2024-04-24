@@ -84,7 +84,7 @@ struct BoatView: View {
                         
                         Spacer()
                         
-                        NavigationLink(destination: AddBoatEvent()) {
+                        NavigationLink(destination: AddBoatEvent(boat: boat)) {
                             Text("+ Evènement")
                         }
                         .frame(width: 120)
@@ -213,6 +213,7 @@ struct BoatView: View {
                     .padding(.vertical, 20)
             }
         }
+        .onAppear()
         .accessibility(identifier: "boatView")
         .toolbar {
             if boat.owners.contains(authService.currentUser!.id) {

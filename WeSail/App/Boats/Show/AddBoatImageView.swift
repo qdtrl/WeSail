@@ -6,7 +6,6 @@
 //
 
 import SwiftUI
-import SwiftUI
 import FirebaseStorage
 import UIKit
 
@@ -15,6 +14,7 @@ struct AddBoatImageView: View {
     @State private var inputImage: UIImage?
     @State private var showingImagePicker = false
     @EnvironmentObject var boatsVM: BoatsViewModel
+    @Environment(\.presentationMode) var presentationMode
 
     var body: some View {
         VStack {
@@ -55,6 +55,8 @@ struct AddBoatImageView: View {
                         
                         Task {
                             boatsVM.uploadImageToBoat(boat, image)
+                            
+                            self.presentationMode.wrappedValue.dismiss()
                         }
 
                     }
@@ -69,37 +71,3 @@ struct AddBoatImageView: View {
     }
 }
 
-struct ImagePicker: UIViewControllerRepresentable {
-    @Binding var image: UIImage?
-    @Environment(\.presentationMode) var presentationMode
-
-    class Coordinator: NSObject, UINavigationControllerDelegate, UIImagePickerControllerDelegate {
-        let parent: ImagePicker
-
-        init(_ parent: ImagePicker) {
-            self.parent = parent
-        }
-
-        func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-            if let uiImage = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
-                parent.image = uiImage
-            }
-
-            parent.presentationMode.wrappedValue.dismiss()
-        }
-    }
-
-    func makeCoordinator() -> Coordinator {
-        Coordinator(self)
-    }
-
-    func makeUIViewController(context: UIViewControllerRepresentableContext<ImagePicker>) -> UIImagePickerController {
-        let picker = UIImagePickerController()
-        picker.delegate = context.coordinator
-        return picker
-    }
-
-    func updateUIViewController(_ uiViewController: UIImagePickerController, context: UIViewControllerRepresentableContext<ImagePicker>) {
-
-    }
-}

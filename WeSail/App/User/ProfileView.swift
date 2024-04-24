@@ -48,54 +48,54 @@ struct ProfileView: View {
                         Text("Petite description des familles super longue pour voir ce ")
                         
                         
-                        if (user == authService.currentUser!) {
-                            HStack {
-                                Spacer()
-                                
-                                Button(action: {}) {
-                                    Text("Mon calendrier")
-                                    
-                                }
-                                .frame(width: 120)
-                                .padding(.horizontal)
-                                .padding(.vertical, 8)
-                                .foregroundColor(.black)
-                                .background(.thickMaterial)
-                                .clipShape(RoundedRectangle(cornerRadius: 15, style: .continuous))
-                                
-                                Spacer()
-                            }
-                        } else {
-                            HStack {
-                                Spacer()
-                                
-                                Button(action: {}) {
-                                    Text("Suivre")
-                                    
-                                }
-                                .frame(width: 120)
-                                .padding(.horizontal)
-                                .padding(.vertical, 8)
-                                .foregroundColor(.black)
-                                .background(.thickMaterial)
-                                .clipShape(RoundedRectangle(cornerRadius: 15, style: .continuous))
-                                
-                                Spacer()
-                                
-                                Button(action: {}) {
-                                    Text("Écrire")
-                                    
-                                }
-                                .frame(width: 120)
-                                .padding(.horizontal)
-                                .padding(.vertical, 8)
-                                .foregroundColor(.black)
-                                .background(.thickMaterial)
-                                .clipShape(RoundedRectangle(cornerRadius: 15, style: .continuous))
-                                
-                                Spacer()
-                            }
-                        }
+//                        if (user == authService.currentUser) {
+//                            HStack {
+//                                Spacer()
+//                                
+//                                Button(action: {}) {
+//                                    Text("Mon calendrier")
+//                                    
+//                                }
+//                                .frame(width: 120)
+//                                .padding(.horizontal)
+//                                .padding(.vertical, 8)
+//                                .foregroundColor(.black)
+//                                .background(.thickMaterial)
+//                                .clipShape(RoundedRectangle(cornerRadius: 15, style: .continuous))
+//                                
+//                                Spacer()
+//                            }
+//                        } else {
+//                            HStack {
+//                                Spacer()
+//                                
+//                                Button(action: {}) {
+//                                    Text("Suivre")
+//                                    
+//                                }
+//                                .frame(width: 120)
+//                                .padding(.horizontal)
+//                                .padding(.vertical, 8)
+//                                .foregroundColor(.black)
+//                                .background(.thickMaterial)
+//                                .clipShape(RoundedRectangle(cornerRadius: 15, style: .continuous))
+//                                
+//                                Spacer()
+//                                
+//                                Button(action: {}) {
+//                                    Text("Écrire")
+//                                    
+//                                }
+//                                .frame(width: 120)
+//                                .padding(.horizontal)
+//                                .padding(.vertical, 8)
+//                                .foregroundColor(.black)
+//                                .background(.thickMaterial)
+//                                .clipShape(RoundedRectangle(cornerRadius: 15, style: .continuous))
+//                                
+//                                Spacer()
+//                            }
+//                        }
                         
                         
                         HStack {

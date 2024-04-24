@@ -27,11 +27,11 @@ class BoatsViewModel: ObservableObject {
         }
     }
 
-    func create(_ boat: Boat) {
+    func create(_ boat: Boat, _ image: UIImage) {
         Task { @MainActor in
             self.isLoading = true
            
-            try await self.repository.create(boat: boat)
+            try await self.repository.create(boat: boat, image: image)
             
             self.boats.append(boat)
 
@@ -44,6 +44,16 @@ class BoatsViewModel: ObservableObject {
 
             try await self.repository.uploadImage(boat: boat, image: image)
             
+        }
+    }
+
+    func addEventToBoat(_ boat: Boat, _ name: String, _ startDate: Date, _ endDate: Date) {
+        Task { @MainActor in
+            self.isLoading = true
+
+            try await self.repository.addEvent(boat: boat, name: name, startDate: startDate, endDate: endDate)
+            
+            self.isLoading = false
         }
     }
     
