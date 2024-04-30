@@ -41,6 +41,11 @@ struct BoatsView: View {
                         .navigationTitle("Mes Bateaux")
                         .navigationBarTitleDisplayMode(.inline)
                         .toolbar {
+                            ToolbarItem(placement: .navigationBarLeading) {
+                                NavigationLink(destination: SearchBoatView()) {
+                                    Image(systemName: "magnifyingglass")
+                                }
+                            }
                             ToolbarItem(placement: .navigationBarTrailing) {
                                 NavigationLink(destination: CreateBoatView()) {
                                     Image(systemName: "plus")
@@ -50,24 +55,6 @@ struct BoatsView: View {
                     }
                     .foregroundColor(.black)
                         
-                    
-                    Spacer()
-
-                    HStack {
-                        Spacer()
-
-                        NavigationLink(destination: SearchBoatView()) {
-                            Text("Rechercher un bateau")
-                                .font(.headline)
-                                .padding()
-                                .background(Color.blue)
-                                .foregroundColor(.white)
-                                .cornerRadius(10)
-                                .accessibility(identifier: "searchBoatButton")
-                        }
-                    }
-                    .padding(.horizontal, 20)
-                    .padding(.bottom, 40)
                 }
             }
             .onAppear() {

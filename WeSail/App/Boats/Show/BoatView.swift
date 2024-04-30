@@ -98,17 +98,6 @@ struct BoatView: View {
                     }
                 } else {
                     HStack {
-                        Spacer()
-                        
-                        Button(action: {}) {
-                            Text("Suivre")
-                        }
-                        .frame(width: 120)
-                        .padding(.horizontal)
-                        .padding(.vertical, 8)
-                        .foregroundColor(.black)
-                        .background(.thickMaterial)
-                        .clipShape(RoundedRectangle(cornerRadius: 15, style: .continuous))
                         
                         Spacer()
                         

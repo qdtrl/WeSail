@@ -77,46 +77,40 @@ struct CreateBoatView: View {
                             Button("Choisir une image") {
                                 self.showingImagePicker = true
                             }
+                            .font(.headline)
                         }
+
+                        HStack {
+                            Spacer()
                         
+                            Button(action: {
+                                guard let image = inputImage else { return }
+                                
+                                let boat = Boat(
+                                    id: UUID().uuidString,
+                                    name: name,
+                                    type: type,
+                                    number: number,
+                                    club: club,
+                                    image: "",
+                                    owners: [authService.currentUser!.id],
+                                    crew: [authService.currentUser!.id],
+                                    events: [],
+                                    images: []
+                                )
+                                
+                                Task {
+                                    boatsVM.create(boat, image)
+                                    
+                                    self.presentationMode.wrappedValue.dismiss()
+                                }
+                                
+                            }) {
+                                Text("Ajouter le bateau")
+                            }
+                        }
                     }
-                    
-                   
                 }
-                
-                Spacer()
-                
-                Button(action: {
-                    guard let image = inputImage else { return }
-                    
-                    let boat = Boat(
-                        id: UUID().uuidString,
-                        name: name,
-                        type: type,
-                        number: number,
-                        club: club,
-                        image: "https://www.manche.fr/wp-content/uploads/2023/03/manche-sport-evidence-nautique-cd50-ddaguier-04.jpg",
-                        owners: [authService.currentUser!.id],
-                        crew: [authService.currentUser!.id],
-                        events: [],
-                        images: []
-                    )
-                    
-                    Task {
-                        boatsVM.create(boat, image)
-                        
-                        self.presentationMode.wrappedValue.dismiss()
-                    }
-                    
-                }) {
-                    Text("Ajouter")
-                        .foregroundColor(.white)
-                        .fontWeight(.bold)
-                        .padding(.vertical)
-                        .frame(width: UIScreen.main.bounds.width - 30)
-                        .background(Color.blue)
-                        .cornerRadius(10)
-                }.padding(.vertical)
             }
             .sheet(isPresented: $showingImagePicker) {
                 ImagePicker(image: self.$inputImage)

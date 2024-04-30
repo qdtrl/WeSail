@@ -12,9 +12,9 @@ import FirebaseStorage
 
 protocol BoatRepositoryProtocol {
     func index() async throws -> [Boat]
-    func create(boat: Boat, image: UIImage) async throws
-    func uploadImage(boat: Boat, image: UIImage) async throws
-    func addEvent(boat: Boat, name: String, startDate: Date, endDate: Date) async throws
+    func create(boat: Boat, image: UIImage, completion: @escaping(_ boat: Boat) -> Void) async throws
+    func uploadImage(boat: Boat, image: UIImage, completion: @escaping(_ boat: Boat) -> Void) async throws
+    func addEvent(boat: Boat, name: String, startDate: Date, endDate: Date, completion: @escaping(_ boat: Boat) -> Void) async throws
     func update(boat: Boat) async throws
     func delete(boat: Boat) async throws
 }
@@ -28,7 +28,9 @@ final class BoatRepository:BoatRepositoryProtocol {
     }
     
     func index() async throws -> [Boat] {
+        
         let snapshot = try await collection.getDocuments()
+        
         var boats: [Boat] = []
         for document in snapshot.documents {
             var boat = try document.data(as: Boat.self)
@@ -38,7 +40,7 @@ final class BoatRepository:BoatRepositoryProtocol {
         return boats
     }
 
-    func create(boat: Boat, image: UIImage) async throws {
+    func create(boat: Boat, image: UIImage, completion: @escaping(_ boat: Boat) -> Void) async throws {
        let storageRef = storage.reference()
        let imageRef = storageRef.child("images/boats/cover/\(UUID().uuidString).jpg")
        guard let data = image.jpegData(compressionQuality: 0.75) else {
@@ -48,7 +50,6 @@ final class BoatRepository:BoatRepositoryProtocol {
        let metadata = StorageMetadata()
        metadata.contentType = "image/jpeg"
        
-       let document = collection.document(boat.id)
        imageRef.putData(data, metadata: metadata).observe(.success) { snapshot in
            imageRef.downloadURL { [self] (url, error) in
                Task {
@@ -63,15 +64,17 @@ final class BoatRepository:BoatRepositoryProtocol {
                            } catch {
                                throw NSError()
                            }
+                           completion(boatUpdate)
                        }
                    }
+                   
                }
            }
        }
-       
+        
     }
 
-    func uploadImage(boat: Boat, image: UIImage) async throws {
+    func uploadImage(boat: Boat, image: UIImage, completion: @escaping(_ boat: Boat) -> Void) async throws {
         let storageRef = storage.reference()
         let imageRef = storageRef.child("images/boats/\(boat.id)/\(UUID().uuidString).jpg")
         guard let data = image.jpegData(compressionQuality: 0.75) else {
@@ -94,6 +97,9 @@ final class BoatRepository:BoatRepositoryProtocol {
                             } catch {
                                 throw NSError()
                             }
+                            var boatUpdate = boat
+                            boatUpdate.images.append(url)
+                            completion(boatUpdate)
                         }
                     }
                 }
@@ -101,10 +107,17 @@ final class BoatRepository:BoatRepositoryProtocol {
         }
     }
 
-    func addEvent(boat: Boat, name: String, startDate: Date, endDate: Date) async throws {
+    func addEvent(boat: Boat, name: String, startDate: Date, endDate: Date, completion: @escaping(_ boat: Boat) -> Void) async throws {
         let event = Event(id: "\(boat.events.count + 1)",name: name, startDate: startDate, endDate: endDate, createdAt: Date(), participants: [])
         let document = collection.document(boat.id)
-        try await document.updateData(["events": FieldValue.arrayUnion([event.dictionaryValue])])
+        do {
+            try await document.updateData(["events": FieldValue.arrayUnion([event.dictionaryValue])])
+        } catch {
+            throw NSError()
+        }
+        var updateBoat = boat
+        updateBoat.events.append(event)
+        completion(updateBoat)
     }
     
     func update(boat: Boat) async throws {

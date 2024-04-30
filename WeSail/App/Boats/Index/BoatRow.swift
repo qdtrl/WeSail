@@ -25,7 +25,7 @@ struct BoatRow:View {
                         Spacer()
                     }
                     .frame(maxWidth: .infinity)
-                    .frame(height: 260)
+                    .frame(height: 200)
                     .background(Color.gray.opacity(0.2))
                 case .success(let image):
                     image
@@ -39,6 +39,7 @@ struct BoatRow:View {
                     Color.yellow.opacity(0.2)
                 }
             }
+            .frame(height: 200)
             .clipShape(RoundedRectangle(cornerRadius: 15, style: .continuous))
                       
             VStack(alignment: .leading) {

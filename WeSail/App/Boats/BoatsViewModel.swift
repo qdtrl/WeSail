@@ -20,9 +20,9 @@ class BoatsViewModel: ObservableObject {
     func index() {
         Task { @MainActor in
             self.isLoading = true
-
+         
             self.boats = try await self.repository.index()
-            
+
             self.isLoading = false
         }
     }
@@ -30,10 +30,12 @@ class BoatsViewModel: ObservableObject {
     func create(_ boat: Boat, _ image: UIImage) {
         Task { @MainActor in
             self.isLoading = true
-           
-            try await self.repository.create(boat: boat, image: image)
-            
-            self.boats.append(boat)
+
+            try await self.repository.create(boat: boat, image: image) { newBoat in
+                DispatchQueue.main.async {
+                    self.boats.append(newBoat)
+                }
+            }
 
             self.isLoading = false
         }
@@ -41,17 +43,39 @@ class BoatsViewModel: ObservableObject {
 
     func uploadImageToBoat(_ boat: Boat, _ image: UIImage) {
         Task { @MainActor in
+            self.isLoading = true
 
-            try await self.repository.uploadImage(boat: boat, image: image)
+            try await self.repository.uploadImage(boat: boat, image: image) {
+                updateBoat in
+                DispatchQueue.main.async {
+                    self.boats = self.boats.map { boat in
+                        if boat.id == updateBoat.id {
+                            return updateBoat
+                        }
+                        return boat
+                    }
+                }
+            }
             
+            self.isLoading = false
         }
     }
 
-    func addEventToBoat(_ boat: Boat, _ name: String, _ startDate: Date, _ endDate: Date) {
+    func addEventToBoat(_ boat: Boat, _ name: String, _ startDate: Date, _ endDate: Date) async throws {
         Task { @MainActor in
             self.isLoading = true
-
-            try await self.repository.addEvent(boat: boat, name: name, startDate: startDate, endDate: endDate)
+            
+            try await self.repository.addEvent(boat: boat, name: name, startDate: startDate, endDate: endDate) {
+                updateBoat in
+                DispatchQueue.main.async {
+                    self.boats = self.boats.map { boat in
+                        if boat.id == updateBoat.id {
+                            return updateBoat
+                        }
+                        return boat
+                    }
+                }
+            }
             
             self.isLoading = false
         }

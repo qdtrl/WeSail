@@ -27,11 +27,11 @@ struct AddBoatEvent: View {
                 }
                 Section {
                     Button("Créer l'événement") {
-                        Task {
-                            boatsVM.addEventToBoat(boat, name, startDate, endDate)
-                        }
-                        
-                        self.presentationMode.wrappedValue.dismiss()
+                       Task {
+                           try await boatsVM.addEventToBoat(boat, name, startDate, endDate)
+                             
+                             self.presentationMode.wrappedValue.dismiss()
+                       }
                     }
                 }
             }
