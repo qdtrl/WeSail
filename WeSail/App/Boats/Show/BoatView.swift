@@ -101,7 +101,11 @@ struct BoatView: View {
                         
                         Spacer()
                         
-                        Button(action: {}) {
+                        Button(action: {
+                            Task {
+                                try await boatsVM.joinBoat(boat, authService.currentUser!) 
+                            }
+                        }) {
                             Text("Rejoindre")
                         }
                         .frame(width: 120)

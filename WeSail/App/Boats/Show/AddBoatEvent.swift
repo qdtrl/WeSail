@@ -17,8 +17,6 @@ struct AddBoatEvent: View {
 
     var body: some View {
         VStack {
-            Text("Nouvel événement")
-                .padding()
             Form {
                 Section {
                     TextField("Nom de l'événement", text: $name)
@@ -36,5 +34,17 @@ struct AddBoatEvent: View {
                 }
             }
         }
+        .navigationTitle("Nouvel événement")
+        .navigationBarTitleDisplayMode(.inline)
+        .navigationBarBackButtonHidden(true)
+        .navigationBarItems(leading:
+            Button(action: {
+                self.presentationMode.wrappedValue.dismiss()
+            }) {
+                Image(systemName: "chevron.left")
+                Text("Retour")
+            }
+        )
+
     }
 }

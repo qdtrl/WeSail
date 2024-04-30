@@ -12,9 +12,12 @@ import FirebaseStorage
 
 protocol BoatRepositoryProtocol {
     func index() async throws -> [Boat]
+    func indexWhereUserInCrew(user: User) async throws -> [Boat]
     func create(boat: Boat, image: UIImage, completion: @escaping(_ boat: Boat) -> Void) async throws
+    func joinBoat(boat: Boat, user: User, completion: @escaping(_ boat: Boat) -> Void) async throws
     func uploadImage(boat: Boat, image: UIImage, completion: @escaping(_ boat: Boat) -> Void) async throws
     func addEvent(boat: Boat, name: String, startDate: Date, endDate: Date, completion: @escaping(_ boat: Boat) -> Void) async throws
+    func joinBoatEvent(boat: Boat, event: Event, user: User, completion: @escaping(_ boat: Boat) -> Void) async throws
     func update(boat: Boat) async throws
     func delete(boat: Boat) async throws
 }
@@ -28,7 +31,6 @@ final class BoatRepository:BoatRepositoryProtocol {
     }
     
     func index() async throws -> [Boat] {
-        
         let snapshot = try await collection.getDocuments()
         
         var boats: [Boat] = []
@@ -37,6 +39,20 @@ final class BoatRepository:BoatRepositoryProtocol {
             boat.id = document.documentID
             boats.append(boat)
         }
+        
+        return boats
+    }
+
+    func indexWhereUserInCrew(user: User) async throws -> [Boat] {
+        let snapshot = try await collection.whereField("crew", arrayContains: user.id).getDocuments()
+        
+        var boats: [Boat] = []
+        for document in snapshot.documents {
+            var boat = try document.data(as: Boat.self)
+            boat.id = document.documentID
+            boats.append(boat)
+        }
+        
         return boats
     }
 
@@ -118,6 +134,34 @@ final class BoatRepository:BoatRepositoryProtocol {
         var updateBoat = boat
         updateBoat.events.append(event)
         completion(updateBoat)
+    }
+    
+    func joinBoat(boat: Boat, user: User, completion: @escaping(_ boat: Boat) -> Void) async throws {
+        let document = collection.document(boat.id)
+        do {
+            try await document.updateData(["crew": FieldValue.arrayUnion([user.id])])
+        } catch {
+            throw NSError()
+        }
+        var updateBoat = boat
+        updateBoat.crew.append(user.id)
+        completion(updateBoat)
+    }
+    
+    func joinBoatEvent(boat: Boat, event: Event, user: User, completion: @escaping(_ boat: Boat) -> Void) async throws {
+        let document = collection.document(boat.id)
+        var eventsUpdated = boat.events
+        if let index = eventsUpdated.firstIndex(where: { $0.id == event.id }) {
+            eventsUpdated[index].participants.append(user.id)
+        }
+        do {
+            try await document.updateData(["events": eventsUpdated])
+        } catch {
+            throw NSError()
+        }
+        var updateBoat = boat
+        updateBoat.events = eventsUpdated
+        completion(updateBoat)    
     }
     
     func update(boat: Boat) async throws {

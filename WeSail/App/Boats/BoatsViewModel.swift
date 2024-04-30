@@ -20,9 +20,19 @@ class BoatsViewModel: ObservableObject {
     func index() {
         Task { @MainActor in
             self.isLoading = true
-         
+
             self.boats = try await self.repository.index()
 
+            self.isLoading = false
+        }
+    }
+
+    func indexWhereUserInCrew(user: User) {
+        Task { @MainActor in
+            self.isLoading = true
+
+            self.boats = try await self.repository.indexWhereUserInCrew(user: user)
+            
             self.isLoading = false
         }
     }
@@ -66,6 +76,46 @@ class BoatsViewModel: ObservableObject {
             self.isLoading = true
             
             try await self.repository.addEvent(boat: boat, name: name, startDate: startDate, endDate: endDate) {
+                updateBoat in
+                DispatchQueue.main.async {
+                    self.boats = self.boats.map { boat in
+                        if boat.id == updateBoat.id {
+                            return updateBoat
+                        }
+                        return boat
+                    }
+                }
+            }
+            
+            self.isLoading = false
+        }
+    }
+
+    func joinBoat(_ boat: Boat, _ user: User) async throws {
+        Task { @MainActor in
+            self.isLoading = true
+
+            try await self.repository.joinBoat(boat: boat, user: user) {
+                updateBoat in
+                DispatchQueue.main.async {
+                    self.boats = self.boats.map { boat in
+                        if boat.id == updateBoat.id {
+                            return updateBoat
+                        }
+                        return boat
+                    }
+                }
+            }
+            
+            self.isLoading = false
+        }
+    }
+
+    func joinBoatEvent(_ boat: Boat, _ event: Event, _ user: User) async throws {
+        Task { @MainActor in
+            self.isLoading = true
+
+            try await self.repository.joinBoatEvent(boat: boat, event: event, user: user) {
                 updateBoat in
                 DispatchQueue.main.async {
                     self.boats = self.boats.map { boat in

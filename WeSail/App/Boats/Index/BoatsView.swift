@@ -9,6 +9,7 @@ import SwiftUI
 
 struct BoatsView: View {
     @EnvironmentObject var boatsVM: BoatsViewModel
+    @EnvironmentObject var authService: AuthService
 
     let columns = Array(repeating: GridItem(.flexible(), spacing: 10, alignment: .center), count: 1)
 
@@ -58,7 +59,7 @@ struct BoatsView: View {
                 }
             }
             .onAppear() {
-                boatsVM.index()
+                boatsVM.indexWhereUserInCrew(user: authService.currentUser!)
             }
         
     }
