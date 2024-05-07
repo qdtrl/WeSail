@@ -32,7 +32,8 @@ final class UserRepository: UserRepositoryProtocol{
         let snapshot = try await collection.getDocuments()
         var users: [User] = []
         for document in snapshot.documents {
-            let user = try document.data(as: User.self)
+            var user = try document.data(as: User.self)
+            user.id = document.documentID
             users.append(user)
         }
         return users

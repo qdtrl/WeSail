@@ -50,6 +50,9 @@ struct SearchBoatView: View {
                         
                 }
             }
+            .onAppear {
+                query = ""
+            }
     }
 }
 

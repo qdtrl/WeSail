@@ -61,7 +61,7 @@ struct CreateConversationView: View {
             .padding(.horizontal, 20)
             
         }
-        .navigationBarTitle("Ajouter une conversation", displayMode: .inline)
+        .navigationBarTitle("Nouvelle conversation", displayMode: .inline)
         .navigationBarBackButtonHidden(true)
         .navigationBarItems(leading:
             Button(action: {

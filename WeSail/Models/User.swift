@@ -9,12 +9,12 @@ import Foundation
 import Firebase
 
 struct User: Codable, Identifiable, Hashable {
-    let id: String
+    var id: String
     let email: String
     let firstName: String
     let lastName: String
+    let description: String
     let image: String
-    let boats: [Boat]?
     let followers: [User]?
     let subscribers: [User]?
     
@@ -23,8 +23,8 @@ struct User: Codable, Identifiable, Hashable {
         email: String,
         firstName: String,
         lastName: String,
+        description: String,
         image: String,
-        boats: [Boat]? = nil,
         followers: [User]? = nil,
         subscribers: [User]? = nil
     ) {
@@ -32,8 +32,8 @@ struct User: Codable, Identifiable, Hashable {
         self.email = email
         self.firstName = firstName
         self.lastName = lastName
+        self.description = description
         self.image = image
-        self.boats = boats
         self.followers = followers
         self.subscribers = subscribers
     }
@@ -43,8 +43,8 @@ struct User: Codable, Identifiable, Hashable {
         case email
         case firstName = "first_name"
         case lastName = "last_name"
+        case description
         case image
-        case boats
         case followers
         case subscribers
     }
@@ -55,8 +55,8 @@ struct User: Codable, Identifiable, Hashable {
         self.email = try container.decode(String.self, forKey: .email)
         self.firstName = try container.decode(String.self, forKey: .firstName)
         self.lastName = try container.decode(String.self, forKey: .lastName)
+        self.description = try container.decode(String.self, forKey: .description)
         self.image = try container.decode(String.self, forKey: .image)
-        self.boats = try container.decodeIfPresent([Boat].self, forKey: .boats)
         self.followers = try container.decodeIfPresent([User].self, forKey: .followers)
         self.subscribers = try container.decodeIfPresent([User].self, forKey: .subscribers)
     }
@@ -67,8 +67,8 @@ struct User: Codable, Identifiable, Hashable {
         try container.encode(self.email, forKey: .email)
         try container.encode(self.firstName, forKey: .firstName)
         try container.encode(self.lastName, forKey: .lastName)
+        try container.encode(self.description, forKey: .description)
         try container.encode(self.image, forKey: .image)
-        try container.encodeIfPresent(self.boats, forKey: .boats)
         try container.encodeIfPresent(self.followers, forKey: .followers)
         try container.encodeIfPresent(self.subscribers, forKey: .subscribers)
     }

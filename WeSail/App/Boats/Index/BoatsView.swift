@@ -59,7 +59,7 @@ struct BoatsView: View {
                 }
             }
             .onAppear() {
-                boatsVM.indexWhereUserInCrew(user: authService.currentUser!)
+                boatsVM.indexWhereUserInCrew(userId: authService.currentUser!.id)
             }
         
     }

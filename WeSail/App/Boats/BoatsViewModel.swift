@@ -30,12 +30,12 @@ class BoatsViewModel: ObservableObject {
         }
     }
 
-    func indexWhereUserInCrew(user: User) {
+    func indexWhereUserInCrew(userId: String) {
         Task { @MainActor in
             self.isLoading = true
 
             self.boatsUserInCrew = self.boats.filter { boat in
-                boat.crew.contains(user.id)
+                boat.crew.contains(userId)
             }
             
             self.isLoading = false

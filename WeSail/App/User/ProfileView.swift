@@ -9,6 +9,7 @@ import SwiftUI
 
 struct ProfileView: View {
     @EnvironmentObject var authService: AuthService
+    @EnvironmentObject var boatsVM: BoatsViewModel
     @EnvironmentObject var usersVM: UserViewModel
 
     @State var userId: String
@@ -26,77 +27,30 @@ struct ProfileView: View {
                             Spacer()
                             
                             VStack {
-                                Text("\(usersVM.events.count)")
+                                Text("\(boatsVM.boatsUserInCrew.map { $0.events }.count)")
                                     .bold()
                                 Text("Events")
                             }
                             Spacer()
                             VStack {
-                                Text("123 K")
+                                Text("\(user.followers?.count ?? 0)")
                                     .bold()
                                 Text("Followers")
                             }
                             Spacer()
                             VStack {
-                                Text("123 K")
+                                Text("\(user.subscribers?.count ?? 0)")
                                     .bold()
                                 Text("Abonné(e)s")
                             }
                         }
+
                         Text("\(user.firstName) \(user.lastName)")
                             .bold()
-                        Text("Petite description des familles super longue pour voir ce ")
-                        
-                        
-//                        if (user == authService.currentUser) {
-//                            HStack {
-//                                Spacer()
-//                                
-//                                Button(action: {}) {
-//                                    Text("Mon calendrier")
-//                                    
-//                                }
-//                                .frame(width: 120)
-//                                .padding(.horizontal)
-//                                .padding(.vertical, 8)
-//                                .foregroundColor(.black)
-//                                .background(.thickMaterial)
-//                                .clipShape(RoundedRectangle(cornerRadius: 15, style: .continuous))
-//                                
-//                                Spacer()
-//                            }
-//                        } else {
-//                            HStack {
-//                                Spacer()
-//                                
-//                                Button(action: {}) {
-//                                    Text("Suivre")
-//                                    
-//                                }
-//                                .frame(width: 120)
-//                                .padding(.horizontal)
-//                                .padding(.vertical, 8)
-//                                .foregroundColor(.black)
-//                                .background(.thickMaterial)
-//                                .clipShape(RoundedRectangle(cornerRadius: 15, style: .continuous))
-//                                
-//                                Spacer()
-//                                
-//                                Button(action: {}) {
-//                                    Text("Écrire")
-//                                    
-//                                }
-//                                .frame(width: 120)
-//                                .padding(.horizontal)
-//                                .padding(.vertical, 8)
-//                                .foregroundColor(.black)
-//                                .background(.thickMaterial)
-//                                .clipShape(RoundedRectangle(cornerRadius: 15, style: .continuous))
-//                                
-//                                Spacer()
-//                            }
-//                        }
-                        
+
+                        Text("\(user.description)")
+                            .font(.caption)
+                            .foregroundColor(.gray)
                         
                         HStack {
                             
@@ -155,8 +109,14 @@ struct ProfileView: View {
                     }
                     .padding(.horizontal)
                     .padding(.top)
-                    BoatsListView(boats: usersVM.boats)
-                    
+
+                    if index == 0 {
+                        EventsListView(events: boatsVM.boatsUserInCrew.map { $0.events }.flatMap { $0 })
+                    } else if index == 1 {
+                        PicturesListView(pictures: boatsVM.boatsUserInCrew.map { $0.images }.flatMap { $0 })
+                    } else {
+                        BoatsListView(boats: boatsVM.boatsUserInCrew)
+                    }
                 }
                 .accessibility(identifier: "profileView")
                 .toolbar {
@@ -174,9 +134,7 @@ struct ProfileView: View {
         }
         .onAppear {
             usersVM.show(userId: userId)
-            usersVM.events(userId: userId)
-            usersVM.images(userId: userId)
-            usersVM.boats(userId: userId)
+            boatsVM.indexWhereUserInCrew(userId: userId)
         }
     }
 }
