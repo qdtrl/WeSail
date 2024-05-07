@@ -12,7 +12,6 @@ import FirebaseStorage
 
 protocol BoatRepositoryProtocol {
     func index() async throws -> [Boat]
-    func indexWhereUserInCrew(user: User) async throws -> [Boat]
     func create(boat: Boat, image: UIImage, completion: @escaping(_ boat: Boat) -> Void) async throws
     func joinBoat(boat: Boat, user: User, completion: @escaping(_ boat: Boat) -> Void) async throws
     func uploadImage(boat: Boat, image: UIImage, completion: @escaping(_ boat: Boat) -> Void) async throws
@@ -32,19 +31,6 @@ final class BoatRepository:BoatRepositoryProtocol {
     
     func index() async throws -> [Boat] {
         let snapshot = try await collection.getDocuments()
-        
-        var boats: [Boat] = []
-        for document in snapshot.documents {
-            var boat = try document.data(as: Boat.self)
-            boat.id = document.documentID
-            boats.append(boat)
-        }
-        
-        return boats
-    }
-
-    func indexWhereUserInCrew(user: User) async throws -> [Boat] {
-        let snapshot = try await collection.whereField("crew", arrayContains: user.id).getDocuments()
         
         var boats: [Boat] = []
         for document in snapshot.documents {

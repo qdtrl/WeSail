@@ -27,30 +27,29 @@ struct SearchBoatView: View {
                 } else {
                     ScrollView(showsIndicators: false) {
                         LazyVGrid(columns: columns, spacing: 10) {
-                            ForEach(boatsVM.boats) { boat in
+                            ForEach(boatsVM.boatsSearched) { boat in
                                 NavigationLink(value: boat) {
                                     BoatRow(boat: boat)
                                         .frame(maxWidth: .infinity, minHeight: 300)
-                                        .accessibility(identifier: "boatCell")
+                                        .accessibility(identifier: "boatSearchCell")
                                 }
                             }
                         }
                         .padding(.horizontal, 10)
-                        .accessibility(identifier: "boatsGrid")
+                        .accessibility(identifier: "boatsSearchedGrid")
                         .navigationDestination(for: Boat.self) { boat in
                             BoatView(boat: boat)
                         }
                         .searchable(text: $query)
+                        .onChange(of: query) { newValue in
+                            boatsVM.search(query: newValue)
+                        }
                         .navigationTitle("Bateaux")
                     }
                     .foregroundColor(.black)
                         
                 }
             }
-            .onAppear() {
-                boatsVM.index(query: query)
-            }
-        
     }
 }
 

@@ -11,23 +11,20 @@ import UIKit
 class BoatsViewModel: ObservableObject {
     var repository:BoatRepositoryProtocol
     @Published var boats: [Boat] = []
+    @Published var boatsUserInCrew: [Boat] = []
+    @Published var boatsSearched: [Boat] = []
     @Published var isLoading:Bool = false
 
     init() {
         self.repository = BoatRepository()
+        self.index()
     }
     
-    func index(query: String = "") {
+    func index() {
         Task { @MainActor in
             self.isLoading = true
 
             self.boats = try await self.repository.index()
-
-            if query != "" {
-                self.boats = self.boats.filter { boat in
-                    boat.name.lowercased().contains(query.lowercased())
-                }
-            }
 
             self.isLoading = false
         }
@@ -37,8 +34,27 @@ class BoatsViewModel: ObservableObject {
         Task { @MainActor in
             self.isLoading = true
 
-            self.boats = try await self.repository.indexWhereUserInCrew(user: user)
+            self.boatsUserInCrew = self.boats.filter { boat in
+                boat.crew.contains(user.id)
+            }
             
+            self.isLoading = false
+        }
+    }
+
+    func search(query: String) {
+        Task { @MainActor in
+            self.isLoading = true
+
+            if query != "" {
+                self.boatsSearched = self.boats.filter { boat in
+                    boat.name.lowercased().contains(query.lowercased())
+                }
+            } else {
+                self.boatsSearched = []
+            }
+            
+
             self.isLoading = false
         }
     }
