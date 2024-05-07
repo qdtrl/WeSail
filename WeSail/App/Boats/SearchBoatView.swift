@@ -48,7 +48,7 @@ struct SearchBoatView: View {
                 }
             }
             .onAppear() {
-                boatsVM.index()
+                boatsVM.index(query: query)
             }
         
     }

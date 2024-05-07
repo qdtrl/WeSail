@@ -17,11 +17,17 @@ class BoatsViewModel: ObservableObject {
         self.repository = BoatRepository()
     }
     
-    func index() {
+    func index(query: String = "") {
         Task { @MainActor in
             self.isLoading = true
 
             self.boats = try await self.repository.index()
+
+            if query != "" {
+                self.boats = self.boats.filter { boat in
+                    boat.name.lowercased().contains(query.lowercased())
+                }
+            }
 
             self.isLoading = false
         }
