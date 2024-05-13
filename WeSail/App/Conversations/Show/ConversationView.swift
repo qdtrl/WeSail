@@ -24,7 +24,7 @@ struct ConversationView: View {
                     ScrollViewReader { scrollReader in
                         getMessagesView(viewWidth: reader.size.width)
                             .onAppear {
-                                if let messageId = conversation.messages?.last?.id {
+                                if (conversation.messages?.last?.id) != nil {
 //                                    scrollTo(messageId: messageId, anchor: .bottom, shouldAnimate: false, scrollReader: scrollReader)
                                 }
                             }
@@ -41,7 +41,7 @@ struct ConversationView: View {
                 
                 Button(action: {
                     if !text.isEmpty {
-                        var message = Message(
+                        let message = Message(
                             id: UUID().uuidString,
                             user: authService.currentUser!,
                             text: text,

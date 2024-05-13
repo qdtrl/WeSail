@@ -12,7 +12,7 @@ struct RouterView: View {
 
     var body: some View {
         Group {
-            if $authService.userSession != nil, authService.currentUser != nil, let user = authService.currentUser {
+            if authService.currentUser != nil, let user = authService.currentUser {
                 TabView {
                     NavigationStack {
                         BoatsView()

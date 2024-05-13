@@ -28,7 +28,7 @@ struct SearchBoatView: View {
                     ScrollView(showsIndicators: false) {
                         LazyVGrid(columns: columns, spacing: 10) {
                             ForEach(boatsVM.boatsSearched) { boat in
-                                NavigationLink(value: boat) {
+                                NavigationLink(destination: BoatView(boat: boat)) {
                                     BoatRow(boat: boat)
                                         .frame(maxWidth: .infinity, minHeight: 300)
                                         .accessibility(identifier: "boatSearchCell")
@@ -37,9 +37,6 @@ struct SearchBoatView: View {
                         }
                         .padding(.horizontal, 10)
                         .accessibility(identifier: "boatsSearchedGrid")
-                        .navigationDestination(for: Boat.self) { boat in
-                            BoatView(boat: boat)
-                        }
                         .searchable(text: $query)
                         .onChange(of: query) { newValue in
                             boatsVM.search(query: newValue)

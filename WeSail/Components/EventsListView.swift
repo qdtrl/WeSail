@@ -7,7 +7,9 @@
 
 import SwiftUI
 
-struct EventsView: View {
+struct EventsListView: View {
+    @State var events: [Event]
+
     
     var body: some View {
         Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)

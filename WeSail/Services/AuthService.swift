@@ -45,6 +45,7 @@ class AuthService: ObservableObject {
                 email: email,
                 firstName: firstName,
                 lastName: lastName,
+                description: "",
                 image: "")
 
             try Firestore.firestore().collection("users").document(user.id).setData(from: user, merge: false)

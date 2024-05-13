@@ -113,7 +113,7 @@ struct ProfileView: View {
                     if index == 0 {
                         EventsListView(events: boatsVM.boatsUserInCrew.map { $0.events }.flatMap { $0 })
                     } else if index == 1 {
-                        PicturesListView(pictures: boatsVM.boatsUserInCrew.map { $0.images }.flatMap { $0 })
+                        PicturesView(pictures: boatsVM.boatsUserInCrew.map { $0.images }.flatMap { $0 })
                     } else {
                         BoatsListView(boats: boatsVM.boatsUserInCrew)
                     }
