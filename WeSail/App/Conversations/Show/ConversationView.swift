@@ -78,7 +78,6 @@ struct ConversationView: View {
                     }
                 }
                 .disabled(text.isEmpty)
-                     
             }
             .padding()
             .background(.thickMaterial)
