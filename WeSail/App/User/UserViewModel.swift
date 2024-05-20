@@ -10,6 +10,7 @@ import Foundation
 class UserViewModel: ObservableObject {
     var repository:UserRepositoryProtocol
     @Published var users: [User] = []
+    @Published var usersSearch: [User] = []
     @Published var user: User? = nil
 
     @Published var isLoading:Bool = false
@@ -18,11 +19,33 @@ class UserViewModel: ObservableObject {
         self.repository = UserRepository()
     }
 
-    func index() {
+    func index(userId: String) {
         Task { @MainActor in
             self.isLoading = true
 
             self.users = try await self.repository.index()
+            self.users = self.users.filter { user in
+                user.id != userId
+            }
+            self.usersSearch = self.users
+
+            self.isLoading = false
+        }
+    }
+
+    func search(query: String) {
+        Task { @MainActor in
+            self.isLoading = true
+
+            if query.isEmpty {
+                self.usersSearch = self.users
+                self.isLoading = false
+                return
+            }
+
+            self.usersSearch = self.users.filter { user in
+                user.firstName.lowercased().contains(query.lowercased()) || user.lastName.lowercased().contains(query.lowercased())
+            }
 
             self.isLoading = false
         }

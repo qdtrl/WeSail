@@ -9,35 +9,50 @@ import SwiftUI
 
 struct ConversationsView: View {
     @EnvironmentObject var conversationsVM: ConversationsViewModel
+    @EnvironmentObject var authService: AuthService
     @State private var query = ""
 
     var body: some View {
         List {
-            ForEach(conversationsVM.conversations) { conversation in
-                ZStack {
-                    ConversationRowView(conversation: conversation)
-                    
-                    NavigationLink(destination: {
-                        ConversationView(conversation: conversation)
-                    }) {
-                        EmptyView()
-                    }
-                    .buttonStyle(PlainButtonStyle())
-                    .frame(width: 0)
-                    .opacity(0)
-                }
-                .swipeActions(edge: .leading, allowsFullSwipe: true) {
-                    Button(action: {
-//                        Message is read
-                    }) {
-                        if ((conversation.messages?.last!.isRead) != nil) {
-                            Label("Non lu", systemImage: "cicle.fill")
-                        } else {
-                            Label("Lu", systemImage: "text.bubble")
+            if conversationsVM.isLoading {
+                ProgressView()
+                    .progressViewStyle(CircularProgressViewStyle())
+                    .foregroundColor(.black)
+                    .opacity(0.6)
+                    .accessibility(identifier: "loading")
+            } else {
+                if conversationsVM.conversationsSearch.isEmpty {
+                    Text("Aucune conversation trouvée")
+                        .foregroundColor(.black)
+                        .opacity(0.6)
+                } else {
+                    ForEach($conversationsVM.conversationsSearch) { conversation in
+                        ZStack {
+                            ConversationRowView(conversation: conversation.wrappedValue)
+                            
+                            NavigationLink(destination: {
+                                ConversationView(conversationId: conversation.id)
+                            }) {
+                                EmptyView()
+                            }
+                            .buttonStyle(PlainButtonStyle())
+                            .frame(width: 0)
+                            .opacity(0)
+                        }
+                        .swipeActions(edge: .leading, allowsFullSwipe: true) {
+                            Button(action: {
+                                conversationsVM.markLastMessageAsRead(conversation: conversation.wrappedValue)
+                            }) {
+                                if conversation.wrappedValue.lastMessage.isRead {
+                                    Label("Non lu", systemImage: "cicle.fill")
+                                } else {
+                                    Label("Lu", systemImage: "text.bubble")
+                                }
+                            }
+                            .tint(.blue)
+                            .accessibility(identifier: "readLastMessage")
                         }
                     }
-                    .tint(.blue)
-                    .accessibility(identifier: "readLastMessage")
                 }
             }
         }
@@ -52,8 +67,14 @@ struct ConversationsView: View {
             }
         }
         .accessibility(identifier: "conversationsList")
+        .onChange(of: query) { newValue in
+            conversationsVM.search(query: newValue)
+        }
         .onAppear() {
-            conversationsVM.index()
+            conversationsVM.index(userId: authService.currentUser!.id)
+        }
+        .onDisappear {
+            conversationsVM.stopListening()
         }
     }
 }

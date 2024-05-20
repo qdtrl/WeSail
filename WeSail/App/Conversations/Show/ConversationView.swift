@@ -10,24 +10,36 @@ import SwiftUI
 struct ConversationView: View {
     @EnvironmentObject var conversationsVM: ConversationsViewModel
     @EnvironmentObject var authService: AuthService
-
-    var conversation: Conversation
-    
+    var conversationId: String
     @State private var text = ""
     @FocusState private var isFocused
-    @State private var messageIdToScroll: UUID?
     
     var body: some View {
         VStack {
-            GeometryReader { reader in
-                ScrollView(showsIndicators: false)  {
-                    ScrollViewReader { scrollReader in
-                        getMessagesView(viewWidth: reader.size.width)
-                            .onAppear {
-                                if (conversation.messages?.last?.id) != nil {
-//                                    scrollTo(messageId: messageId, anchor: .bottom, shouldAnimate: false, scrollReader: scrollReader)
+            if conversationsVM.isLoading {
+                ProgressView()
+                    .progressViewStyle(CircularProgressViewStyle(tint: .white))
+                    .frame(width: 37, height: 37)
+                    .background(Color.blue)
+                    .clipShape(RoundedRectangle(cornerRadius: 15, style: .continuous))
+            } else {
+                GeometryReader { reader in
+                    ScrollView(showsIndicators: false)  {
+                        ScrollViewReader { scrollReader in
+                            getMessagesView(viewWidth: reader.size.width)
+                                .onAppear {
+                                    guard let lastMessage = conversationsVM.conversation?.lastMessage else {
+                                        return
+                                    }
+                                    scrollTo(messageId: lastMessage.id, anchor: .bottom, shouldAnimate: false, scrollReader: scrollReader)
                                 }
-                            }
+                                .onChange(of: conversationsVM.messages) { _ in
+                                    guard let lastMessage = conversationsVM.conversation?.lastMessage else {
+                                        return
+                                    }
+                                    scrollTo(messageId: lastMessage.id, anchor: .bottom, shouldAnimate: true, scrollReader: scrollReader)
+                                }
+                        }
                     }
                 }
             }
@@ -48,6 +60,7 @@ struct ConversationView: View {
                             date: Date(),
                             isRead: false)
                         conversationsVM.post(message: message)
+                        text = ""
                     }
                 }) {
                     if conversationsVM.isLoadingMessage {
@@ -70,10 +83,9 @@ struct ConversationView: View {
             .padding()
             .background(.thickMaterial)
             .navigationBarTitleDisplayMode(.inline)
-            .navigationBarItems(leading: navBarLeadingBtn, trailing: navBarTrailingBtn)
+            .navigationBarItems(leading: navBarLeadingBtn)
             .onAppear {
-                conversationsVM.show(conversationId: conversation.id)
-                conversationsVM.markLastMessageAsRead(user: authService.currentUser!, conversation: conversation)
+                conversationsVM.show(conversationId: conversationId)
             }
         }
     }
@@ -81,24 +93,27 @@ struct ConversationView: View {
     var navBarLeadingBtn: some View {
         Button(action: {}) {
             HStack {
-                Image(systemName: conversation.image)
-                    .resizable()
-                    .frame(width: 40, height: 40)
-                    .clipShape(Circle())
-                Text(conversation.name)
-                    .bold()
+                if let conversation = conversationsVM.conversation {
+                    if conversation.image.isEmpty {
+                        Image(systemName: "person.crop.circle.fill")
+                            .resizable()
+                            .frame(width: 40, height: 40)
+                            .clipShape(Circle())
+                    } else {
+                        Image(conversation.image)
+                            .resizable()
+                            .frame(width: 40, height: 40)
+                            .clipShape(Circle())
+                    }
+                    Text(conversation.name)
+                        .bold()
+                }
             }
             .foregroundColor(.black)
         }
     }
     
-    var navBarTrailingBtn: some View {
-        Button(action: {}) {
-            Image(systemName: "person.2.badge.gearshape")
-        }
-    }
-    
-    func scrollTo(messageId: UUID, anchor: UnitPoint? = nil, shouldAnimate: Bool, scrollReader: ScrollViewProxy) {
+    func scrollTo(messageId: String, anchor: UnitPoint? = nil, shouldAnimate: Bool, scrollReader: ScrollViewProxy) {
         DispatchQueue.main.async {
             withAnimation(shouldAnimate ? Animation.easeIn : nil) {
                 scrollReader.scrollTo(messageId, anchor: anchor)
@@ -110,25 +125,27 @@ struct ConversationView: View {
 
     func getMessagesView(viewWidth: CGFloat) -> some View {
         LazyVGrid(columns: columns, spacing: 5, pinnedViews: [.sectionHeaders]) {
-            let sectionMessages = conversationsVM.getSectionMessages(for: conversation)
+            let sectionMessages = conversationsVM.getSectionMessages()
             ForEach(sectionMessages.indices, id: \.self) { sectionIndex in
                 let messages = sectionMessages[sectionIndex]
-                Section(header: 
-                            ZStack {
-                                Text(messages.first!.date.descriptiveString(dataStyle: .medium))
-                                    .underline()
-                                    .foregroundColor(.white)
-                                    .padding(.horizontal)
-                                    .padding(.vertical, 4)
-                                    .background(.black.opacity(0.6))
-                                    .clipShape(RoundedRectangle(cornerRadius: 15, style: .continuous))
+                if (messages.first != nil) {
+                    Section(header:
+                                ZStack {
+                        Text(((messages.first?.date.descriptiveString(dataStyle: .medium))!))
+                                        .underline()
+                                        .foregroundColor(.white)
+                                        .padding(.horizontal)
+                                        .padding(.vertical, 4)
+                                        .background(.black.opacity(0.6))
+                                        .clipShape(RoundedRectangle(cornerRadius: 15, style: .continuous))
 
-                            }
-                                .padding(.vertical, 5)
-                                .frame(maxWidth: .infinity)
-                ) {
-                    ForEach(messages) { message in
-                        MessageView(message: message)
+                                }
+                                    .padding(.vertical, 5)
+                                    .frame(maxWidth: .infinity)
+                    ) {
+                        ForEach(messages) { message in
+                            MessageView(message: message)
+                        }
                     }
                 }
             }

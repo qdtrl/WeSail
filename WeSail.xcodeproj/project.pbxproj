@@ -20,7 +20,9 @@
 		3C17C8A82B14E5FB00C74788 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C17C8A72B14E5FB00C74788 /* LoginView.swift */; };
 		3C17C8B02B14EC2400C74788 /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C17C8AF2B14EC2400C74788 /* AuthService.swift */; };
 		3C17C8B22B14F15700C74788 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C17C8B12B14F15700C74788 /* User.swift */; };
-		3C17C8B42B14F44800C74788 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3C17C8B32B14F44800C74788 /* GoogleService-Info.plist */; };
+		3C1B402E2BF9F9F800612526 /* FirebaseDatabase in Frameworks */ = {isa = PBXBuildFile; productRef = 3C1B402D2BF9F9F800612526 /* FirebaseDatabase */; };
+		3C1B40302BF9F9F800612526 /* FirebaseDatabaseSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 3C1B402F2BF9F9F800612526 /* FirebaseDatabaseSwift */; };
+		3C1B40322BFA463F00612526 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3C1B40312BFA463F00612526 /* GoogleService-Info.plist */; };
 		3C2957C22B7D43BE00BBDD4F /* BoatsListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C2957C12B7D43BE00BBDD4F /* BoatsListView.swift */; };
 		3C2957CA2B851E6B00BBDD4F /* CreateConversationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C2957C92B851E6B00BBDD4F /* CreateConversationView.swift */; };
 		3C2957CE2B851ECE00BBDD4F /* ConversationRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C2957CD2B851ECE00BBDD4F /* ConversationRowView.swift */; };
@@ -104,9 +106,9 @@
 		3C17C8A72B14E5FB00C74788 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		3C17C8AF2B14EC2400C74788 /* AuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
 		3C17C8B12B14F15700C74788 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
-		3C17C8B32B14F44800C74788 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		3C17C8B52B14F5C300C74788 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3C17C8B62B14F83B00C74788 /* Config.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
+		3C1B40312BFA463F00612526 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../../../Desktop/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		3C2957C12B7D43BE00BBDD4F /* BoatsListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoatsListView.swift; sourceTree = "<group>"; };
 		3C2957C92B851E6B00BBDD4F /* CreateConversationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateConversationView.swift; sourceTree = "<group>"; };
 		3C2957CD2B851ECE00BBDD4F /* ConversationRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationRowView.swift; sourceTree = "<group>"; };
@@ -155,11 +157,13 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3C1B40302BF9F9F800612526 /* FirebaseDatabaseSwift in Frameworks */,
 				3CC549AB2B3ECB6800C48919 /* FirebaseAnalyticsSwift in Frameworks */,
 				3CA275DD2B3585D400C532FD /* FirebaseAnalytics in Frameworks */,
 				3CA275DF2B3585D400C532FD /* FirebaseAuth in Frameworks */,
 				3CA275E12B3585D400C532FD /* FirebaseFirestore in Frameworks */,
 				3CA275E52B3585D400C532FD /* FirebaseStorage in Frameworks */,
+				3C1B402E2BF9F9F800612526 /* FirebaseDatabase in Frameworks */,
 				3CA275E32B3585D400C532FD /* FirebaseFirestoreSwift in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -242,7 +246,7 @@
 			children = (
 				3C17C8782B14D60D00C74788 /* Preview Assets.xcassets */,
 				3C17C8B52B14F5C300C74788 /* Info.plist */,
-				3C17C8B32B14F44800C74788 /* GoogleService-Info.plist */,
+				3C1B40312BFA463F00612526 /* GoogleService-Info.plist */,
 				3C17C8752B14D60D00C74788 /* Assets.xcassets */,
 				3C17C8B62B14F83B00C74788 /* Config.xcconfig */,
 			);
@@ -479,6 +483,8 @@
 				3CA275E22B3585D400C532FD /* FirebaseFirestoreSwift */,
 				3CA275E42B3585D400C532FD /* FirebaseStorage */,
 				3CC549AA2B3ECB6800C48919 /* FirebaseAnalyticsSwift */,
+				3C1B402D2BF9F9F800612526 /* FirebaseDatabase */,
+				3C1B402F2BF9F9F800612526 /* FirebaseDatabaseSwift */,
 			);
 			productName = WeSail;
 			productReference = 3C17C86E2B14D60B00C74788 /* WeSail.app */;
@@ -575,8 +581,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				3C17C8792B14D60D00C74788 /* Preview Assets.xcassets in Resources */,
+				3C1B40322BFA463F00612526 /* GoogleService-Info.plist in Resources */,
 				3C17C8762B14D60D00C74788 /* Assets.xcassets in Resources */,
-				3C17C8B42B14F44800C74788 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1079,6 +1085,14 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		3C1B402D2BF9F9F800612526 /* FirebaseDatabase */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = FirebaseDatabase;
+		};
+		3C1B402F2BF9F9F800612526 /* FirebaseDatabaseSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = FirebaseDatabaseSwift;
+		};
 		3CA275DC2B3585D400C532FD /* FirebaseAnalytics */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 3CA275DB2B3585D400C532FD /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;

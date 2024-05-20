@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct ConversationRowView: View {
+    @EnvironmentObject var authService: AuthService
     let conversation: Conversation
     
     var body: some View {
@@ -15,18 +16,17 @@ struct ConversationRowView: View {
             UserImageView(image: conversation.image, width: 50)
 
             ZStack {
-                if let lastMessage = conversation.messages?.last {
                     VStack(alignment: .leading, spacing: 5) {
                         HStack {
                             Text(conversation.name)
                                 .bold()
                             Spacer()
                             
-                            Text("\((lastMessage.date.descriptiveString()))")
+                            Text("\((conversation.lastMessage.date.descriptiveString()))")
                         }
                         
                         HStack {
-                            Text((lastMessage.text))
+                            Text((conversation.lastMessage.text))
                                 .foregroundColor(.gray)
                                 .lineLimit(2)
                                 .frame(height: 50, alignment: .top)
@@ -35,27 +35,10 @@ struct ConversationRowView: View {
                         }
                     }
                     Circle()
-                        .foregroundColor(lastMessage.isRead ? .clear : .blue)
+                        .foregroundColor(conversation.lastMessage.isRead && conversation.lastMessage.user.id != authService.currentUser!.id ? .blue : .clear)
                         .frame(width: 14, height: 14)
                         .frame(maxWidth: .infinity, alignment: .trailing)
-                } else {
-                    VStack(alignment: .leading, spacing: 5) {
-                        HStack {
-                            Text(conversation.name)
-                                .bold()
-                            Spacer()
-                        }
-                        
-                        HStack {
-                            Text("Aucun message")
-                                .foregroundColor(.gray)
-                                .lineLimit(2)
-                                .frame(height: 50, alignment: .top)
-                                .frame(maxWidth: .infinity, alignment: .leading)
-                                .padding(.trailing, 40)
-                        }
-                    }
-                }
+               
             }
         }
         .frame(height: 70)
