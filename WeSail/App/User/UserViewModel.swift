@@ -60,6 +60,10 @@ class UserViewModel: ObservableObject {
             self.isLoading = false
         }
     }
+
+    func getUserById(userId: String) async throws -> User {
+        return try await self.repository.show(id: userId)
+    }
     
     @Published var mockData = [
         User(id: "1", email: "quentindtouroul@gmail.com", firstName: "Quentin", lastName: "Touroul", description: "", image: "https://avatars.githubusercontent.com/u/53430120?s=400&v=4"),

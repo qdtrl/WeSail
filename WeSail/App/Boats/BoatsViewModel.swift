@@ -12,6 +12,7 @@ class BoatsViewModel: ObservableObject {
     var repository:BoatRepositoryProtocol
     @Published var boats: [Boat] = []
     @Published var boatsUserInCrew: [Boat] = []
+    @Published var crew: [User] = []
     @Published var boatsSearched: [Boat] = []
     @Published var isLoading:Bool = false
 

@@ -8,8 +8,8 @@
 import SwiftUI
 
 struct CrewView: View {
-    let crewIds: [String]
     let crew: [User]
+
     var body: some View {
         VStack(alignment: .leading) {
             ForEach(crew) { user in
@@ -20,7 +20,7 @@ struct CrewView: View {
                         VStack(alignment: .leading) {
                             Text("\(user.firstName) \(user.lastName)")
                                 .bold()
-                            Text("Role : Skipper")
+                            Text("\(user.description)")
                                 .font(.caption)
                                 .foregroundColor(.gray)
                         }

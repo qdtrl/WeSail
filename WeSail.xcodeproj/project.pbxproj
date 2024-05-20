@@ -66,6 +66,7 @@
 		3CC549B52B4028E100C48919 /* EventRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CC549B42B4028E100C48919 /* EventRepository.swift */; };
 		3CC549B72B4029A200C48919 /* UserRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CC549B62B4029A200C48919 /* UserRepository.swift */; };
 		3CC549BF2B4032EA00C48919 /* Query.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CC549BE2B4032EA00C48919 /* Query.swift */; };
+		3CCB98D72BFBA2E000A2B3A5 /* EventRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CCB98D62BFBA2E000A2B3A5 /* EventRow.swift */; };
 		3CEBE2842B1A307600EA59D5 /* ConversationsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CEBE2832B1A307600EA59D5 /* ConversationsView.swift */; };
 		3CEBE2862B1A330100EA59D5 /* ConversationsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CEBE2852B1A330100EA59D5 /* ConversationsViewModel.swift */; };
 		3CEBE2892B1A426600EA59D5 /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CEBE2882B1A426600EA59D5 /* Date.swift */; };
@@ -146,6 +147,7 @@
 		3CC549B42B4028E100C48919 /* EventRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventRepository.swift; sourceTree = "<group>"; };
 		3CC549B62B4029A200C48919 /* UserRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRepository.swift; sourceTree = "<group>"; };
 		3CC549BE2B4032EA00C48919 /* Query.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Query.swift; sourceTree = "<group>"; };
+		3CCB98D62BFBA2E000A2B3A5 /* EventRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventRow.swift; sourceTree = "<group>"; };
 		3CEBE2832B1A307600EA59D5 /* ConversationsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationsView.swift; sourceTree = "<group>"; };
 		3CEBE2852B1A330100EA59D5 /* ConversationsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationsViewModel.swift; sourceTree = "<group>"; };
 		3CEBE2882B1A426600EA59D5 /* Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
@@ -269,6 +271,7 @@
 				3C524A8C2B1B8207000B1667 /* BoatView.swift */,
 				3C38C3C72BD0329E006C82F4 /* AddBoatImageView.swift */,
 				3C38C3C92BD032B5006C82F4 /* AddBoatEvent.swift */,
+				3CCB98D62BFBA2E000A2B3A5 /* EventRow.swift */,
 			);
 			path = Show;
 			sourceTree = "<group>";
@@ -692,6 +695,7 @@
 				3C701FF52B3373790066721B /* ProfileParametersView.swift in Sources */,
 				3CC549BF2B4032EA00C48919 /* Query.swift in Sources */,
 				3C524A872B1B7CEA000B1667 /* BoatsViewModel.swift in Sources */,
+				3CCB98D72BFBA2E000A2B3A5 /* EventRow.swift in Sources */,
 				3CC549B72B4029A200C48919 /* UserRepository.swift in Sources */,
 				3CC041C32B7A740100ABDE55 /* UserImageView.swift in Sources */,
 				3C524A8B2B1B8021000B1667 /* Event.swift in Sources */,

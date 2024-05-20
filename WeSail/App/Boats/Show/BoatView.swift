@@ -9,6 +9,7 @@ import SwiftUI
 
 struct BoatView: View {
     @EnvironmentObject var boatsVM: BoatsViewModel
+    @EnvironmentObject var usersVM: UserViewModel
     @EnvironmentObject var authService: AuthService
 
     @State var boat: Boat
@@ -180,33 +181,32 @@ struct BoatView: View {
             
             switch index {
             case 0:
-                if boat.events.count > 0 {
-                    EventsListView(events: boat.events)
-                } else {
-                    Text("Pas d'évènements")
-                        .padding(.vertical, 20)
-                }
+                EventsListView(events: boat.events)
             case 1:
-                if boat.images.count > 0 {
-                    PicturesView(pictures: boat.images)
-                    .background(Color.gray.opacity(0.2))
-                } else {
-                    Text("Pas d'images")
-                        .padding(.vertical, 20)
-                }
+                PicturesView(pictures: boat.images)
             case 2:
-                if boat.crew.count > 0 {
-//                    CrewView(crewIds: crew)
-                } else {
-                    Text("Pas de membres")
-                        .padding(.vertical, 20)
-                }
+                CrewView(crew: boatsVM.crew)
             default:
                 Text("Pas d'évènements")
                     .padding(.vertical, 20)
             }
         }
-        .onAppear()
+        .onAppear() {
+            Task {
+                boatsVM.crew = try await withThrowingTaskGroup(of: User.self) { group in
+                    for user in boat.crew {
+                        group.addTask {
+                            try await usersVM.getUserById(userId: user)
+                        }
+                    }
+                    var users: [User] = []
+                    for try await user in group {
+                        users.append(user)
+                    }
+                    return users
+                }
+            }
+        }
         .accessibility(identifier: "boatView")
         .toolbar {
             if boat.owners.contains(authService.currentUser!.id) {
@@ -219,7 +219,3 @@ struct BoatView: View {
         }
     }
 }
-
-//#Preview {
-//    BoatView(boat: BoatsViewModel().mockData[0])
-//}
