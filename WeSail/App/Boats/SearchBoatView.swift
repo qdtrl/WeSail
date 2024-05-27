@@ -10,6 +10,7 @@ import SwiftUI
 struct SearchBoatView: View {
     @EnvironmentObject var boatsVM: BoatsViewModel
     @EnvironmentObject var authService: AuthService
+
     @State private var query = ""
 
     let columns = Array(repeating: GridItem(.flexible(), spacing: 10, alignment: .center), count: 1)
@@ -52,7 +53,3 @@ struct SearchBoatView: View {
             }
     }
 }
-
-//#Preview {
-//    SearchBoatView()
-//}

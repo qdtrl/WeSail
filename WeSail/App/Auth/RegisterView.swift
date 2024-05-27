@@ -9,12 +9,14 @@ import SwiftUI
 
 struct RegisterView: View {
     @EnvironmentObject var authService: AuthService
+
+    @Environment(\.dismiss) var dismiss
+
     @State var email: String = ""
     @State var firstName: String = ""
     @State var lastName: String = ""
     @State var password: String = ""
     @State var passwordConfirmation: String = ""
-    @Environment(\.dismiss) var dismiss
 
     var body: some View {
         NavigationStack {
@@ -64,7 +66,7 @@ struct RegisterView: View {
                         
                         ZStack(alignment: .trailing) {
                             InputView(text: $passwordConfirmation,
-                                      title: "Confirmatin mot de passe",
+                                      title: "Confirmation mot de passe",
                                       placeHolder: "Entrez votre mot de passe",
                                       isSecureField: true)
                             

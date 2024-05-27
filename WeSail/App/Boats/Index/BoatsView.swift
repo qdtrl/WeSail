@@ -17,12 +17,15 @@ struct BoatsView: View {
             VStack {
                 if boatsVM.isLoading {
                     Spacer()
+                    
                     ProgressView()
                         .progressViewStyle(CircularProgressViewStyle())
                         .foregroundColor(.black)
                         .opacity(0.6)
                         .accessibility(identifier: "loading")
+                    
                     Spacer()
+                    
                 } else {
                     ScrollView(showsIndicators: false) {
                         LazyVGrid(columns: columns, spacing: 10) {
@@ -55,16 +58,24 @@ struct BoatsView: View {
                         }
                     }
                     .foregroundColor(.black)
+                    .refreshable {
+                        boatsVM.index()
+
+                        guard let currentUser = authService.currentUser else {
+                            return
+                        }
+                        boatsVM.indexWhereUserInCrew(userId: currentUser.id)
+                    }
                         
                 }
             }
             .onAppear() {
-                boatsVM.indexWhereUserInCrew(userId: authService.currentUser!.id)
+                guard let currentUser = authService.currentUser else {
+                    return
+                }
+                boatsVM.indexWhereUserInCrew(userId: currentUser.id)
             }
         
     }
 }
 
-//#Preview {
-//    BoatsView()
-//}

@@ -27,6 +27,8 @@ class BoatsViewModel: ObservableObject {
 
             self.boats = try await self.repository.index()
 
+            self.boatsSearched = self.boats
+
             self.isLoading = false
         }
     }
@@ -52,7 +54,7 @@ class BoatsViewModel: ObservableObject {
                     boat.name.lowercased().contains(query.lowercased())
                 }
             } else {
-                self.boatsSearched = []
+                self.boatsSearched = self.boats
             }
             
 
@@ -64,12 +66,13 @@ class BoatsViewModel: ObservableObject {
         Task { @MainActor in
             self.isLoading = true
 
-            try await self.repository.create(boat: boat, image: image) { newBoat in
+            try await self.repository.create(boat: boat, image: image) {
+                boat in
                 DispatchQueue.main.async {
-                    self.boats.append(newBoat)
+                    self.boatsUserInCrew.append(boat)
                 }
             }
-
+                
             self.isLoading = false
         }
     }
@@ -81,7 +84,7 @@ class BoatsViewModel: ObservableObject {
             try await self.repository.uploadImage(boat: boat, image: image) {
                 updateBoat in
                 DispatchQueue.main.async {
-                    self.boats = self.boats.map { boat in
+                    self.boatsUserInCrew = self.boatsUserInCrew.map { boat in
                         if boat.id == updateBoat.id {
                             return updateBoat
                         }
@@ -101,7 +104,7 @@ class BoatsViewModel: ObservableObject {
             try await self.repository.addEvent(boat: boat, name: name, startDate: startDate, endDate: endDate) {
                 updateBoat in
                 DispatchQueue.main.async {
-                    self.boats = self.boats.map { boat in
+                    self.boatsUserInCrew = self.boatsUserInCrew.map { boat in
                         if boat.id == updateBoat.id {
                             return updateBoat
                         }
@@ -115,23 +118,17 @@ class BoatsViewModel: ObservableObject {
     }
 
     func joinBoat(_ boat: Boat, _ user: User) async throws {
-        Task { @MainActor in
-            self.isLoading = true
-
-            try await self.repository.joinBoat(boat: boat, user: user) {
-                updateBoat in
-                DispatchQueue.main.async {
-                    self.boats = self.boats.map { boat in
-                        if boat.id == updateBoat.id {
-                            return updateBoat
-                        }
-                        return boat
+        try await self.repository.joinBoat(boat: boat, user: user) {
+            updateBoat in
+            DispatchQueue.main.async {
+                self.boatsUserInCrew = self.boatsUserInCrew.map { boat in
+                    if boat.id == updateBoat.id {
+                        return updateBoat
                     }
+                    return boat
                 }
             }
-            
-            self.isLoading = false
-        }
+        }            
     }
 
     func joinBoatEvent(_ boat: Boat, _ event: Event, _ user: User) async throws {
@@ -141,7 +138,7 @@ class BoatsViewModel: ObservableObject {
             try await self.repository.joinBoatEvent(boat: boat, event: event, user: user) {
                 updateBoat in
                 DispatchQueue.main.async {
-                    self.boats = self.boats.map { boat in
+                    self.boatsUserInCrew = self.boatsUserInCrew.map { boat in
                         if boat.id == updateBoat.id {
                             return updateBoat
                         }

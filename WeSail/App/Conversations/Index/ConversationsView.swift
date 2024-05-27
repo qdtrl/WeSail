@@ -67,6 +67,9 @@ struct ConversationsView: View {
             }
         }
         .accessibility(identifier: "conversationsList")
+        .refreshable {
+            conversationsVM.index(userId: authService.currentUser!.id)
+        }
         .onChange(of: query) { newValue in
             conversationsVM.search(query: newValue)
         }

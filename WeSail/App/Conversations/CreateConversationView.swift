@@ -19,7 +19,7 @@ struct CreateConversationView: View {
     @FocusState private var isFocused
 
     var body: some View {
-        NavigationView {
+        NavigationStack {
             VStack(spacing: 0) {
                 List {
                     ForEach(usersVM.usersSearch.filter { user in user.id != authService.currentUser!.id } ) { user in

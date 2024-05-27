@@ -9,7 +9,9 @@ import SwiftUI
 
 struct LoginView: View {
     @EnvironmentObject var authService: AuthService
+    
     @State var email: String = ""
+    @State var noEmailForReset = false
     @State var password: String = ""
     
     var body: some View {
@@ -56,10 +58,17 @@ struct LoginView: View {
                         
                         Button {
                             Task {
-                                try await authService.resetPassword(withEmail: email)
+                                if !email.isEmpty {
+                                    try await authService.resetPassword(withEmail: email)
+                                } else {
+                                    noEmailForReset.toggle()
+                                }
                             }
                         } label: {
                             Text("Mot de passe oublié ?")
+                        }
+                        .alert(isPresented: $noEmailForReset) {
+                            Alert(title: Text("Erreur"), message: Text("Veuillez entrer une adresse email valide"), dismissButton: .default(Text("OK")))
                         }
                     }
                     

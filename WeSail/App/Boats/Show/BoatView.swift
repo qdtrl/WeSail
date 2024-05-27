@@ -12,6 +12,8 @@ struct BoatView: View {
     @EnvironmentObject var usersVM: UserViewModel
     @EnvironmentObject var authService: AuthService
 
+    @Environment(\.dismiss) var dismiss
+
     @State var boat: Boat
     @State var index = 0
 
@@ -105,6 +107,8 @@ struct BoatView: View {
                         Button(action: {
                             Task {
                                 try await boatsVM.joinBoat(boat, authService.currentUser!) 
+
+                                dismiss()  
                             }
                         }) {
                             Text("Rejoindre")
@@ -192,6 +196,7 @@ struct BoatView: View {
             }
         }
         .onAppear() {
+            
             Task {
                 boatsVM.crew = try await withThrowingTaskGroup(of: User.self) { group in
                     for user in boat.crew {

@@ -9,7 +9,7 @@ import SwiftUI
 
 struct ProfileParametersView: View {
     @EnvironmentObject var authService: AuthService
-    
+
     var body: some View {
         List {
             Section {

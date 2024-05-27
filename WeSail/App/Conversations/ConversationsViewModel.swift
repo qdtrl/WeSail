@@ -116,6 +116,7 @@ class ConversationsViewModel: ObservableObject {
 
     func getMessages(conversationId: String) async throws {
         let snapshot = try await self.refDatabasePath.child(conversationId).child("messages").getData()
+        
         DispatchQueue.main.async {
             self.messages = []
         }
