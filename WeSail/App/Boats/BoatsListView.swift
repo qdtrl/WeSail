@@ -34,7 +34,7 @@ struct BoatsListView: View {
                 .padding(.horizontal, 10)
                 .accessibility(identifier: "boatsUserGrid")
                 .navigationDestination(for: Boat.self) { boat in
-                    BoatView(boat: boat)
+                    BoatView(boatId: boat.id)
                 }
             }
             .foregroundColor(.black)

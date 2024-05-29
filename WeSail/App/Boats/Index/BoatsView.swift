@@ -40,7 +40,7 @@ struct BoatsView: View {
                         .padding(.horizontal, 10)
                         .accessibility(identifier: "boatsGrid")
                         .navigationDestination(for: Boat.self) { boat in
-                            BoatView(boat: boat)
+                            BoatView(boatId: boat.id)
                         }
                         .navigationTitle("Mes Bateaux")
                         .navigationBarTitleDisplayMode(.inline)

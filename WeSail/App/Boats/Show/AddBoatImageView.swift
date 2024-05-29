@@ -10,11 +10,14 @@ import FirebaseStorage
 import UIKit
 
 struct AddBoatImageView: View {
+    @EnvironmentObject var boatsVM: BoatsViewModel
+
+    @Environment(\.dismiss) var dismiss
+
     @State var boat: Boat
+
     @State private var inputImage: UIImage?
     @State private var showingImagePicker = false
-    @EnvironmentObject var boatsVM: BoatsViewModel
-    @Environment(\.presentationMode) var presentationMode
 
     var body: some View {
         VStack {
@@ -50,16 +53,18 @@ struct AddBoatImageView: View {
 
                 HStack {
                     Spacer()
+                    
                     Button("Ajouter l'image") {
                         guard let image = inputImage else { return }
                         
                         Task {
                             boatsVM.uploadImageToBoat(boat, image)
                             
-                            self.presentationMode.wrappedValue.dismiss()
+                            dismiss()
                         }
-
                     }
+                    .disabled(inputImage == nil)
+                    
                 }
                 .padding(40)
 

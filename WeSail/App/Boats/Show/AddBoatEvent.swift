@@ -8,12 +8,15 @@
 import SwiftUI
 
 struct AddBoatEvent: View {
-    @State var boat: Boat
     @EnvironmentObject var boatsVM: BoatsViewModel
+    
+    @Environment(\.dismiss) var dismiss
+
+    @State var boat: Boat
+
     @State private var name: String = ""
     @State private var startDate: Date = Date()
     @State private var endDate: Date = Date()
-    @Environment(\.presentationMode) var presentationMode
 
     var body: some View {
         VStack {
@@ -26,9 +29,17 @@ struct AddBoatEvent: View {
                 Section {
                     Button("Créer l'événement") {
                        Task {
-                           try await boatsVM.addEventToBoat(boat, name, startDate, endDate)
+                           let event = Event(
+                            id: UUID().uuidString,
+                            name: name,
+                            startDate: startDate,
+                            endDate: endDate,
+                            createdAt: Date(),
+                            participants: [])
+                                             
+                           try await boatsVM.addEventToBoat(boat, event)
                              
-                             self.presentationMode.wrappedValue.dismiss()
+                           dismiss()
                        }
                     }
                 }
@@ -39,7 +50,7 @@ struct AddBoatEvent: View {
         .navigationBarBackButtonHidden(true)
         .navigationBarItems(leading:
             Button(action: {
-                self.presentationMode.wrappedValue.dismiss()
+                dismiss()
             }) {
                 Image(systemName: "chevron.left")
                 Text("Retour")

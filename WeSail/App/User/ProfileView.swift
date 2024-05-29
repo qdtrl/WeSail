@@ -15,6 +15,8 @@ struct ProfileView: View {
     @State var userId: String
     @State var currentUser: User?
     @State var index:Int = 0
+    @State var events: [Event] = []
+    @State var pictures: [String] = []
 
     var body: some View {
         ZStack {
@@ -112,9 +114,9 @@ struct ProfileView: View {
                         .padding(.top)
 
                         if index == 0 {
-                            EventsListView(events: boatsVM.boatsUserInCrew.map { $0.events }.flatMap { $0 })
+                            EventsListView(events: events)
                         } else if index == 1 {
-                            PicturesView(pictures: boatsVM.boatsUserInCrew.map { $0.images }.flatMap { $0 })
+                            PicturesView(pictures: pictures)
                         } else {
                             BoatsListView(boats: boatsVM.boatsUserInCrew)
                         }
@@ -137,6 +139,8 @@ struct ProfileView: View {
         .onAppear {
             usersVM.show(userId: userId)
             boatsVM.indexWhereUserInCrew(userId: userId)
+            self.events = boatsVM.boatsUserInCrew.map { $0.events }.flatMap { $0 }
+            self.pictures = boatsVM.boatsUserInCrew.map { $0.images }.flatMap { $0 }
         }
     }
 }

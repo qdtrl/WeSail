@@ -12,6 +12,8 @@ import FirebaseStorage
 
 protocol BoatRepositoryProtocol {
     func index() async throws -> [Boat]
+    func show(id: String) async throws -> Boat
+    func getCrew(boat: Boat) async throws -> [User]
     func create(boat: Boat, image: UIImage, completion: @escaping(_ boat: Boat) -> Void) async throws
     func joinBoat(boat: Boat, user: User, completion: @escaping(_ boat: Boat) -> Void) async throws
     func uploadImage(boat: Boat, image: UIImage, completion: @escaping(_ boat: Boat) -> Void) async throws
@@ -42,6 +44,28 @@ final class BoatRepository:BoatRepositoryProtocol {
         return boats
     }
 
+    func show(id: String) async throws -> Boat {
+        let snapshot = try await document(id: id).getDocument()
+
+        var boat = try snapshot.data(as: Boat.self)
+        
+        boat.id = snapshot.documentID
+        return boat
+    }
+
+    func getCrew(boat: Boat) async throws -> [User] {
+        let snapshot = try await Firestore.firestore().collection("users").whereField("id", in: boat.crew).getDocuments()
+        
+        var users: [User] = []
+        for document in snapshot.documents {
+            var user = try document.data(as: User.self)
+            user.id = document.documentID
+            users.append(user)
+        }
+        
+        return users
+    }
+
     func create(boat: Boat, image: UIImage, completion: @escaping(_ boat: Boat) -> Void) async throws {
        let storageRef = storage.reference()
        let imageRef = storageRef.child("images/boats/cover/\(UUID().uuidString).jpg")
@@ -62,7 +86,8 @@ final class BoatRepository:BoatRepositoryProtocol {
                            var boatUpdate = boat
                            boatUpdate.image = url
                            do {
-                               try collection.addDocument(from: boatUpdate)
+                                let created = try collection.addDocument(from: boatUpdate)
+                                boatUpdate.id = created.documentID
                            } catch {
                                throw NSError()
                            }
@@ -100,6 +125,7 @@ final class BoatRepository:BoatRepositoryProtocol {
                                 throw NSError()
                             }
                             var boatUpdate = boat
+                            boatUpdate.id = document.documentID
                             boatUpdate.images.append(url)
                             completion(boatUpdate)
                         }
@@ -118,6 +144,7 @@ final class BoatRepository:BoatRepositoryProtocol {
             throw NSError()
         }
         var updateBoat = boat
+        updateBoat.id = document.documentID
         updateBoat.events.append(event)
         completion(updateBoat)
     }
@@ -130,6 +157,7 @@ final class BoatRepository:BoatRepositoryProtocol {
             throw NSError()
         }
         var updateBoat = boat
+        updateBoat.id = document.documentID
         updateBoat.crew.append(user.id)
         completion(updateBoat)
     }

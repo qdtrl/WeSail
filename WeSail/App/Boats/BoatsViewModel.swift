@@ -11,6 +11,7 @@ import UIKit
 class BoatsViewModel: ObservableObject {
     var repository:BoatRepositoryProtocol
     @Published var boats: [Boat] = []
+    @Published var boat: Boat?
     @Published var boatsUserInCrew: [Boat] = []
     @Published var crew: [User] = []
     @Published var boatsSearched: [Boat] = []
@@ -45,6 +46,20 @@ class BoatsViewModel: ObservableObject {
         }
     }
 
+    func show(id: String) {
+        Task { @MainActor in
+            self.isLoading = true
+            print("Salut")
+            self.boat = try await self.repository.show(id: id)
+            print("Salut 2 ")
+
+            self.crew = try await self.repository.getCrew(boat: self.boat!)
+            print("Salut 3")
+
+            self.isLoading = false
+        }
+    }
+
     func search(query: String) {
         Task { @MainActor in
             self.isLoading = true
@@ -67,9 +82,10 @@ class BoatsViewModel: ObservableObject {
             self.isLoading = true
 
             try await self.repository.create(boat: boat, image: image) {
-                boat in
+                boatCreated in
+                print(boatCreated)
                 DispatchQueue.main.async {
-                    self.boatsUserInCrew.append(boat)
+                    self.boatsUserInCrew.append(boatCreated)
                 }
             }
                 
@@ -83,35 +99,25 @@ class BoatsViewModel: ObservableObject {
 
             try await self.repository.uploadImage(boat: boat, image: image) {
                 updateBoat in
-                DispatchQueue.main.async {
-                    self.boatsUserInCrew = self.boatsUserInCrew.map { boat in
-                        if boat.id == updateBoat.id {
-                            return updateBoat
-                        }
-                        return boat
-                    }
-                }
+                
+                self.boat = updateBoat
             }
             
             self.isLoading = false
         }
     }
 
-    func addEventToBoat(_ boat: Boat, _ name: String, _ startDate: Date, _ endDate: Date) async throws {
+    func addEventToBoat(_ boat: Boat, _ event: Event) async throws {
         Task { @MainActor in
             self.isLoading = true
             
-            try await self.repository.addEvent(boat: boat, name: name, startDate: startDate, endDate: endDate) {
-                updateBoat in
-                DispatchQueue.main.async {
-                    self.boatsUserInCrew = self.boatsUserInCrew.map { boat in
-                        if boat.id == updateBoat.id {
-                            return updateBoat
-                        }
-                        return boat
-                    }
-                }
-            }
+            var updateBoat = boat
+            
+            updateBoat.events.append(event)
+            
+            try await self.repository.update(boat: updateBoat)
+            
+            self.boat = updateBoat
             
             self.isLoading = false
         }
