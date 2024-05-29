@@ -30,7 +30,7 @@ struct BoatsView: View {
                     ScrollView(showsIndicators: false) {
                         LazyVGrid(columns: columns, spacing: 10) {
                             ForEach(boatsVM.boatsUserInCrew) { boat in
-                                NavigationLink(value: boat) {
+                                NavigationLink(destination: BoatView(boat: boat)) {
                                     BoatRow(boat: boat)
                                         .frame(maxWidth: .infinity, minHeight: 300)
                                         .accessibility(identifier: "boatCell")
@@ -39,9 +39,6 @@ struct BoatsView: View {
                         }
                         .padding(.horizontal, 10)
                         .accessibility(identifier: "boatsGrid")
-                        .navigationDestination(for: Boat.self) { boat in
-                            BoatView(boatId: boat.id)
-                        }
                         .navigationTitle("Mes Bateaux")
                         .navigationBarTitleDisplayMode(.inline)
                         .toolbar {
@@ -66,7 +63,6 @@ struct BoatsView: View {
                         }
                         boatsVM.indexWhereUserInCrew(userId: currentUser.id)
                     }
-                        
                 }
             }
             .onAppear() {

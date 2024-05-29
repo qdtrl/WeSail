@@ -13,12 +13,12 @@ struct BoatView: View {
     
     @Environment(\.dismiss) var dismiss
     
-    @State var boatId: String
+    @State var boat: Boat
+    @State var crew: [User] = []
     @State var index = 0
     
     var body: some View {
         ZStack {
-            if let boat = boatsVM.boat  {
                 NavigationStack {
                     ScrollView(showsIndicators: false) {
                         VStack(alignment: .leading, spacing: 20) {
@@ -191,7 +191,7 @@ struct BoatView: View {
                         case 1:
                             PicturesView(pictures: boat.images)
                         case 2:
-                            CrewView(crew: boatsVM.crew)
+                            CrewView(crew: crew)
                         default:
                             Text("Pas d'évènements")
                                 .padding(.vertical, 20)
@@ -199,7 +199,9 @@ struct BoatView: View {
                     }
                 }
                 .refreshable {
-                    boatsVM.show(id: boatId)
+                    await boatsVM.show(id: boat.id) { boat in
+                        self.boat = boat
+                    }
                 }
                 .accessibility(identifier: "boatView")
                 .toolbar {
@@ -211,13 +213,12 @@ struct BoatView: View {
                         }
                     }
                 }
-            } else {
-                ProgressView()
-            }
         }.onAppear() {
-            print("Appear")
-            print(boatId)
-            boatsVM.show(id: boatId)
+            Task {
+                await boatsVM.getCrew(boat: self.boat) { crew in
+                    self.crew = crew
+                }
+            }
         }
     }
 }

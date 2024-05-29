@@ -50,6 +50,7 @@ final class BoatRepository:BoatRepositoryProtocol {
         var boat = try snapshot.data(as: Boat.self)
         
         boat.id = snapshot.documentID
+       
         return boat
     }
 

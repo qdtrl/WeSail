@@ -11,9 +11,7 @@ import UIKit
 class BoatsViewModel: ObservableObject {
     var repository:BoatRepositoryProtocol
     @Published var boats: [Boat] = []
-    @Published var boat: Boat?
     @Published var boatsUserInCrew: [Boat] = []
-    @Published var crew: [User] = []
     @Published var boatsSearched: [Boat] = []
     @Published var isLoading:Bool = false
 
@@ -27,8 +25,6 @@ class BoatsViewModel: ObservableObject {
             self.isLoading = true
 
             self.boats = try await self.repository.index()
-
-            self.boatsSearched = self.boats
 
             self.isLoading = false
         }
@@ -46,17 +42,21 @@ class BoatsViewModel: ObservableObject {
         }
     }
 
-    func show(id: String) {
-        Task { @MainActor in
-            self.isLoading = true
-            print("Salut")
-            self.boat = try await self.repository.show(id: id)
-            print("Salut 2 ")
-
-            self.crew = try await self.repository.getCrew(boat: self.boat!)
-            print("Salut 3")
-
-            self.isLoading = false
+    func show(id: String, completion: @escaping (Boat) -> Void) async {
+        do {
+            let boat = try await self.repository.show(id: id)
+            completion(boat)
+        } catch {
+            print("")
+        }
+    }
+    
+    func getCrew(boat: Boat, completion: @escaping ([User]) -> Void) async {
+        do {
+            let users = try await self.repository.getCrew(boat: boat)
+            completion(users)
+        } catch {
+            print("")
         }
     }
 
@@ -68,10 +68,7 @@ class BoatsViewModel: ObservableObject {
                 self.boatsSearched = self.boats.filter { boat in
                     boat.name.lowercased().contains(query.lowercased())
                 }
-            } else {
-                self.boatsSearched = self.boats
             }
-            
 
             self.isLoading = false
         }
@@ -100,7 +97,7 @@ class BoatsViewModel: ObservableObject {
             try await self.repository.uploadImage(boat: boat, image: image) {
                 updateBoat in
                 
-                self.boat = updateBoat
+                
             }
             
             self.isLoading = false
@@ -117,7 +114,7 @@ class BoatsViewModel: ObservableObject {
             
             try await self.repository.update(boat: updateBoat)
             
-            self.boat = updateBoat
+             
             
             self.isLoading = false
         }
