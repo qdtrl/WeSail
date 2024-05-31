@@ -15,33 +15,36 @@ struct AddBoatEvent: View {
     @State var boat: Boat
 
     @State private var name: String = ""
-    @State private var startDate = Date()
-    @State private var endDate = Date()
+    @State private var startDate = Date.now
+    @State private var endDate = Date.now
+    @State private var dates: Set<DateComponents> = []
 
     var body: some View {
         VStack {
             Form {
                 Section {
                     TextField("Nom de l'événement", text: $name)
-
-                   DatePicker("Date de début", selection: $startDate, displayedComponents: [.date]).datePickerStyle(.graphical)
-                   DatePicker("Date de fin", selection: $endDate, displayedComponents: [.date]).datePickerStyle(.graphical)
-
+//
+//                    DatePicker("Date de début", selection: $startDate, displayedComponents: [.date])
+//                    
+//                    
+//                    MultiDatePicker("Dates Available", selection: $dates)
+                    
                 }
                 Section {
                     Button("Créer l'événement") {
                        Task {
-                          let event = Event(
-                           id: UUID().uuidString,
-                           name: name,
-                           startDate: startDate,
-                           endDate: endDate,
-                           createdAt: Date(),
-                           participants: [])
-                                            
-                          try await boatsVM.addEventToBoat(boat, event)
-                            
-                          dismiss()
+//                          let event = Event(
+//                           id: UUID().uuidString,
+//                           name: name,
+//                           startDate: startDate,
+//                           endDate: endDate,
+//                           createdAt: Date.now,
+//                           participants: [])
+//                                            
+//                          try await boatsVM.addEventToBoat(boat, event)
+//                            
+//                          dismiss()
                        }
                     }
                 }
