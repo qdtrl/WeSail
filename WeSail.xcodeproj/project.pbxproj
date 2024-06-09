@@ -42,6 +42,8 @@
 		3C701FF32B336FD80066721B /* RegisterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C701FF22B336FD80066721B /* RegisterView.swift */; };
 		3C701FF52B3373790066721B /* ProfileParametersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C701FF42B3373790066721B /* ProfileParametersView.swift */; };
 		3C701FF72B33745B0066721B /* SettingsRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C701FF62B33745B0066721B /* SettingsRowView.swift */; };
+		3C80DD0F2C10C0BC003D3AF6 /* EventView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C80DD0E2C10C0BC003D3AF6 /* EventView.swift */; };
+		3C80DD122C149007003D3AF6 /* EventsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C80DD112C149007003D3AF6 /* EventsViewModel.swift */; };
 		3CA01FF12B61938E00A1B908 /* CreateBoatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CA01FF02B61938E00A1B908 /* CreateBoatView.swift */; };
 		3CA275DD2B3585D400C532FD /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 3CA275DC2B3585D400C532FD /* FirebaseAnalytics */; };
 		3CA275DF2B3585D400C532FD /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 3CA275DE2B3585D400C532FD /* FirebaseAuth */; };
@@ -65,8 +67,8 @@
 		3CC549B52B4028E100C48919 /* EventRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CC549B42B4028E100C48919 /* EventRepository.swift */; };
 		3CC549B72B4029A200C48919 /* UserRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CC549B62B4029A200C48919 /* UserRepository.swift */; };
 		3CC549BF2B4032EA00C48919 /* Query.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CC549BE2B4032EA00C48919 /* Query.swift */; };
-		3CCB98D72BFBA2E000A2B3A5 /* EventRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CCB98D62BFBA2E000A2B3A5 /* EventRow.swift */; };
 		3CDA184E2C09EFD400305B22 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3CDA184D2C09EFD400305B22 /* GoogleService-Info.plist */; };
+		3CDA18502C0A132C00305B22 /* UpdateProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CDA184F2C0A132C00305B22 /* UpdateProfileView.swift */; };
 		3CEBE2842B1A307600EA59D5 /* ConversationsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CEBE2832B1A307600EA59D5 /* ConversationsView.swift */; };
 		3CEBE2862B1A330100EA59D5 /* ConversationsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CEBE2852B1A330100EA59D5 /* ConversationsViewModel.swift */; };
 		3CEBE2892B1A426600EA59D5 /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CEBE2882B1A426600EA59D5 /* Date.swift */; };
@@ -129,6 +131,8 @@
 		3C701FF22B336FD80066721B /* RegisterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterView.swift; sourceTree = "<group>"; };
 		3C701FF42B3373790066721B /* ProfileParametersView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileParametersView.swift; sourceTree = "<group>"; };
 		3C701FF62B33745B0066721B /* SettingsRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsRowView.swift; sourceTree = "<group>"; };
+		3C80DD0E2C10C0BC003D3AF6 /* EventView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventView.swift; sourceTree = "<group>"; };
+		3C80DD112C149007003D3AF6 /* EventsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsViewModel.swift; sourceTree = "<group>"; };
 		3CA01FF02B61938E00A1B908 /* CreateBoatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateBoatView.swift; sourceTree = "<group>"; };
 		3CBA30482B27800400AA19FE /* BoatsViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoatsViewTests.swift; sourceTree = "<group>"; };
 		3CBA304B2B27862700AA19FE /* EventsViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsViewTests.swift; sourceTree = "<group>"; };
@@ -146,8 +150,8 @@
 		3CC549B42B4028E100C48919 /* EventRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventRepository.swift; sourceTree = "<group>"; };
 		3CC549B62B4029A200C48919 /* UserRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRepository.swift; sourceTree = "<group>"; };
 		3CC549BE2B4032EA00C48919 /* Query.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Query.swift; sourceTree = "<group>"; };
-		3CCB98D62BFBA2E000A2B3A5 /* EventRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventRow.swift; sourceTree = "<group>"; };
 		3CDA184D2C09EFD400305B22 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		3CDA184F2C0A132C00305B22 /* UpdateProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateProfileView.swift; sourceTree = "<group>"; };
 		3CEBE2832B1A307600EA59D5 /* ConversationsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationsView.swift; sourceTree = "<group>"; };
 		3CEBE2852B1A330100EA59D5 /* ConversationsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationsViewModel.swift; sourceTree = "<group>"; };
 		3CEBE2882B1A426600EA59D5 /* Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
@@ -271,7 +275,6 @@
 				3C524A8C2B1B8207000B1667 /* BoatView.swift */,
 				3C38C3C72BD0329E006C82F4 /* AddBoatImageView.swift */,
 				3C38C3C92BD032B5006C82F4 /* AddBoatEvent.swift */,
-				3CCB98D62BFBA2E000A2B3A5 /* EventRow.swift */,
 			);
 			path = Show;
 			sourceTree = "<group>";
@@ -311,9 +314,18 @@
 				3C701FF02B336C610066721B /* InputView.swift */,
 				3C701FF62B33745B0066721B /* SettingsRowView.swift */,
 				3CC041C22B7A740100ABDE55 /* UserImageView.swift */,
-				3C38C3CD2BD033FF006C82F4 /* EventsListView.swift */,
 			);
 			path = Components;
+			sourceTree = "<group>";
+		};
+		3C80DD102C148FC4003D3AF6 /* Events */ = {
+			isa = PBXGroup;
+			children = (
+				3C38C3CD2BD033FF006C82F4 /* EventsListView.swift */,
+				3C80DD0E2C10C0BC003D3AF6 /* EventView.swift */,
+				3C80DD112C149007003D3AF6 /* EventsViewModel.swift */,
+			);
+			path = Events;
 			sourceTree = "<group>";
 		};
 		3CA275E62B3590BF00C532FD /* App */ = {
@@ -322,6 +334,7 @@
 				3C17C8712B14D60B00C74788 /* WeSailApp.swift */,
 				3C17C8732B14D60B00C74788 /* ContentView.swift */,
 				3CA275E82B36F2A200C532FD /* Auth */,
+				3C80DD102C148FC4003D3AF6 /* Events */,
 				3CA275EB2B36F34000C532FD /* Boats */,
 				3CA275E72B36F23300C532FD /* Conversations */,
 				3CA275E92B36F2C800C532FD /* User */,
@@ -355,6 +368,7 @@
 				3CC549AC2B3ECE7300C48919 /* UserViewModel.swift */,
 				3C46FBBD2B152A78003B0884 /* ProfileView.swift */,
 				3C701FF42B3373790066721B /* ProfileParametersView.swift */,
+				3CDA184F2C0A132C00305B22 /* UpdateProfileView.swift */,
 			);
 			path = User;
 			sourceTree = "<group>";
@@ -679,6 +693,7 @@
 				3C17C8B02B14EC2400C74788 /* AuthService.swift in Sources */,
 				3C2957C22B7D43BE00BBDD4F /* BoatsListView.swift in Sources */,
 				3CEBE2862B1A330100EA59D5 /* ConversationsViewModel.swift in Sources */,
+				3C80DD122C149007003D3AF6 /* EventsViewModel.swift in Sources */,
 				3CC041C72B7A7D8B00ABDE55 /* UpdateCrewBoatView.swift in Sources */,
 				3C17C89F2B14DAEE00C74788 /* ConversationView.swift in Sources */,
 				3CBF91B52B554643001650ED /* RouterView.swift in Sources */,
@@ -691,11 +706,11 @@
 				3CC041C52B7A7AE900ABDE55 /* MenuBoatView.swift in Sources */,
 				3CEBE2892B1A426600EA59D5 /* Date.swift in Sources */,
 				3C17C8A62B14E3A900C74788 /* Conversation.swift in Sources */,
+				3CDA18502C0A132C00305B22 /* UpdateProfileView.swift in Sources */,
 				3C17C89C2B14D72B00C74788 /* MessageView.swift in Sources */,
 				3C701FF52B3373790066721B /* ProfileParametersView.swift in Sources */,
 				3CC549BF2B4032EA00C48919 /* Query.swift in Sources */,
 				3C524A872B1B7CEA000B1667 /* BoatsViewModel.swift in Sources */,
-				3CCB98D72BFBA2E000A2B3A5 /* EventRow.swift in Sources */,
 				3CC549B72B4029A200C48919 /* UserRepository.swift in Sources */,
 				3CC041C32B7A740100ABDE55 /* UserImageView.swift in Sources */,
 				3C524A8B2B1B8021000B1667 /* Event.swift in Sources */,
@@ -713,6 +728,7 @@
 				3C17C8A22B14DB3F00C74788 /* Message.swift in Sources */,
 				3CC549B52B4028E100C48919 /* EventRepository.swift in Sources */,
 				3C0D68B92B768D3C008044AE /* ConversationRepository.swift in Sources */,
+				3C80DD0F2C10C0BC003D3AF6 /* EventView.swift in Sources */,
 				3C17C8742B14D60B00C74788 /* ContentView.swift in Sources */,
 				3C46FBC02B152BAF003B0884 /* BoatsView.swift in Sources */,
 				3C38C3C82BD0329E006C82F4 /* AddBoatImageView.swift in Sources */,

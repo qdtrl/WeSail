@@ -51,64 +51,61 @@ struct CreateBoatView: View {
                     )
                 }
                 
-                Section {
-                    HStack {
-                        if let inputImage = inputImage {
-                            Image(uiImage: inputImage)
-                                .resizable()
-                                .aspectRatio(contentMode: .fill)
-                                .scaledToFill()
-                                .frame(width: 200, height: 160)
-                                .clipped()
-                            
-                        } else {
-                            VStack {
-                                Image(systemName: "photo")
-                                    .frame(width: 50, height: 50)
-                                    .foregroundColor(.gray)
-                                Text("Aucune image sélectionnée")
-                                    .font(.caption)
-                                    .foregroundColor(.gray)
-                            }
+                HStack {
+                    if let inputImage = inputImage {
+                        Image(uiImage: inputImage)
+                            .resizable()
+                            .aspectRatio(contentMode: .fill)
+                            .scaledToFill()
                             .frame(width: 200, height: 160)
-                        }
+                            .clipped()
                         
-                        Spacer()
-                        
-                        Button("Choisir une image") {
-                            self.showingImagePicker = true
+                    } else {
+                        VStack {
+                            Image(systemName: "photo")
+                                .frame(width: 50, height: 50)
+                                .foregroundColor(.gray)
+                            Text("Aucune image sélectionnée")
+                                .font(.caption)
+                                .foregroundColor(.gray)
                         }
-                        .font(.headline)
+                        .frame(width: 200, height: 160)
                     }
-
-                    HStack {
-                        Spacer()
                     
-                        Button(action: {
-                            guard let image = inputImage else { return }
+                    Spacer()
+                    
+                    Button("Choisir une image") {
+                        self.showingImagePicker = true
+                    }
+                    .font(.headline)
+                }
+
+                HStack {
+                    Spacer()
+                
+                    Button(action: {
+                        guard let image = inputImage else { return }
+                        
+                        let boat = Boat(
+                            id: UUID().uuidString,
+                            name: name,
+                            type: type,
+                            number: number,
+                            club: club,
+                            image: "",
+                            owners: [authService.currentUser!.id],
+                            crew: [authService.currentUser!.id],
+                            images: []
+                        )
+                        
+                        Task {
+                            boatsVM.create(boat, image)
                             
-                            let boat = Boat(
-                                id: UUID().uuidString,
-                                name: name,
-                                type: type,
-                                number: number,
-                                club: club,
-                                image: "",
-                                owners: [authService.currentUser!.id],
-                                crew: [authService.currentUser!.id],
-                                events: [],
-                                images: []
-                            )
-                            
-                            Task {
-                                boatsVM.create(boat, image)
-                                
-                                dismiss()
-                            }
-                            
-                        }) {
-                            Text("Ajouter le bateau")
+                            dismiss()
                         }
+                        
+                    }) {
+                        Text("Ajouter le bateau")
                     }
                 }
             }

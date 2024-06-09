@@ -16,7 +16,6 @@ struct Boat: Codable, Identifiable, Hashable {
     var image: String
     var owners: [String]
     var crew: [String]
-    var events: [Event]
     var images: [String]
 
     init(
@@ -28,7 +27,6 @@ struct Boat: Codable, Identifiable, Hashable {
      image: String,
      owners: [String],
      crew: [String],
-     events: [Event],
      images: [String]
     ) {
         self.id = id
@@ -39,7 +37,6 @@ struct Boat: Codable, Identifiable, Hashable {
         self.image = image
         self.owners = owners
         self.crew = crew
-        self.events = events
         self.images = images
     }
     
@@ -52,7 +49,6 @@ struct Boat: Codable, Identifiable, Hashable {
         case image
         case owners
         case crew
-        case events
         case images
     }
     
@@ -66,7 +62,6 @@ struct Boat: Codable, Identifiable, Hashable {
         self.image = try container.decode(String.self, forKey: .image)
         self.owners = try container.decode([String].self, forKey: .owners)
         self.crew = try container.decode([String].self, forKey: .crew)
-        self.events = try container.decode([Event].self, forKey: .events)
         self.images = try container.decode([String].self, forKey: .images)
     }
         
@@ -80,10 +75,6 @@ struct Boat: Codable, Identifiable, Hashable {
         try container.encode(self.image, forKey: .image)
         try container.encode(self.owners, forKey: .owners)
         try container.encode(self.crew, forKey: .crew)
-        try container.encode(self.events, forKey: .events)
         try container.encode(self.images, forKey: .images)
     }
-    
-    
-    
 }

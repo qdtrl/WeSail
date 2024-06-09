@@ -12,15 +12,14 @@ struct ProfileParametersView: View {
 
     var body: some View {
         List {
-            Section {
-                
-            }
-            
             Section("Générale") {
-                SettingsRowView(imageName: "gear", title: "Version", tintColor: Color(.systemGray))
+                SettingsRowView(imageName: "gear", title: "Version 0.0.1", tintColor: Color(.systemGray))
+
+                NavigationLink(destination: UpdateProfileView()) {
+                    SettingsRowView(imageName: "person.fill", title: "Mettre à jour le profil", tintColor: .blue)
+                }
             }
             
-            Spacer()
             
             Button {
                 authService.signOut()

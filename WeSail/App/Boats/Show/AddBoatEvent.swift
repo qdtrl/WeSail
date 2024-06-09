@@ -8,43 +8,43 @@
 import SwiftUI
 
 struct AddBoatEvent: View {
-    @EnvironmentObject var boatsVM: BoatsViewModel
-    
+    @EnvironmentObject var eventsVM: EventsViewModel
+   
     @Environment(\.dismiss) var dismiss
 
     @State var boat: Boat
 
     @State private var name: String = ""
-    @State private var startDate = Date.now
-    @State private var endDate = Date.now
-    @State private var dates: Set<DateComponents> = []
+    @State private var startDate: Date?
+    @State private var endDate: Date?
 
     var body: some View {
         VStack {
             Form {
                 Section {
                     TextField("Nom de l'événement", text: $name)
-//
-//                    DatePicker("Date de début", selection: $startDate, displayedComponents: [.date])
-//                    
-//                    
-//                    MultiDatePicker("Dates Available", selection: $dates)
-                    
+                    if let startDate = startDate {
+                        DatePicker("Date de début", selection: Binding(get: { startDate }, set: { self.startDate = $0 }), displayedComponents: [.date])
+                    }
+                    if let endDate = endDate {
+                        DatePicker("Date de fin", selection: Binding(get: { endDate }, set: { self.endDate = $0 }), displayedComponents: [.date])
+                    }
                 }
                 Section {
                     Button("Créer l'événement") {
                        Task {
-//                          let event = Event(
-//                           id: UUID().uuidString,
-//                           name: name,
-//                           startDate: startDate,
-//                           endDate: endDate,
-//                           createdAt: Date.now,
-//                           participants: [])
-//                                            
-//                          try await boatsVM.addEventToBoat(boat, event)
-//                            
-//                          dismiss()
+                          let event = Event(
+                            id: UUID().uuidString,
+                            boatId: boat.id,
+                            name: name,
+                            startDate: startDate ?? Date.now,
+                            endDate: endDate ?? Date.now,
+                            createdAt: Date.now,
+                            participants: [])
+                                         
+                            eventsVM.create(event: event) { _ in
+                                dismiss()
+                            }
                        }
                     }
                 }
@@ -61,6 +61,10 @@ struct AddBoatEvent: View {
                 Text("Retour")
             }
         )
+        .onAppear {
+            self.startDate = Date()
+            self.endDate = Date()
+        }
 
     }
 }

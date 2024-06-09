@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import UIKit
 
 class UserViewModel: ObservableObject {
     var repository:UserRepositoryProtocol
@@ -47,6 +48,20 @@ class UserViewModel: ObservableObject {
                 user.firstName.lowercased().contains(query.lowercased()) || user.lastName.lowercased().contains(query.lowercased())
             }
 
+            self.isLoading = false
+        }
+    }
+    
+    func update(user: User, image: UIImage) {
+        Task { @MainActor in
+            self.isLoading = true
+
+            try await self.repository.update(user: user, image: image) { user in
+                DispatchQueue.main.async {
+                    self.user = user
+                }            
+            }
+            
             self.isLoading = false
         }
     }

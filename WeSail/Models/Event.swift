@@ -10,6 +10,7 @@ import Firebase
 
 struct Event: Codable, Identifiable, Hashable {
     var id: String
+    var boatId: String
     var name: String
     var startDate: Date
     var endDate: Date
@@ -18,6 +19,7 @@ struct Event: Codable, Identifiable, Hashable {
 
     init(
         id: String,
+        boatId: String,
         name: String,
         startDate: Date,
         endDate: Date,
@@ -25,6 +27,7 @@ struct Event: Codable, Identifiable, Hashable {
         participants: [String]
     ) {
         self.id = id
+        self.boatId = boatId
         self.name = name
         self.startDate = startDate
         self.endDate = endDate
@@ -35,6 +38,7 @@ struct Event: Codable, Identifiable, Hashable {
     init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         id = try container.decode(String.self, forKey: .id)
+        boatId = try container.decode(String.self, forKey: .boatId)
         name = try container.decode(String.self, forKey: .name)
         startDate = try container.decode(Date.self, forKey: .startDate)
         endDate = try container.decode(Date.self, forKey: .endDate)
@@ -45,6 +49,7 @@ struct Event: Codable, Identifiable, Hashable {
     func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(id, forKey: .id)
+        try container.encode(boatId, forKey: .boatId)
         try container.encode(name, forKey: .name)
         try container.encode(startDate, forKey: .startDate)
         try container.encode(endDate, forKey: .endDate)
@@ -54,6 +59,7 @@ struct Event: Codable, Identifiable, Hashable {
 
     enum CodingKeys: String, CodingKey {
         case id
+        case boatId
         case name
         case startDate
         case endDate
@@ -64,6 +70,7 @@ struct Event: Codable, Identifiable, Hashable {
     var dictionaryValue: [String: Any] {
         return [
             "id": id,
+            "boat_id": boatId,
             "name": name,
             "start_date": startDate,
             "end_date": endDate,

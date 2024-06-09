@@ -14,7 +14,7 @@ struct User: Codable, Identifiable, Hashable {
     let firstName: String
     let lastName: String
     let description: String
-    let image: String
+    var image: String
     let followers: [User]?
     let subscribers: [User]?
     

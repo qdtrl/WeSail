@@ -15,6 +15,7 @@ struct BoatView: View {
     
     @State var boat: Boat
     @State var crew: [User] = []
+    @State var events: [Event] = []
     @State var index = 0
     
     var body: some View {
@@ -46,7 +47,7 @@ struct BoatView: View {
                                 
                                 Spacer()
                                 VStack {
-                                    Text("\(boat.events.count)")
+                                    Text("\(events.count)")
                                         .bold()
                                     Text("Evènements")
                                 }
@@ -187,7 +188,14 @@ struct BoatView: View {
                         
                         switch index {
                         case 0:
-                            EventsListView(events: boat.events)
+                            EventsListView(events: $events)
+                                .onAppear {
+                                    Task {
+                                        await boatsVM.show(id: boat.id) { boat in
+                                            self.boat = boat
+                                        }                               
+                                    }
+                                }
                         case 1:
                             PicturesView(pictures: boat.images)
                         case 2:
@@ -215,7 +223,7 @@ struct BoatView: View {
                 }
         }.onAppear() {
             Task {
-                await boatsVM.getCrew(boat: self.boat) { crew in
+                await boatsVM.getCrew(crew: self.boat.crew) { crew in
                     self.crew = crew
                 }
             }

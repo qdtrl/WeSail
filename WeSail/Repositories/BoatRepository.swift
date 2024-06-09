@@ -13,12 +13,10 @@ import FirebaseStorage
 protocol BoatRepositoryProtocol {
     func index() async throws -> [Boat]
     func show(id: String) async throws -> Boat
-    func getCrew(boat: Boat) async throws -> [User]
+    func getCrew(crew: [String]) async throws -> [User]
     func create(boat: Boat, image: UIImage, completion: @escaping(_ boat: Boat) -> Void) async throws
     func joinBoat(boat: Boat, user: User, completion: @escaping(_ boat: Boat) -> Void) async throws
     func uploadImage(boat: Boat, image: UIImage, completion: @escaping(_ boat: Boat) -> Void) async throws
-    func addEvent(boat: Boat, name: String, startDate: Date, endDate: Date, completion: @escaping(_ boat: Boat) -> Void) async throws
-    func joinBoatEvent(boat: Boat, event: Event, user: User, completion: @escaping(_ boat: Boat) -> Void) async throws
     func update(boat: Boat) async throws
     func delete(boat: Boat) async throws
 }
@@ -54,8 +52,8 @@ final class BoatRepository:BoatRepositoryProtocol {
         return boat
     }
 
-    func getCrew(boat: Boat) async throws -> [User] {
-        let snapshot = try await Firestore.firestore().collection("users").whereField("id", in: boat.crew).getDocuments()
+    func getCrew(crew: [String]) async throws -> [User] {
+        let snapshot = try await Firestore.firestore().collection("users").whereField("id", in: crew).getDocuments()
         
         var users: [User] = []
         for document in snapshot.documents {
@@ -135,20 +133,6 @@ final class BoatRepository:BoatRepositoryProtocol {
             }
         }
     }
-
-    func addEvent(boat: Boat, name: String, startDate: Date, endDate: Date, completion: @escaping(_ boat: Boat) -> Void) async throws {
-        let event = Event(id: "\(boat.events.count + 1)",name: name, startDate: startDate, endDate: endDate, createdAt: Date(), participants: [])
-        let document = collection.document(boat.id)
-        do {
-            try await document.updateData(["events": FieldValue.arrayUnion([event.dictionaryValue])])
-        } catch {
-            throw NSError()
-        }
-        var updateBoat = boat
-        updateBoat.id = document.documentID
-        updateBoat.events.append(event)
-        completion(updateBoat)
-    }
     
     func joinBoat(boat: Boat, user: User, completion: @escaping(_ boat: Boat) -> Void) async throws {
         let document = collection.document(boat.id)
@@ -163,22 +147,6 @@ final class BoatRepository:BoatRepositoryProtocol {
         completion(updateBoat)
     }
     
-    func joinBoatEvent(boat: Boat, event: Event, user: User, completion: @escaping(_ boat: Boat) -> Void) async throws {
-        let document = collection.document(boat.id)
-        var eventsUpdated = boat.events
-        if let index = eventsUpdated.firstIndex(where: { $0.id == event.id }) {
-            eventsUpdated[index].participants.append(user.id)
-        }
-        do {
-            try await document.updateData(["events": eventsUpdated])
-        } catch {
-            throw NSError()
-        }
-        var updateBoat = boat
-        updateBoat.events = eventsUpdated
-        completion(updateBoat)    
-    }
-    
     func update(boat: Boat) async throws {
         let document = document(id: boat.id)
         try document.setData(from: boat)
@@ -188,5 +156,4 @@ final class BoatRepository:BoatRepositoryProtocol {
         let document = document(id: boat.id)
         try await document.delete()
     }
-    
 }

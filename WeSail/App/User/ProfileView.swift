@@ -9,8 +9,9 @@ import SwiftUI
 
 struct ProfileView: View {
     @EnvironmentObject var authService: AuthService
-    @EnvironmentObject var boatsVM: BoatsViewModel
     @EnvironmentObject var usersVM: UserViewModel
+    @EnvironmentObject var boatsVM: BoatsViewModel
+    @EnvironmentObject var eventsVM: EventsViewModel
     
     @State var userId: String
     @State var currentUser: User?
@@ -30,7 +31,7 @@ struct ProfileView: View {
                                 Spacer()
                                 
                                 VStack {
-                                    Text("\(boatsVM.boatsUserInCrew.map { $0.events }.flatMap { $0 }.count)")
+                                    Text("\(events.count)")
                                         .bold()
                                     Text("Events")
                                 }
@@ -42,7 +43,7 @@ struct ProfileView: View {
                                 }
                                 Spacer()
                                 VStack {
-                                    Text("\(boatsVM.boatsUserInCrew.map { $0.images }.flatMap { $0 }.count)")
+                                    Text("\(pictures.count)")
                                         .bold()
                                     Text("Photos")
                                 }
@@ -114,7 +115,7 @@ struct ProfileView: View {
                         .padding(.top)
 
                         if index == 0 {
-                            EventsListView(events: events)
+                            EventsListView(events: $events)
                         } else if index == 1 {
                             PicturesView(pictures: pictures)
                         } else {
@@ -139,8 +140,16 @@ struct ProfileView: View {
         .onAppear {
             usersVM.show(userId: userId)
             boatsVM.indexWhereUserInCrew(userId: userId)
-            self.events = boatsVM.boatsUserInCrew.map { $0.events }.flatMap { $0 }
+            eventsVM.indexUserEvents(userId: userId)
+
+            self.events = eventsVM.events
             self.pictures = boatsVM.boatsUserInCrew.map { $0.images }.flatMap { $0 }
+        }
+        .onChange(of: boatsVM.boatsUserInCrew) { _ in
+            self.pictures = boatsVM.boatsUserInCrew.map { $0.images }.flatMap { $0 }
+        }
+        .onChange(of: eventsVM.events) { _ in
+            self.events = eventsVM.events
         }
     }
 }

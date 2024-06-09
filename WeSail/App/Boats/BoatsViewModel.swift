@@ -51,9 +51,9 @@ class BoatsViewModel: ObservableObject {
         }
     }
     
-    func getCrew(boat: Boat, completion: @escaping ([User]) -> Void) async {
+    func getCrew(crew: [String], completion: @escaping ([User]) -> Void) async {
         do {
-            let users = try await self.repository.getCrew(boat: boat)
+            let users = try await self.repository.getCrew(crew: crew)
             completion(users)
         } catch {
             print("")
@@ -104,22 +104,6 @@ class BoatsViewModel: ObservableObject {
         }
     }
 
-    func addEventToBoat(_ boat: Boat, _ event: Event) async throws {
-        Task { @MainActor in
-            self.isLoading = true
-            
-            var updateBoat = boat
-            
-            updateBoat.events.append(event)
-            
-            try await self.repository.update(boat: updateBoat)
-            
-             
-            
-            self.isLoading = false
-        }
-    }
-
     func joinBoat(_ boat: Boat, _ user: User) async throws {
         try await self.repository.joinBoat(boat: boat, user: user) {
             updateBoat in
@@ -134,26 +118,6 @@ class BoatsViewModel: ObservableObject {
         }            
     }
 
-    func joinBoatEvent(_ boat: Boat, _ event: Event, _ user: User) async throws {
-        Task { @MainActor in
-            self.isLoading = true
-
-            try await self.repository.joinBoatEvent(boat: boat, event: event, user: user) {
-                updateBoat in
-                DispatchQueue.main.async {
-                    self.boatsUserInCrew = self.boatsUserInCrew.map { boat in
-                        if boat.id == updateBoat.id {
-                            return updateBoat
-                        }
-                        return boat
-                    }
-                }
-            }
-            
-            self.isLoading = false
-        }
-    }
-    
     func delete(_ boat: Boat) {
         Task { @MainActor in
             self.isLoading = true
@@ -174,8 +138,7 @@ class BoatsViewModel: ObservableObject {
                 UserViewModel().mockData[4].id,
                 UserViewModel().mockData[5].id
             ],
-            events: [],
-            images: []   
+            images: []
         ),
             Boat(id: "2", name: "Les Rapetous", type: "Muscadet", number: "30034", club: "Yacht Club Granville", image: "https://media01.adonnante.com/media/2016/06/monotype-national-muscadet-2016-pierrick-contin-1281-1168x750.jpg", owners: [UserViewModel().mockData[0].id], crew: [
                 UserViewModel().mockData[0].id,
@@ -183,7 +146,6 @@ class BoatsViewModel: ObservableObject {
                 UserViewModel().mockData[2].id,
                 UserViewModel().mockData[3].id,
             ],
-            events: [],
             images: []
         ),
             Boat(id: "3", name: "L'EPAD", type: "Tracteur", number: "32114", club: "Yacht Club Granville", image: "https://www.boat-specs.com/img/boat/199/jeanneau-sun-fast-3200-ext-2.jpg", owners: [UserViewModel().mockData[0].id], crew: [
@@ -194,7 +156,6 @@ class BoatsViewModel: ObservableObject {
                 UserViewModel().mockData[4].id,
                 UserViewModel().mockData[5].id
             ],
-            events: [],
             images: []
         ),
             Boat(id: "4", name: "Manche Evidence", type: "Class 40", number: "33323", club: "Yacht Club Granville", image: "https://www.manche.fr/wp-content/uploads/2023/03/manche-sport-evidence-nautique-cd50-ddaguier-04.jpg", owners: [UserViewModel().mockData[0].id], crew: [
@@ -202,7 +163,6 @@ class BoatsViewModel: ObservableObject {
                 UserViewModel().mockData[1].id,
                 UserViewModel().mockData[2].id,
             ],
-            events: [],
             images: []
         ),
             Boat(id: "5", name: "Calisto", type: "SunFast 3200", number: "32222", club: "Yacht Club Granville", image: "https://www.yachts.co/wp-content/gallery/jeanneau-sun-fast-3200-r2/Jeanneau-Sun-Fast-3200-R2-Exterior-Network-Yachts14.JPG", owners: [UserViewModel().mockData[0].id], crew: [
@@ -213,7 +173,6 @@ class BoatsViewModel: ObservableObject {
                 UserViewModel().mockData[4].id,
                 UserViewModel().mockData[5].id
             ], 
-            events: [],
             images: []
         ),
     ]
