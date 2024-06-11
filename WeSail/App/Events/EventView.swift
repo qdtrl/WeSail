@@ -40,6 +40,11 @@ struct EventView: View {
             }
 
             if (event.startDate < Date.now) {
+                Text("Commencé")
+                    .font(.subheadline)
+                    .foregroundColor(.orange)
+                    .accessibility(identifier: "eventFinished")
+            } else if (event.endDate < Date.now) {
                 Text("Terminé")
                     .font(.subheadline)
                     .foregroundColor(.red)
@@ -61,15 +66,18 @@ struct EventView: View {
                 }
             }
 
-            if self.event.participants.count > 0 {
+            if users.count > 0 {
                 ForEach(users, id: \.id) { user in
-                    HStack {
+                    HStack(alignment: .center) {
                         UserImageView(image: user.image, width: 50)
                             .accessibility(identifier: "eventUserImage")
+                        
                         Text("\(user.firstName) \(user.lastName)")
                             .font(.subheadline)
                             .foregroundColor(.black)
                             .accessibility(identifier: "eventUser")
+                        
+                        Spacer()
                     }
                 }     
             } else {
@@ -86,7 +94,15 @@ struct EventView: View {
         .onAppear {
             Task {
                 if self.event.participants.count > 0 {
-                    await boatsVM.getCrew(crew: self.event.participants) { crew in
+                    boatsVM.getCrew(crew: self.event.participants) { crew in
+                        self.users = crew
+                    }
+                }
+            }
+        }.onChange(of: event) { _ in
+            Task {
+                if self.event.participants.count > 0 {
+                    boatsVM.getCrew(crew: self.event.participants) { crew in
                         self.users = crew
                     }
                 }

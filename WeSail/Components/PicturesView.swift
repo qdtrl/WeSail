@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct PicturesView: View {
-    @State var pictures: [String] 
+    @Binding var pictures: [String] 
         
     @State private var selectedImage: String? = nil
     @State private var isShowingFullScreenImage = false
@@ -25,39 +25,44 @@ struct PicturesView: View {
         } else {
             LazyVGrid(columns: [GridItem(.adaptive(minimum: 100, maximum: 200), spacing: 3)], spacing: 3) {
                 ForEach(pictures, id: \.self) { picture in
-                    AsyncImage(url: URL(string: picture)) { phase in
-                        switch phase {
-                        case .empty:
-                            VStack {
-                                Spacer()
-                                ProgressView()
-                                    .progressViewStyle(CircularProgressViewStyle())
-                                    .foregroundColor(.gray)
-                                    .opacity(0.2)
-                                    .accessibility(identifier: "loadingImage")
-                                Spacer()
-                            }
-                            .frame(maxWidth: .infinity)
-                            .frame(height: 160)
-                            .background(Color.gray.opacity(0.2))
-                        case .success(let image):
-                            image
-                                .resizable()
-                                .scaledToFill()
-                                .aspectRatio(contentMode: .fill)
-                                .frame(maxWidth: nil, minHeight: 160, maxHeight: 160)
-                                .clipped()
-                                .onTapGesture {
-                                    selectedImage = picture
-                                    isShowingFullScreenImage = true
+                    ZStack {
+                    
+                        AsyncImage(url: URL(string: picture)) { phase in
+                            switch phase {
+                            case .empty:
+                                VStack {
+                                    Spacer()
+                                    ProgressView()
+                                        .progressViewStyle(CircularProgressViewStyle())
+                                        .foregroundColor(.gray)
+                                        .opacity(0.2)
+                                        .accessibility(identifier: "loadingImage")
+                                    Spacer()
                                 }
-                        case .failure(_):
-                            Color.red.opacity(0.2)
                                 .frame(maxWidth: .infinity)
                                 .frame(height: 160)
-                        @unknown default:
-                            Color.yellow.opacity(0.2)
+                                .background(Color.gray.opacity(0.2))
+                            case .success(let image):
+                                image
+                                    .resizable()
+                                    .aspectRatio(contentMode: .fit)
+                                    .scaledToFit()
+                                    .clipped()
+                            case .failure(_):
+                                Color.red.opacity(0.2)
+                                    .frame(maxWidth: .infinity)
+                                    .frame(height: 160)
+                            @unknown default:
+                                Color.yellow.opacity(0.2)
+                            }
                         }
+                    }
+                    .frame(height: 160)
+                    .frame(maxWidth: .infinity)
+                    .background(Color.gray.opacity(0.2))
+                    .onTapGesture {
+                        selectedImage = picture
+                        isShowingFullScreenImage = true
                     }
                 }
             }

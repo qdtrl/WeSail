@@ -10,7 +10,7 @@ import UIKit
 
 class BoatsViewModel: ObservableObject {
     var repository:BoatRepositoryProtocol
-    @Published var boats: [Boat] = []
+    var boats: [Boat] = []
     @Published var boatsUserInCrew: [Boat] = []
     @Published var boatsSearched: [Boat] = []
     @Published var isLoading:Bool = false
@@ -51,12 +51,14 @@ class BoatsViewModel: ObservableObject {
         }
     }
     
-    func getCrew(crew: [String], completion: @escaping ([User]) -> Void) async {
-        do {
-            let users = try await self.repository.getCrew(crew: crew)
-            completion(users)
-        } catch {
-            print("")
+    func getCrew(crew: [String], completion: @escaping ([User]) -> Void) {
+        Task { @MainActor in
+            do { 
+                let users = try await self.repository.getCrew(crew: crew)
+                completion(users)
+            } catch {
+                print("")
+            }
         }
     }
 
@@ -90,17 +92,17 @@ class BoatsViewModel: ObservableObject {
         }
     }
 
-    func uploadImageToBoat(_ boat: Boat, _ image: UIImage) {
+    func uploadImageToBoat(_ boat: Boat, _ image: UIImage, completion: @escaping (Boat) -> Void) {
         Task { @MainActor in
             self.isLoading = true
 
             try await self.repository.uploadImage(boat: boat, image: image) {
                 updateBoat in
-                
-                
+                DispatchQueue.main.async {
+                    self.isLoading = false
+                    completion(updateBoat)
+                }
             }
-            
-            self.isLoading = false
         }
     }
 
@@ -118,16 +120,20 @@ class BoatsViewModel: ObservableObject {
         }            
     }
 
-    func delete(_ boat: Boat) {
+    func update(boat: Boat, image: UIImage, completion: @escaping (Boat) -> Void) {
         Task { @MainActor in
             self.isLoading = true
 
-            try await self.repository.delete(boat: boat)
-            
-            self.isLoading = false
+            try await self.repository.update(boat: boat, image: image) {
+                boatUpdated in
+                DispatchQueue.main.async {
+                    self.isLoading = false
+                    completion(boatUpdated)
+                }
+            }
         }
     }
-    
+
     @Published var mockData = [
         Boat(
             id: "1", name: "Les Rapetous", type: "Class 10", number: "32134", club: "Yacht Club Granville", image: "https://media.bateaux.com/src/applications/showroom/images/images-produit/9f1b891f23143ede30ee690bfead2b42.png", owners: [UserViewModel().mockData[0].id], crew: [

@@ -136,5 +136,9 @@ struct CreateConversationView: View {
         .onAppear {
             usersVM.index(userId: authService.currentUser!.id)
         }
+        .onDisappear {
+            usersVM.users = []
+            usersVM.usersSearch = []
+        }
     }
 }

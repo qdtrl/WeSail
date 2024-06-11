@@ -17,8 +17,7 @@ protocol BoatRepositoryProtocol {
     func create(boat: Boat, image: UIImage, completion: @escaping(_ boat: Boat) -> Void) async throws
     func joinBoat(boat: Boat, user: User, completion: @escaping(_ boat: Boat) -> Void) async throws
     func uploadImage(boat: Boat, image: UIImage, completion: @escaping(_ boat: Boat) -> Void) async throws
-    func update(boat: Boat) async throws
-    func delete(boat: Boat) async throws
+    func update(boat: Boat, image: UIImage, completion: @escaping(_ boat: Boat) -> Void) async throws
 }
 
 final class BoatRepository:BoatRepositoryProtocol {
@@ -147,13 +146,50 @@ final class BoatRepository:BoatRepositoryProtocol {
         completion(updateBoat)
     }
     
-    func update(boat: Boat) async throws {
-        let document = document(id: boat.id)
-        try document.setData(from: boat)
-    }
-    
-    func delete(boat: Boat) async throws {
-        let document = document(id: boat.id)
-        try await document.delete()
+    func update(boat: Boat, image: UIImage, completion: @escaping(_ boat: Boat) -> Void) async throws {
+        if image == UIImage() {
+            do {
+                let document = document(id: boat.id)
+                try document.setData(from: boat)
+                completion(boat)
+            } catch {
+                throw NSError()
+            }
+        }
+
+        let storageRef = storage.reference()
+        let imageRef = storageRef.child("images/boats/cover/\(UUID().uuidString).jpg")
+
+        guard let data = image.jpegData(compressionQuality: 0.75) else {
+            throw NSError()
+        }
+
+        let metadata = StorageMetadata()
+        metadata.contentType = "image/jpeg"
+
+        imageRef.putData(data, metadata: metadata).observe(.success) { snapshot in
+            imageRef.downloadURL { [self] (url, error) in
+                Task {
+                    if error != nil {
+                        throw NSError()
+                    } else {
+                        if let url = url?.absoluteString {
+                            var boatUpdate = boat
+                            boatUpdate.image = url
+                            do {
+                                let document = document(id: boatUpdate.id)
+                                try document.setData(from: boatUpdate)
+                                boatUpdate.id = boat.id
+                                completion(boatUpdate)
+                            } catch {
+                                throw NSError()
+                            }
+
+                        }
+                    }
+
+                }
+            }
+        }
     }
 }

@@ -15,30 +15,10 @@ struct MenuBoatView: View {
 
     var body: some View {
         List {
-            Section("Événements") {
-                
-            }
-        
-            Section("Équipage") {
-              
-                NavigationLink(destination: UpdateCrewBoatView(boat: boat)) {
-                    SettingsRowView(imageName: "pencil", title: "Modifier", tintColor: Color(.systemGray))
-                }
-                
-            }
-            
             Section("Bateaux") {
                 NavigationLink(destination: UpdateBoatView(boat: boat)) {
                     SettingsRowView(imageName: "pencil", title: "Modifier", tintColor: Color(.systemGray))
                 }
-            }
-            
-            Button(action: {
-                Task {
-                    boatsVM.delete(boat)
-                }
-            }) {
-                SettingsRowView(imageName: "trash.fill", title: "Supprimer", tintColor: Color(.red))
             }
         }
         .navigationTitle(boat.name)

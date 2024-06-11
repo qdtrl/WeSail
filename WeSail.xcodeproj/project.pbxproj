@@ -60,7 +60,6 @@
 		3CC041BF2B7911C400ABDE55 /* UpdateBoatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CC041BE2B7911C400ABDE55 /* UpdateBoatView.swift */; };
 		3CC041C32B7A740100ABDE55 /* UserImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CC041C22B7A740100ABDE55 /* UserImageView.swift */; };
 		3CC041C52B7A7AE900ABDE55 /* MenuBoatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CC041C42B7A7AE900ABDE55 /* MenuBoatView.swift */; };
-		3CC041C72B7A7D8B00ABDE55 /* UpdateCrewBoatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CC041C62B7A7D8B00ABDE55 /* UpdateCrewBoatView.swift */; };
 		3CC549AB2B3ECB6800C48919 /* FirebaseAnalyticsSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 3CC549AA2B3ECB6800C48919 /* FirebaseAnalyticsSwift */; };
 		3CC549AD2B3ECE7300C48919 /* UserViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CC549AC2B3ECE7300C48919 /* UserViewModel.swift */; };
 		3CC549B32B3ED88A00C48919 /* BoatRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CC549B22B3ED88A00C48919 /* BoatRepository.swift */; };
@@ -144,7 +143,6 @@
 		3CC041BE2B7911C400ABDE55 /* UpdateBoatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateBoatView.swift; sourceTree = "<group>"; };
 		3CC041C22B7A740100ABDE55 /* UserImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserImageView.swift; sourceTree = "<group>"; };
 		3CC041C42B7A7AE900ABDE55 /* MenuBoatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuBoatView.swift; sourceTree = "<group>"; };
-		3CC041C62B7A7D8B00ABDE55 /* UpdateCrewBoatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateCrewBoatView.swift; sourceTree = "<group>"; };
 		3CC549AC2B3ECE7300C48919 /* UserViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserViewModel.swift; sourceTree = "<group>"; };
 		3CC549B22B3ED88A00C48919 /* BoatRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoatRepository.swift; sourceTree = "<group>"; };
 		3CC549B42B4028E100C48919 /* EventRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventRepository.swift; sourceTree = "<group>"; };
@@ -283,7 +281,6 @@
 			isa = PBXGroup;
 			children = (
 				3CC041BE2B7911C400ABDE55 /* UpdateBoatView.swift */,
-				3CC041C62B7A7D8B00ABDE55 /* UpdateCrewBoatView.swift */,
 			);
 			path = Update;
 			sourceTree = "<group>";
@@ -694,7 +691,6 @@
 				3C2957C22B7D43BE00BBDD4F /* BoatsListView.swift in Sources */,
 				3CEBE2862B1A330100EA59D5 /* ConversationsViewModel.swift in Sources */,
 				3C80DD122C149007003D3AF6 /* EventsViewModel.swift in Sources */,
-				3CC041C72B7A7D8B00ABDE55 /* UpdateCrewBoatView.swift in Sources */,
 				3C17C89F2B14DAEE00C74788 /* ConversationView.swift in Sources */,
 				3CBF91B52B554643001650ED /* RouterView.swift in Sources */,
 				3CC549B32B3ED88A00C48919 /* BoatRepository.swift in Sources */,

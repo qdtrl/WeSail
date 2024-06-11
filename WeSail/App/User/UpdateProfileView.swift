@@ -34,15 +34,16 @@ struct UpdateProfileView: View {
                                 .aspectRatio(contentMode: .fill)
                                 .scaledToFill()
                                 .frame(width: 200, height: 160)
-                                .clipped()
+                                .clipShape(Circle())
                             
                         } else {
                             UserImageView(image: image, width: 200)
-                                .onTapGesture {
-                                    self.showingImagePicker = true
-                                }
+                                
                         }
                         Spacer()
+                    }
+                    .onTapGesture {
+                        self.showingImagePicker = true
                     }
 
                     TextField("Prénom", text: $firstName)
@@ -58,13 +59,18 @@ struct UpdateProfileView: View {
                     Task {
                         let user = User(id: authService.currentUser?.id ?? "", email: authService.currentUser?.email ?? "", firstName: firstName, lastName: lastName, description: description, image: image)
 
-                        userVM.update(user: user, image: inputImage ?? UIImage())
-                        
-                        dismiss()
+                        userVM.update(user: user, image: inputImage ?? UIImage()) { userUpdated in
+                            self.dismiss()
+                        }
                     }
                 } label: {
-                    Text("Mettre à jour")
+                    if userVM.isLoading {
+                        ProgressView()
+                    } else {
+                        Text("Mettre à jour")
+                    }
                 }
+                .disabled(userVM.isLoading)
             }
         }
         .sheet(isPresented: $showingImagePicker) {

@@ -10,12 +10,11 @@ import UIKit
 
 class UserViewModel: ObservableObject {
     var repository:UserRepositoryProtocol
-    @Published var users: [User] = []
+    var users: [User] = []
     @Published var usersSearch: [User] = []
     @Published var user: User? = nil
-
     @Published var isLoading:Bool = false
-
+    
     init() {
         self.repository = UserRepository()
     }
@@ -52,17 +51,17 @@ class UserViewModel: ObservableObject {
         }
     }
     
-    func update(user: User, image: UIImage) {
+    func update(user: User, image: UIImage, completion: @escaping (User) -> Void) {
         Task { @MainActor in
             self.isLoading = true
 
-            try await self.repository.update(user: user, image: image) { user in
+            try await self.repository.update(user: user, image: image) { userUpdated in
                 DispatchQueue.main.async {
-                    self.user = user
-                }            
+                    self.user = userUpdated
+                    self.isLoading = false
+                    completion(userUpdated)
+                }
             }
-            
-            self.isLoading = false
         }
     }
 

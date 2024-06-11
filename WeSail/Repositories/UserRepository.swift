@@ -56,6 +56,7 @@ final class UserRepository: UserRepositoryProtocol{
         
         let storageRef = storage.reference()
         let imageRef = storageRef.child("images/users/\(UUID().uuidString).jpg")
+        
         guard let data = image.jpegData(compressionQuality: 0.75) else {
             throw NSError()
         }

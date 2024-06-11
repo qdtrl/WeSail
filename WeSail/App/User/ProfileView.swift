@@ -21,12 +21,12 @@ struct ProfileView: View {
 
     var body: some View {
         ZStack {
-            if let user = usersVM.user {
+            if !usersVM.isLoading, usersVM.user != nil {
                 NavigationStack {
                     ScrollView(showsIndicators: false) {
                         VStack(alignment: .leading, spacing: 20) {
                             HStack {
-                                UserImageView(image: user.image, width: 70)
+                                UserImageView(image: usersVM.user!.image, width: 70)
                                 
                                 Spacer()
                                 
@@ -49,10 +49,10 @@ struct ProfileView: View {
                                 }
                             }
 
-                            Text("\(user.firstName) \(user.lastName)")
+                            Text("\(usersVM.user!.firstName) \(usersVM.user!.lastName)")
                                 .bold()
 
-                            Text("\(user.description)")
+                            Text("\(usersVM.user!.description)")
                                 .font(.caption)
                                 .foregroundColor(.gray)
                             
@@ -117,7 +117,7 @@ struct ProfileView: View {
                         if index == 0 {
                             EventsListView(events: $events)
                         } else if index == 1 {
-                            PicturesView(pictures: pictures)
+                            PicturesView(pictures: $pictures)
                         } else {
                             BoatsListView(boats: boatsVM.boatsUserInCrew)
                         }
@@ -125,7 +125,7 @@ struct ProfileView: View {
                 }
                 .accessibility(identifier: "profileView")
                 .toolbar {
-                    if (currentUser == user) {
+                    if (currentUser == usersVM.user!) {
                         ToolbarItem(placement: .navigationBarTrailing) {
                             NavigationLink(destination: ProfileParametersView()) {
                                 Image(systemName: "ellipsis")
@@ -138,6 +138,7 @@ struct ProfileView: View {
             }
         }
         .onAppear {
+            print("ProfileView - onAppear")
             usersVM.show(userId: userId)
             boatsVM.indexWhereUserInCrew(userId: userId)
             eventsVM.indexUserEvents(userId: userId)
@@ -150,6 +151,11 @@ struct ProfileView: View {
         }
         .onChange(of: eventsVM.events) { _ in
             self.events = eventsVM.events
+        }
+        .onChange(of: usersVM.user) { _ in
+            if let cU = currentUser, let us = usersVM.user, cU.id == us.id {
+                self.currentUser = us
+            }
         }
     }
 }

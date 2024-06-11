@@ -30,7 +30,8 @@ final class EventRepository:EventRepositoryProtocol {
         let snapshot = try await collection.whereField("boatId", isEqualTo: boatId).getDocuments()
         var events: [Event] = []
         for document in snapshot.documents {
-            let event = try document.data(as: Event.self)
+            var event = try document.data(as: Event.self)
+            event.id = document.documentID
             events.append(event)
         }
         return events
@@ -40,7 +41,8 @@ final class EventRepository:EventRepositoryProtocol {
         let snapshot = try await collection.whereField("participants", arrayContains: userId).getDocuments()
         var events: [Event] = []
         for document in snapshot.documents {
-            let event = try document.data(as: Event.self)
+            var event = try document.data(as: Event.self)
+            event.id = document.documentID
             events.append(event)
         }
         return events
@@ -48,14 +50,14 @@ final class EventRepository:EventRepositoryProtocol {
 
     func create(event: Event) async throws -> Event {
         var event = event
-        let document = try await collection.addDocument(from: event)
+        let document = try collection.addDocument(from: event)
         event.id = document.documentID
         return event
     }
 
     func update(event: Event) async throws -> Event {
         let document = document(id: event.id)
-        try await document.setData(from: event)
+        try document.setData(from: event)
         return event
     }
 

@@ -9,6 +9,7 @@ import SwiftUI
 
 struct BoatView: View {
     @EnvironmentObject var boatsVM: BoatsViewModel
+    @EnvironmentObject var eventsVM: EventsViewModel
     @EnvironmentObject var authService: AuthService
     
     @Environment(\.dismiss) var dismiss
@@ -16,6 +17,7 @@ struct BoatView: View {
     @State var boat: Boat
     @State var crew: [User] = []
     @State var events: [Event] = []
+    @State var images: [String] = []
     @State var index = 0
     
     var body: some View {
@@ -197,7 +199,7 @@ struct BoatView: View {
                                     }
                                 }
                         case 1:
-                            PicturesView(pictures: boat.images)
+                            PicturesView(pictures: $images)
                         case 2:
                             CrewView(crew: crew)
                         default:
@@ -209,6 +211,7 @@ struct BoatView: View {
                 .refreshable {
                     await boatsVM.show(id: boat.id) { boat in
                         self.boat = boat
+                        self.images = boat.images
                     }
                 }
                 .accessibility(identifier: "boatView")
@@ -223,10 +226,21 @@ struct BoatView: View {
                 }
         }.onAppear() {
             Task {
-                await boatsVM.getCrew(crew: self.boat.crew) { crew in
+                boatsVM.getCrew(crew: self.boat.crew) { crew in
                     self.crew = crew
                 }
+
+                eventsVM.indexBoatEvents(boatId: boat.id) 
+
+                await boatsVM.show(id: boat.id) { boat in
+                    self.boat = boat
+                    self.images = boat.images
+                }
             }
+        }.onChange(of: eventsVM.events) { _ in
+            self.events = eventsVM.events
+        }.onChange(of: self.boat) { _ in
+            self.images = self.boat.images
         }
     }
 }

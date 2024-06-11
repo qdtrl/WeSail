@@ -54,16 +54,22 @@ struct AddBoatImageView: View {
                 HStack {
                     Spacer()
                     
-                    Button("Ajouter l'image") {
+                    Button {
                         guard let image = inputImage else { return }
                         
                         Task {
-                            boatsVM.uploadImageToBoat(boat, image)
-                            
-                            dismiss()
+                            boatsVM.uploadImageToBoat(boat, image) { boat in
+                                self.dismiss()
+                            }
+                        }
+                    } label: {
+                        if boatsVM.isLoading {
+                            ProgressView()
+                        } else {
+                            Text("Ajouter l'image")
                         }
                     }
-                    .disabled(inputImage == nil)
+                    .disabled(inputImage == nil || boatsVM.isLoading)
                     
                 }
                 .padding(40)
