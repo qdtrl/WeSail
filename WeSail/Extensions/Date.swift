@@ -33,9 +33,6 @@ extension Date {
         let date1 = calendar.startOfDay(for: self)
         let date2 = calendar.startOfDay(for: date)
         
-        if let daysBetween = calendar.dateComponents([.day], from: date1, to: date2).day {
-            return daysBetween
-        }
-        return 0
+        return calendar.dateComponents([.day], from: date1, to: date2).day!
     }
 }

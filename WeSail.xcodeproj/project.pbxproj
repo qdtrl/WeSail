@@ -51,7 +51,6 @@
 		3CA275E32B3585D400C532FD /* FirebaseFirestoreSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 3CA275E22B3585D400C532FD /* FirebaseFirestoreSwift */; };
 		3CA275E52B3585D400C532FD /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 3CA275E42B3585D400C532FD /* FirebaseStorage */; };
 		3CBA30492B27800400AA19FE /* BoatsViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CBA30482B27800400AA19FE /* BoatsViewTests.swift */; };
-		3CBA304C2B27862700AA19FE /* EventsViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CBA304B2B27862700AA19FE /* EventsViewTests.swift */; };
 		3CBA304E2B27994E00AA19FE /* DateExtensionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CBA304D2B27994E00AA19FE /* DateExtensionTests.swift */; };
 		3CBA30512B27B0D100AA19FE /* ProfileViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CBA30502B27B0D100AA19FE /* ProfileViewTests.swift */; };
 		3CBA30542B27B46600AA19FE /* ChatsViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CBA30532B27B46600AA19FE /* ChatsViewTests.swift */; };
@@ -508,7 +507,6 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 3C17C8952B14D60E00C74788 /* Build configuration list for PBXNativeTarget "WeSailTests" */;
 			buildPhases = (
-				6DA1C14FFF013444FFBFD1D6 /* [CP] Check Pods Manifest.lock */,
 				3C17C87A2B14D60D00C74788 /* Sources */,
 				3C17C87B2B14D60D00C74788 /* Frameworks */,
 				3C17C87C2B14D60D00C74788 /* Resources */,
@@ -527,7 +525,6 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 3C17C8982B14D60E00C74788 /* Build configuration list for PBXNativeTarget "WeSailUITests" */;
 			buildPhases = (
-				AA1AB1E50FECD609B870B0B0 /* [CP] Check Pods Manifest.lock */,
 				3C17C8842B14D60D00C74788 /* Sources */,
 				3C17C8852B14D60D00C74788 /* Frameworks */,
 				3C17C8862B14D60D00C74788 /* Resources */,
@@ -634,50 +631,6 @@
 			shellPath = /bin/sh;
 			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\nexport IDEPreferLogStreaming=YES\n";
 		};
-		6DA1C14FFF013444FFBFD1D6 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-WeSailTests-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		AA1AB1E50FECD609B870B0B0 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-WeSail-WeSailUITests-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -752,7 +705,6 @@
 				3CBA30542B27B46600AA19FE /* ChatsViewTests.swift in Sources */,
 				3CBA30492B27800400AA19FE /* BoatsViewTests.swift in Sources */,
 				3CBA30512B27B0D100AA19FE /* ProfileViewTests.swift in Sources */,
-				3CBA304C2B27862700AA19FE /* EventsViewTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -979,9 +931,10 @@
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/WeSail.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/WeSail";
 			};
 			name = Debug;
@@ -1000,9 +953,10 @@
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/WeSail.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/WeSail";
 			};
 			name = Release;
