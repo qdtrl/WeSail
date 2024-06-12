@@ -111,9 +111,9 @@ struct BoatView: View {
                                     
                                     Button(action: {
                                         Task {
-                                            try await boatsVM.joinBoat(boat, authService.currentUser!)
-                                            
-                                            dismiss()
+                                            boatsVM.joinBoat(boat, authService.currentUser!) { updateBoat in
+                                                dismiss()
+                                            }
                                         }
                                     }) {
                                         Text("Rejoindre")
@@ -226,8 +226,10 @@ struct BoatView: View {
                 }
         }.onAppear() {
             Task {
-                boatsVM.getCrew(crew: self.boat.crew) { crew in
-                    self.crew = crew
+                if !self.boat.crew.isEmpty {
+                    boatsVM.getCrew(crew: self.boat.crew) { crew in
+                        self.crew = crew
+                    }
                 }
 
                 eventsVM.indexBoatEvents(boatId: boat.id) 

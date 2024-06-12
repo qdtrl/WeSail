@@ -53,7 +53,7 @@ class BoatsViewModel: ObservableObject {
     
     func getCrew(crew: [String], completion: @escaping ([User]) -> Void) {
         Task { @MainActor in
-            do { 
+            do {
                 let users = try await self.repository.getCrew(crew: crew)
                 completion(users)
             } catch {
@@ -106,18 +106,21 @@ class BoatsViewModel: ObservableObject {
         }
     }
 
-    func joinBoat(_ boat: Boat, _ user: User) async throws {
-        try await self.repository.joinBoat(boat: boat, user: user) {
-            updateBoat in
-            DispatchQueue.main.async {
-                self.boatsUserInCrew = self.boatsUserInCrew.map { boat in
-                    if boat.id == updateBoat.id {
-                        return updateBoat
+    func joinBoat(_ boat: Boat, _ user: User, completion: @escaping (Boat) -> Void) {
+        Task { @MainActor in
+            try await self.repository.joinBoat(boat: boat, user: user) {
+                updateBoat in
+                DispatchQueue.main.async {
+                    self.boatsUserInCrew = self.boatsUserInCrew.map { boat in
+                        if boat.id == updateBoat.id {
+                            return updateBoat
+                        }
+                        return boat
                     }
-                    return boat
+                    completion(updateBoat)
                 }
             }
-        }            
+        }
     }
 
     func update(boat: Boat, image: UIImage, completion: @escaping (Boat) -> Void) {
