@@ -130,7 +130,7 @@ class ConversationsViewModel: ObservableObject {
                         self.messages.append(message)
                     }
                 } catch {
-                    print("an error occurred", error)
+                    print("\(error.localizedDescription)")
                 }
             }
         }

@@ -47,7 +47,7 @@ class BoatsViewModel: ObservableObject {
             let boat = try await self.repository.show(id: id)
             completion(boat)
         } catch {
-            print("")
+            print("\(error.localizedDescription)")
         }
     }
     
@@ -57,7 +57,7 @@ class BoatsViewModel: ObservableObject {
                 let users = try await self.repository.getCrew(crew: crew)
                 completion(users)
             } catch {
-                print("")
+                print("\(error.localizedDescription)")
             }
         }
     }
@@ -82,7 +82,6 @@ class BoatsViewModel: ObservableObject {
 
             try await self.repository.create(boat: boat, image: image) {
                 boatCreated in
-                print(boatCreated)
                 DispatchQueue.main.async {
                     self.boatsUserInCrew.append(boatCreated)
                 }

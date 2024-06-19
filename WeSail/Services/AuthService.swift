@@ -52,7 +52,7 @@ class AuthService: ObservableObject {
             await fetchUser()
         } catch {
             print("\(error.localizedDescription)")
-        }  
+        }
     }
     
     func signOut() {

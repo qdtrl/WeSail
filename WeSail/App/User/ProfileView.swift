@@ -138,7 +138,6 @@ struct ProfileView: View {
             }
         }
         .onAppear {
-            print("ProfileView - onAppear")
             usersVM.show(userId: userId)
             boatsVM.indexWhereUserInCrew(userId: userId)
             eventsVM.indexUserEvents(userId: userId)

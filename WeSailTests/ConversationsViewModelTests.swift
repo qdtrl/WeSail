@@ -64,4 +64,5 @@ final class ConversationsViewModelTests: XCTestCase {
         XCTAssertEqual(conversationsVM.conversationsSearch.count, 0)
     }
 
+    
 }

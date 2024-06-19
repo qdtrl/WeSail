@@ -43,7 +43,7 @@ class EventsViewModel: ObservableObject {
                 let createdEvent = try await self.repository.create(event: event)
                 completion(createdEvent)
             } catch {
-                print("Error creating event")
+                print("\(error.localizedDescription)")
             }
         }
     }
@@ -54,7 +54,7 @@ class EventsViewModel: ObservableObject {
                 let updatedEvent = try await self.repository.update(event: event)
                 completion(updatedEvent)
             } catch {
-                print("Error updating event")
+                print("\(error.localizedDescription)")
             }
         }
     }
@@ -65,7 +65,7 @@ class EventsViewModel: ObservableObject {
                 let joinedEvent = try await self.repository.joinEvent(event: event, userId: userId)
                 completion(joinedEvent)
             } catch {
-                print("Error joining event")
+                print("\(error.localizedDescription)")
             }
         }
     }

@@ -75,57 +75,58 @@ struct BoatView: View {
                                     Text("Club: \(boat.club)")
                                 }
                             }
-                            
-                            if boat.crew.contains(authService.currentUser!.id) {
-                                HStack {
-                                    Spacer()
-                                    
-                                    NavigationLink(destination: AddBoatImageView(boat: boat)) {
-                                        Text("+ Image")
-                                    }
-                                    .frame(width: 120)
-                                    .padding(.horizontal)
-                                    .padding(.vertical, 8)
-                                    .foregroundColor(.black)
-                                    .background(.thickMaterial)
-                                    .clipShape(RoundedRectangle(cornerRadius: 15, style: .continuous))
-                                    
-                                    Spacer()
-                                    
-                                    NavigationLink(destination: AddBoatEvent(boat: boat)) {
-                                        Text("+ Evènement")
-                                    }
-                                    .frame(width: 120)
-                                    .padding(.horizontal)
-                                    .padding(.vertical, 8)
-                                    .foregroundColor(.black)
-                                    .background(.thickMaterial)
-                                    .clipShape(RoundedRectangle(cornerRadius: 15, style: .continuous))
-                                    
-                                    Spacer()
-                                }
-                            } else {
-                                HStack {
-                                    
-                                    Spacer()
-                                    
-                                    Button(action: {
-                                        Task {
-                                            boatsVM.joinBoat(boat, authService.currentUser!) { updateBoat in
-                                                dismiss()
-                                            }
+                            if let curUs = authService.currentUser {
+                                if boat.crew.contains(curUs.id) {
+                                    HStack {
+                                        Spacer()
+                                        
+                                        NavigationLink(destination: AddBoatImageView(boat: boat)) {
+                                            Text("+ Image")
                                         }
-                                    }) {
-                                        Text("Rejoindre")
+                                        .frame(width: 120)
+                                        .padding(.horizontal)
+                                        .padding(.vertical, 8)
+                                        .foregroundColor(.black)
+                                        .background(.thickMaterial)
+                                        .clipShape(RoundedRectangle(cornerRadius: 15, style: .continuous))
+                                        
+                                        Spacer()
+                                        
+                                        NavigationLink(destination: AddBoatEvent(boat: boat)) {
+                                            Text("+ Evènement")
+                                        }
+                                        .frame(width: 120)
+                                        .padding(.horizontal)
+                                        .padding(.vertical, 8)
+                                        .foregroundColor(.black)
+                                        .background(.thickMaterial)
+                                        .clipShape(RoundedRectangle(cornerRadius: 15, style: .continuous))
+                                        
+                                        Spacer()
                                     }
-                                    .frame(width: 120)
-                                    .padding(.horizontal)
-                                    .padding(.vertical, 8)
-                                    .foregroundColor(.black)
-                                    .background(.thickMaterial)
-                                    .clipShape(RoundedRectangle(cornerRadius: 15, style: .continuous))
-                                    
-                                    Spacer()
+                                } else {
+                                    HStack {
+                                        
+                                        Spacer()
+                                        
+                                        Button(action: {
+                                            Task {
+                                                boatsVM.joinBoat(boat, authService.currentUser!) { updateBoat in
+                                                    dismiss()
+                                                }
+                                            }
+                                        }) {
+                                            Text("Rejoindre")
+                                        }
+                                        .frame(width: 120)
+                                        .padding(.horizontal)
+                                        .padding(.vertical, 8)
+                                        .foregroundColor(.black)
+                                        .background(.thickMaterial)
+                                        .clipShape(RoundedRectangle(cornerRadius: 15, style: .continuous))
+                                        
+                                        Spacer()
+                                    }
                                 }
                             }
                             
@@ -216,10 +217,12 @@ struct BoatView: View {
                 }
                 .accessibility(identifier: "boatView")
                 .toolbar {
-                    if boat.owners.contains(authService.currentUser!.id) {
-                        ToolbarItem(placement: .navigationBarTrailing) {
-                            NavigationLink(destination: MenuBoatView(boat: boat)) {
-                                Image(systemName: "ellipsis")
+                    if let userAuth = authService.currentUser {
+                        if boat.owners.contains(userAuth.id) {
+                            ToolbarItem(placement: .navigationBarTrailing) {
+                                NavigationLink(destination: MenuBoatView(boat: boat)) {
+                                    Image(systemName: "ellipsis")
+                                }
                             }
                         }
                     }

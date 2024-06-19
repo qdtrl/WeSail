@@ -74,8 +74,11 @@ struct ConversationsView: View {
             conversationsVM.search(query: newValue)
         }
         .onAppear() {
-            conversationsVM.index(userId: authService.currentUser!.id)
-        }
+            if let curUs = authService.currentUser {
+                conversationsVM.index(userId: curUs.id)
+
+            }
+                }
         .onDisappear {
             conversationsVM.stopListening()
         }

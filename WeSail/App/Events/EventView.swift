@@ -50,16 +50,18 @@ struct EventView: View {
                     .foregroundColor(.red)
                     .accessibility(identifier: "eventFinished")
             } else {
-                if (event.participants.firstIndex(where: { $0 == authService.currentUser!.id }) != nil) {
-                    Text("Inscrit")
-                        .font(.subheadline)
-                        .foregroundColor(.green)
-                        .accessibility(identifier: "eventRegistered")
-                } else {
-                    Button("S'inscrire") {
-                        Task {
-                            eventsVM.joinEvent(event: event, userId: authService.currentUser!.id) { event in
-                                self.event = event
+                if let curUs = authService.currentUser {
+                    if (event.participants.firstIndex(where: { $0 ==  curUs.id}) != nil) {
+                        Text("Inscrit")
+                            .font(.subheadline)
+                            .foregroundColor(.green)
+                            .accessibility(identifier: "eventRegistered")
+                    } else {
+                        Button("S'inscrire") {
+                            Task {
+                                eventsVM.joinEvent(event: event, userId: authService.currentUser!.id) { event in
+                                    self.event = event
+                                }
                             }
                         }
                     }
