@@ -83,7 +83,7 @@ final class BoatsViewModelTests: XCTestCase {
         boatsVM.repository = boatRepositoryMock
 
         var crew:[User] = []
-        await boatsVM.getCrew(crew: ["userId"]) { users in
+        boatsVM.getCrew(crew: ["userId"]) { users in
             crew = users
         }
 
