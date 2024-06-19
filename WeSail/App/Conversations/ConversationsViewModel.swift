@@ -190,7 +190,7 @@ class ConversationsViewModel: ObservableObject {
                 UserViewModel().mockData[2].id,
                 UserViewModel().mockData[3].id,
             ],
-            lastMessage: Message(id: "1", user: UserViewModel().mockData[0], text: "Hello", date: Date(), isRead: false)
+            lastMessage: Message(id: "1", user: UserViewModel().mockData[0], text: "Hello", date: Date().addingTimeInterval(-93400), isRead: false)
                 
         ),
         Conversation(
@@ -202,7 +202,7 @@ class ConversationsViewModel: ObservableObject {
                 UserViewModel().mockData[4].id,
                 UserViewModel().mockData[5].id,
             ],
-            lastMessage: Message(id: "1", user: UserViewModel().mockData[0], text: "Hello", date: Date(), isRead: false)
+            lastMessage: Message(id: "1", user: UserViewModel().mockData[0], text: "Hello", date: Date().addingTimeInterval(-86400), isRead: false)
         ),
 
         Conversation(

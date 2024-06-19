@@ -69,4 +69,11 @@ class EventsViewModel: ObservableObject {
             }
         }
     }
+
+    @Published var mockData = [
+        Event(id: "1", boatId: "1", name: "Event 1", startDate: Date(), endDate: Date(), createdAt: Date(), participants: ["1", "2"]),
+        Event(id: "2", boatId: "1", name: "Event 2", startDate: Date(), endDate: Date(), createdAt: Date(), participants: ["1", "2"]),
+        Event(id: "3", boatId: "1", name: "Event 3", startDate: Date(), endDate: Date(), createdAt: Date(), participants: ["1", "2"]),
+        Event(id: "4", boatId: "1", name: "Event 4", startDate: Date(), endDate: Date(), createdAt: Date(), participants: ["1", "2"]),
+    ]
 }

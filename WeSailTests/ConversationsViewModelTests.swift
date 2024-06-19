@@ -64,5 +64,93 @@ final class ConversationsViewModelTests: XCTestCase {
         XCTAssertEqual(conversationsVM.conversationsSearch.count, 0)
     }
 
+    func testCreate() {
+        let conversationRepositoryMock = ConversationRepositoryMock()
+
+        conversationsVM.repository = conversationRepositoryMock
+
+        conversationsVM.create(ConversationsViewModel().mockData[0])
+        
+        XCTAssertEqual(conversationsVM.conversationsSearch.count, 0)
+    }
+
+    func testShow() {
+        let conversationRepositoryMock = ConversationRepositoryMock()
+        conversationsVM.repository = conversationRepositoryMock
+
+        conversationsVM.show(conversationId: "conversationId")
+        
+        XCTAssertNil(conversationsVM.conversation)
+    }
+
+    func testPost() {
+        let conversationRepositoryMock = ConversationRepositoryMock()
+        conversationsVM.repository = conversationRepositoryMock
+        conversationsVM.conversation = ConversationsViewModel().mockData[1]
+
+        conversationsVM.post(message: ConversationsViewModel().mockData[0].lastMessage)
+        
+        XCTAssertEqual(conversationsVM.conversation?.lastMessage.id, ConversationsViewModel().mockData[0].lastMessage.id)
+    }
+
+    func testPostWithoutConversation() {
+        let conversationRepositoryMock = ConversationRepositoryMock()
+        conversationsVM.repository = conversationRepositoryMock
+
+        conversationsVM.post(message: ConversationsViewModel().mockData[0].lastMessage)
+        
+        XCTAssertEqual(conversationsVM.conversation, nil)
+    }
+
+    func testMarkLastMessageAsRead() {
+        let conversationRepositoryMock = ConversationRepositoryMock()
+        conversationsVM.repository = conversationRepositoryMock
+        conversationsVM.conversation = ConversationsViewModel().mockData[1]
+
+        conversationsVM.markLastMessageAsRead(conversation: ConversationsViewModel().mockData[1])
+        
+        XCTAssertEqual(conversationsVM.conversation?.lastMessage.isRead, false)
+    }
+
+    func testGetSectionMessages() {
+        let conversationRepositoryMock = ConversationRepositoryMock()
+        conversationsVM.repository = conversationRepositoryMock
+
+        let oneDayInterval: TimeInterval = 24 * 60 * 60
+        let currentDate = Date()
+        let oneDayAgo = currentDate.addingTimeInterval(-oneDayInterval)
+        let twoDaysAgo = currentDate.addingTimeInterval(-oneDayInterval * 2)
+
+        conversationsVM.messages = [
+            Message(id: "1", user: UserViewModel().mockData[0], text: "Hello", date: twoDaysAgo, isRead: false),
+            Message(id: "1", user: UserViewModel().mockData[0], text: "Hello", date: oneDayAgo, isRead: false),
+            Message(id: "1", user: UserViewModel().mockData[0], text: "Hello", date: currentDate, isRead: false)
+        ]
+
+        let sectionMessages = conversationsVM.getSectionMessages()
+        
+        XCTAssertEqual(sectionMessages.count, 3)
+    }
+
+
+    func testGetSectionMessagesElse() {
+        let conversationRepositoryMock = ConversationRepositoryMock()
+        conversationsVM.repository = conversationRepositoryMock
+
+        let oneDayInterval: TimeInterval = 24 * 60 * 60
+        let currentDate = Date()
+        let oneDayAgo = currentDate.addingTimeInterval(-oneDayInterval)
+        let twoDaysAgo = currentDate.addingTimeInterval(-oneDayInterval * 2)
+
+        conversationsVM.messages = [
+            Message(id: "1", user: UserViewModel().mockData[0], text: "Hello", date: currentDate, isRead: false),
+            Message(id: "1", user: UserViewModel().mockData[0], text: "Hello", date: oneDayAgo, isRead: false),
+            Message(id: "1", user: UserViewModel().mockData[0], text: "Hello", date: twoDaysAgo, isRead: false)
+        ]
+
+        let sectionMessages = conversationsVM.getSectionMessages()
+        
+        XCTAssertEqual(sectionMessages.count, 1)
+    }
     
 }

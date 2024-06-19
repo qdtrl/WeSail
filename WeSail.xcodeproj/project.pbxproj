@@ -45,6 +45,8 @@
 		3C80DD0F2C10C0BC003D3AF6 /* EventView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C80DD0E2C10C0BC003D3AF6 /* EventView.swift */; };
 		3C80DD122C149007003D3AF6 /* EventsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C80DD112C149007003D3AF6 /* EventsViewModel.swift */; };
 		3C80DD142C1A19E3003D3AF6 /* BoatsViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C80DD132C1A19E3003D3AF6 /* BoatsViewModelTests.swift */; };
+		3C8896072C23467200C34926 /* UserViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C8896062C23467200C34926 /* UserViewModelTests.swift */; };
+		3C8896092C234BBF00C34926 /* EventsViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C8896082C234BBF00C34926 /* EventsViewModelTests.swift */; };
 		3CA01FF12B61938E00A1B908 /* CreateBoatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CA01FF02B61938E00A1B908 /* CreateBoatView.swift */; };
 		3CA275DD2B3585D400C532FD /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 3CA275DC2B3585D400C532FD /* FirebaseAnalytics */; };
 		3CA275DF2B3585D400C532FD /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 3CA275DE2B3585D400C532FD /* FirebaseAuth */; };
@@ -133,6 +135,8 @@
 		3C80DD0E2C10C0BC003D3AF6 /* EventView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventView.swift; sourceTree = "<group>"; };
 		3C80DD112C149007003D3AF6 /* EventsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsViewModel.swift; sourceTree = "<group>"; };
 		3C80DD132C1A19E3003D3AF6 /* BoatsViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoatsViewModelTests.swift; sourceTree = "<group>"; };
+		3C8896062C23467200C34926 /* UserViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserViewModelTests.swift; sourceTree = "<group>"; };
+		3C8896082C234BBF00C34926 /* EventsViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsViewModelTests.swift; sourceTree = "<group>"; };
 		3CA01FF02B61938E00A1B908 /* CreateBoatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateBoatView.swift; sourceTree = "<group>"; };
 		3CBA30482B27800400AA19FE /* BoatsViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoatsViewTests.swift; sourceTree = "<group>"; };
 		3CBA304B2B27862700AA19FE /* EventsViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsViewTests.swift; sourceTree = "<group>"; };
@@ -232,6 +236,8 @@
 				3CBA304D2B27994E00AA19FE /* DateExtensionTests.swift */,
 				3CBA30552B27C07500AA19FE /* ConversationsViewModelTests.swift */,
 				3C80DD132C1A19E3003D3AF6 /* BoatsViewModelTests.swift */,
+				3C8896062C23467200C34926 /* UserViewModelTests.swift */,
+				3C8896082C234BBF00C34926 /* EventsViewModelTests.swift */,
 			);
 			path = WeSailTests;
 			sourceTree = "<group>";
@@ -697,7 +703,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				3CBA304E2B27994E00AA19FE /* DateExtensionTests.swift in Sources */,
+				3C8896072C23467200C34926 /* UserViewModelTests.swift in Sources */,
 				3CBA30562B27C07500AA19FE /* ConversationsViewModelTests.swift in Sources */,
+				3C8896092C234BBF00C34926 /* EventsViewModelTests.swift in Sources */,
 				3C80DD142C1A19E3003D3AF6 /* BoatsViewModelTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -927,6 +935,7 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = QZLFUD88FU;
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				MARKETING_VERSION = 1.0;
@@ -949,6 +958,7 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = QZLFUD88FU;
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				MARKETING_VERSION = 1.0;
@@ -971,6 +981,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = QZLFUD88FU;
 				GENERATE_INFOPLIST_FILE = YES;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = fr.qdtrl.WeSailUITests;
@@ -992,6 +1003,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = QZLFUD88FU;
 				GENERATE_INFOPLIST_FILE = YES;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = fr.qdtrl.WeSailUITests;
