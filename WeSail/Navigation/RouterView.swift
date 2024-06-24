@@ -10,6 +10,11 @@ import SwiftUI
 struct RouterView: View {
     @EnvironmentObject var authService: AuthService
 
+    @StateObject var boatsVM = BoatsViewModel()
+    @StateObject var eventsVM = EventsViewModel()
+    @StateObject var conversationsVM = ConversationsViewModel()
+    @StateObject var usersVM = UserViewModel()
+
     var body: some View {
         Group {
             if authService.userSession != nil, authService.currentUser != nil, let user = authService.currentUser {
@@ -39,6 +44,10 @@ struct RouterView: View {
                             .accessibility(identifier: "profileTab")
                     }
                 }
+                .environmentObject(boatsVM)
+                .environmentObject(eventsVM)
+                .environmentObject(conversationsVM)
+                .environmentObject(usersVM)
             } else {
                 LoginView()
             }

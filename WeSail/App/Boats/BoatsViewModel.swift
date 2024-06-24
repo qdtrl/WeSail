@@ -5,7 +5,7 @@
 //  Created by Quentin Dubut-Touroul on 01/12/2023.
 //
 
-import Foundation
+import Foundation	
 import UIKit
 
 class BoatsViewModel: ObservableObject {
@@ -17,7 +17,6 @@ class BoatsViewModel: ObservableObject {
 
     init() {
         self.repository = BoatRepository()
-        self.index()
     }
     
     func index() {
@@ -26,6 +25,8 @@ class BoatsViewModel: ObservableObject {
 
             self.boats = try await self.repository.index()
 
+            self.boatsSearched = self.boats
+
             self.isLoading = false
         }
     }
@@ -33,6 +34,8 @@ class BoatsViewModel: ObservableObject {
     func indexWhereUserInCrew(userId: String) {
         Task { @MainActor in
             self.isLoading = true
+            
+            self.boats = try await self.repository.index()
 
             self.boatsUserInCrew = self.boats.filter { boat in
                 boat.crew.contains(userId)
@@ -70,6 +73,8 @@ class BoatsViewModel: ObservableObject {
                 self.boatsSearched = self.boats.filter { boat in
                     boat.name.lowercased().contains(query.lowercased())
                 }
+            } else {
+                self.boatsSearched = self.boats
             }
 
             self.isLoading = false

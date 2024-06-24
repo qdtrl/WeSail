@@ -23,19 +23,11 @@ struct WeSailApp: App {
     @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
     
     @StateObject var authService = AuthService()
-    @StateObject var boatsVM = BoatsViewModel()
-    @StateObject var eventsVM = EventsViewModel()
-    @StateObject var conversationsVM = ConversationsViewModel()
-    @StateObject var usersVM = UserViewModel()
     
     var body: some Scene {
         WindowGroup {
             ContentView()
                 .environmentObject(authService)
-                .environmentObject(boatsVM)
-                .environmentObject(eventsVM)
-                .environmentObject(conversationsVM)
-                .environmentObject(usersVM)
         }
     }
 }
