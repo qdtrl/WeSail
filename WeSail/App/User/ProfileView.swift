@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Firebase
 
 struct ProfileView: View {
     @EnvironmentObject var authService: AuthService
@@ -144,6 +145,9 @@ struct ProfileView: View {
 
             self.events = eventsVM.events
             self.pictures = boatsVM.boatsUserInCrew.map { $0.images }.flatMap { $0 }
+            Analytics.logEvent(AnalyticsEventScreenView, 
+            parameters: [AnalyticsParameterScreenName: "\(ProfileView.self)",
+                        AnalyticsParameterScreenClass: "\(ProfileView.self)"])
         }
         .onChange(of: boatsVM.boatsUserInCrew) { _ in
             self.pictures = boatsVM.boatsUserInCrew.map { $0.images }.flatMap { $0 }

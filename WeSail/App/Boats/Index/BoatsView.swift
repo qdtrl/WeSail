@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Firebase
 
 struct BoatsView: View {
     @EnvironmentObject var boatsVM: BoatsViewModel
@@ -14,63 +15,66 @@ struct BoatsView: View {
     let columns = Array(repeating: GridItem(.flexible(), spacing: 10, alignment: .center), count: 1)
 
     var body: some View {
-            VStack {
-                if boatsVM.isLoading {
-                    Spacer()
-                    
-                    ProgressView()
-                        .progressViewStyle(CircularProgressViewStyle())
-                        .foregroundColor(.black)
-                        .opacity(0.6)
-                        .accessibility(identifier: "loading")
-                    
-                    Spacer()
-                    
-                } else {
-                    ScrollView(showsIndicators: false) {
-                        LazyVGrid(columns: columns, spacing: 10) {
-                            ForEach(boatsVM.boatsUserInCrew) { boat in
-                                NavigationLink(destination: BoatView(boat: boat)) {
-                                    BoatRow(boat: boat)
-                                        .frame(maxWidth: .infinity, minHeight: 300)
-                                        .accessibility(identifier: "boatCell")
-                                }
-                            }
-                        }
-                        .padding(.horizontal, 10)
-                        .accessibility(identifier: "boatsGrid")
-                        .navigationTitle("Mes Bateaux")
-                        .navigationBarTitleDisplayMode(.inline)
-                        .toolbar {
-                            ToolbarItem(placement: .navigationBarLeading) {
-                                NavigationLink(destination: SearchBoatView()) {
-                                    Image(systemName: "magnifyingglass")
-                                }
-                            }
-                            ToolbarItem(placement: .navigationBarTrailing) {
-                                NavigationLink(destination: CreateBoatView()) {
-                                    Image(systemName: "plus")
-                                }
-                            }
-                        }
-                    }
+        VStack {
+            if boatsVM.isLoading {
+                Spacer()
+                
+                ProgressView()
+                    .progressViewStyle(CircularProgressViewStyle())
                     .foregroundColor(.black)
-                    .refreshable {
-                        boatsVM.index()
-
-                        guard let currentUser = authService.currentUser else {
-                            return
+                    .opacity(0.6)
+                    .accessibility(identifier: "loading")
+                
+                Spacer()
+                
+            } else {
+                ScrollView(showsIndicators: false) {
+                    LazyVGrid(columns: columns, spacing: 10) {
+                        ForEach(boatsVM.boatsUserInCrew) { boat in
+                            NavigationLink(destination: BoatView(boat: boat)) {
+                                BoatRow(boat: boat)
+                                    .frame(maxWidth: .infinity, minHeight: 300)
+                                    .accessibility(identifier: "boatCell")
+                            }
                         }
-                        boatsVM.indexWhereUserInCrew(userId: currentUser.id)
+                    }
+                    .padding(.horizontal, 10)
+                    .accessibility(identifier: "boatsGrid")
+                    .navigationTitle("Mes Bateaux")
+                    .navigationBarTitleDisplayMode(.inline)
+                    .toolbar {
+                        ToolbarItem(placement: .navigationBarLeading) {
+                            NavigationLink(destination: SearchBoatView()) {
+                                Image(systemName: "magnifyingglass")
+                            }
+                        }
+                        ToolbarItem(placement: .navigationBarTrailing) {
+                            NavigationLink(destination: CreateBoatView()) {
+                                Image(systemName: "plus")
+                            }
+                        }
                     }
                 }
-            }
-            .onAppear() {
-                guard let currentUser = authService.currentUser else {
-                    return
+                .foregroundColor(.black)
+                .refreshable {
+                    boatsVM.index()
+
+                    guard let currentUser = authService.currentUser else {
+                        return
+                    }
+                    boatsVM.indexWhereUserInCrew(userId: currentUser.id)
                 }
-                boatsVM.indexWhereUserInCrew(userId: currentUser.id)
             }
+        }
+        .onAppear() {
+            guard let currentUser = authService.currentUser else {
+                return
+            }
+            boatsVM.indexWhereUserInCrew(userId: currentUser.id)
+            Analytics.logEvent(AnalyticsEventScreenView,
+                        parameters: [AnalyticsParameterScreenName: "\(BoatsView.self)",
+                                    AnalyticsParameterScreenClass: "\(BoatsView.self)"])
+        }
         
     }
 }

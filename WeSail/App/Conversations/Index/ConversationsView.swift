@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Firebase
 
 struct ConversationsView: View {
     @EnvironmentObject var conversationsVM: ConversationsViewModel
@@ -78,7 +79,10 @@ struct ConversationsView: View {
                 conversationsVM.index(userId: curUs.id)
 
             }
-                }
+            Analytics.logEvent(AnalyticsEventScreenView, 
+            parameters: [AnalyticsParameterScreenName: "\(ConversationsView.self)",
+                        AnalyticsParameterScreenClass: "\(ConversationsView.self)"])
+        }
         .onDisappear {
             conversationsVM.stopListening()
         }
