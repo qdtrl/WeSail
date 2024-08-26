@@ -10,7 +10,7 @@ import FirebaseStorage
 import UIKit
 
 struct AddBoatImageView: View {
-    @EnvironmentObject var boatsVM: BoatsViewModel
+    @EnvironmentObject var boatVM: BoatViewModel
 
     @Environment(\.dismiss) var dismiss
 
@@ -58,18 +58,18 @@ struct AddBoatImageView: View {
                         guard let image = inputImage else { return }
                         
                         Task {
-                            boatsVM.uploadImageToBoat(boat, image) { boat in
+                            boatVM.uploadImageToBoat(boat, image)  { boat in
                                 self.dismiss()
                             }
                         }
                     } label: {
-                        if boatsVM.isLoading {
+                        if boatVM.isLoading {
                             ProgressView()
                         } else {
                             Text("Ajouter l'image")
                         }
                     }
-                    .disabled(inputImage == nil || boatsVM.isLoading)
+                    .disabled(inputImage == nil || boatVM.isLoading)
                     
                 }
                 .padding(40)

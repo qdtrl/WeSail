@@ -10,7 +10,7 @@ import SwiftUI
 
 struct EventView: View {
     @EnvironmentObject var eventsVM: EventsViewModel
-    @EnvironmentObject var boatsVM: BoatsViewModel
+    @EnvironmentObject var boatVM: BoatViewModel
     @EnvironmentObject var authService: AuthService
 
     @State var event: Event
@@ -95,19 +95,19 @@ struct EventView: View {
         .padding(.bottom)
         .onAppear {
             Task {
-                if self.event.participants.count > 0 {
-                    boatsVM.getCrew(crew: self.event.participants) { crew in
-                        self.users = crew
-                    }
-                }
+//                if self.event.participants.count > 0 {
+//                    boatVM.getCrew(crew: self.event.participants) { crew in
+//                        self.users = crew
+//                    }
+//                }
             }
         }.onChange(of: event) { _ in
             Task {
-                if self.event.participants.count > 0 {
-                    boatsVM.getCrew(crew: self.event.participants) { crew in
-                        self.users = crew
-                    }
-                }
+//                if self.event.participants.count > 0 {
+//                    boatVM.getCrew(crew: self.event.participants) { crew in
+//                        self.users = crew
+//                    }
+//                }
             }
         }
             

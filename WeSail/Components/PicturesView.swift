@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct PicturesView: View {
-    @Binding var pictures: [String] 
+    @State var pictures: [String]
         
     @State private var selectedImage: String? = nil
     @State private var isShowingFullScreenImage = false

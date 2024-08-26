@@ -45,25 +45,6 @@ class BoatsViewModel: ObservableObject {
         }
     }
 
-    func show(id: String, completion: @escaping (Boat) -> Void) async {
-        do {
-            let boat = try await self.repository.show(id: id)
-            completion(boat)
-        } catch {
-            print("\(error.localizedDescription)")
-        }
-    }
-    
-    func getCrew(crew: [String], completion: @escaping ([User]) -> Void) {
-        Task { @MainActor in
-            do {
-                let users = try await self.repository.getCrew(crew: crew)
-                completion(users)
-            } catch {
-                print("\(error.localizedDescription)")
-            }
-        }
-    }
 
     func search(query: String) {
         Task { @MainActor in
@@ -96,50 +77,6 @@ class BoatsViewModel: ObservableObject {
         }
     }
 
-    func uploadImageToBoat(_ boat: Boat, _ image: UIImage, completion: @escaping (Boat) -> Void) {
-        Task { @MainActor in
-            self.isLoading = true
-
-            try await self.repository.uploadImage(boat: boat, image: image) {
-                updateBoat in
-                DispatchQueue.main.async {
-                    self.isLoading = false
-                    completion(updateBoat)
-                }
-            }
-        }
-    }
-
-    func joinBoat(_ boat: Boat, _ user: User, completion: @escaping (Boat) -> Void) {
-        Task { @MainActor in
-            try await self.repository.joinBoat(boat: boat, user: user) {
-                updateBoat in
-                DispatchQueue.main.async {
-                    self.boatsUserInCrew = self.boatsUserInCrew.map { boat in
-                        if boat.id == updateBoat.id {
-                            return updateBoat
-                        }
-                        return boat
-                    }
-                    completion(updateBoat)
-                }
-            }
-        }
-    }
-
-    func update(boat: Boat, image: UIImage, completion: @escaping (Boat) -> Void) {
-        Task { @MainActor in
-            self.isLoading = true
-
-            try await self.repository.update(boat: boat, image: image) {
-                boatUpdated in
-                DispatchQueue.main.async {
-                    self.isLoading = false
-                    completion(boatUpdated)
-                }
-            }
-        }
-    }
 
     @Published var mockData = [
         Boat(
@@ -155,7 +92,7 @@ class BoatsViewModel: ObservableObject {
         ),
             Boat(id: "2", name: "Les Rapetous", type: "Muscadet", number: "30034", club: "Yacht Club Granville", image: "https://media01.adonnante.com/media/2016/06/monotype-national-muscadet-2016-pierrick-contin-1281-1168x750.jpg", owners: [UserViewModel().mockData[0].id], crew: [
                 UserViewModel().mockData[0].id,
-                UserViewModel().mockData[1].id,
+                UserViewModel().mockData[1].id, 
                 UserViewModel().mockData[2].id,
                 UserViewModel().mockData[3].id,
             ],

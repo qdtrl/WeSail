@@ -31,7 +31,7 @@ struct BoatsView: View {
                 ScrollView(showsIndicators: false) {
                     LazyVGrid(columns: columns, spacing: 10) {
                         ForEach(boatsVM.boatsUserInCrew) { boat in
-                            NavigationLink(destination: BoatView(boat: boat)) {
+                            NavigationLink(destination: BoatView(id: boat.id)) {
                                 BoatRow(boat: boat)
                                     .frame(maxWidth: .infinity, minHeight: 300)
                                     .accessibility(identifier: "boatCell")

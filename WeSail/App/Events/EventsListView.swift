@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct EventsListView: View {
-    @Binding var events: [Event]
+    @State var events: [Event]
     
     let columns = Array(repeating: GridItem(.flexible(), spacing: 10, alignment: .top), count: 1)
     

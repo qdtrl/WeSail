@@ -9,7 +9,7 @@ import SwiftUI
 import UIKit
 
 struct UpdateBoatView: View {
-    @EnvironmentObject var boatsVM: BoatsViewModel
+    @EnvironmentObject var boatVM: BoatViewModel
     
     @Environment(\.dismiss) var dismiss
 
@@ -88,18 +88,19 @@ struct UpdateBoatView: View {
                     Task {
                         let boat = Boat(id: self.boat.id, name: name, type: type, number: number, club: club, image: image, owners: self.boat.owners, crew: self.boat.crew, images: self.boat.images)
                         
-                        boatsVM.update(boat: boat, image: inputImage ?? UIImage()) { boatUpdated in
-                            self.dismiss()
-                        }
+                        boatVM.update(boat: boat, image: inputImage ?? UIImage())
+                        
+                        self.dismiss()
+                        
                     }
                 } label: {
-                    if boatsVM.isLoading {
+                    if boatVM.isLoading {
                         ProgressView()
                     } else {
                         Text("Mettre à jour")
                     }
                 }
-                .disabled(boatsVM.isLoading)
+                .disabled(boatVM.isLoading)
             }
         }        
         .sheet(isPresented: $showingImagePicker) {
