@@ -11,36 +11,42 @@ import UIKit
 
 class BoatViewModel: ObservableObject {
     var repository:BoatRepositoryProtocol
-    var boat: Boat? = nil
-    var crew: [User] = []
-    var events: [Event] = []
-    var images: [String] = []
-    var isLoading: Bool = false
+    var eventRepository:EventRepositoryProtocol
     
-    init() {
+    @Published var id: String
+    @Published var boat: Boat? = nil
+    @Published var crew: [User] = []
+    @Published var events: [Event] = []
+    @Published var isLoading: Bool = true
+    
+    init(id: String) {
+        self.id = id
         self.repository = BoatRepository()
+        self.eventRepository = EventRepository()
+        self.show()
     }
     
-    func show(id: String) {
+    func show() {
         Task { @MainActor in
             self.isLoading = true
-
-            self.boat = try await self.repository.show(id: id)
+        
+            self.boat = try await self.repository.show(id: self.id)
             self.crew = try await self.repository.getCrew(crew: self.boat!.crew)
+            self.events = try await self.eventRepository.indexBoatEvents(boatId: self.id)
 
             self.isLoading = false
         }
     }
     
-    func uploadImageToBoat(_ boat: Boat, _ image: UIImage, completion: @escaping (Boat) -> Void) {
+    func uploadImageToBoat(_ image: UIImage) {
         Task { @MainActor in
             self.isLoading = true
 
-            try await self.repository.uploadImage(boat: boat, image: image) {
+            try await self.repository.uploadImage(boat: self.boat!, image: image) {
                 updateBoat in
                 DispatchQueue.main.async {
+                    self.boat = updateBoat
                     self.isLoading = false
-                    completion(updateBoat)
                 }
             }
         }
@@ -54,8 +60,8 @@ class BoatViewModel: ObservableObject {
             try await self.repository.joinBoat(boat: boat, user: user) {
                 updateBoat in
                 DispatchQueue.main.async {
-                    self.isLoading = false
                     self.boat = updateBoat
+                    self.isLoading = false
                 }
             }
         }
@@ -68,8 +74,8 @@ class BoatViewModel: ObservableObject {
             try await self.repository.update(boat: boat, image: image) {
                 boatUpdated in
                 DispatchQueue.main.async {
-                    self.isLoading = false
                     self.boat = boatUpdated
+                    self.isLoading = false
                 }
             }
         }

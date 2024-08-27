@@ -14,14 +14,13 @@ struct AddBoatImageView: View {
 
     @Environment(\.dismiss) var dismiss
 
-    @State var boat: Boat
-
     @State private var inputImage: UIImage?
     @State private var showingImagePicker = false
 
     var body: some View {
         VStack {
             Text("Nouvelle Image")
+            
             Spacer()
             
             if let inputImage = inputImage {
@@ -58,9 +57,9 @@ struct AddBoatImageView: View {
                         guard let image = inputImage else { return }
                         
                         Task {
-                            boatVM.uploadImageToBoat(boat, image)  { boat in
-                                self.dismiss()
-                            }
+                            boatVM.uploadImageToBoat(image)
+                            
+                            dismiss()
                         }
                     } label: {
                         if boatVM.isLoading {

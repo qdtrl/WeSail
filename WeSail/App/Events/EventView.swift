@@ -39,7 +39,7 @@ struct EventView: View {
                 }
             }
 
-            if (event.startDate < Date.now) {
+            if (event.startDate < Date.now && event.endDate > Date.now) {
                 Text("Commencé")
                     .font(.subheadline)
                     .foregroundColor(.orange)

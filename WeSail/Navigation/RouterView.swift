@@ -11,7 +11,6 @@ struct RouterView: View {
     @EnvironmentObject var authService: AuthService
 
     @StateObject var boatsVM = BoatsViewModel()
-    @StateObject var boatVM = BoatViewModel()
     @StateObject var eventsVM = EventsViewModel()
     @StateObject var conversationsVM = ConversationsViewModel()
     @StateObject var usersVM = UserViewModel()
@@ -46,7 +45,6 @@ struct RouterView: View {
                     }
                 }
                 .environmentObject(boatsVM)
-                .environmentObject(boatVM)
                 .environmentObject(eventsVM)
                 .environmentObject(conversationsVM)
                 .environmentObject(usersVM)
