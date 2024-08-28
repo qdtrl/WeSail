@@ -92,7 +92,7 @@ class BoatsViewModel: ObservableObject {
         ),
             Boat(id: "2", name: "Les Rapetous", type: "Muscadet", number: "30034", club: "Yacht Club Granville", image: "https://media01.adonnante.com/media/2016/06/monotype-national-muscadet-2016-pierrick-contin-1281-1168x750.jpg", owners: [UserViewModel().mockData[0].id], crew: [
                 UserViewModel().mockData[0].id,
-                UserViewModel().mockData[1].id, 
+                UserViewModel().mockData[1].id,
                 UserViewModel().mockData[2].id,
                 UserViewModel().mockData[3].id,
             ],
