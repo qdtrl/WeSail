@@ -11,9 +11,9 @@ struct LoginView: View {
     @EnvironmentObject var authService: AuthService
     
     @State var email: String = ""
-    @State var noEmailForReset = false
     @State var password: String = ""
-    
+    @State private var error:String = ""
+
     var body: some View {
         NavigationStack {
             VStack {
@@ -59,16 +59,17 @@ struct LoginView: View {
                         Button {
                             Task {
                                 if !email.isEmpty {
-                                    try await authService.resetPassword(withEmail: email)
+                                    do {
+                                        try await authService.resetPassword(withEmail: email)
+                                    } catch {
+                                        self.error = error.localizedDescription
+                                    }
                                 } else {
-                                    noEmailForReset.toggle()
+                                    self.error = "Veuillez entrer une adresse email"
                                 }
                             }
                         } label: {
                             Text("Mot de passe oublié ?")
-                        }
-                        .alert(isPresented: $noEmailForReset) {
-                            Alert(title: Text("Erreur"), message: Text("Veuillez entrer une adresse email valide"), dismissButton: .default(Text("OK")))
                         }
                     }
                     
@@ -78,7 +79,11 @@ struct LoginView: View {
                 
                 Button {
                     Task {
-                        try await authService.signIn(withEmail: email, password: password)
+                        do {
+                            try await authService.signIn(withEmail: email, password: password)
+                        } catch {
+                            self.error = error.localizedDescription
+                        }
                     }
                 } label: {
                     Text("Connection")
@@ -105,7 +110,13 @@ struct LoginView: View {
                         .padding()
                         .underline()
                 }.navigationBarHidden(true)    
-            }.padding()
+            }
+            .padding()
+            .alert(isPresented: .constant(!error.isEmpty)) {
+                Alert(title: Text("Erreur"), message: Text(error), dismissButton: .default(Text("OK")) {
+                    self.error = ""
+                })
+            }
         }
     }
 }

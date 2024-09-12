@@ -9,6 +9,7 @@ import SwiftUI
 
 struct ProfileParametersView: View {
     @EnvironmentObject var authService: AuthService
+    @State private var error:String = ""
 
     var body: some View {
         List {
@@ -22,9 +23,20 @@ struct ProfileParametersView: View {
             
             
             Button {
-                authService.signOut()
+                Task {
+                    do {
+                        try await authService.signOut()
+                    } catch {
+                        print("Error signing out")
+                    }
+                }
             } label: {
                 SettingsRowView(imageName: "arrow.left.circle.fill", title: "Déconnection", tintColor: .red)
+            }
+            .alert(isPresented: .constant(!error.isEmpty)) {
+                Alert(title: Text("Erreur"), message: Text(error), dismissButton: .default(Text("OK")) {
+                    self.error = ""
+                })
             }
             
         }

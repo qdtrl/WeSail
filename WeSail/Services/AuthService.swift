@@ -32,7 +32,7 @@ class AuthService: ObservableObject {
             self.userSession = result.user
             await fetchUser()
         } catch {
-            print("\(error.localizedDescription)")
+            throw error
         }
     }
     
@@ -51,17 +51,17 @@ class AuthService: ObservableObject {
             try Firestore.firestore().collection("users").document(user.id).setData(from: user, merge: false)
             await fetchUser()
         } catch {
-            print("\(error.localizedDescription)")
+            throw error
         }
     }
     
-    func signOut() {
+    func signOut() async throws {
         do {
             try Auth.auth().signOut()
             self.currentUser = nil
             self.userSession = nil
         } catch {
-            print("\(error.localizedDescription)")
+            throw error
         }
     }
     
@@ -69,7 +69,7 @@ class AuthService: ObservableObject {
         do {
             try await Auth.auth().sendPasswordReset(withEmail: email)
         } catch {
-            print("\(error.localizedDescription)")
+            throw error
         }
     }
     
@@ -77,7 +77,7 @@ class AuthService: ObservableObject {
         do {
             try await self.userSession?.updatePassword(to: password)
         } catch {
-            print("\(error.localizedDescription)")
+            throw error
         }
     }
     
@@ -87,7 +87,7 @@ class AuthService: ObservableObject {
             self.userSession = nil
             self.currentUser = nil
         } catch {
-            print("\(error.localizedDescription)")
+            throw error
         }
     }
     
