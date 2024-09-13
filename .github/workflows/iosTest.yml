@@ -12,23 +12,27 @@ jobs:
     runs-on: macos-latest
 
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
 
       - name: Select Xcode
-        run: sudo xcode-select -switch /Applications/Xcode_14.3.app
+        run: sudo xcode-select -switch /Applications/Xcode_15.0.app
+
+      - name: List available simulators
+        run: xcrun simctl list devices
 
       - name: Build
         run: |
-          xcodebuild clean build -project WeSail.xcodeproj -scheme WeSail -destination "platform=iOS Simulator,name=iPhone 14,OS=16.4"
-        # If you're not using a workspace, replace -workspace with -project and specify your .xcodeproj file
+          xcodebuild clean build -project WeSail.xcodeproj -scheme WeSail -destination "platform=iOS Simulator,name=iPhone 14,OS=17.0" | xcpretty && exit ${PIPESTATUS[0]}
 
       - name: Run tests
         run: |
-          xcodebuild test -project WeSail.xcodeproj -scheme WeSail -destination "platform=iOS Simulator,name=iPhone 14,OS=16.4"
+          xcodebuild test -project WeSail.xcodeproj -scheme WeSail -destination "platform=iOS Simulator,name=iPhone 14,OS=17.0" | xcpretty && exit ${PIPESTATUS[0]}
 
       - name: Upload test results
-        uses: actions/upload-artifact@v3
-        if: failure()
+        uses: actions/upload-artifact@v4
+        if: always()
         with:
           name: test-results
-          path: /Users/runner/Library/Developer/Xcode/DerivedData/**/Logs/Test/*.xcresult
+          path: |
+            /Users/runner/Library/Developer/Xcode/DerivedData/**/Logs/Test/*.xcresult
+            /Users/runner/Library/Developer/Xcode/DerivedData/**/Logs/Build/*.log
