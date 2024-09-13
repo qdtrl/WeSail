@@ -28,6 +28,10 @@ class EventRepositoryMock: EventRepositoryProtocol {
     func joinEvent(event: Event, userId: String) async throws -> Event {
         return EventsViewModel().mockData[0]
     }
+
+    func getCrew(crew: [String]) async throws -> [User] {
+        return UserViewModel().mockData
+    }
 }
 
 final class EventsViewModelTests: XCTestCase {
@@ -82,5 +86,18 @@ final class EventsViewModelTests: XCTestCase {
         eventsVM.joinEvent(event: EventsViewModel().mockData[0], userId: "userId") { event in
             XCTAssertEqual(event, EventsViewModel().mockData[0])
         }
+    }
+
+
+    func testGetCrew() async {
+        let eventRepositoryMock = EventRepositoryMock()
+        eventsVM.repository = eventRepositoryMock
+
+        eventsVM.getCrew(crew: ["userId"]) { users in
+          
+            XCTAssertEqual(UserViewModel().mockData, users)
+
+        }
+
     }
 }

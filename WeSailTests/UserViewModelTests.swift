@@ -90,15 +90,12 @@ final class UserViewModelTests: XCTestCase {
         let userRepoMock = UserRepoMock()
         userVM.repository = userRepoMock
 
-        var user:User? = nil
-        
         do {
-            user = try await userVM.getUserById(userId: "userId")
+            let user = try await userVM.getUserById(userId: "userId")
             XCTAssertEqual(user, UserViewModel().mockData[0])
         } catch {
-            XCTFail("Erreur lors de l'exécution de getUserById: \(error)")
-        }        
-
-        XCTAssertEqual(user, UserViewModel().mockData[0])
+            XCTFail("Erreur lors de l'exécution de getUserById")
+            return
+        }
     }
 }

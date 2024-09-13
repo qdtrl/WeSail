@@ -61,6 +61,7 @@
 		3CC041BF2B7911C400ABDE55 /* UpdateBoatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CC041BE2B7911C400ABDE55 /* UpdateBoatView.swift */; };
 		3CC041C32B7A740100ABDE55 /* UserImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CC041C22B7A740100ABDE55 /* UserImageView.swift */; };
 		3CC041C52B7A7AE900ABDE55 /* MenuBoatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CC041C42B7A7AE900ABDE55 /* MenuBoatView.swift */; };
+		3CC274E42C94619000B82E9A /* BoatViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CC274E32C94619000B82E9A /* BoatViewModelTests.swift */; };
 		3CC549AB2B3ECB6800C48919 /* FirebaseAnalyticsSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 3CC549AA2B3ECB6800C48919 /* FirebaseAnalyticsSwift */; };
 		3CC549AD2B3ECE7300C48919 /* UserViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CC549AC2B3ECE7300C48919 /* UserViewModel.swift */; };
 		3CC549B32B3ED88A00C48919 /* BoatRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CC549B22B3ED88A00C48919 /* BoatRepository.swift */; };
@@ -145,6 +146,7 @@
 		3CC041BE2B7911C400ABDE55 /* UpdateBoatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateBoatView.swift; sourceTree = "<group>"; };
 		3CC041C22B7A740100ABDE55 /* UserImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserImageView.swift; sourceTree = "<group>"; };
 		3CC041C42B7A7AE900ABDE55 /* MenuBoatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuBoatView.swift; sourceTree = "<group>"; };
+		3CC274E32C94619000B82E9A /* BoatViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoatViewModelTests.swift; sourceTree = "<group>"; };
 		3CC549AC2B3ECE7300C48919 /* UserViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserViewModel.swift; sourceTree = "<group>"; };
 		3CC549B22B3ED88A00C48919 /* BoatRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoatRepository.swift; sourceTree = "<group>"; };
 		3CC549B42B4028E100C48919 /* EventRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventRepository.swift; sourceTree = "<group>"; };
@@ -233,6 +235,7 @@
 				3CBA304D2B27994E00AA19FE /* DateExtensionTests.swift */,
 				3CBA30552B27C07500AA19FE /* ConversationsViewModelTests.swift */,
 				3C80DD132C1A19E3003D3AF6 /* BoatsViewModelTests.swift */,
+				3CC274E32C94619000B82E9A /* BoatViewModelTests.swift */,
 				3C8896062C23467200C34926 /* UserViewModelTests.swift */,
 				3C8896082C234BBF00C34926 /* EventsViewModelTests.swift */,
 			);
@@ -659,6 +662,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3CC274E42C94619000B82E9A /* BoatViewModelTests.swift in Sources */,
 				3CBA304E2B27994E00AA19FE /* DateExtensionTests.swift in Sources */,
 				3C8896072C23467200C34926 /* UserViewModelTests.swift in Sources */,
 				3CBA30562B27C07500AA19FE /* ConversationsViewModelTests.swift in Sources */,

@@ -8,9 +8,9 @@
 import XCTest
 @testable import WeSail
 
-class BoatRepositoryMock: BoatRepositoryProtocol {
+class BoatsRepositoryMock: BoatRepositoryProtocol {
     func index() async throws -> [WeSail.Boat] {
-        return []
+        return BoatsViewModel().mockData
     }
     
     func show(id: String) async throws -> WeSail.Boat {
@@ -18,7 +18,7 @@ class BoatRepositoryMock: BoatRepositoryProtocol {
     }
     
     func getCrew(crew: [String]) async throws -> [WeSail.User] {
-        return []
+        return UserViewModel().mockData
     }
     
     func create(boat: WeSail.Boat, image: UIImage, completion: @escaping (WeSail.Boat) -> Void) async throws {
@@ -50,7 +50,7 @@ final class BoatsViewModelTests: XCTestCase {
     }
 
     func testIndex() {
-        let boatRepositoryMock = BoatRepositoryMock()
+        let boatRepositoryMock = BoatsRepositoryMock()
         boatsVM.repository = boatRepositoryMock
         boatsVM.index()
 
@@ -58,7 +58,7 @@ final class BoatsViewModelTests: XCTestCase {
     }
 
     func testIndexWhereUserInCrew() {
-        let boatRepositoryMock = BoatRepositoryMock()
+        let boatRepositoryMock = BoatsRepositoryMock()
         boatsVM.repository = boatRepositoryMock
         boatsVM.boats = BoatsViewModel().mockData
         boatsVM.indexWhereUserInCrew(userId: "userId")
@@ -66,32 +66,8 @@ final class BoatsViewModelTests: XCTestCase {
         XCTAssertEqual(boatsVM.boatsUserInCrew.count, 0)
     }
 
-    func testShow() async {
-        let boatRepositoryMock = BoatRepositoryMock()
-        boatsVM.repository = boatRepositoryMock
-
-        var boatShowed:Boat? = nil
-        await boatsVM.show(id: "id") { boat in
-            boatShowed = boat
-        }
-
-        XCTAssertEqual(boatShowed, BoatsViewModel().mockData[0])
-    }
-
-    func testGetCrew() async {
-        let boatRepositoryMock = BoatRepositoryMock()
-        boatsVM.repository = boatRepositoryMock
-
-        var crew:[User] = []
-        boatsVM.getCrew(crew: ["userId"]) { users in
-            crew = users
-        }
-
-        XCTAssertEqual(crew.count, 0)
-    }
-
     func testSearch() {
-        let boatRepositoryMock = BoatRepositoryMock()
+        let boatRepositoryMock = BoatsRepositoryMock()
         boatsVM.repository = boatRepositoryMock
         boatsVM.boats = BoatsViewModel().mockData
         boatsVM.search(query: "Rapetou")
@@ -100,51 +76,12 @@ final class BoatsViewModelTests: XCTestCase {
     }
 
     func testCreate() {
-        let boatRepositoryMock = BoatRepositoryMock()
+        let boatRepositoryMock = BoatsRepositoryMock()
 
         boatsVM.repository = boatRepositoryMock
 
         boatsVM.create(BoatsViewModel().mockData[0], UIImage())
 
         XCTAssertEqual(boatsVM.boatsUserInCrew.count, 0)
-    }
-
-    func testUploadImage() {
-        let boatRepositoryMock = BoatRepositoryMock()
-
-        boatsVM.repository = boatRepositoryMock
-
-        var boatUpdated:Boat? = nil
-        boatsVM.uploadImageToBoat(BoatsViewModel().mockData[0], UIImage()) { boat in
-            boatUpdated = boat
-        }
-
-        XCTAssertEqual(boatUpdated, nil)
-    }
-
-    func testJoinBoat() {
-        let boatRepositoryMock = BoatRepositoryMock()
-        
-        boatsVM.repository = boatRepositoryMock
-        
-        var boatUpdated:Boat? = nil
-        boatsVM.joinBoat(BoatsViewModel().mockData[0], UserViewModel().mockData[0]) { boat in
-            boatUpdated = boat
-        }
-        
-        XCTAssertEqual(boatUpdated, nil)
-    }
-
-    func testUpdateBoat() {
-        let boatRepositoryMock = BoatRepositoryMock()
-        
-        boatsVM.repository = boatRepositoryMock
-        
-        var boatUpdated:Boat? = nil
-        boatsVM.update(boat: BoatsViewModel().mockData[0], image: UIImage()) { boat in
-            boatUpdated = boat
-        }
-        
-        XCTAssertEqual(boatUpdated, nil)
     }
 }
