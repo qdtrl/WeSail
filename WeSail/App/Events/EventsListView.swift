@@ -8,10 +8,14 @@
 import SwiftUI
 
 struct EventsListView: View {
-    @State var events: [Event]
+    @Binding var events: [Event]
     
     let columns = Array(repeating: GridItem(.flexible(), spacing: 10, alignment: .top), count: 1)
     
+    var sortedEvents: [Event] {
+        events.sorted { $0.startDate > $1.startDate }
+    }
+
     var body: some View {
         if events.isEmpty {
             VStack {
@@ -26,7 +30,7 @@ struct EventsListView: View {
         } else {
             ScrollView(showsIndicators: false) {
                 LazyVGrid(columns: columns) {
-                    ForEach(events) { event in
+                    ForEach(sortedEvents) { event in
                         EventView(event: event)
                             .accessibility(identifier: "eventUserCell")
                         

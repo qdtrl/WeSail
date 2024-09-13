@@ -201,11 +201,11 @@ struct BoatView: View {
                             
                             switch index {
                             case 0:
-                                EventsListView(events: boatVM.events)
+                                EventsListView(events: $boatVM.events)
                             case 1:
                                 PicturesView(pictures: boat.images)
                             case 2:
-                                CrewView(crew: boatVM.crew)
+                                CrewView(crew: $boatVM.crew)
                             default:
                                 Text("Pas d'évènements")
                                     .padding(.vertical, 20)

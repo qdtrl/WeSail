@@ -31,7 +31,7 @@ class AuthService: ObservableObject {
             let result = try await Auth.auth().signIn(withEmail: email, password: password)
             self.userSession = result.user
             await fetchUser()
-        } catch {
+        } catch {            
             throw error
         }
     }

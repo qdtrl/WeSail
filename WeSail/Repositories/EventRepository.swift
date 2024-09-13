@@ -16,6 +16,7 @@ protocol EventRepositoryProtocol {
     func create(event: Event) async throws -> Event
     func update(event: Event) async throws -> Event
     func joinEvent(event: Event, userId: String) async throws -> Event
+    func getCrew(crew: [String]) async throws -> [User]
 }
 
 final class EventRepository:EventRepositoryProtocol {
@@ -65,5 +66,19 @@ final class EventRepository:EventRepositoryProtocol {
         var event = event
         event.participants.append(userId)
         return try await update(event: event)
+    }
+
+
+    func getCrew(crew: [String]) async throws -> [User] {
+        let snapshot = try await Firestore.firestore().collection("users").whereField("id", in: crew).getDocuments()
+        
+        var users: [User] = []
+        for document in snapshot.documents {
+            var user = try document.data(as: User.self)
+            user.id = document.documentID
+            users.append(user)
+        }
+        
+        return users
     }
 }

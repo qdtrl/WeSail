@@ -70,6 +70,17 @@ class EventsViewModel: ObservableObject {
         }
     }
 
+    func getCrew(crew: [String], completion: @escaping ([User]) -> Void) {
+        Task { @MainActor in
+            do {
+                let users = try await self.repository.getCrew(crew: crew)
+                completion(users)
+            } catch {
+                print("\(error.localizedDescription)")
+            }
+        }
+    }
+
     @Published var mockData = [
         Event(id: "1", boatId: "1", name: "Event 1", startDate: Date(), endDate: Date(), createdAt: Date(), participants: ["1", "2"]),
         Event(id: "2", boatId: "1", name: "Event 2", startDate: Date(), endDate: Date(), createdAt: Date(), participants: ["1", "2"]),

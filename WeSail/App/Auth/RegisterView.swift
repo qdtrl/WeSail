@@ -17,6 +17,7 @@ struct RegisterView: View {
     @State var lastName: String = ""
     @State var password: String = ""
     @State var passwordConfirmation: String = ""
+    @State private var error:String = ""
 
     var body: some View {
         NavigationStack {
@@ -90,7 +91,11 @@ struct RegisterView: View {
                     
                     Button {
                         Task {
-                            try await authService.createUser(withEmail: email, password: password, firstName: firstName, lastName: lastName)
+                            do {
+                                try await authService.createUser(withEmail: email, password: password, firstName: firstName, lastName: lastName)
+                            } catch {
+                                self.error = error.localizedDescription
+                            }
                         }
                     } label: {
                         Text("Inscription")
@@ -104,6 +109,11 @@ struct RegisterView: View {
                     }
                     .disabled(!formIsValid)
                     .opacity(formIsValid ? 1.0 : 0.5)
+                    .alert(isPresented: .constant(!error.isEmpty)) {
+                        Alert(title: Text("Erreur"), message: Text(error), dismissButton: .default(Text("OK")) {
+                            self.error = ""
+                        })
+                    }
                     
                 
                 Spacer()

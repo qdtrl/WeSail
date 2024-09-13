@@ -116,7 +116,7 @@ struct ProfileView: View {
                         .padding(.top)
 
                         if index == 0 {
-                            EventsListView(events: events)
+                            EventsListView(events: $events)
                         } else if index == 1 {
                             PicturesView(pictures: pictures)
                         } else {

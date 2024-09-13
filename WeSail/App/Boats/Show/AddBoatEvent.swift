@@ -9,6 +9,7 @@ import SwiftUI
 
 struct AddBoatEvent: View {
     @EnvironmentObject var eventsVM: EventsViewModel
+    @EnvironmentObject var boatVM: BoatViewModel
    
     @Environment(\.dismiss) var dismiss
 
@@ -42,7 +43,10 @@ struct AddBoatEvent: View {
                             createdAt: Date.now,
                             participants: [])
                                          
-                            eventsVM.create(event: event) { _ in
+                            eventsVM.create(event: event) { event in
+                                DispatchQueue.main.async {
+                                    boatVM.events.append(event)
+                                }
                                 dismiss()
                             }
                        }

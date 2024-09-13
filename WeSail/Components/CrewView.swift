@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct CrewView: View {
-    let crew: [User]
+    @Binding var crew: [User]
 
     var body: some View {
         if crew.isEmpty {
@@ -44,7 +44,3 @@ struct CrewView: View {
         }
     }
 }
-
-//#Preview {
-//    CrewView(crew: UserViewModel().mockData)
-//}
