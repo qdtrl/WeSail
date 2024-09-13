@@ -55,7 +55,6 @@
 		3CA275E52B3585D400C532FD /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 3CA275E42B3585D400C532FD /* FirebaseStorage */; };
 		3CA2FA052C637D160000AFC5 /* BoatViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CA2FA042C637D160000AFC5 /* BoatViewModel.swift */; };
 		3CBA304E2B27994E00AA19FE /* DateExtensionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CBA304D2B27994E00AA19FE /* DateExtensionTests.swift */; };
-		3CBA30542B27B46600AA19FE /* AuthPageViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CBA30532B27B46600AA19FE /* AuthPageViewTests.swift */; };
 		3CBA30562B27C07500AA19FE /* ConversationsViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CBA30552B27C07500AA19FE /* ConversationsViewModelTests.swift */; };
 		3CBF91B52B554643001650ED /* RouterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CBF91B42B554643001650ED /* RouterView.swift */; };
 		3CC041BF2B7911C400ABDE55 /* UpdateBoatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CC041BE2B7911C400ABDE55 /* UpdateBoatView.swift */; };
@@ -140,7 +139,6 @@
 		3CA01FF02B61938E00A1B908 /* CreateBoatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateBoatView.swift; sourceTree = "<group>"; };
 		3CA2FA042C637D160000AFC5 /* BoatViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = BoatViewModel.swift; path = Show/BoatViewModel.swift; sourceTree = "<group>"; };
 		3CBA304D2B27994E00AA19FE /* DateExtensionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateExtensionTests.swift; sourceTree = "<group>"; };
-		3CBA30532B27B46600AA19FE /* AuthPageViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthPageViewTests.swift; sourceTree = "<group>"; };
 		3CBA30552B27C07500AA19FE /* ConversationsViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationsViewModelTests.swift; sourceTree = "<group>"; };
 		3CBF91B42B554643001650ED /* RouterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouterView.swift; sourceTree = "<group>"; };
 		3CC041BE2B7911C400ABDE55 /* UpdateBoatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateBoatView.swift; sourceTree = "<group>"; };
@@ -245,7 +243,6 @@
 		3C17C88B2B14D60E00C74788 /* WeSailUITests */ = {
 			isa = PBXGroup;
 			children = (
-				3CBA30532B27B46600AA19FE /* AuthPageViewTests.swift */,
 			);
 			path = WeSailUITests;
 			sourceTree = "<group>";
@@ -675,7 +672,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3CBA30542B27B46600AA19FE /* AuthPageViewTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
