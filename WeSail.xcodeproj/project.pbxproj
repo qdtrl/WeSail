@@ -61,6 +61,7 @@
 		3CC041C32B7A740100ABDE55 /* UserImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CC041C22B7A740100ABDE55 /* UserImageView.swift */; };
 		3CC041C52B7A7AE900ABDE55 /* MenuBoatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CC041C42B7A7AE900ABDE55 /* MenuBoatView.swift */; };
 		3CC274E42C94619000B82E9A /* BoatViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CC274E32C94619000B82E9A /* BoatViewModelTests.swift */; };
+		3CC274E72C94854800B82E9A /* WeSailUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CC274E62C94854800B82E9A /* WeSailUITests.swift */; };
 		3CC549AB2B3ECB6800C48919 /* FirebaseAnalyticsSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 3CC549AA2B3ECB6800C48919 /* FirebaseAnalyticsSwift */; };
 		3CC549AD2B3ECE7300C48919 /* UserViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CC549AC2B3ECE7300C48919 /* UserViewModel.swift */; };
 		3CC549B32B3ED88A00C48919 /* BoatRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CC549B22B3ED88A00C48919 /* BoatRepository.swift */; };
@@ -145,6 +146,8 @@
 		3CC041C22B7A740100ABDE55 /* UserImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserImageView.swift; sourceTree = "<group>"; };
 		3CC041C42B7A7AE900ABDE55 /* MenuBoatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuBoatView.swift; sourceTree = "<group>"; };
 		3CC274E32C94619000B82E9A /* BoatViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoatViewModelTests.swift; sourceTree = "<group>"; };
+		3CC274E52C94854700B82E9A /* WeSailUITests-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "WeSailUITests-Bridging-Header.h"; sourceTree = "<group>"; };
+		3CC274E62C94854800B82E9A /* WeSailUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeSailUITests.swift; sourceTree = "<group>"; };
 		3CC549AC2B3ECE7300C48919 /* UserViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserViewModel.swift; sourceTree = "<group>"; };
 		3CC549B22B3ED88A00C48919 /* BoatRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoatRepository.swift; sourceTree = "<group>"; };
 		3CC549B42B4028E100C48919 /* EventRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventRepository.swift; sourceTree = "<group>"; };
@@ -243,6 +246,8 @@
 		3C17C88B2B14D60E00C74788 /* WeSailUITests */ = {
 			isa = PBXGroup;
 			children = (
+				3CC274E62C94854800B82E9A /* WeSailUITests.swift */,
+				3CC274E52C94854700B82E9A /* WeSailUITests-Bridging-Header.h */,
 			);
 			path = WeSailUITests;
 			sourceTree = "<group>";
@@ -522,7 +527,7 @@
 					};
 					3C17C8872B14D60D00C74788 = {
 						CreatedOnToolsVersion = 15.0.1;
-						LastSwiftMigration = 1500;
+						LastSwiftMigration = 1540;
 						TestTargetID = 3C17C86D2B14D60B00C74788;
 					};
 				};
@@ -672,6 +677,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3CC274E72C94854800B82E9A /* WeSailUITests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -946,6 +952,7 @@
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_OBJC_BRIDGING_HEADER = "WeSailUITests/WeSailUITests-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -969,6 +976,7 @@
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_OBJC_BRIDGING_HEADER = "WeSailUITests/WeSailUITests-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 				TEST_TARGET_NAME = WeSail;

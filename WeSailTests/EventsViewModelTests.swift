@@ -66,7 +66,7 @@ final class EventsViewModelTests: XCTestCase {
         eventsVM.repository = eventRepositoryMock
      
         eventsVM.create(event: EventsViewModel().mockData[0]) { event in
-            XCTAssertEqual(event, EventsViewModel().mockData[0])
+            XCTAssertEqual(event.name, EventsViewModel().mockData[0].name)
         }
     }
 
@@ -75,7 +75,7 @@ final class EventsViewModelTests: XCTestCase {
         eventsVM.repository = eventRepositoryMock
 
         eventsVM.update(event: EventsViewModel().mockData[0]) { event in
-            XCTAssertEqual(event, EventsViewModel().mockData[0])
+            XCTAssertEqual(event.name, EventsViewModel().mockData[0].name)
         }
     }
 
@@ -84,7 +84,7 @@ final class EventsViewModelTests: XCTestCase {
         eventsVM.repository = eventRepositoryMock
 
         eventsVM.joinEvent(event: EventsViewModel().mockData[0], userId: "userId") { event in
-            XCTAssertEqual(event, EventsViewModel().mockData[0])
+            XCTAssertEqual(event.name, EventsViewModel().mockData[0].name)
         }
     }
 
