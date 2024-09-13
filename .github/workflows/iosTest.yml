@@ -28,24 +28,11 @@ jobs:
         run: |
           set -o pipefail && xcodebuild test -project WeSail.xcodeproj -scheme WeSail -destination "platform=iOS Simulator,name=iPhone 14,OS=latest" | xcpretty && exit ${PIPESTATUS[0]}
 
-      - name: List DerivedData contents
-        if: always()
-        run: |
-          echo "Listing DerivedData contents:"
-          ls -R /Users/runner/Library/Developer/Xcode/DerivedData
-
       - name: Upload test results
         uses: actions/upload-artifact@v4
         if: always()
         with:
           name: test-results
           path: |
-            /Users/runner/Library/Developer/Xcode/DerivedData/**/Logs/**/*.xcresult
-            /Users/runner/Library/Developer/Xcode/DerivedData/**/Logs/**/*.log
-
-      - name: Upload xcresult bundle
-        uses: actions/upload-artifact@v4
-        if: always()
-        with:
-          name: test-results-bundle
-          path: TestResults.xcresult
+            /Users/runner/Library/Developer/Xcode/DerivedData/**/Logs/Test/*.xcresult
+            /Users/runner/Library/Developer/Xcode/DerivedData/**/Logs/Build/*.log
