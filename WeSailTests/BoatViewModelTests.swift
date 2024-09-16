@@ -18,7 +18,7 @@ class BoatRepositoryMock: BoatRepositoryProtocol {
     }
     
     func getCrew(crew: [String]) async throws -> [WeSail.User] {
-        return []
+        return UserViewModel().mockData
     }
     
     func create(boat: WeSail.Boat, image: UIImage, completion: @escaping (WeSail.Boat) -> Void) async throws {
@@ -43,6 +43,9 @@ final class BoatViewModelTests: XCTestCase {
 
     override func setUp() {
         super.setUp()
+        boatVM = BoatViewModel(id: "1")
+        boatVM.repository = BoatRepositoryMock()
+        boatVM.eventRepository = EventRepositoryMock()
     }
 
     override func tearDown() {
@@ -50,20 +53,34 @@ final class BoatViewModelTests: XCTestCase {
     }
 
 
-    func testShow() async {
-        let boatRepositoryMock = BoatRepositoryMock()
-        boatVM.repository = boatRepositoryMock
+    func testShow() async throws {
+        // Arrange
+        let expectedBoat = BoatsViewModel().mockData[0]
+        let expectedCrew = UserViewModel().mockData
+        let expectedEvents: [Event] = EventsViewModel().mockData
 
-        boatVM.show() 
+        // Act
+        await MainActor.run {
+            boatVM.show()
+        }
+        
+        for _ in 0..<10 { // Essaie jusqu'à 10 fois
+            if !boatVM.isLoading {
+                break
+            }
+            try await Task.sleep(nanoseconds: 100_000_000) // 0.1 seconde
+        }
 
-        XCTAssertEqual(BoatsViewModel().mockData[0], BoatsViewModel().mockData[0])
+        // Assert
+        await MainActor.run {
+            XCTAssertFalse(boatVM.isLoading, "isLoading should be false after show() completes")
+            XCTAssertEqual(boatVM.boat, expectedBoat, "Boat should match the expected boat")
+            XCTAssertEqual(boatVM.crew, expectedCrew, "Crew should match the expected crew")
+            XCTAssertEqual(boatVM.events.count, expectedEvents.count, "Events should match the expected events")
+        }
     }
 
     func testUploadImage() {
-        let boatRepositoryMock = BoatRepositoryMock()
-
-        boatVM.repository = boatRepositoryMock
-
         boatVM.boat = BoatsViewModel().mockData[0]
 
         boatVM.uploadImageToBoat(UIImage())
@@ -71,11 +88,7 @@ final class BoatViewModelTests: XCTestCase {
         XCTAssertEqual(BoatsViewModel().mockData[0], BoatsViewModel().mockData[0])
     }
 
-    func testJoinBoat() {
-        let boatRepositoryMock = BoatRepositoryMock()
-        
-        boatVM.repository = boatRepositoryMock
-        
+    func testJoinBoat() {                
         boatVM.boat = BoatsViewModel().mockData[0]
 
         boatVM.joinBoat(user: UserViewModel().mockData[0]) 
@@ -83,11 +96,7 @@ final class BoatViewModelTests: XCTestCase {
         XCTAssertEqual(BoatsViewModel().mockData[0], BoatsViewModel().mockData[0])
     }
 
-    func testUpdateBoat() {
-        let boatRepositoryMock = BoatRepositoryMock()
-        
-        boatVM.repository = boatRepositoryMock
-        
+    func testUpdateBoat() {                
         boatVM.boat = BoatsViewModel().mockData[0]
 
         boatVM.update(boat: BoatsViewModel().mockData[0], image: UIImage())
