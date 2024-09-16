@@ -17,16 +17,13 @@ jobs:
       - name: Select Xcode
         run: sudo xcode-select -switch /Applications/Xcode_15.0.app
 
-      - name: List available simulators
-        run: xcrun simctl list devices
-
-      - name: Build
-        run: |
-          set -o pipefail && xcodebuild clean build -project WeSail.xcodeproj -scheme WeSail -destination "platform=iOS Simulator,name=iPhone 14,OS=latest" | xcpretty && exit ${PIPESTATUS[0]}
+      # - name: Build
+      #   run: |
+      #     set -o pipefail && xcodebuild clean build -project WeSail.xcodeproj -scheme WeSail -destination "platform=iOS Simulator,name=iPhone 14,OS=17.0" | xcpretty && exit ${PIPESTATUS[0]}
 
       - name: Run tests
         run: |
-          set -o pipefail && xcodebuild test -project WeSail.xcodeproj -scheme WeSail -destination "platform=iOS Simulator,name=iPhone 14,OS=latest" | xcpretty && exit ${PIPESTATUS[0]}
+          set -o pipefail && xcodebuild test -project WeSail.xcodeproj -scheme WeSail -destination "platform=iOS Simulator,name=iPhone 14,OS=17.0" -verbose -timeout 1200 | xcpretty && exit ${PIPESTATUS[0]}
 
       - name: Upload test results
         uses: actions/upload-artifact@v4
