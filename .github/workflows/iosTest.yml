@@ -23,7 +23,7 @@ jobs:
 
       - name: Run tests
         run: |
-          set -o pipefail && xcodebuild test -project WeSail.xcodeproj -scheme WeSail -destination "platform=iOS Simulator,name=iPhone 14,OS=latest" -verbose | xcpretty && exit ${PIPESTATUS[0]}
+          set -o pipefail && xcodebuild test -project WeSail.xcodeproj -scheme WeSail -destination "platform=iOS Simulator,name=iPhone 14,OS=latest" -resultBundlePath ./TestResults.xcresult | xcpretty -r junit && exit ${PIPESTATUS[0]}
 
       - name: Upload test results
         uses: actions/upload-artifact@v4
