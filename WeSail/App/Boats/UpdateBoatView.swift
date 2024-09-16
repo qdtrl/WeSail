@@ -12,8 +12,6 @@ struct UpdateBoatView: View {
     @EnvironmentObject var boatVM: BoatViewModel
     
     @Environment(\.dismiss) var dismiss
-
-    @State var boat: Boat
     
     @State private var inputImage: UIImage?
     @State private var showingImagePicker = false
@@ -39,7 +37,7 @@ struct UpdateBoatView: View {
                                 .clipShape(RoundedRectangle(cornerRadius: 15, style: .continuous))
                             
                         } else {
-                            AsyncImage(url: URL(string: boat.image)) { phase in
+                            AsyncImage(url: URL(string: boatVM.boat!.image)) { phase in
                                 switch phase {
                                 case .empty:
                                     VStack {
@@ -86,7 +84,7 @@ struct UpdateBoatView: View {
 
                 Button {
                     Task {
-                        let boat = Boat(id: self.boat.id, name: name, type: type, number: number, club: club, image: image, owners: self.boat.owners, crew: self.boat.crew, images: self.boat.images)
+                        let boat = Boat(id: boatVM.boat!.id, name: name, type: type, number: number, club: club, image: image, owners: boatVM.boat!.owners, crew: boatVM.boat!.crew, images: boatVM.boat!.images)
                         
                         boatVM.update(boat: boat, image: inputImage ?? UIImage())
                         
@@ -107,6 +105,7 @@ struct UpdateBoatView: View {
             ImagePicker(image: self.$inputImage)
         }
         .onAppear {
+            guard let boat = boatVM.boat else { return }
             self.name = boat.name
             self.type = boat.type
             self.number = boat.number

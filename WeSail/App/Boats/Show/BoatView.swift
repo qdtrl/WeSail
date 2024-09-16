@@ -220,7 +220,7 @@ struct BoatView: View {
                     if let userAuth = authService.currentUser {
                         if boat.owners.contains(userAuth.id) {
                             ToolbarItem(placement: .navigationBarTrailing) {
-                                NavigationLink(destination: MenuBoatView(boat: boat)) {
+                                NavigationLink(destination: MenuBoatView().environmentObject(boatVM)) {
                                     Image(systemName: "ellipsis")
                                 }
                             }

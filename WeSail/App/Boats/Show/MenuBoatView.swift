@@ -8,20 +8,17 @@
 import SwiftUI
 
 struct MenuBoatView: View {
-    @EnvironmentObject var boatsVM: BoatsViewModel
-    @EnvironmentObject var authService: AuthService
-
-    @State var boat: Boat
+    @EnvironmentObject var boatVM: BoatViewModel
 
     var body: some View {
         List {
             Section("Bateaux") {
-                NavigationLink(destination: UpdateBoatView(boat: boat)) {
+                NavigationLink(destination: UpdateBoatView().environmentObject(boatVM)) {
                     SettingsRowView(imageName: "pencil", title: "Modifier", tintColor: Color(.systemGray))
                 }
             }
         }
-        .navigationTitle(boat.name)
+        .navigationTitle(boatVM.boat!.name)
         
         
     }
